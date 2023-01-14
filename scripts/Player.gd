@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 const UP = Vector2(0, -1)
 const GRAVITY = 20
-const MAX_FALL_SPEED = 200
+const MAX_FALL_SPEED = 300
 const MAX_SPEED = 150
 const JUMP_FORCE = 300
 const ACCEL = 10
