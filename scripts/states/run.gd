@@ -30,7 +30,6 @@ func input(event: InputEvent) -> BaseState:
 	return null
 
 func physics_process(delta: float) -> BaseState:
-	print('running')
 	if !player.is_on_floor():
 		return fall_state
 
