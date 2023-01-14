@@ -19,6 +19,7 @@ func _physics_process(delta):
 	states.physics_process(delta)
 
 func play_animation(anim_name):
+	set_arms_indices()
 	$AnimationPlayer.play(anim_name)
 
 func set_arms_indices():
