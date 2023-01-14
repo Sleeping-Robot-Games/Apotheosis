@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+
+[node name="Box" type="Control"]
+margin_right = 320.0
+margin_bottom = 240.0
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1, 1 )
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( 128, 88 )
