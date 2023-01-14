@@ -34,6 +34,7 @@ animation_name = "fall"
 run_node = NodePath("../run")
 idle_node = NodePath("../idle")
 dash_node = NodePath("../dash")
+jump_node = NodePath("../jump")
 
 [node name="jump" type="Node" parent="."]
 script = ExtResource( 5 )
