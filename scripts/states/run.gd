@@ -19,6 +19,7 @@ func enter() -> void:
 	.enter()
 	# Dashes get reset whenever the character starts running again
 	player.can_dash = true
+	player.can_jump = true
 	
 func input(event: InputEvent) -> BaseState:
 	if player.is_on_floor() and Input.is_action_just_pressed("jump_kb"):

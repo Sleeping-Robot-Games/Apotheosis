@@ -14,6 +14,7 @@ func enter() -> void:
 	.enter()
 	# Dashes get reset whenever the character idling again
 	player.can_dash = true
+	player.can_jump = true
 
 func input(event: InputEvent) -> BaseState:
 	if Input.is_action_just_pressed("left_kb") or Input.is_action_just_pressed("right_kb"):

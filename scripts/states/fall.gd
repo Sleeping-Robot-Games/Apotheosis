@@ -14,22 +14,27 @@ export (int) var max_speed = 150
 export (int) var max_fall_speed= 500
 export (int) var accel = 40
 export (float) var jump_buffer_time = 0.1
+export (float) var coyote_time = 0.1
 
+var coyote_timer: float = 0
 var jump_buffer_timer: float = 0
 
 func enter() -> void:
 	.enter()
 	jump_buffer_timer = 0
+	coyote_timer = coyote_time
 
 func input(event: InputEvent) -> BaseState:
 	if player.can_dash and Input.is_action_just_pressed('dash_kb'):
 		return dash_state
-	if Input.is_action_just_pressed('jump_kb'):
+	if player.can_jump and Input.is_action_just_pressed('jump_kb') and coyote_timer > 0:
 		jump_buffer_timer = jump_buffer_time
+		return jump_state
 	return null
 	
 func process(delta: float) -> BaseState:
 	jump_buffer_timer -= delta
+	coyote_timer -= delta
 	return null
 
 func physics_process(delta: float) -> BaseState:

@@ -7,6 +7,7 @@ var velocity = Vector2()
 var moving = 0
 var direction = "Right"
 var can_dash = true
+var can_jump = true
 
 onready var states = $state_manager
 

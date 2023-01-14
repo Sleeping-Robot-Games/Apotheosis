@@ -41,6 +41,8 @@ func physics_process(delta: float) -> BaseState:
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
 	
 	if player.velocity.y > 0:
+		# This makes it so the player can't double jump from coyote_time
+		player.can_jump = false
 		return fall_state
 
 	if player.is_on_floor():
