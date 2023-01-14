@@ -13,6 +13,7 @@ onready var run_state: BaseState = get_node(run_node)
 onready var dash_state: BaseState = get_node(dash_node)
 
 export (float) var dash_time = 0.4
+export (int) var dash_speed = 500
 
 var current_dash_time: float = 0
 var dash_direction: int = 0
@@ -26,7 +27,7 @@ func input(event: InputEvent) -> BaseState:
 	return null
 	
 func physics_process(delta: float) -> BaseState:
-	player.velocity.x =  500 if player.direction == 'Right' else -500
+	player.velocity.x =  dash_speed if player.direction == 'Right' else -dash_speed
 	player.velocity.y = 0
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
 
