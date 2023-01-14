@@ -17,6 +17,7 @@ export (int) var dash_speed = 500
 
 var current_dash_time: float = 0
 var dash_direction: int = 0
+var prev_player_pos
 
 func enter() -> void:
 	.enter()
@@ -27,6 +28,7 @@ func input(event: InputEvent) -> BaseState:
 	return null
 	
 func physics_process(delta: float) -> BaseState:
+	prev_player_pos = player.position
 	player.velocity.x =  dash_speed if player.direction == 'Right' else -dash_speed
 	player.velocity.y = 0
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
@@ -37,7 +39,7 @@ func physics_process(delta: float) -> BaseState:
 func process(delta: float) -> BaseState:
 	current_dash_time -= delta
 	
-	if current_dash_time > 0:
+	if prev_player_pos != player.position and current_dash_time > 0:
 		return null
 
 	# This makes it so the player can't repeatedly dash
