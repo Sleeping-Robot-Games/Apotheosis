@@ -1,40 +1,32 @@
 extends KinematicBody2D
 
-const UP = Vector2(0, -1)
-const GRAVITY = 20
-const MAX_FALL_SPEED = 500
-const MAX_SPEED = 150
-const JUMP_FORCE = 300
-const ACCEL = 40
-const FRICTION = 0.8
+export (float) var gravity = 20
+export (float) var friction = 0.8
 
-var motion = Vector2()
+var velocity = Vector2()
+var moving = 0
+var direction = "Right"
+
+onready var states = $state_manager
 
 func _ready():
-	pass # Replace with function body.
-
-
+	states.init(self)
+	
+func _unhandled_input(event: InputEvent) -> void:
+	states.input(event)
+	
 func _physics_process(delta):
-	
-	motion.y += GRAVITY
-	if motion.y > MAX_FALL_SPEED:
-		motion.y = MAX_FALL_SPEED
-		
-	motion.x = clamp(motion.x, -MAX_SPEED, MAX_SPEED)
-	
-	if Input.is_action_pressed("right_kb"):
-		motion.x += ACCEL
-	elif Input.is_action_pressed("left_kb"):
-		motion.x -= ACCEL
-	else:
-		motion.x = lerp(motion.x, 0, FRICTION)
-	
-	if is_on_floor():
-		if Input.is_action_just_pressed("jump_kb"):
-			motion.y = -JUMP_FORCE
-		
-	motion = move_and_slide(motion, UP)
-	
-func set_node_indices(direction):
-	pass
+	states.physics_process(delta)
 
+func play_animation(anim_name):
+	$AnimationPlayer.play(anim_name)
+
+func set_arms_indices():
+	if direction == 'Right':
+		# Move right arm on top
+		$SpriteHolder.move_child($SpriteHolder/Right, 0)
+		$SpriteHolder.move_child($SpriteHolder/Left, 4)
+	else:
+		# Move Left arm on top
+		$SpriteHolder.move_child($SpriteHolder/Left, 0)
+		$SpriteHolder.move_child($SpriteHolder/Right, 4)

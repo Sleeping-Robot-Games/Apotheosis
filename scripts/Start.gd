@@ -10,7 +10,7 @@ func _input(event):
 		g.player_input_devices["p1"] = "keyboard"
 		handle_new_input()
 	# mouse
-	elif (event is InputEventMouseButton or event is InputEventMouseMotion) and g.player_input_devices["p1"] != "keyboard":
+	elif (event is InputEventMouseButton or event is InputEventMousevelocity) and g.player_input_devices["p1"] != "keyboard":
 		g.player_input_devices["p1"] = "keyboard"
 		handle_new_input()
 	# joypad
