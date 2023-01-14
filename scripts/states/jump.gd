@@ -1,5 +1,15 @@
 extends BaseState
 
+export (NodePath) var fall_node
+export (NodePath) var run_node
+export (NodePath) var idle_node
+export (NodePath) var dash_node
+
+onready var fall_state: BaseState = get_node(fall_node)
+onready var run_state: BaseState = get_node(run_node)
+onready var idle_state: BaseState = get_node(idle_node)
+onready var dash_state: BaseState = get_node(dash_node)
+
 export (int) var jump_force = 300
 export (int) var max_speed = 150
 export (int) var accel = 40
@@ -10,7 +20,12 @@ func enter() -> void:
 	.enter()
 	player.velocity.y = -jump_force
 
-func physics_process(delta: float) -> int:
+func input(event: InputEvent) -> BaseState:
+	if player.can_dash and Input.is_action_just_pressed('dash_kb'):
+		return dash_state
+	return null
+
+func physics_process(delta: float) -> BaseState:
 	player.moving = 0
 	if Input.is_action_pressed("right_kb"):
 		player.velocity.x += accel
@@ -26,11 +41,11 @@ func physics_process(delta: float) -> int:
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
 	
 	if player.velocity.y > 0:
-		return State.Fall
+		return fall_state
 
 	if player.is_on_floor():
 		if player.moving != 0:
-			return State.Run
+			return run_state
 		else:
-			return State.Idle
-	return State.Null
+			return idle_state
+	return null

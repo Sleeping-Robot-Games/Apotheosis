@@ -1,21 +1,14 @@
 extends Node
 
-# Using enums for state names that way every script has the same interface
-# while being more robust and less error prone than using strings
-onready var states = {
-	BaseState.State.Idle: $idle,
-	BaseState.State.Run: $run,
-	BaseState.State.Fall: $fall,
-	BaseState.State.Jump: $jump,
-}
+export (NodePath) var starting_state
 
 var current_state: BaseState
 
-func change_state(new_state: int) -> void:
+func change_state(new_state: BaseState) -> void:
 	if current_state:
 		current_state.exit()
 
-	current_state = states[new_state]
+	current_state = new_state
 	current_state.enter()
 
 # Initialize the state machine by giving each state a reference to the objects
@@ -26,16 +19,21 @@ func init(player) -> void:
 		child.player = player
 
 	# Initialize with a default state of idle
-	change_state(BaseState.State.Idle)
+	change_state(get_node(starting_state))
 	
 # Pass through functions for the Player to call,
 # handling state changes as needed
 func physics_process(delta: float) -> void:
 	var new_state = current_state.physics_process(delta)
-	if new_state != BaseState.State.Null:
+	if new_state:
 		change_state(new_state)
 
 func input(event: InputEvent) -> void:
 	var new_state = current_state.input(event)
-	if new_state != BaseState.State.Null:
+	if new_state:
+		change_state(new_state)
+
+func process(delta: float) -> void:
+	var new_state = current_state.process(delta)
+	if new_state:
 		change_state(new_state)

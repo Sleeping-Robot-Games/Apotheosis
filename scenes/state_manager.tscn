@@ -1,26 +1,53 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/states/state_manager.gd" type="Script" id=1]
 [ext_resource path="res://scripts/states/idle.gd" type="Script" id=2]
 [ext_resource path="res://scripts/states/fall.gd" type="Script" id=3]
 [ext_resource path="res://scripts/states/run.gd" type="Script" id=4]
 [ext_resource path="res://scripts/states/jump.gd" type="Script" id=5]
+[ext_resource path="res://scripts/states/dash.gd" type="Script" id=6]
 
 [node name="state_manager" type="Node"]
 script = ExtResource( 1 )
+starting_state = NodePath("idle")
 
 [node name="idle" type="Node" parent="."]
 script = ExtResource( 2 )
 animation_name = "idle"
+jump_node = NodePath("../jump")
+fall_node = NodePath("../fall")
+run_node = NodePath("../run")
+dash_node = NodePath("../dash")
 
 [node name="run" type="Node" parent="."]
 script = ExtResource( 4 )
 animation_name = "run"
+idle_node = NodePath("../idle")
+jump_node = NodePath("../jump")
+fall_node = NodePath("../fall")
+run_node = NodePath(".")
+dash_node = NodePath("../dash")
 
 [node name="fall" type="Node" parent="."]
 script = ExtResource( 3 )
 animation_name = "fall"
+run_node = NodePath("../run")
+idle_node = NodePath("../idle")
+dash_node = NodePath("../dash")
 
 [node name="jump" type="Node" parent="."]
 script = ExtResource( 5 )
 animation_name = "jump"
+fall_node = NodePath("../fall")
+run_node = NodePath("../run")
+idle_node = NodePath("../idle")
+dash_node = NodePath("../dash")
+
+[node name="dash" type="Node" parent="."]
+script = ExtResource( 6 )
+animation_name = "dash"
+idle_node = NodePath("../idle")
+jump_node = NodePath("../jump")
+fall_node = NodePath("../fall")
+run_node = NodePath("../run")
+dash_node = NodePath(".")

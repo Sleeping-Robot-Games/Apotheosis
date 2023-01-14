@@ -1,21 +1,38 @@
 extends BaseState
 
+export (NodePath) var idle_node
+export (NodePath) var jump_node
+export (NodePath) var fall_node
+export (NodePath) var run_node
+export (NodePath) var dash_node
+
+onready var idle_state: BaseState = get_node(idle_node)
+onready var jump_state: BaseState = get_node(jump_node)
+onready var fall_state: BaseState = get_node(fall_node)
+onready var run_state: BaseState = get_node(run_node)
+onready var dash_state: BaseState = get_node(dash_node)
+
 export (int) var max_speed = 150
 export (int) var accel = 40
 
 func enter() -> void:
-	# This calls the base class enter function, which is necessary here
-	# to make sure the animation switches
 	.enter()
+	# Dashes get reset whenever the character starts running again
+	player.can_dash = true
 	
-func input(event: InputEvent) -> int:
+func input(event: InputEvent) -> BaseState:
 	if player.is_on_floor() and Input.is_action_just_pressed("jump_kb"):
-		return State.Jump
-	return State.Null
+		return jump_state
+		
+	if player.can_dash and Input.is_action_just_pressed("dash_kb"):
+		return dash_state
 
-func physics_process(delta: float) -> int:
+	return null
+
+func physics_process(delta: float) -> BaseState:
+	print('running')
 	if !player.is_on_floor():
-		return State.Fall
+		return fall_state
 
 	player.moving = 0
 	if Input.is_action_pressed("right_kb"):
@@ -32,6 +49,6 @@ func physics_process(delta: float) -> int:
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
 	
 	if player.moving == 0:
-		return State.Idle
+		return idle_state
 
-	return State.Run
+	return run_state
