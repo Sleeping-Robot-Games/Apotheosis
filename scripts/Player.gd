@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-
 const UP = Vector2(0, -1)
 const GRAVITY = 20
 const MAX_FALL_SPEED = 500
@@ -35,5 +34,7 @@ func _physics_process(delta):
 			motion.y = -JUMP_FORCE
 		
 	motion = move_and_slide(motion, UP)
-		
-		
+	
+func set_node_indices(direction):
+	pass
+
