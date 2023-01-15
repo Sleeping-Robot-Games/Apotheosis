@@ -29,10 +29,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	states.input(event)
 	
-	## TODO: Holding attack don't work that great
-	if can_shoot and Input.is_action_pressed("attack_" + controller_id):
-		shoot()
-	
 func _physics_process(delta):
 	if ui_disabled:
 		return
@@ -42,6 +38,9 @@ func _process(delta: float) -> void:
 	if ui_disabled:
 		return
 	states.process(delta)
+	
+	if can_shoot and Input.is_action_pressed("attack_" + controller_id):
+		shoot()
 	
 func play_animation(anim_name):
 	$AnimationPlayer.play(anim_name)
@@ -55,14 +54,14 @@ func dmg(num):
 		$AnimationPlayer.play('hurt'+direction_string)
 
 func shoot():
+	can_shoot = false
+	$AttackCD.start()
 	if states.current_state.name == 'dash':
 		return
 	var bullet = bullet_scene.instance()
 	bullet.global_position = global_position
 	bullet.speed = bullet.speed * direction
 	game.call_deferred('add_child', bullet)
-	can_shoot = false
-	$AttackCD.start()
 
 ## TODO: Change attackCD timer when switching weapons
 func _on_AttackCD_timeout():
