@@ -39,3 +39,21 @@ margin_top = 238.0
 margin_right = 640.0
 margin_bottom = 242.0
 color = Color( 0, 0, 0, 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 320, 240 )
+
+[node name="ReadyCountdown" type="Label" parent="."]
+margin_left = 269.0
+margin_top = 208.0
+margin_right = 294.0
+margin_bottom = 222.0
+rect_scale = Vector2( 5, 5 )
+align = 1
+
+[node name="GrowTween" type="Tween" parent="ReadyCountdown"]
+
+[node name="FadeTween" type="Tween" parent="ReadyCountdown"]
+
+[connection signal="tween_all_completed" from="ReadyCountdown/GrowTween" to="." method="_on_GrowTween_tween_all_completed"]
+[connection signal="tween_all_completed" from="ReadyCountdown/FadeTween" to="." method="_on_FadeTween_tween_all_completed"]

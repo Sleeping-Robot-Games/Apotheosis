@@ -96,7 +96,7 @@ text = "LEAVE"
 [node name="Ready" type="Button" parent="."]
 margin_left = 222.0
 margin_top = 190.0
-margin_right = 275.0
+margin_right = 295.0
 margin_bottom = 210.0
 text = "READY"
 
@@ -105,5 +105,11 @@ wait_time = 0.15
 one_shot = true
 
 [connection signal="mouse_entered" from="." to="." method="_on_Box_mouse_entered"]
+[connection signal="pressed" from="Model/Prev" to="." method="_on_ModelPrev_pressed"]
+[connection signal="pressed" from="Model/Next" to="." method="_on_ModelNext_pressed"]
+[connection signal="pressed" from="Color/Prev" to="." method="_on_ColorPrev_pressed"]
+[connection signal="pressed" from="Color/Next" to="." method="_on_ColorNext_pressed"]
 [connection signal="tween_all_completed" from="Join/Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="pressed" from="Leave" to="." method="_on_Leave_pressed"]
+[connection signal="pressed" from="Ready" to="." method="_on_Ready_pressed"]
 [connection signal="timeout" from="PressButtonTimer" to="." method="_on_PressButtonTimer_timeout"]
