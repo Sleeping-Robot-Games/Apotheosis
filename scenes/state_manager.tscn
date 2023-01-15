@@ -43,6 +43,7 @@ fall_node = NodePath("../fall")
 run_node = NodePath("../run")
 idle_node = NodePath("../idle")
 dash_node = NodePath("../dash")
+jump_force = 350
 
 [node name="dash" type="Node" parent="."]
 script = ExtResource( 6 )
