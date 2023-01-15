@@ -13,6 +13,6 @@ func _ready():
 			player_instance.player_key = player
 			player_instance.controller_id = "kb" if input_device == "keyboard" else input_device.substr(4)
 			player_instance.global_position = spawn_coords
-			$Enemies/Players.add_child(player_instance)
+			$Players.add_child(player_instance)
 			# increment spawn coordinates for next potential player
 			spawn_coords.x += 100
