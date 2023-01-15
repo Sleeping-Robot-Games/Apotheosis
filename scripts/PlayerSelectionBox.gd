@@ -180,8 +180,7 @@ func _on_ColorNext_pressed():
 	pass
 
 func _on_Leave_pressed():
-	# TODO
-	pass
+	remove_player()
 
 func _on_Ready_pressed():
 	is_ready = !is_ready

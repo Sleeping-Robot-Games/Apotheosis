@@ -1,6 +1,6 @@
 extends Control
+# warning-ignore-all:return_value_discarded
 
-var player_selection_scene = preload("res://scenes/PlayerSelection.tscn")
 ## TODO: custom button styleboxs
 onready var focused_stylebox = $StartButton.get_stylebox("focus").duplicate()
 onready var pressed_stylebox = $StartButton.get_stylebox("pressed").duplicate()
@@ -83,7 +83,7 @@ func _on_PressButtonTimer_timeout():
 	pressed_button = null
 
 func _on_StartButton_pressed():
-	get_tree().change_scene_to(player_selection_scene)
+	get_tree().change_scene("res://scenes/PlayerSelection.tscn")
 
 func _on_QuitButton_pressed():
 	get_tree().quit()

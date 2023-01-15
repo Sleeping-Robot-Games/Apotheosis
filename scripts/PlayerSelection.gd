@@ -47,9 +47,13 @@ func handle_player_joined(player_key):
 func handle_player_left(player_key):
 	if not player_key:
 		return
+	g.player_input_devices[player_key] = null
 	if player_ready_status.has(player_key):
 		player_ready_status.erase(player_key)
-		are_you_ready_kids()
+		if player_ready_status.size() == 0:
+			get_tree().change_scene("res://scenes/Start.tscn")
+		else:
+			are_you_ready_kids()
 
 func handle_player_ready_changed(player_key, ready_status):
 	if not player_key:
