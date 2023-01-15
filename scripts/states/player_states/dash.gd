@@ -29,7 +29,7 @@ func input(_event: InputEvent) -> BaseState:
 	
 func physics_process(_delta: float) -> BaseState:
 	prev_player_pos = actor.position
-	actor.velocity.x =  dash_speed if actor.direction == 'Right' else -dash_speed
+	actor.velocity.x =  dash_speed * actor.direction
 	actor.velocity.y = 0
 	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
 

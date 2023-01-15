@@ -7,11 +7,11 @@ export (String) var animation_name
 var actor
 
 func enter() -> void:
-	if actor.moving == 1:
-		actor.direction = 'Right'
-	elif actor.moving == -1:
-		actor.direction = 'Left'
-	actor.play_animation(animation_name + actor.direction)
+	if actor.direction == 1:
+		actor.direction_string = 'Right'
+	elif actor.direction == -1:
+		actor.direction_string = 'Left'
+	actor.play_animation(animation_name + actor.direction_string)
 
 func exit() -> void:
 	pass

@@ -5,8 +5,9 @@ export (float) var gravity = 20.0
 export (float) var friction = 0.8
 
 var velocity = Vector2()
-var moving = 0
-var direction = "Right"
+var direction = 1
+var direction_string = "Right"
+var moving = false
 var can_dash = true
 var can_jump = true
 var can_shoot = true
@@ -41,7 +42,7 @@ func play_animation(anim_name):
 	$AnimationPlayer.play(anim_name)
 
 func set_arms_indices():
-	if direction == 'Right':
+	if direction_string == 'Right':
 		# Move right arm on top
 		$SpriteHolder.move_child($SpriteHolder/Right, 0)
 		$SpriteHolder.move_child($SpriteHolder/Left, 4)
@@ -56,7 +57,7 @@ func shoot():
 
 	var bullet = bullet_scene.instance()
 	bullet.global_position = global_position
-	bullet.speed = bullet.speed * -1 if direction == 'Left' else bullet.speed
+	bullet.speed = bullet.speed * direction
 	game.call_deferred('add_child', bullet)
 	can_shoot = false
 	$AttackCD.start()

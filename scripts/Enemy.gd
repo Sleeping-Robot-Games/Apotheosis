@@ -1,11 +1,12 @@
 extends KinematicBody2D
 
 export (float) var gravity = 20.0
-export (float) var friction = 0.8
+export (float) var patrol_time = 2.0
+export (int) var speed = 100
 
 var velocity = Vector2()
-var moving = 0
-var direction = "Right"
+var direction = 1
+var direction_string = "Right"
 
 onready var states = $state_manager
 onready var game = get_tree().get_root().get_node("Game") ## Might change when implementing levels

@@ -26,13 +26,15 @@ func input(_event: InputEvent) -> BaseState:
 	return null
 
 func physics_process(_delta: float) -> BaseState:
-	actor.moving = 0
+	actor.moving = false
 	if Input.is_action_pressed("right_kb"):
 		actor.velocity.x += accel
-		actor.moving = 1
+		actor.direction = 1
+		actor.moving = true
 	elif Input.is_action_pressed("left_kb"):
-		actor.moving = -1
+		actor.direction = -1
 		actor.velocity.x -= accel
+		actor.moving = true
 	
 	actor.velocity.y += actor.gravity
 	
@@ -46,7 +48,7 @@ func physics_process(_delta: float) -> BaseState:
 		return fall_state
 
 	if actor.is_on_floor():
-		if actor.moving != 0:
+		if actor.moving:
 			return run_state
 		else:
 			return idle_state
