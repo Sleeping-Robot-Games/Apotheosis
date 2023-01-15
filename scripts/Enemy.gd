@@ -6,8 +6,10 @@ export (float) var patrol_time = 2.0
 export (int) var speed = 50
 export (int) var chase_speed = 100
 
+var hp = 5
+
 var velocity = Vector2()
-var direction = 1
+var direction = 1 ## TODO: when this is updated in state make a signal to update animations
 var direction_string = "Right"
 var target = null
 
@@ -29,13 +31,22 @@ func _process(delta: float) -> void:
 func play_animation(anim_name):
 	# $AnimationPlayer.play(anim_name)
 	pass
+
+func attack():
+	print('attacking')
+	target.dmg(1)
+
+func dmg(num):
+	hp -= num
+	if hp <= 0:
+		queue_free() # TODO: Use state
 	
 func ledge_detected():
 	return !left_ray.is_colliding() or !right_ray.is_colliding()
 
 func _on_DetectionArea_body_entered(body):
 	## TODO: What to do if a new player enters the area?
-	if 'Player' in body.name:
+	if 'Player' in body.name and body.hp > 0:
 		target = body
 		states.change_state(states.get_node("chase"))
 
@@ -43,3 +54,15 @@ func _on_DetectionArea_body_exited(body):
 	if 'Player' in body.name and body == target:
 		target = null
 		states.change_state(states.get_node("patrol"))
+
+func _on_AttackArea_body_entered(body):
+	if 'Player' in body.name and body == target:
+		states.change_state(states.get_node("attacking"))
+
+func _on_AttackArea_body_exited(body):
+	if 'Player' in body.name:
+		if target == null or target.hp <= 0:
+			target = null
+			states.change_state(states.get_node("patrol"))
+		else:
+			states.change_state(states.get_node("chase"))

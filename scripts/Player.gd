@@ -4,6 +4,8 @@ export (bool) var ui_disabled = false
 export (float) var gravity = 20.0
 export (float) var friction = 0.8
 
+var hp = 5
+
 var velocity = Vector2()
 var direction = 1
 var direction_string = "Right"
@@ -44,14 +46,20 @@ func _process(delta: float) -> void:
 func play_animation(anim_name):
 	$AnimationPlayer.play(anim_name)
 
+func dmg(num):
+	hp -= num
+	if hp <= 0:
+		$AnimationPlayer.play('death'+direction_string) ## TODO: Temp, use state
+	else:
+		$AnimationPlayer.play('hurt'+direction_string)
+
 func shoot():
 	if states.current_state.name == 'dash':
 		return
-	$Particles2D.emitting = true
-#	var bullet = bullet_scene.instance()
-#	bullet.global_position = global_position
-#	bullet.speed = bullet.speed * direction
-#	game.call_deferred('add_child', bullet)
+	var bullet = bullet_scene.instance()
+	bullet.global_position = global_position
+	bullet.speed = bullet.speed * direction
+	game.call_deferred('add_child', bullet)
 	can_shoot = false
 	$AttackCD.start()
 

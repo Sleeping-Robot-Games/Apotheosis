@@ -23,17 +23,14 @@ func process(delta):
 	if is_pacing:
 		current_pacing_time -= delta
 		if current_pacing_time < 0:
-			print('pacing time over')
 			current_pacing_time = pacing_time
 			is_pacing = false
 			switch_direction()
 	if not is_pacing:
 		if actor.is_on_wall():
-			print('hit wall')
 			switch_direction()
 			is_pacing = true
 		if actor.ledge_detected():
-			print('hit ledge')
 			switch_direction()
 			is_pacing = true
 			actor.global_position.x += 12 * actor.direction
