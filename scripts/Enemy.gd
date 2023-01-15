@@ -3,8 +3,8 @@ extends KinematicBody2D
 export (float) var gravity = 20.0
 export (float) var friction = 0.8
 export (float) var patrol_time = 2.0
-export (int) var speed = 100
-export (int) var chase_speed = 150
+export (int) var speed = 50
+export (int) var chase_speed = 100
 
 var velocity = Vector2()
 var direction = 1
@@ -32,11 +32,9 @@ func play_animation(anim_name):
 
 
 func _on_DetectionArea_body_entered(body):
-	print(body)
 	## TODO: What to do if a new player enters the area?
 	if 'Player' in body.name:
-		print(body)
-		target = body.get_parent()
+		target = body
 		states.change_state(states.get_node("chase"))
 
 
