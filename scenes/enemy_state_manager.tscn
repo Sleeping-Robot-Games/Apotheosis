@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/states/state_manager.gd" type="Script" id=1]
 [ext_resource path="res://scripts/states/enemy_states/idle.gd" type="Script" id=2]
 [ext_resource path="res://scripts/states/enemy_states/chase.gd" type="Script" id=3]
-[ext_resource path="res://scripts/states/enemy_states/fall.gd" type="Script" id=4]
 [ext_resource path="res://scripts/states/enemy_states/patrol.gd" type="Script" id=5]
 
 [node name="enemy_state_manager" type="Node"]
@@ -21,10 +20,9 @@ script = ExtResource( 5 )
 idle_node = NodePath("../idle")
 patrol_node = NodePath(".")
 chase_node = NodePath("../chase")
-fall_node = NodePath("../fall")
 
 [node name="chase" type="Node" parent="."]
 script = ExtResource( 3 )
-
-[node name="fall" type="Node" parent="."]
-script = ExtResource( 4 )
+idle_node = NodePath("../idle")
+patrol_node = NodePath("../patrol")
+chase_node = NodePath(".")

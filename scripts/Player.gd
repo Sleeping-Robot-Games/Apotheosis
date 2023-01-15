@@ -27,6 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	states.input(event)
 	
+	## TODO: Holding attack don't work that great
 	if can_shoot and Input.is_action_pressed("attack_" + controller_id):
 		shoot()
 	
