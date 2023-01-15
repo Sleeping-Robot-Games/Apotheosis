@@ -5,6 +5,8 @@ signal player_joined(player_key)
 signal player_left(player_key)
 signal player_ready_changed(player_key, ready_status)
 
+var rng = RandomNumberGenerator.new()
+
 var keyboard = preload("res://assets/keyboard.png")
 var controller = preload("res://assets/controller.png")
 
@@ -13,6 +15,19 @@ onready var player_selection = get_parent().get_parent()
 onready var focused_stylebox = $Model/Prev.get_stylebox("focus").duplicate()
 onready var pressed_stylebox = $Model/Prev.get_stylebox("pressed").duplicate()
 onready var buttons = [[$Model/Prev, $Model/Next], [$Color/Prev, $Color/Next], [$Leave, $Ready]]
+
+onready var player_sprites = {
+	"Back": $Player/SpriteHolder/Back,
+	"BackArm": $Player/SpriteHolder/BackArm,
+	"Torso": $Player/SpriteHolder/Torso,
+	"Head": $Player/SpriteHolder/Head,
+	"Legs": $Player/SpriteHolder/Legs,
+	"TopArm": $Player/SpriteHolder/TopArm,
+}
+
+var sprite_state: Dictionary
+var sprite_folder_path = "res://assets/character/sprites/"
+var palette_folder_path = "res://assets/character/palettes/"
 
 var focused_button_index = null
 var pressed_button = null
@@ -69,6 +84,59 @@ func add_player(p_key):
 	$Ready.visible = true
 	$Leave.visible = true
 	$Checkmark.visible = false
+	
+	create_random_character()
+
+func create_random_character():
+	var sprite_folders = g.folders_in_dir(sprite_folder_path)
+	var palette_folders = g.folders_in_dir(palette_folder_path)
+	for folder in sprite_folders:
+		set_random_texture(folder)
+	set_random_color()
+
+func set_random_texture(sprite_name: String) -> void:
+	var random_sprite = random_asset(sprite_folder_path + sprite_name)
+	if random_sprite == "": # No assets in the folder yet continue to next folder
+		return
+	set_sprite_texture(sprite_name, random_sprite)
+
+func random_asset(folder: String, keyword: String = "") -> String:
+	var files: Array
+	files = g.files_in_dir(folder)
+	if keyword == "":
+		files = g.files_in_dir(folder)
+	if files.size() == 0:
+		return ""
+	rng.randomize()
+	var random_index = rng.randi_range(0, files.size() - 1)
+	return folder+"/"+files[random_index]
+
+func set_random_color() -> void:
+	var random_color
+	var available_colors = []
+	var all_colors = g.files_in_dir(palette_folder_path)
+	for color in all_colors:
+		if not '000' in color and not g.player_colors.values().has(color):
+			available_colors.append(color)
+	rng.randomize()
+	var random_index = rng.randi_range(0, available_colors.size() - 1)
+	random_color = available_colors[random_index]
+	g.player_colors[player_key] = random_color
+	for sprite in player_sprites.values():
+		set_sprite_color(sprite, random_color)
+
+func set_sprite_texture(sprite_name: String, texture_path: String):
+	player_sprites[sprite_name].set_texture(load(texture_path))
+	sprite_state[sprite_name] = texture_path
+
+func set_sprite_color(sprite: Sprite, color_file: String) -> void:
+	print("sprite")
+	print(sprite)
+	var palette_path = palette_folder_path + color_file
+	var gray_palette_path = palette_folder_path + "color_000.png"
+	sprite.material.set_shader_param("palette_swap", load(palette_path))
+	sprite.material.set_shader_param("greyscale_palette", load(gray_palette_path))
+	g.make_shaders_unique(sprite)
 
 # make it so buttons interact with mouse cursor
 func enable_cursor():
@@ -171,12 +239,38 @@ func _on_ModelNext_pressed():
 	pass
 
 func _on_ColorPrev_pressed():
-	# TODO
-	pass
+	var available_colors = []
+	var all_colors = g.files_in_dir(palette_folder_path)
+	for color in all_colors:
+		if color == g.player_colors[player_key]:
+			available_colors.append(color)
+		elif not '000' in color and not g.player_colors.values().has(color):
+			available_colors.append(color)
+	var cur_index = available_colors.find(g.player_colors[player_key])
+	var new_index = cur_index - 1
+	if new_index < 0:
+		new_index = available_colors.size() - 1
+	var new_color = available_colors[new_index]
+	g.player_colors[player_key] = new_color
+	for sprite in player_sprites.values():
+		set_sprite_color(sprite, new_color)
 
 func _on_ColorNext_pressed():
-	# TODO
-	pass
+	var available_colors = []
+	var all_colors = g.files_in_dir(palette_folder_path)
+	for color in all_colors:
+		if color == g.player_colors[player_key]:
+			available_colors.append(color)
+		elif not '000' in color and not g.player_colors.values().has(color):
+			available_colors.append(color)
+	var cur_index = available_colors.find(g.player_colors[player_key])
+	var new_index = cur_index + 1
+	if new_index > available_colors.size() - 1:
+		new_index = 0
+	var new_color = available_colors[new_index]
+	g.player_colors[player_key] = new_color
+	for sprite in player_sprites.values():
+		set_sprite_color(sprite, new_color)
 
 func _on_Leave_pressed():
 	remove_player()
