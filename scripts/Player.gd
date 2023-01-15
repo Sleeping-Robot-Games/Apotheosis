@@ -11,9 +11,12 @@ var moving = false
 var can_dash = true
 var can_jump = true
 var can_shoot = true
+var player_key = "p1"
+var controller_id = "kb"
 
 onready var states = $state_manager
-onready var game = get_tree().get_root().get_node("Game") ## Might change when implementing levels
+## TODO: change how game scene is assigned when implementing levels?
+onready var game = null if ui_disabled else get_tree().get_root().get_node("Game")
 onready var bullet_scene = preload("res://scenes/PCBullet.tscn")
 
 func _ready():
@@ -24,7 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	states.input(event)
 	
-	if can_shoot and Input.is_action_pressed("attack_kb"):
+	if can_shoot and Input.is_action_pressed("attack_" + controller_id):
 		shoot()
 	
 func _physics_process(delta):

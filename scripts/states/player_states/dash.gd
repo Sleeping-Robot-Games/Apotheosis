@@ -46,8 +46,9 @@ func process(delta: float) -> BaseState:
 	actor.can_dash = false
 	
 	if actor.is_on_floor():
-		if Input.is_action_pressed("left_kb") or Input.is_action_pressed("right_kb"):
-			return run_state
+		if Input.is_action_pressed("left_" + actor.controller_id) \
+			or Input.is_action_pressed("right_" + actor.controller_id):
+				return run_state
 		else:
 			return idle_state
 	else:

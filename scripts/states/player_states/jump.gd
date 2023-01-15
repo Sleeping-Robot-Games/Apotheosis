@@ -21,17 +21,17 @@ func enter() -> void:
 	actor.velocity.y = -jump_force
 
 func input(_event: InputEvent) -> BaseState:
-	if actor.can_dash and Input.is_action_just_pressed('dash_kb'):
+	if actor.can_dash and Input.is_action_just_pressed("dash_" + actor.controller_id):
 		return dash_state
 	return null
 
 func physics_process(_delta: float) -> BaseState:
 	actor.moving = false
-	if Input.is_action_pressed("right_kb"):
+	if Input.is_action_pressed("right_"  + actor.controller_id):
 		actor.velocity.x += accel
 		actor.direction = 1
 		actor.moving = true
-	elif Input.is_action_pressed("left_kb"):
+	elif Input.is_action_pressed("left_" + actor.controller_id):
 		actor.direction = -1
 		actor.velocity.x -= accel
 		actor.moving = true

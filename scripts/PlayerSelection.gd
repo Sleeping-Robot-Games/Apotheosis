@@ -110,6 +110,4 @@ func _on_FadeTween_tween_all_completed():
 		ready_index += 1
 		show_ready_text()
 	else:
-		## TODO: start game
-		print("START GAME")
-		return
+		get_tree().change_scene("res://scenes/Game.tscn")

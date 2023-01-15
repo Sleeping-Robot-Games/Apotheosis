@@ -17,11 +17,12 @@ func enter() -> void:
 	actor.can_jump = true
 
 func input(_event: InputEvent) -> BaseState:
-	if Input.is_action_just_pressed("left_kb") or Input.is_action_just_pressed("right_kb"):
-		return run_state
-	elif actor.is_on_floor() and Input.is_action_just_pressed("jump_kb"):
+	if Input.is_action_just_pressed("left_" + actor.controller_id) \
+		or Input.is_action_just_pressed("right_" + actor.controller_id):
+			return run_state
+	elif actor.is_on_floor() and Input.is_action_just_pressed("jump_" + actor.controller_id):
 		return jump_state
-	elif actor.can_dash and Input.is_action_just_pressed('dash_kb'):
+	elif actor.can_dash and Input.is_action_just_pressed("dash_" + actor.controller_id):
 		return dash_state
 	return null
 

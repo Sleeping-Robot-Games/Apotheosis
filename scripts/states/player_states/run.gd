@@ -22,10 +22,10 @@ func enter() -> void:
 	actor.can_jump = true
 	
 func input(_event: InputEvent) -> BaseState:
-	if actor.is_on_floor() and Input.is_action_just_pressed("jump_kb"):
+	if actor.is_on_floor() and Input.is_action_just_pressed("jump_" + actor.controller_id):
 		return jump_state
 		
-	if actor.can_dash and Input.is_action_just_pressed("dash_kb"):
+	if actor.can_dash and Input.is_action_just_pressed("dash_" + actor.controller_id):
 		return dash_state
 
 	return null
@@ -35,11 +35,11 @@ func physics_process(_delta: float) -> BaseState:
 		return fall_state
 
 	actor.moving = false
-	if Input.is_action_pressed("right_kb"):
+	if Input.is_action_pressed("right_" + actor.controller_id):
 		actor.velocity.x += accel
 		actor.direction = 1
 		actor.moving = true
-	elif Input.is_action_pressed("left_kb"):
+	elif Input.is_action_pressed("left_" + actor.controller_id):
 		actor.direction = -1
 		actor.velocity.x -= accel
 		actor.moving = true

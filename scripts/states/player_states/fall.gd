@@ -25,11 +25,13 @@ func enter() -> void:
 	coyote_timer = coyote_time
 
 func input(_event: InputEvent) -> BaseState:
-	if actor.can_dash and Input.is_action_just_pressed('dash_kb'):
+	if actor.can_dash and Input.is_action_just_pressed("dash_" + actor.controller_id):
 		return dash_state
-	if actor.can_jump and Input.is_action_just_pressed('jump_kb') and coyote_timer > 0:
-		jump_buffer_timer = jump_buffer_time
-		return jump_state
+	if actor.can_jump \
+		and Input.is_action_just_pressed("jump_" + actor.controller_id) \
+		and coyote_timer > 0:
+			jump_buffer_timer = jump_buffer_time
+			return jump_state
 	return null
 	
 func process(delta: float) -> BaseState:
@@ -39,11 +41,11 @@ func process(delta: float) -> BaseState:
 
 func physics_process(_delta: float) -> BaseState:
 	actor.moving = false
-	if Input.is_action_pressed("right_kb"):
+	if Input.is_action_pressed("right_" + actor.controller_id):
 		actor.velocity.x += accel
 		actor.direction = 1
 		actor.moving = true
-	elif Input.is_action_pressed("left_kb"):
+	elif Input.is_action_pressed("left_" + actor.controller_id):
 		actor.direction = -1
 		actor.velocity.x -= accel
 		actor.moving = true

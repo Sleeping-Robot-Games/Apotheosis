@@ -26,7 +26,6 @@ func _ready():
 	connect("player_joined", player_selection, "handle_player_joined")
 	connect("player_left", player_selection, "handle_player_left")
 	connect("player_ready_changed", player_selection, "handle_player_ready_changed")
-	$Player.ui_disabled = true
 	$Player/Camera2D.current = false
 	remove_player()
 
