@@ -16,7 +16,7 @@ func enter() -> void:
 	player.can_dash = true
 	player.can_jump = true
 
-func input(event: InputEvent) -> BaseState:
+func input(_event: InputEvent) -> BaseState:
 	if Input.is_action_just_pressed("left_kb") or Input.is_action_just_pressed("right_kb"):
 		return run_state
 	elif player.is_on_floor() and Input.is_action_just_pressed("jump_kb"):
@@ -25,7 +25,7 @@ func input(event: InputEvent) -> BaseState:
 		return dash_state
 	return null
 
-func physics_process(delta: float) -> BaseState:
+func physics_process(_delta: float) -> BaseState:
 	player.velocity.y += player.gravity
 	player.velocity.x = lerp(player.velocity.x, 0, player.friction)
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)

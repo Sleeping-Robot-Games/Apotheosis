@@ -10,3 +10,10 @@ var player_input_devices = {
 
 # physical input duplicate entries
 var ghost_inputs = ["Steam Virtual Gamepad"]
+
+var player_colors = {
+	'p1': 'blue',
+	'p2': null,
+	'p3': null,
+	'p4': null,
+}

@@ -20,12 +20,12 @@ func enter() -> void:
 	.enter()
 	player.velocity.y = -jump_force
 
-func input(event: InputEvent) -> BaseState:
+func input(_event: InputEvent) -> BaseState:
 	if player.can_dash and Input.is_action_just_pressed('dash_kb'):
 		return dash_state
 	return null
 
-func physics_process(delta: float) -> BaseState:
+func physics_process(_delta: float) -> BaseState:
 	player.moving = 0
 	if Input.is_action_pressed("right_kb"):
 		player.velocity.x += accel

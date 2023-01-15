@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-export (float) var gravity = 20
+export (bool) var ui_disabled = false 
+export (float) var gravity = 20.0
 export (float) var friction = 0.8
 
 var velocity = Vector2()
@@ -18,15 +19,21 @@ func _ready():
 	states.init(self)
 	
 func _unhandled_input(event: InputEvent) -> void:
+	if ui_disabled:
+		return
 	states.input(event)
 	
 	if can_shoot and Input.is_action_pressed("attack_kb"):
 		shoot()
 	
 func _physics_process(delta):
+	if ui_disabled:
+		return
 	states.physics_process(delta)
 
 func _process(delta: float) -> void:
+	if ui_disabled:
+		return
 	states.process(delta)
 	
 func play_animation(anim_name):

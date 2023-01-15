@@ -24,10 +24,10 @@ func enter() -> void:
 	
 	current_dash_time = dash_time
 
-func input(event: InputEvent) -> BaseState:
+func input(_event: InputEvent) -> BaseState:
 	return null
 	
-func physics_process(delta: float) -> BaseState:
+func physics_process(_delta: float) -> BaseState:
 	prev_player_pos = player.position
 	player.velocity.x =  dash_speed if player.direction == 'Right' else -dash_speed
 	player.velocity.y = 0

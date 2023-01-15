@@ -21,7 +21,7 @@ func enter() -> void:
 	player.can_dash = true
 	player.can_jump = true
 	
-func input(event: InputEvent) -> BaseState:
+func input(_event: InputEvent) -> BaseState:
 	if player.is_on_floor() and Input.is_action_just_pressed("jump_kb"):
 		return jump_state
 		
@@ -30,7 +30,7 @@ func input(event: InputEvent) -> BaseState:
 
 	return null
 
-func physics_process(delta: float) -> BaseState:
+func physics_process(_delta: float) -> BaseState:
 	if !player.is_on_floor():
 		return fall_state
 

@@ -23,3 +23,6 @@ text = "QUIT"
 
 [node name="InputDevice" type="Sprite" parent="."]
 position = Vector2( 594, 453 )
+
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
