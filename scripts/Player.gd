@@ -50,6 +50,7 @@ func dmg(num):
 	hp -= num
 	if hp <= 0:
 		$AnimationPlayer.play('death'+direction_string) ## TODO: Temp, use state
+		ui_disabled = true
 	else:
 		$AnimationPlayer.play('hurt'+direction_string)
 

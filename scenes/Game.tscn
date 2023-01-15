@@ -1695,7 +1695,31 @@ tile_data = PoolIntArray( -524319, 0, 0, -524318, 1, 0, -524317, 2, 0, -524316, 
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource( 14 )]
-position = Vector2( 1222, 621 )
+position = Vector2( 1229, 671 )
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 1559, 721 )
+patrol_time = 5.0
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 572, 496 )
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 840, 675 )
+patrol_time = 6.0
+
+[node name="Enemy5" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 1439, 719 )
+patrol_time = 4.0
+
+[node name="Enemy6" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 1514, 379 )
+
+[node name="Enemy7" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 1237, 381 )
+
+[node name="Enemy8" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 923, 381 )
 
 [node name="Players" type="Node2D" parent="."]
 

@@ -35,9 +35,11 @@ func play_animation(anim_name):
 func attack():
 	print('attacking')
 	target.dmg(1)
+	$AnimationPlayer.play("attack_test")
 
 func dmg(num):
 	hp -= num
+	$AnimationPlayer.play("dmg_test")
 	if hp <= 0:
 		queue_free() # TODO: Use state
 	

@@ -8,12 +8,14 @@ export (NodePath) var chase_node
 onready var patrol_state: BaseState =  get_node(patrol_node)
 onready var chase_state: BaseState = get_node(chase_node)
 
-var current_attack_time: float = 0
 export var attack_time: float = 0.5
+export var start_attack_time: float = 0.2
+
+var current_attack_time: float = 0
 
 func enter() -> void:
 	.enter()
-	current_attack_time = attack_time
+	current_attack_time = start_attack_time
 	## TODO: Maybe remove this so the player doesn't get attacked right away
 	# actor.attack()
 
