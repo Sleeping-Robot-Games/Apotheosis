@@ -13,23 +13,23 @@ onready var dash_state: BaseState = get_node(dash_node)
 func enter() -> void:
 	.enter()
 	# Dashes get reset whenever the character idling again
-	player.can_dash = true
-	player.can_jump = true
+	actor.can_dash = true
+	actor.can_jump = true
 
 func input(_event: InputEvent) -> BaseState:
 	if Input.is_action_just_pressed("left_kb") or Input.is_action_just_pressed("right_kb"):
 		return run_state
-	elif player.is_on_floor() and Input.is_action_just_pressed("jump_kb"):
+	elif actor.is_on_floor() and Input.is_action_just_pressed("jump_kb"):
 		return jump_state
-	elif player.can_dash and Input.is_action_just_pressed('dash_kb'):
+	elif actor.can_dash and Input.is_action_just_pressed('dash_kb'):
 		return dash_state
 	return null
 
 func physics_process(_delta: float) -> BaseState:
-	player.velocity.y += player.gravity
-	player.velocity.x = lerp(player.velocity.x, 0, player.friction)
-	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
+	actor.velocity.y += actor.gravity
+	actor.velocity.x = lerp(actor.velocity.x, 0, actor.friction)
+	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
 
-	if !player.is_on_floor():
+	if !actor.is_on_floor():
 		return fall_state
 	return null

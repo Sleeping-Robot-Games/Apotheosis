@@ -14,15 +14,14 @@ func change_state(new_state: BaseState) -> void:
 # Initialize the state machine by giving each state a reference to the objects
 # owned by the parent that they should be able to take control of
 # and set a default state
-func init(player) -> void:
-	for child in get_children():
-		child.player = player
+func init(actor) -> void:
+	for state in get_children():
+		state.actor = actor
 
 	# Initialize with a default state of idle
 	change_state(get_node(starting_state))
 	
-# Pass through functions for the Player to call,
-# handling state changes as needed
+# Pass through functions handling state changes as needed
 func physics_process(delta: float) -> void:
 	var new_state = current_state.physics_process(delta)
 	if new_state:

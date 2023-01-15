@@ -18,37 +18,37 @@ export (int) var accel = 40
 func enter() -> void:
 	.enter()
 	# Dashes get reset whenever the character starts running again
-	player.can_dash = true
-	player.can_jump = true
+	actor.can_dash = true
+	actor.can_jump = true
 	
 func input(_event: InputEvent) -> BaseState:
-	if player.is_on_floor() and Input.is_action_just_pressed("jump_kb"):
+	if actor.is_on_floor() and Input.is_action_just_pressed("jump_kb"):
 		return jump_state
 		
-	if player.can_dash and Input.is_action_just_pressed("dash_kb"):
+	if actor.can_dash and Input.is_action_just_pressed("dash_kb"):
 		return dash_state
 
 	return null
 
 func physics_process(_delta: float) -> BaseState:
-	if !player.is_on_floor():
+	if !actor.is_on_floor():
 		return fall_state
 
-	player.moving = 0
+	actor.moving = 0
 	if Input.is_action_pressed("right_kb"):
-		player.velocity.x += accel
-		player.moving = 1
+		actor.velocity.x += accel
+		actor.moving = 1
 	elif Input.is_action_pressed("left_kb"):
-		player.moving = -1
-		player.velocity.x -= accel
+		actor.moving = -1
+		actor.velocity.x -= accel
 	
-	player.velocity.y += player.gravity
+	actor.velocity.y += actor.gravity
 	
-	player.velocity.x = clamp(player.velocity.x, -max_speed, max_speed)
+	actor.velocity.x = clamp(actor.velocity.x, -max_speed, max_speed)
 	
-	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
+	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
 	
-	if player.moving == 0:
+	if actor.moving == 0:
 		return idle_state
 
 	return run_state

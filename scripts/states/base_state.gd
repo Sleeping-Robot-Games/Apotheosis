@@ -3,15 +3,15 @@ extends Node
 
 export (String) var animation_name
 
-# Pass in a reference to the player's kinematic body so that it can be used by the state
-var player
+# Pass in a reference to the actor's kinematic body so that it can be used by the state
+var actor
 
 func enter() -> void:
-	if player.moving == 1:
-		player.direction = 'Right'
-	elif player.moving == -1:
-		player.direction = 'Left'
-	player.play_animation(animation_name + player.direction)
+	if actor.moving == 1:
+		actor.direction = 'Right'
+	elif actor.moving == -1:
+		actor.direction = 'Left'
+	actor.play_animation(animation_name + actor.direction)
 
 func exit() -> void:
 	pass

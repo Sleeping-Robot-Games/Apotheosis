@@ -25,9 +25,9 @@ func enter() -> void:
 	coyote_timer = coyote_time
 
 func input(_event: InputEvent) -> BaseState:
-	if player.can_dash and Input.is_action_just_pressed('dash_kb'):
+	if actor.can_dash and Input.is_action_just_pressed('dash_kb'):
 		return dash_state
-	if player.can_jump and Input.is_action_just_pressed('jump_kb') and coyote_timer > 0:
+	if actor.can_jump and Input.is_action_just_pressed('jump_kb') and coyote_timer > 0:
 		jump_buffer_timer = jump_buffer_time
 		return jump_state
 	return null
@@ -38,26 +38,26 @@ func process(delta: float) -> BaseState:
 	return null
 
 func physics_process(_delta: float) -> BaseState:
-	player.moving = 0
+	actor.moving = 0
 	if Input.is_action_pressed("right_kb"):
-		player.velocity.x += accel
-		player.moving = 1
+		actor.velocity.x += accel
+		actor.moving = 1
 	elif Input.is_action_pressed("left_kb"):
-		player.moving = -1
-		player.velocity.x -= accel
+		actor.moving = -1
+		actor.velocity.x -= accel
 	
-	player.velocity.y += player.gravity
-	if player.velocity.y > max_fall_speed:
-		player.velocity.y = max_fall_speed
+	actor.velocity.y += actor.gravity
+	if actor.velocity.y > max_fall_speed:
+		actor.velocity.y = max_fall_speed
 		
-	player.velocity.x = clamp(player.velocity.x, -max_speed, max_speed)
+	actor.velocity.x = clamp(actor.velocity.x, -max_speed, max_speed)
 	
-	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
+	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
 
-	if player.is_on_floor():
+	if actor.is_on_floor():
 		if jump_buffer_timer > 0:
 			return jump_state
-		if player.moving != 0:
+		if actor.moving != 0:
 			return run_state
 		else:
 			return idle_state

@@ -28,10 +28,10 @@ func input(_event: InputEvent) -> BaseState:
 	return null
 	
 func physics_process(_delta: float) -> BaseState:
-	prev_player_pos = player.position
-	player.velocity.x =  dash_speed if player.direction == 'Right' else -dash_speed
-	player.velocity.y = 0
-	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
+	prev_player_pos = actor.position
+	actor.velocity.x =  dash_speed if actor.direction == 'Right' else -dash_speed
+	actor.velocity.y = 0
+	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
 
 	return null
 
@@ -39,13 +39,13 @@ func physics_process(_delta: float) -> BaseState:
 func process(delta: float) -> BaseState:
 	current_dash_time -= delta
 	
-	if prev_player_pos != player.position and current_dash_time > 0:
+	if prev_player_pos != actor.position and current_dash_time > 0:
 		return null
 
 	# This makes it so the player can't repeatedly dash
-	player.can_dash = false
+	actor.can_dash = false
 	
-	if player.is_on_floor():
+	if actor.is_on_floor():
 		if Input.is_action_pressed("left_kb") or Input.is_action_pressed("right_kb"):
 			return run_state
 		else:
