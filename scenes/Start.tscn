@@ -12,6 +12,8 @@ margin_left = 285.0
 margin_top = 299.0
 margin_right = 335.0
 margin_bottom = 319.0
+focus_mode = 0
+enabled_focus_mode = 0
 text = "START"
 
 [node name="QuitButton" type="Button" parent="."]
@@ -19,10 +21,17 @@ margin_left = 288.0
 margin_top = 333.0
 margin_right = 333.0
 margin_bottom = 353.0
+focus_mode = 0
+enabled_focus_mode = 0
 text = "QUIT"
 
 [node name="InputDevice" type="Sprite" parent="."]
 position = Vector2( 594, 453 )
 
+[node name="PressButtonTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="timeout" from="PressButtonTimer" to="." method="_on_PressButtonTimer_timeout"]
