@@ -504,6 +504,14 @@ ui_down_7={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="pc_bullet"
+2d_physics/layer_3="enemy"
+2d_physics/layer_4="walls"
+2d_physics/layer_6="enemy_bullet"
+
 [physics]
 
 common/enable_pause_aware_picking=true

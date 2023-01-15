@@ -13,7 +13,7 @@ var can_shoot = true
 
 onready var states = $state_manager
 onready var game = get_parent() ## Might change when implementing levels
-onready var bullet_scene = preload("res://scenes/Bullet.tscn")
+onready var bullet_scene = preload("res://scenes/PCBullet.tscn")
 
 func _ready():
 	states.init(self)
