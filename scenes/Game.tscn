@@ -1721,6 +1721,21 @@ position = Vector2( 1237, 381 )
 [node name="Enemy8" parent="Enemies" instance=ExtResource( 14 )]
 position = Vector2( 923, 381 )
 
+[node name="Enemy9" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 536, 671 )
+
+[node name="Enemy10" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 109, 384 )
+
+[node name="Enemy11" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 1, 673 )
+
+[node name="Enemy12" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 272, 384 )
+
+[node name="Enemy13" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 229, 672 )
+
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource( 2 )]
