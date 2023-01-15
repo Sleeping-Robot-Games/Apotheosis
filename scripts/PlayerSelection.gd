@@ -1,6 +1,7 @@
 extends Control
 
 func _ready():
+	print("adding player p1")
 	$Boxes/Box1.add_player("p1")
 
 func _input(event):
@@ -16,17 +17,17 @@ func _input(event):
 	# joypad
 	elif event.is_action_pressed('any_pad_interaction'):
 		var device_name = Input.get_joy_name(event.device)
-		var device_num = "joy_" + str(event.device)
+		var device_id = "joy_" + str(event.device)
 		# skip if ghost input or if input is already assigned to a player
-		if g.ghost_inputs.has(device_name) or g.player_input_devices.values().has(device_num):
+		if g.ghost_inputs.has(device_name) or g.player_input_devices.values().has(device_id):
 			return
-		handle_new_input(device_num)
+		handle_new_input(device_id)
 
 # new input device has joined the game
 func handle_new_input(input_device):
 	for i in range(0, g.player_input_devices.values().size()):
-		var player_num = "p" + str(i + 1)
-		if g.player_input_devices[player_num] == null:
-			g.player_input_devices[player_num] = input_device
-			get_node("Boxes/Box" + str(i + 1)).add_player(player_num)
+		var player_key = "p" + str(i + 1)
+		if g.player_input_devices[player_key] == null:
+			g.player_input_devices[player_key] = input_device
+			get_node("Boxes/Box" + str(i + 1)).add_player(player_key)
 			break
