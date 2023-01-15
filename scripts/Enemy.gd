@@ -29,14 +29,15 @@ func _process(delta: float) -> void:
 func play_animation(anim_name):
 	# $AnimationPlayer.play(anim_name)
 	pass
-
+	
+func ledge_detected():
+	return !left_ray.is_colliding() or !right_ray.is_colliding()
 
 func _on_DetectionArea_body_entered(body):
 	## TODO: What to do if a new player enters the area?
 	if 'Player' in body.name:
 		target = body
 		states.change_state(states.get_node("chase"))
-
 
 func _on_DetectionArea_body_exited(body):
 	if 'Player' in body.name and body == target:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://assets/background/platform001.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -1626,6 +1626,9 @@ points = PoolVector2Array( 16, 11.9267, 0.0416565, 11.9267, 0.0416565, 0.834869,
 } ]
 34/z_index = 0
 
+[sub_resource type="Environment" id=42]
+glow_enabled = true
+
 [node name="Game" type="Node2D"]
 script = ExtResource( 15 )
 debug = true
@@ -1692,9 +1695,12 @@ tile_data = PoolIntArray( -524319, 0, 0, -524318, 1, 0, -524317, 2, 0, -524316, 
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource( 14 )]
-position = Vector2( 217, 372 )
+position = Vector2( 1222, 621 )
 
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource( 2 )]
-position = Vector2( 769, 336 )
+position = Vector2( 968, 614 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 42 )

@@ -47,11 +47,11 @@ func play_animation(anim_name):
 func shoot():
 	if states.current_state.name == 'dash':
 		return
-
-	var bullet = bullet_scene.instance()
-	bullet.global_position = global_position
-	bullet.speed = bullet.speed * direction
-	game.call_deferred('add_child', bullet)
+	$Particles2D.emitting = true
+#	var bullet = bullet_scene.instance()
+#	bullet.global_position = global_position
+#	bullet.speed = bullet.speed * direction
+#	game.call_deferred('add_child', bullet)
 	can_shoot = false
 	$AttackCD.start()
 

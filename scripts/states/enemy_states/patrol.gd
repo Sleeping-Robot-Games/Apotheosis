@@ -20,6 +20,7 @@ func enter() -> void:
 	
 	current_patrol_time = actor.patrol_time
 	idle_flip_time = random.randf_range(0.5, current_patrol_time)
+	#actor.direction = 1
 
 func process(delta):
 	current_patrol_time -= delta
@@ -33,7 +34,7 @@ func process(delta):
 	if actor.is_on_wall():
 		switch_direction()
 		
-	if ledge_detected():
+	if actor.ledge_detected():
 		switch_direction()
 		actor.global_position.x += 12 * actor.direction # this is used to make sure it doesn't flip back and forth
 	
@@ -50,8 +51,6 @@ func physics_process(_delta: float) -> BaseState:
 	
 	return null
 
-func ledge_detected():
-	return !actor.left_ray.is_colliding() or !actor.right_ray.is_colliding()
 	
 func switch_direction():
 	# Switch direction
