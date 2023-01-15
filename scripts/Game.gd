@@ -1,9 +1,13 @@
 extends Node2D
 
+export var debug = false
+
 const player_scene = preload('res://scenes/Player.tscn')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if debug:
+		return
 	# spawn players
 	var spawn_coords = Vector2(300, 250)
 	for player in g.player_input_devices:

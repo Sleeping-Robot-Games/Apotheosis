@@ -9,21 +9,19 @@ onready var idle_state: BaseState = get_node(idle_node)
 onready var patrol_state: BaseState =  get_node(patrol_node)
 onready var chase_state: BaseState = get_node(chase_node)
 
-var current_target
-
 func enter() -> void:
 	.enter()
-	
-	current_target = actor.target
+	print('in chase')
 
 func process(delta):
 	return null
 
 func physics_process(_delta: float) -> BaseState:
-	## Move the actor one direction, then switch based off current_patrol_timer
 	actor.velocity.y += actor.gravity
-	actor.velocity.x = actor.speed * actor.direction
-	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
+	#actor.velocity.x = actor.speed * actor.direction
+	var direction = (actor.target.global_postiion - actor.global_position).normalized()
+	
+	actor.velocity = actor.move_and_slide(direction * actor.chase_speed, Vector2.UP)
 	
 	return null
 

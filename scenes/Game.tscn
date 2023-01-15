@@ -1,6 +1,7 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://assets/background/platform001.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/background/skycolor.png" type="Texture" id=3]
 [ext_resource path="res://assets/background/stars.tres" type="Texture" id=4]
 [ext_resource path="res://assets/background/greentwinkle.tres" type="Texture" id=5]
@@ -1627,6 +1628,7 @@ points = PoolVector2Array( 16, 11.9267, 0.0416565, 11.9267, 0.0416565, 0.834869,
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 15 )
+debug = true
 
 [node name="Sky" type="TileMap" parent="."]
 tile_set = SubResource( 3 )
@@ -1676,3 +1678,6 @@ tile_data = PoolIntArray( 524391, 0, 0, 524392, 1, 0, 655331, 2, 0, 655332, 3, 0
 position = Vector2( 221, 337 )
 
 [node name="Players" type="Node2D" parent="."]
+
+[node name="Player" parent="Players" instance=ExtResource( 2 )]
+position = Vector2( 770, 282 )

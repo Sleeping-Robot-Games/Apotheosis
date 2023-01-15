@@ -86,8 +86,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "dashLeft"
-length = 0.1
-loop = true
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteHolder/Head:frame")
 tracks/0/interp = 1
@@ -95,10 +94,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 4 ]
+"values": [ 4, 5 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SpriteHolder/TopArm:frame")
@@ -107,10 +106,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 4 ]
+"values": [ 4, 5 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("SpriteHolder/Legs:frame")
@@ -119,10 +118,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 4 ]
+"values": [ 4, 5 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("SpriteHolder/Torso:frame")
@@ -131,10 +130,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 4 ]
+"values": [ 4, 5 ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("SpriteHolder/BackArm:frame")
@@ -143,10 +142,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 4 ]
+"values": [ 4, 5 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("SpriteHolder/Back:frame")
@@ -155,16 +154,15 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 4 ]
+"values": [ 4, 5 ]
 }
 
 [sub_resource type="Animation" id=4]
 resource_name = "dashRight"
-length = 0.1
-loop = true
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteHolder/Head:frame")
 tracks/0/interp = 1
@@ -172,10 +170,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 6 ]
+"values": [ 6, 7 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SpriteHolder/TopArm:frame")
@@ -184,10 +182,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 6 ]
+"values": [ 6, 7 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("SpriteHolder/Legs:frame")
@@ -196,10 +194,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 6 ]
+"values": [ 6, 7 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("SpriteHolder/Torso:frame")
@@ -208,10 +206,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 6 ]
+"values": [ 6, 7 ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("SpriteHolder/BackArm:frame")
@@ -220,10 +218,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 6 ]
+"values": [ 6, 7 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("SpriteHolder/Back:frame")
@@ -232,10 +230,10 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 6 ]
+"values": [ 6, 7 ]
 }
 
 [sub_resource type="Animation" id=15]
@@ -1307,7 +1305,7 @@ tracks/5/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 41
+collision_mask = 40
 script = ExtResource( 2 )
 
 [node name="SpriteHolder" type="Node2D" parent="."]

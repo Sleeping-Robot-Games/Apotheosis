@@ -42,18 +42,7 @@ func _process(delta: float) -> void:
 	states.process(delta)
 	
 func play_animation(anim_name):
-	set_arms_indices()
 	$AnimationPlayer.play(anim_name)
-
-func set_arms_indices():
-	if direction_string == 'Right':
-		# Move right arm on top
-		$SpriteHolder.move_child($SpriteHolder/Right, 0)
-		$SpriteHolder.move_child($SpriteHolder/Left, 4)
-	else:
-		# Move Left arm on top
-		$SpriteHolder.move_child($SpriteHolder/Left, 0)
-		$SpriteHolder.move_child($SpriteHolder/Right, 4)
 
 func shoot():
 	if states.current_state.name == 'dash':
