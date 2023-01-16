@@ -12,10 +12,14 @@ onready var fall_state: BaseState = get_node(fall_node)
 onready var run_state: BaseState = get_node(run_node)
 onready var dash_state: BaseState = get_node(dash_node)
 
+onready var dash_ghost_scene = preload("res://scenes/DashGhost.tscn")
+
 export (float) var dash_time = 0.4
 export (int) var dash_speed = 500
+export (float) var dash_ghost_interval = .05
 
 var current_dash_time: float = 0
+var current_dash_ghost_interval: float = 0
 var dash_direction: int = 0
 var prev_player_pos
 
@@ -23,6 +27,9 @@ func enter() -> void:
 	.enter()
 	
 	current_dash_time = dash_time
+	current_dash_ghost_interval = dash_ghost_interval
+	
+	instance_ghost()
 
 func input(_event: InputEvent) -> BaseState:
 	return null
@@ -38,6 +45,11 @@ func physics_process(_delta: float) -> BaseState:
 # Track how long we've been dashing so we know when to exit
 func process(delta: float) -> BaseState:
 	current_dash_time -= delta
+	current_dash_ghost_interval -= delta
+	
+	if current_dash_ghost_interval < 0:
+		instance_ghost()
+		current_dash_ghost_interval = dash_ghost_interval
 	
 	if prev_player_pos != actor.position and current_dash_time > 0:
 		return null
@@ -53,3 +65,9 @@ func process(delta: float) -> BaseState:
 			return idle_state
 	else:
 		return fall_state
+
+func instance_ghost():
+	var ghost = dash_ghost_scene.instance()
+	ghost.set_sprites(actor.get_node('SpriteHolder'))
+	ghost.global_position = actor.global_position
+	actor.game.call_deferred('add_child', ghost)

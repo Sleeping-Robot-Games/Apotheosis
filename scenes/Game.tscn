@@ -1736,7 +1736,7 @@ position = Vector2( 511, 382 )
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource( 2 )]
-position = Vector2( 470, 494 )
+position = Vector2( 155, 667 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 42 )
