@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var random = RandomNumberGenerator.new()
+
 export (float) var gravity = 20.0
 export (float) var friction = 0.8
 export (float) var patrol_time = 2.0
@@ -26,6 +28,7 @@ onready var game = get_tree().get_root().get_child(1)
 onready var right_ray = $RayRight
 onready var left_ray = $RayLeft
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
+onready var scrap_scene = preload("res://scenes/Scrap.tscn")
 
 func _ready():
 	states.init(self)
@@ -65,11 +68,20 @@ func dmg(num):
 	hp -= num
 	$AnimationPlayer.play(name.to_lower().rstrip("0123456789")+'Hurt')
 	if hp <= 0:
-		$CollisionShape2D.set_deferred('disabled', true)
+		set_collision_mask_bit(1, false)
 		$AnimationPlayer.play(name.to_lower().rstrip("0123456789")+'Death')
 	
 func ledge_detected():
 	return !left_ray.is_colliding() or !right_ray.is_colliding()
+	
+func drop_scrap():
+	random.randomize()
+	var num = random.randi_range(3, 10)
+	print(str(num) + " scrap dropped")
+	for n in range(num):
+		var new_scrap = scrap_scene.instance()
+		new_scrap.global_position = global_position
+		game.add_child(new_scrap)
 
 func _on_DetectionArea_body_entered(body):
 	## TODO: What to do if a new player enters the area?
@@ -99,4 +111,5 @@ func _on_AttackArea_body_exited(body):
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if 'Death' in anim_name:
+		drop_scrap()
 		queue_free()

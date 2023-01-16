@@ -6,6 +6,7 @@ export (float) var friction = 0.8
 export (int) var bullet_speed = 15
 
 export var hp = 10
+var scrap = 0
 
 var velocity = Vector2()
 var direction = 1
@@ -84,6 +85,10 @@ func slash():
 	$SlashCD.start()
 	for body in slashable_bodies:
 		body.slashed(1, direction, 100) # first param is dmg, 3rd is push distance
+		
+func get_scrap():
+	scrap += 1
+	show_debug_label('scrap: ' + str(scrap))
 
 func _on_SlashArea_body_entered(body):
 	if body.is_in_group('enemies'): 
