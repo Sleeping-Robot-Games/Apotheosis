@@ -1631,7 +1631,6 @@ glow_enabled = true
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 15 )
-debug = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

@@ -126,12 +126,12 @@ func set_random_color() -> void:
 		set_sprite_color(sprite, random_color)
 
 func set_sprite_texture(sprite_name: String, texture_path: String):
+	if sprite_name == "Head":
+		g.player_models[player_key] = texture_path
 	player_sprites[sprite_name].set_texture(load(texture_path))
 	sprite_state[sprite_name] = texture_path
 
 func set_sprite_color(sprite: Sprite, color_file: String) -> void:
-	print("sprite")
-	print(sprite)
 	var palette_path = palette_folder_path + color_file
 	var gray_palette_path = palette_folder_path + "color_000.png"
 	sprite.material.set_shader_param("palette_swap", load(palette_path))

@@ -795,9 +795,6 @@ margin_right = 640.0
 margin_bottom = 480.0
 rect_pivot_offset = Vector2( -449, 430 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BGHolder" type="Node2D" parent="."]
 

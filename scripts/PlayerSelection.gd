@@ -48,6 +48,8 @@ func handle_player_left(player_key):
 	if not player_key:
 		return
 	g.player_input_devices[player_key] = null
+	g.player_colors[player_key] = null
+	g.player_models[player_key] = null
 	if player_ready_status.has(player_key):
 		player_ready_status.erase(player_key)
 		if player_ready_status.size() == 0:

@@ -18,6 +18,13 @@ var player_colors = {
 	'p4': null,
 }
 
+var player_models = {
+	'p1': 'head_001.png',
+	'p2': null,
+	'p3': null,
+	'p4': null,
+}
+
 func folders_in_dir(path: String) -> Array:
 	var folders = []
 	var dir = Directory.new()
