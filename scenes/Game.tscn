@@ -1697,6 +1697,36 @@ tile_data = PoolIntArray( -524319, 0, 0, -524318, 1, 0, -524317, 2, 0, -524316, 
 [node name="Chickpea" parent="Enemies" instance=ExtResource( 14 )]
 position = Vector2( 249, 383 )
 
+[node name="Chickpea2" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 420, 672 )
+
+[node name="Chickpea3" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 634, 383 )
+
+[node name="Chickpea4" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 1234, 721 )
+
+[node name="Chickpea5" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 1227, 383 )
+
+[node name="Chickpea6" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 1511, 385 )
+
+[node name="Chickpea7" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 794, 672 )
+
+[node name="Chickpea8" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 1437, 719 )
+
+[node name="Chickpea9" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 908, 384 )
+
+[node name="Chickpea10" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 485, 492 )
+
+[node name="Chickpea11" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 78, 672 )
+
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource( 2 )]
