@@ -13,8 +13,11 @@ var moving = false
 var can_dash = true
 var can_jump = true
 var can_shoot = true
+var can_slash = true
 var player_key = "p1"
 var controller_id = "kb"
+
+var slashable_bodies = []
 
 onready var states = $state_manager
 ## TODO: change how game scene is assigned when implementing levels?
@@ -39,9 +42,11 @@ func _process(delta: float) -> void:
 		return
 	states.process(delta)
 	
-	if can_shoot and Input.is_action_pressed("attack_" + controller_id):
+	if can_shoot and Input.is_action_pressed("shoot_" + controller_id):
 		shoot()
-
+	if can_slash and Input.is_action_pressed("attack_" + controller_id):
+		slash()
+	
 func play_animation(anim_name):
 	$AnimationPlayer.play(anim_name)
 
@@ -55,7 +60,7 @@ func dmg(num):
 
 func shoot():
 	can_shoot = false
-	$AttackCD.start()
+	$ShootCD.start()
 	if states.current_state.name == 'dash':
 		return
 	var bullet = bullet_scene.instance()
@@ -63,6 +68,23 @@ func shoot():
 	bullet.speed = bullet.speed * direction
 	game.call_deferred('add_child', bullet)
 
+func slash():
+	can_slash = false
+	$SlashCD.start()
+	for body in slashable_bodies:
+		body.slashed(1, 100) # first param is dmg, 2nd is push distance
+
+func _on_SlashArea_body_entered(body):
+	if body.is_in_group('enemies'): 
+		slashable_bodies.append(body)
+
+func _on_SlashArea_body_exited(body):
+	if body.is_in_group('enemies'): 
+		slashable_bodies.erase(body)
+
 ## TODO: Change attackCD timer when switching weapons
-func _on_AttackCD_timeout():
+func _on_ShootCD_timeout():
 	can_shoot = true
+
+func _on_SlashCD_timeout():
+	can_slash = true

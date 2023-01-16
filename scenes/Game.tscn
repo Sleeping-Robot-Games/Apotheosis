@@ -1631,6 +1631,7 @@ glow_enabled = true
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 15 )
+debug = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -1738,7 +1739,7 @@ position = Vector2( 229, 672 )
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource( 2 )]
-position = Vector2( 968, 614 )
+position = Vector2( 1077, 367 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 42 )
