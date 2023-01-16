@@ -11,12 +11,13 @@ func enter() -> void:
 		actor.direction_string = 'Right'
 	elif actor.direction == -1:
 		actor.direction_string = 'Left'
+		
 	if actor.is_in_group('players'):
 		actor.play_animation(animation_name + actor.direction_string)
 	else:
 		actor.get_node('Sprite').flip_h = actor.direction == 1
 		if animation_name:
-			actor.play_animation(actor.name.to_lower() + animation_name)
+			actor.play_animation(actor.name.to_lower().rstrip("0123456789") + animation_name)
 
 func exit() -> void:
 	pass

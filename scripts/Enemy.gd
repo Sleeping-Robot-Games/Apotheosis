@@ -40,7 +40,7 @@ func play_animation(anim_name):
 	$AnimationPlayer.play(anim_name)
 
 func attack():
-	$AnimationPlayer.play(name.to_lower()+'Attack')
+	$AnimationPlayer.play(name.to_lower().rstrip("0123456789")+'Attack')
 	if type == 'range':
 		shoot()
 	else:
@@ -63,10 +63,10 @@ func slashed(num, dir, dist):
 
 func dmg(num):
 	hp -= num
-	$AnimationPlayer.play(name.to_lower()+'Hurt')
+	$AnimationPlayer.play(name.to_lower().rstrip("0123456789")+'Hurt')
 	if hp <= 0:
 		$CollisionShape2D.set_deferred('disabled', true)
-		$AnimationPlayer.play(name.to_lower()+'Death')
+		$AnimationPlayer.play(name.to_lower().rstrip("0123456789")+'Death')
 	
 func ledge_detected():
 	return !left_ray.is_colliding() or !right_ray.is_colliding()
