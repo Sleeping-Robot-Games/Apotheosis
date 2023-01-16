@@ -72,7 +72,7 @@ func slash():
 	can_slash = false
 	$SlashCD.start()
 	for body in slashable_bodies:
-		body.slashed(1, 100) # first param is dmg, 2nd is push distance
+		body.slashed(1, direction, 100) # first param is dmg, 3rd is push distance
 
 func _on_SlashArea_body_entered(body):
 	if body.is_in_group('enemies'): 

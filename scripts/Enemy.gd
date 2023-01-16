@@ -10,6 +10,7 @@ var hp = 5
 
 var velocity = Vector2()
 var direction = 1 ## TODO: when this is updated in state make a signal to update animations
+var push_direction = 1
 var direction_string = "Right"
 var push_distance = 100
 var target = null
@@ -34,16 +35,16 @@ func play_animation(anim_name):
 	pass
 
 func attack():
-	print('attacking')
+	print('enemy attacking')
 	target.dmg(1)
 	$AnimationPlayer.play("attack_test")
 
-func slashed(num, dist):
+func slashed(num, dir, dist):
 	hp -= num
 	if hp <= 0:
 		return queue_free()
+	push_direction = dir
 	push_distance = dist
-	print('get slashed')
 	states.change_state(states.get_node("pushed"))
 
 func dmg(num):
