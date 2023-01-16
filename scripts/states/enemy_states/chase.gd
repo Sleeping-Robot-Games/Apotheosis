@@ -3,10 +3,12 @@ extends BaseState
 export (NodePath) var idle_node
 export (NodePath) var patrol_node
 export (NodePath) var chase_node
+export (NodePath) var fall_node
 
 onready var idle_state: BaseState = get_node(idle_node)
 onready var patrol_state: BaseState =  get_node(patrol_node)
 onready var chase_state: BaseState = get_node(chase_node)
+onready var fall_state: BaseState = get_node(fall_node)
 
 var pacing_time = .2
 var current_pacing_time
@@ -52,6 +54,9 @@ func physics_process(_delta: float) -> BaseState:
 		direction.y += actor.gravity
 		actor.direction = -1 if actor.target.global_position.x < actor.global_position.x else 1
 		actor.velocity = actor.move_and_slide(direction * actor.chase_speed, Vector2.UP)
+		
+	if not actor.is_on_floor():
+		return fall_state
 		
 	return null
 

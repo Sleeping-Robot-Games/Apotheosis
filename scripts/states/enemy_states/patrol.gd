@@ -5,10 +5,12 @@ var random = RandomNumberGenerator.new()
 export (NodePath) var idle_node
 export (NodePath) var patrol_node
 export (NodePath) var chase_node
+export (NodePath) var fall_node
 
 onready var idle_state: BaseState = get_node(idle_node)
 onready var patrol_state: BaseState =  get_node(patrol_node)
 onready var chase_state: BaseState = get_node(chase_node)
+onready var fall_state: BaseState = get_node(fall_node)
 
 var current_patrol_time: float = 0
 var idle_flip_time: float = 0
@@ -49,6 +51,9 @@ func physics_process(_delta: float) -> BaseState:
 	actor.velocity.x = actor.speed * actor.direction
 	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
 	
+	if not actor.is_on_floor():
+		return fall_state
+		
 	return null
 
 	
