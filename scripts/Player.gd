@@ -24,6 +24,14 @@ onready var states = $state_manager
 onready var game = null if ui_disabled else get_tree().get_root().get_child(1)
 onready var bullet_scene = preload("res://scenes/PCBullet.tscn")
 
+## FOR DEBUGGING
+func show_debug_label(text):
+	$debug_label.text = text
+	$debug_label/Timer.start()
+	
+func _on_debugTimer_timeout():
+	$debug_label.text = ""
+	
 func _ready():
 	states.init(self)
 
@@ -69,6 +77,7 @@ func shoot():
 	game.call_deferred('add_child', bullet)
 
 func slash():
+	show_debug_label('slash!')
 	can_slash = false
 	$SlashCD.start()
 	for body in slashable_bodies:
@@ -88,3 +97,4 @@ func _on_ShootCD_timeout():
 
 func _on_SlashCD_timeout():
 	can_slash = true
+
