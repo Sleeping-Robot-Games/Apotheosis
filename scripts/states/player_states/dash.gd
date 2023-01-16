@@ -28,6 +28,7 @@ func enter() -> void:
 	
 	current_dash_time = dash_time
 	current_dash_ghost_interval = dash_ghost_interval
+	g.play_sfx("player_dash")
 	
 	# instance_ghost()
 

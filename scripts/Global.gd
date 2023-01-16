@@ -69,5 +69,9 @@ func play_sfx(sound, dB = 0):
 	
 	if sound == "player_death":
 		sfx.stream = load("res://assets/sfx/death_sound.mp3")
+	elif sound == "player_dash":
+		random.randomize()
+		var n = random.randi_range(1, 2)
+		sfx.stream = load("res://assets/sfx/dodge"+str(n)+".mp3")
 	
 	game.call_deferred('add_child', sfx)
