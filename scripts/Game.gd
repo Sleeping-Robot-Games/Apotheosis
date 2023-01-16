@@ -1,6 +1,8 @@
 extends Node2D
 
 export var debug = false
+export (Vector2) var spawn_coords = Vector2(300, 250)
+export (int) var spawn_distancing = 100
 
 const player_scene = preload('res://scenes/Player.tscn')
 
@@ -11,11 +13,9 @@ func _ready():
 	spawn_players()
 
 func spawn_players():
-	var spawn_coords = Vector2(300, 250)
 	for player in g.player_input_devices:
 		var input_device = g.player_input_devices[player]
 		if input_device != null:
-			print("player: " + player)
 			var player_instance = player_scene.instance()
 			player_instance.player_key = player
 			player_instance.controller_id = "kb" if input_device == "keyboard" else input_device.substr(4)
@@ -24,12 +24,12 @@ func spawn_players():
 			init_player_color(player_instance)
 			$Players.add_child(player_instance)
 			# increment spawn coordinates for next potential player
-			spawn_coords.x += 100
+			spawn_coords.x += spawn_distancing
 
 func init_player_model(player):
 	var head_sprite = player.get_node("SpriteHolder/Head")
-	#var texture_path = "res://assets/character/sprites/Head/" + g.player_models[player.player_key]
-	var texture_path =  g.player_models[player.player_key]
+	var texture_path = "res://assets/character/sprites/Head/" + g.player_models[player.player_key]
+	#var texture_path =  g.player_models[player.player_key]
 	head_sprite.set_texture(load(texture_path))
 
 func init_player_color(player):

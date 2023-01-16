@@ -127,7 +127,9 @@ func set_random_color() -> void:
 
 func set_sprite_texture(sprite_name: String, texture_path: String):
 	if sprite_name == "Head":
-		g.player_models[player_key] = texture_path
+		var split = texture_path.split("/")
+		var head_texture = split[split.size() - 1]
+		g.player_models[player_key] = head_texture
 	player_sprites[sprite_name].set_texture(load(texture_path))
 	sprite_state[sprite_name] = texture_path
 

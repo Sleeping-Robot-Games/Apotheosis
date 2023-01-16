@@ -35,8 +35,6 @@ func process(delta):
 			is_pacing = true
 			actor.global_position.x += 12 * actor.direction
 		
-		#print('now pacing')
-		
 	return null
 
 func physics_process(_delta: float) -> BaseState:

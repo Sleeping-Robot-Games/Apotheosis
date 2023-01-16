@@ -15,7 +15,7 @@ var target = null
 
 onready var states = $state_manager
 ## Might change when implementing levels
-onready var game = get_tree().get_root().get_node("Game") 
+onready var game = get_tree().get_root().get_child(1)
 onready var right_ray = $RayRight
 onready var left_ray = $RayLeft
 

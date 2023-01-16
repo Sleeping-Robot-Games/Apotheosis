@@ -18,17 +18,17 @@ var controller_id = "kb"
 
 onready var states = $state_manager
 ## TODO: change how game scene is assigned when implementing levels?
-onready var game = null if ui_disabled else get_tree().get_root().get_node("Game")
+onready var game = null if ui_disabled else get_tree().get_root().get_child(1)
 onready var bullet_scene = preload("res://scenes/PCBullet.tscn")
 
 func _ready():
 	states.init(self)
-	
+
 func _unhandled_input(event: InputEvent) -> void:
 	if ui_disabled:
 		return
 	states.input(event)
-	
+
 func _physics_process(delta):
 	if ui_disabled:
 		return
@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 	
 	if can_shoot and Input.is_action_pressed("attack_" + controller_id):
 		shoot()
-	
+
 func play_animation(anim_name):
 	$AnimationPlayer.play(anim_name)
 
