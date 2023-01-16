@@ -29,7 +29,7 @@ func enter() -> void:
 	current_dash_time = dash_time
 	current_dash_ghost_interval = dash_ghost_interval
 	
-	instance_ghost()
+	# instance_ghost()
 
 func input(_event: InputEvent) -> BaseState:
 	return null
@@ -69,5 +69,5 @@ func process(delta: float) -> BaseState:
 func instance_ghost():
 	var ghost = dash_ghost_scene.instance()
 	ghost.set_sprites(actor.get_node('SpriteHolder'))
-	ghost.global_position = actor.global_position
+	ghost.position = Vector2(actor.position.x, actor.position.y + 4)
 	actor.game.call_deferred('add_child', ghost)

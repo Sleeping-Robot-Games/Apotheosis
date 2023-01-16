@@ -8,6 +8,9 @@ export (int) var chase_speed = 100
 export var type: String = 'range'
 
 export var hp = 5
+export var attack_time: float = 1.0
+export var start_attack_time: float = 0.5
+export var bullet_speed: int = 5
 
 var velocity = Vector2()
 var direction = 1 ## TODO: when this is updated in state make a signal to update animations
@@ -22,6 +25,7 @@ onready var states = $state_manager
 onready var game = get_tree().get_root().get_child(1)
 onready var right_ray = $RayRight
 onready var left_ray = $RayLeft
+onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 
 func _ready():
 	states.init(self)
@@ -33,13 +37,21 @@ func _process(delta: float) -> void:
 	states.process(delta)
 	
 func play_animation(anim_name):
-	# $AnimationPlayer.play(anim_name)
-	pass
+	$AnimationPlayer.play(anim_name)
 
 func attack():
-	print('enemy attacking')
-	target.dmg(1)
-	$AnimationPlayer.play("attack_test")
+	$AnimationPlayer.play(name.to_lower()+'Attack')
+	if type == 'range':
+		shoot()
+	else:
+		target.dmg(1)
+
+func shoot():
+	var bullet = bullet_scene.instance()
+	bullet.shot_by = 'enemy'
+	bullet.global_position = global_position
+	bullet.speed = bullet_speed * direction ## TODO: Find out why any speed less than 10 fails
+	game.call_deferred('add_child', bullet)
 
 func slashed(num, dir, dist):
 	hp -= num
@@ -51,9 +63,10 @@ func slashed(num, dir, dist):
 
 func dmg(num):
 	hp -= num
-	$AnimationPlayer.play("dmg_test")
+	$AnimationPlayer.play(name.to_lower()+'Hurt')
 	if hp <= 0:
-		queue_free() # TODO: Use state
+		$CollisionShape2D.set_deferred('disabled', true)
+		$AnimationPlayer.play(name.to_lower()+'Death')
 	
 func ledge_detected():
 	return !left_ray.is_colliding() or !right_ray.is_colliding()
@@ -82,3 +95,8 @@ func _on_AttackArea_body_exited(body):
 			states.change_state(states.get_node("patrol"))
 		elif not states.current_state.name in ['pushed', 'fall']:
 			states.change_state(states.get_node("chase"))
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if 'Death' in anim_name:
+		queue_free()

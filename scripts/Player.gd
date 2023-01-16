@@ -3,8 +3,9 @@ extends KinematicBody2D
 export (bool) var ui_disabled = false 
 export (float) var gravity = 20.0
 export (float) var friction = 0.8
+export (int) var bullet_speed = 15
 
-var hp = 5
+export var hp = 10
 
 var velocity = Vector2()
 var direction = 1
@@ -22,7 +23,7 @@ var slashable_bodies = []
 onready var states = $state_manager
 ## TODO: change how game scene is assigned when implementing levels?
 onready var game = null if ui_disabled else get_tree().get_root().get_child(1)
-onready var bullet_scene = preload("res://scenes/PCBullet.tscn")
+onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 
 ## FOR DEBUGGING
 func show_debug_label(text):
@@ -64,7 +65,7 @@ func dmg(num):
 		$AnimationPlayer.play('death'+direction_string) ## TODO: Temp, use state
 		ui_disabled = true
 	else:
-		$AnimationPlayer.play('hurt'+direction_string)
+		$AnimationPlayer.play('hurt'+direction_string) 
 
 func shoot():
 	can_shoot = false
@@ -72,8 +73,9 @@ func shoot():
 	if states.current_state.name == 'dash':
 		return
 	var bullet = bullet_scene.instance()
+	bullet.shot_by = 'player'
 	bullet.global_position = global_position
-	bullet.speed = bullet.speed * direction
+	bullet.speed = bullet_speed * direction
 	game.call_deferred('add_child', bullet)
 
 func slash():

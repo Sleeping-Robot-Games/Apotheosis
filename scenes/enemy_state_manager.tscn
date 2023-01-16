@@ -14,12 +14,13 @@ starting_state = NodePath("patrol")
 
 [node name="idle" type="Node" parent="."]
 script = ExtResource( 2 )
-animation_name = "idle"
+animation_name = "Idle"
 patrol_node = NodePath("../patrol")
 chase_node = NodePath("../chase")
 
 [node name="patrol" type="Node" parent="."]
 script = ExtResource( 5 )
+animation_name = "Walk"
 idle_node = NodePath("../idle")
 patrol_node = NodePath(".")
 chase_node = NodePath("../chase")
@@ -27,6 +28,7 @@ fall_node = NodePath("../fall")
 
 [node name="chase" type="Node" parent="."]
 script = ExtResource( 3 )
+animation_name = "Walk"
 idle_node = NodePath("../idle")
 patrol_node = NodePath("../patrol")
 chase_node = NodePath(".")
@@ -34,7 +36,7 @@ fall_node = NodePath("../fall")
 
 [node name="attacking" type="Node" parent="."]
 script = ExtResource( 4 )
-animation_name = "attack_test"
+animation_name = "Attack"
 patrol_node = NodePath("../patrol")
 chase_node = NodePath("../chase")
 

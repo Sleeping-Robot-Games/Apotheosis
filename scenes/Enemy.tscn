@@ -89,7 +89,9 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=12]
-resource_name = "chickpeaShoot"
+resource_name = "chickpeaAttack"
+length = 0.22
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -97,10 +99,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"times": PoolRealArray( 0, 0.0207778, 0.04199, 0.0632641, 0.0852298, 0.108296, 0.131276, 0.156459, 0.181599, 0.206994 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 ]
+"values": [ 12, 13, 14, 15, 17, 16, 18, 19, 20, 21 ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -137,15 +139,16 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 42, 11 )
+extents = Vector2( 119.5, 11 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 238.5, 132 )
+extents = Vector2( 148, 45.25 )
 
 [node name="Enemy" type="KinematicBody2D" groups=["enemies"]]
 collision_layer = 4
 collision_mask = 10
 script = ExtResource( 2 )
+bullet_speed = 10
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -171,7 +174,7 @@ anims/dmg_test = SubResource( 5 )
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( 0, 5 )
+position = Vector2( 0.5, 5 )
 shape = SubResource( 7 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -194,6 +197,7 @@ enabled = true
 cast_to = Vector2( 0, 3 )
 collision_mask = 8
 
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_AttackArea_body_exited"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
