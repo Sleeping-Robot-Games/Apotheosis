@@ -18,6 +18,10 @@ func enter() -> void:
 	is_pacing = false
 	current_pacing_time = pacing_time
 	actor.direction = -1 if actor.target.global_position.x < actor.global_position.x else 1
+	
+	if actor.is_on_wall():
+		actor.global_position.x += (10 * actor.direction)
+		switch_direction()
 
 func process(delta):
 	if is_pacing:
@@ -48,7 +52,7 @@ func physics_process(_delta: float) -> BaseState:
 		direction.y += actor.gravity
 		actor.direction = -1 if actor.target.global_position.x < actor.global_position.x else 1
 		actor.velocity = actor.move_and_slide(direction * actor.chase_speed, Vector2.UP)
-	
+		
 	return null
 
 func switch_direction():

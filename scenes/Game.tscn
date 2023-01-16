@@ -1702,7 +1702,7 @@ position = Vector2( 1559, 721 )
 patrol_time = 5.0
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource( 14 )]
-position = Vector2( 572, 496 )
+position = Vector2( 411, 496 )
 
 [node name="Enemy4" parent="Enemies" instance=ExtResource( 14 )]
 position = Vector2( 840, 675 )
@@ -1715,31 +1715,28 @@ patrol_time = 4.0
 [node name="Enemy6" parent="Enemies" instance=ExtResource( 14 )]
 position = Vector2( 1514, 379 )
 
-[node name="Enemy7" parent="Enemies" instance=ExtResource( 14 )]
-position = Vector2( 1237, 381 )
-
 [node name="Enemy8" parent="Enemies" instance=ExtResource( 14 )]
-position = Vector2( 923, 381 )
+position = Vector2( 1247, 384 )
 
 [node name="Enemy9" parent="Enemies" instance=ExtResource( 14 )]
-position = Vector2( 536, 671 )
+position = Vector2( 995, 672 )
 
 [node name="Enemy10" parent="Enemies" instance=ExtResource( 14 )]
 position = Vector2( 109, 384 )
 
 [node name="Enemy11" parent="Enemies" instance=ExtResource( 14 )]
-position = Vector2( 1, 673 )
+position = Vector2( 373, 386 )
 
 [node name="Enemy12" parent="Enemies" instance=ExtResource( 14 )]
 position = Vector2( 272, 384 )
 
 [node name="Enemy13" parent="Enemies" instance=ExtResource( 14 )]
-position = Vector2( 229, 672 )
+position = Vector2( 511, 382 )
 
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource( 2 )]
-position = Vector2( 1077, 367 )
+position = Vector2( 470, 494 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 42 )

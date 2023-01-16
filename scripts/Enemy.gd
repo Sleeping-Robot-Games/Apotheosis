@@ -14,6 +14,7 @@ var push_direction = 1
 var direction_string = "Right"
 var push_distance = 100
 var target = null
+var can_attack = true
 
 onready var states = $state_manager
 ## Might change when implementing levels
@@ -58,9 +59,10 @@ func ledge_detected():
 
 func _on_DetectionArea_body_entered(body):
 	## TODO: What to do if a new player enters the area?
-	if body.is_in_group('players') and body.hp > 0:
-		target = body
-		states.change_state(states.get_node("chase"))
+	if can_attack:
+		if body.is_in_group('players') and body.hp > 0:
+			target = body
+			states.change_state(states.get_node("chase"))
 
 func _on_DetectionArea_body_exited(body):
 	if body.is_in_group('players')  and body == target:
@@ -68,13 +70,14 @@ func _on_DetectionArea_body_exited(body):
 		states.change_state(states.get_node("patrol"))
 
 func _on_AttackArea_body_entered(body):
-	if body.is_in_group('players')  and body == target:
-		states.change_state(states.get_node("attacking"))
+	if can_attack:
+		if body.is_in_group('players') and body == target:
+			states.change_state(states.get_node("attacking"))
 
 func _on_AttackArea_body_exited(body):
 	if body.is_in_group('players') :
 		if target == null or target.hp <= 0:
 			target = null
 			states.change_state(states.get_node("patrol"))
-		else:
+		elif not states.current_state.name in ['pushed', 'fall']:
 			states.change_state(states.get_node("chase"))

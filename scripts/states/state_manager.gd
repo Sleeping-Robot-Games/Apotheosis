@@ -7,7 +7,7 @@ var current_state: BaseState
 func change_state(new_state: BaseState) -> void:
 	if current_state:
 		current_state.exit()
-
+	
 	current_state = new_state
 	current_state.enter()
 
