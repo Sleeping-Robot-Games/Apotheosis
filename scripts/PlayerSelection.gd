@@ -112,4 +112,4 @@ func _on_FadeTween_tween_all_completed():
 		ready_index += 1
 		show_ready_text()
 	else:
-		get_tree().change_scene("res://scenes/Level_000.tscn")
+		get_tree().change_scene("res://scenes/levels/Level_000.tscn")

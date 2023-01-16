@@ -68,6 +68,7 @@ func dmg(num):
 			$AnimationPlayer.play('death'+direction_string) ## TODO: Temp, use state
 			is_dead = true
 			ui_disabled = true
+			g.play_sfx("player_death")
 		else:
 			$AnimationPlayer.play('hurt'+direction_string) 
 

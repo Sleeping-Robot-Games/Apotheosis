@@ -1,5 +1,8 @@
 extends Node
 
+onready var game = get_tree().get_root().get_child(1)
+
+var random = RandomNumberGenerator.new()
 
 var player_input_devices = {
 	'p1': 'keyboard',
@@ -58,3 +61,13 @@ func files_in_dir(path: String, keyword: String = "") -> Array:
 func make_shaders_unique(sprite: Sprite):
 	var mat = sprite.get_material().duplicate()
 	sprite.set_material(mat)
+
+func play_sfx(sound, dB = 0):
+	var sfx_scene = load("res://scenes/SFX.tscn")
+	var sfx = sfx_scene.instance()
+	sfx.volume_db = dB
+	
+	if sound == "player_death":
+		sfx.stream = load("res://assets/sfx/death_sound.mp3")
+	
+	game.call_deferred('add_child', sfx)

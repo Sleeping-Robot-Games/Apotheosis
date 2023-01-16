@@ -89,7 +89,6 @@ func add_player(p_key):
 
 func create_random_character():
 	var sprite_folders = g.folders_in_dir(sprite_folder_path)
-	var palette_folders = g.folders_in_dir(palette_folder_path)
 	for folder in sprite_folders:
 		set_random_texture(folder)
 	set_random_color()
