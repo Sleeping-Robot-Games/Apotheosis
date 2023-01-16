@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/character/sprites/Head/head_001.png" type="Texture" id=1]
+[ext_resource path="res://assets/character/sprites/BackArm/backarm_001.png" type="Texture" id=2]
+[ext_resource path="res://assets/character/sprites/Torso/torso_001.png" type="Texture" id=3]
+[ext_resource path="res://assets/character/sprites/Back/back_001.png" type="Texture" id=4]
+[ext_resource path="res://shaders/materials/palette_swapper.tres" type="Material" id=5]
+[ext_resource path="res://assets/character/sprites/TopArm/toparm_001.png" type="Texture" id=6]
+[ext_resource path="res://assets/character/sprites/Legs/legs_001.png" type="Texture" id=7]
+
+[node name="SpriteHolder" type="Node2D"]
+
+[node name="Back" type="Sprite" parent="."]
+material = ExtResource( 5 )
+texture = ExtResource( 4 )
+hframes = 8
+vframes = 13
+
+[node name="BackArm" type="Sprite" parent="."]
+material = ExtResource( 5 )
+texture = ExtResource( 2 )
+hframes = 8
+vframes = 13
+
+[node name="Torso" type="Sprite" parent="."]
+material = ExtResource( 5 )
+texture = ExtResource( 3 )
+hframes = 8
+vframes = 13
+
+[node name="Head" type="Sprite" parent="."]
+material = ExtResource( 5 )
+texture = ExtResource( 1 )
+hframes = 8
+vframes = 13
+
+[node name="Legs" type="Sprite" parent="."]
+material = ExtResource( 5 )
+texture = ExtResource( 7 )
+hframes = 8
+vframes = 13
+
+[node name="TopArm" type="Sprite" parent="."]
+material = ExtResource( 5 )
+texture = ExtResource( 6 )
+hframes = 8
+vframes = 13
