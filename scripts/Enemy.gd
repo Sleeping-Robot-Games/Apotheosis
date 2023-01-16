@@ -21,6 +21,7 @@ var direction_string = "Right"
 var push_distance = 100
 var target = null
 var can_attack = true
+var is_dead = false
 
 onready var states = $state_manager
 ## Might change when implementing levels
@@ -65,11 +66,13 @@ func slashed(num, dir, dist):
 	states.change_state(states.get_node("pushed"))
 
 func dmg(num):
-	hp -= num
-	$AnimationPlayer.play(name.to_lower().rstrip("0123456789")+'Hurt')
-	if hp <= 0:
-		set_collision_mask_bit(1, false)
-		$AnimationPlayer.play(name.to_lower().rstrip("0123456789")+'Death')
+	if not is_dead:
+		hp -= num
+		$AnimationPlayer.play(name.to_lower().rstrip("0123456789")+'Hurt')
+		if hp <= 0:
+			is_dead = true
+			set_collision_mask_bit(1, false)
+			$AnimationPlayer.play(name.to_lower().rstrip("0123456789")+'Death')
 	
 func ledge_detected():
 	return !left_ray.is_colliding() or !right_ray.is_colliding()

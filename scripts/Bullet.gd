@@ -25,6 +25,6 @@ func _on_Timer_timeout():
 
 
 func _on_Area2D_body_entered(body):
-	if body.is_in_group(victims) and body.has_method('dmg'):
+	if body.is_in_group(victims) and body.has_method('dmg') and body.get("is_dead") == false:
 		body.dmg(1)
 	queue_free()

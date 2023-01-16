@@ -16,6 +16,7 @@ var can_dash = true
 var can_jump = true
 var can_shoot = true
 var can_slash = true
+var is_dead = false
 var player_key = "p1"
 var controller_id = "kb"
 
@@ -61,12 +62,14 @@ func play_animation(anim_name):
 	$AnimationPlayer.play(anim_name)
 
 func dmg(num):
-	hp -= num
-	if hp <= 0:
-		$AnimationPlayer.play('death'+direction_string) ## TODO: Temp, use state
-		ui_disabled = true
-	else:
-		$AnimationPlayer.play('hurt'+direction_string) 
+	if not is_dead:
+		hp -= num
+		if hp <= 0:
+			$AnimationPlayer.play('death'+direction_string) ## TODO: Temp, use state
+			is_dead = true
+			ui_disabled = true
+		else:
+			$AnimationPlayer.play('hurt'+direction_string) 
 
 func shoot():
 	can_shoot = false
