@@ -231,12 +231,30 @@ func _on_Box_mouse_entered():
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_ModelPrev_pressed():
-	# TODO
-	pass
+	var folder_path = sprite_folder_path + "Head"
+	var files = g.files_in_dir(folder_path)
+	var file = sprite_state["Head"].split("/")[-1]
+	var cur_index = files.find(file)
+	var new_index = cur_index - 1
+	if new_index > len(files) - 1:
+		new_index = 0
+	if new_index == -1:
+		new_index = len(files) -1
+	var new_sprite_path = folder_path + '/' + files[new_index]
+	set_sprite_texture("Head", new_sprite_path)
 
 func _on_ModelNext_pressed():
-	# TODO
-	pass
+	var folder_path = sprite_folder_path + "Head"
+	var files = g.files_in_dir(folder_path)
+	var file = sprite_state["Head"].split("/")[-1]
+	var cur_index = files.find(file)
+	var new_index = cur_index + 1
+	if new_index > len(files) - 1:
+		new_index = 0
+	if new_index == -1:
+		new_index = len(files) -1
+	var new_sprite_path = folder_path + '/' + files[new_index]
+	set_sprite_texture("Head", new_sprite_path)
 
 func _on_ColorPrev_pressed():
 	var available_colors = []
