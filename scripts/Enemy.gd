@@ -5,8 +5,9 @@ export (float) var friction = 0.8
 export (float) var patrol_time = 2.0
 export (int) var speed = 50
 export (int) var chase_speed = 100
+export var type: String = 'range'
 
-var hp = 5
+export var hp = 5
 
 var velocity = Vector2()
 var direction = 1 ## TODO: when this is updated in state make a signal to update animations

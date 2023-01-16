@@ -14,7 +14,7 @@ onready var dash_state: BaseState = get_node(dash_node)
 
 onready var dash_ghost_scene = preload("res://scenes/DashGhost.tscn")
 
-export (float) var dash_time = 0.4
+export (float) var dash_time = 0.3
 export (int) var dash_speed = 500
 export (float) var dash_ghost_interval = .05
 
