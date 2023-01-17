@@ -19,6 +19,8 @@ func enter() -> void:
 	# to make sure the animation switches
 	.enter()
 	actor.velocity.y = -jump_force if not actor.jump_padding else -jump_force * 3
+
+func exit() -> void:
 	actor.jump_padding = false
 
 func input(_event: InputEvent) -> BaseState:
