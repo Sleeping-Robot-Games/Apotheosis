@@ -866,8 +866,12 @@ rect_scale = Vector2( 5, 5 )
 align = 1
 
 [node name="GrowTween" type="Tween" parent="ReadyCountdown"]
+playback_speed = 1.5
+playback/speed = 1.5
 
 [node name="FadeTween" type="Tween" parent="ReadyCountdown"]
+playback_speed = 4.0
+playback/speed = 4.0
 
 [connection signal="tween_all_completed" from="ReadyCountdown/GrowTween" to="." method="_on_GrowTween_tween_all_completed"]
 [connection signal="tween_all_completed" from="ReadyCountdown/FadeTween" to="." method="_on_FadeTween_tween_all_completed"]

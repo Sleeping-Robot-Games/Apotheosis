@@ -99,7 +99,7 @@ func _on_GrowTween_tween_all_completed():
 	if not aye_aye_captain:
 		cancel_ready_countdown()
 		return
-	$ReadyCountdown/FadeTween.interpolate_property($ReadyCountdown, "rect_scale", Vector2(5, 5), Vector2(4, 4), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$ReadyCountdown/FadeTween.interpolate_property($ReadyCountdown, "rect_scale", Vector2(5, 5), Vector2(4.5, 4.5), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$ReadyCountdown/FadeTween.interpolate_property($ReadyCountdown, "modulate:a", 1.0, 0.0, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$ReadyCountdown/FadeTween.start()
 
