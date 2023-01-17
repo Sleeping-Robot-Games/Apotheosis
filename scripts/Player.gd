@@ -22,6 +22,7 @@ var controller_id = "kb"
 
 var close_range_bodies = []
 var upgrade_cost = [100, 200, 300, 400, 500]
+var current_upgrade = 0
 var can_fabricate = false
 var fabricating_progress = 0
 var upgrades = {
@@ -140,6 +141,23 @@ func show_fabricate_icon(var pressed = false):
 func random_upgrade():
 	show_debug_label("UPGRADE INSTALLED")
 	scrap -= upgrade_cost[0]
+	if current_upgrade == 0:
+		# TODO
+		pass
+	elif current_upgrade == 1:
+		# TODO
+		pass
+	elif current_upgrade == 2:
+		# TODO
+		pass
+	elif current_upgrade == 3:
+		# TODO
+		pass
+	elif current_upgrade == 4:
+		# TODO
+		pass
+	
+	current_upgrade += 1
 	upgrade_cost.remove(0)
 	can_fabricate = false
 	if upgrade_cost.size() > 0 and scrap >= upgrade_cost[0]:
