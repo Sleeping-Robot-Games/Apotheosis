@@ -647,6 +647,7 @@ fab_7={
 2d_physics/layer_4="walls"
 2d_physics/layer_5="items"
 2d_physics/layer_6="enemy_bullet"
+2d_physics/layer_7="jump_pad"
 
 [physics]
 

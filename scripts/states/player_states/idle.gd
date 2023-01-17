@@ -26,6 +26,12 @@ func input(_event: InputEvent) -> BaseState:
 		return dash_state
 	return null
 
+func process(_delta: float) -> BaseState:
+	if actor.jump_padding:
+		return jump_state
+	
+	return null
+
 func physics_process(_delta: float) -> BaseState:
 	actor.velocity.y += actor.gravity
 	actor.velocity.x = lerp(actor.velocity.x, 0, actor.friction)

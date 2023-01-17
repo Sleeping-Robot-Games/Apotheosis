@@ -18,7 +18,8 @@ func enter() -> void:
 	# This calls the base class enter function, which is necessary here
 	# to make sure the animation switches
 	.enter()
-	actor.velocity.y = -jump_force
+	actor.velocity.y = -jump_force if not actor.jump_padding else -jump_force * 3
+	actor.jump_padding = false
 
 func input(_event: InputEvent) -> BaseState:
 	if actor.can_dash and Input.is_action_just_pressed("dash_" + actor.controller_id):

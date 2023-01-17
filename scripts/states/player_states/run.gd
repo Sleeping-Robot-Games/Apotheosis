@@ -30,6 +30,12 @@ func input(_event: InputEvent) -> BaseState:
 
 	return null
 
+func process(_delta: float) -> BaseState:
+	if actor.jump_padding:
+		return jump_state
+	
+	return null
+
 func physics_process(_delta: float) -> BaseState:
 	if !actor.is_on_floor():
 		return fall_state

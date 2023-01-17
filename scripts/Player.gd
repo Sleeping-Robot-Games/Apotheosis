@@ -19,6 +19,7 @@ var can_slash = true
 var is_dead = false
 var player_key = "p1"
 var controller_id = "kb"
+var jump_padding = false
 
 var close_range_bodies = []
 var upgrade_cost = [100, 200, 300, 400, 500]
