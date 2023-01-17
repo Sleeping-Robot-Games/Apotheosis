@@ -19,6 +19,7 @@ func enter() -> void:
 		actor.get_node('Sprite').flip_h = actor.direction == 1
 		if animation_name:
 			actor.play_animation(g.parse_enemy_name(actor.name) + animation_name)
+			
 
 func exit() -> void:
 	pass

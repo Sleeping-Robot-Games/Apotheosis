@@ -39,6 +39,23 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=12]
+resource_name = "chickpeaAttack"
+length = 0.22
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0207778, 0.04199, 0.0632641, 0.0852298, 0.108296, 0.131276, 0.156459, 0.181599, 0.206994 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15, 17, 16, 18, 19, 20, 21 ]
+}
+
 [sub_resource type="Animation" id=9]
 resource_name = "chickpeaDeath"
 length = 0.4
@@ -88,23 +105,6 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=12]
-resource_name = "chickpeaAttack"
-length = 0.22
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0207778, 0.04199, 0.0632641, 0.0852298, 0.108296, 0.131276, 0.156459, 0.181599, 0.206994 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 12, 13, 14, 15, 17, 16, 18, 19, 20, 21 ]
-}
-
 [sub_resource type="Animation" id=13]
 resource_name = "chickpeaWalk"
 length = 0.6
@@ -139,10 +139,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 126.5, 22 )
+extents = Vector2( 9, 11.0833 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 198.5, 45.25 )
+extents = Vector2( 198.5, 23.25 )
 
 [node name="Enemy" type="KinematicBody2D" groups=["enemies"]]
 collision_layer = 4
@@ -162,10 +162,10 @@ shape = SubResource( 6 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 8 )
 anims/attack_test = SubResource( 4 )
+anims/chickpeaAttack = SubResource( 12 )
 anims/chickpeaDeath = SubResource( 9 )
 anims/chickpeaHurt = SubResource( 10 )
 anims/chickpeaIdle = SubResource( 11 )
-anims/chickpeaShoot = SubResource( 12 )
 anims/chickpeaWalk = SubResource( 13 )
 anims/dmg_test = SubResource( 5 )
 
@@ -174,14 +174,14 @@ anims/dmg_test = SubResource( 5 )
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( -0.5, -6 )
+position = Vector2( 0, 5 )
 shape = SubResource( 7 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2( 0.5, -29.75 )
+position = Vector2( 0, -7 )
 shape = SubResource( 2 )
 
 [node name="RayLeft" type="RayCast2D" parent="."]

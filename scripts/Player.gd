@@ -103,22 +103,30 @@ func shoot():
 	bullet.shot_by = 'player'
 	bullet.global_position = global_position
 	bullet.speed = bullet_speed * direction
+	apply_upgrades(bullet)
 	game.call_deferred('add_child', bullet)
+	
+func apply_upgrades(bullet):
+	## TODO: Check to see what to apply
+#	Scope - Range
+	apply_range(1)
+#	Barrel - Piercing
+	apply_pierce()
+#	Tank - Flame
+	apply_close_range()
+#	Handle - Pushback
+	apply_push(1)
 
 func apply_pierce():
-	## TODO: Check upgrades to apply
 	pass
 
 func apply_range(num):
-	## TODO: Check upgrades to apply
 	pass
 	
 func apply_close_range():
-	## TODO: Check upgrades to apply
 	pass
 
 func apply_push(num):
-	## TODO: Check upgrades to apply
 	pass
 
 func get_scrap():

@@ -3,15 +3,14 @@
 [ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 125, 11.0833 )
+extents = Vector2( 10, 11.0833 )
 
-[node name="Chickpea" instance=ExtResource( 1 )]
+[node name="Chickpea69" instance=ExtResource( 1 )]
+scale = Vector2( 1.5, 1.5 )
+type = "melee"
 
 [node name="CollisionShape2D" parent="AttackArea" index="0"]
 shape = SubResource( 1 )
 
 [node name="DetectionArea" parent="." index="5"]
 visible = false
-
-[node name="CollisionShape2D" parent="DetectionArea" index="0"]
-position = Vector2( 0.5, -7.75 )
