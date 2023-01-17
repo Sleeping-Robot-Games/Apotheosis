@@ -15,7 +15,6 @@ onready var killstreak_fx = $ViewportContainer/Viewport/HUD/Killstreak
 func _ready():
 	g.game = self
 	g.game_viewport = $ViewportContainer/Viewport
-	$ViewportContainer2/Viewport.world_2d = $ViewportContainer/Viewport.world_2d
 	if debug:
 		return
 	spawn_players()
@@ -36,6 +35,18 @@ func spawn_players():
 			players.add_child(player_instance)
 			# increment spawn coordinates for next potential player
 			spawn_coords.x += spawn_distancing
+			
+			# initialize an offscreen indicator for this player
+			var offscreen_scene = load("res://scenes/OffscreenIndicator.tscn")
+			var offscreen_instance = offscreen_scene.instance()
+			offscreen_instance.player = player_instance
+			offscreen_instance.get_node("ViewportContainer/Viewport").world_2d = $ViewportContainer/Viewport.world_2d
+			offscreen_instance.visible = false
+			offscreen_instance.name = "offscreen" + player
+			add_child(offscreen_instance)
+			
+			player_instance.offscreen_indicator = offscreen_instance
+			#offscreen_instance.show()
 
 func init_player_model(player):
 	var head_sprite = player.get_node("SpriteHolder/Head")

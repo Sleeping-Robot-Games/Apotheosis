@@ -17,10 +17,11 @@ var can_jump = true
 var can_shoot = true
 var can_slash = true
 var is_dead = false
+var jump_padding = false
 var player_key = "p1"
 var controller_id = "kb"
 var prev_anim = ""
-var jump_padding = false
+var offscreen_indicator = null
 
 var close_range_bodies = []
 var upgrade_cost = [100, 200, 300, 400, 500]
@@ -36,6 +37,7 @@ var upgrades = {
 
 onready var states = $state_manager
 ## TODO: change how game scene is assigned when implementing levels?
+
 onready var game_viewport = null if ui_disabled else get_tree().get_root().get_node("Game/ViewportContainer/Viewport")
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 
@@ -204,3 +206,13 @@ func _on_HurtRedTimer_timeout():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if 'hurt' in anim_name.to_lower():
 		play_animation(states.current_state.animation_name + direction_string)
+
+func _on_VisibilityNotifier2D_viewport_entered(viewport):
+	print("VIEWPORT ENTERED")
+	if offscreen_indicator:
+		offscreen_indicator.show()
+
+func _on_VisibilityNotifier2D_screen_exited():
+	print("VIEWPORT EXITED")
+	if offscreen_indicator:
+		offscreen_indicator.hide()

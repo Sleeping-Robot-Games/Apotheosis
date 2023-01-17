@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://assets/background/platform001.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -21,7 +21,6 @@
 [ext_resource path="res://shaders/textures/fire_01.png" type="Texture" id=19]
 [ext_resource path="res://assets/towertest.png" type="Texture" id=20]
 [ext_resource path="res://scenes/JumpPad.tscn" type="PackedScene" id=21]
-[ext_resource path="res://scripts/OffscreenCamera.gd" type="Script" id=22]
 
 [sub_resource type="TileSet" id=3]
 0/name = "skycolor.png 0"
@@ -1854,26 +1853,4 @@ texture = ExtResource( 18 )
 [node name="SpawnPoint" type="Position2D" parent="ViewportContainer/Viewport"]
 position = Vector2( 63, 360 )
 
-[node name="ViewportContainer2" type="ViewportContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-mouse_filter = 2
-
-[node name="Viewport" type="Viewport" parent="ViewportContainer2"]
-size = Vector2( 100, 100 )
-transparent_bg = true
-handle_input_locally = false
-hdr = false
-usage = 0
-render_target_update_mode = 3
-
-[node name="Camera2D" type="Camera2D" parent="ViewportContainer2/Viewport"]
-current = true
-script = ExtResource( 22 )
-
-[node name="Timer" type="Timer" parent="ViewportContainer2/Viewport"]
-one_shot = true
-autostart = true
-
 [connection signal="timeout" from="ViewportContainer/Viewport/KillstreakTimer" to="." method="_on_KillstreakTimer_timeout"]
-[connection signal="timeout" from="ViewportContainer2/Viewport/Timer" to="ViewportContainer2/Viewport/Camera2D" method="_on_Timer_timeout"]
