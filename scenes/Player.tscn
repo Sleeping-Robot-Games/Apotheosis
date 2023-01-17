@@ -2560,10 +2560,6 @@ anims/runSlashRight = SubResource( 36 )
 wait_time = 0.2
 one_shot = true
 
-[node name="SlashCD" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [node name="SlashAreaLeft" type="Area2D" parent="."]
 collision_mask = 4
 
@@ -2599,7 +2595,6 @@ wait_time = 0.1
 one_shot = true
 
 [connection signal="timeout" from="ShootCD" to="." method="_on_ShootCD_timeout"]
-[connection signal="timeout" from="SlashCD" to="." method="_on_SlashCD_timeout"]
 [connection signal="body_entered" from="SlashAreaLeft" to="." method="_on_SlashArea_body_entered"]
 [connection signal="body_exited" from="SlashAreaLeft" to="." method="_on_SlashArea_body_exited"]
 [connection signal="body_entered" from="SlashAreaRight" to="." method="_on_SlashArea_body_entered"]

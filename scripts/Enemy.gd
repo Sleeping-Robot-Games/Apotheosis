@@ -60,7 +60,7 @@ func shoot():
 	bullet.speed = bullet_speed * direction ## TODO: Find out why any speed less than 10 fails
 	game.call_deferred('add_child', bullet)
 
-func slashed(num, dir, dist):
+func pushed(num, dir, dist):
 	dmg(num)
 	push_direction = dir
 	push_distance = dist
