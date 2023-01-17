@@ -82,7 +82,9 @@ func play_sfx(sound, dB = 0):
 	game.call_deferred('add_child', sfx)
 
 func increment_killstreak():
+	print(g.new_timestamp() + " enemy killed incrementing combo")
 	current_killstreak += 1
+	game.get_node("Camera/HUD/KillCombo").text = str(current_killstreak)
 	if current_killstreak >= killstreak_threshold:
 		game.activate_killstreak_mode()
 	game.get_node("KillstreakTimer").stop()
@@ -90,3 +92,11 @@ func increment_killstreak():
 
 func parse_enemy_name(name):
 	return name.to_lower().rstrip("0123456789@")
+
+
+func new_timestamp():
+	var tick = OS.get_ticks_msec()
+	var ms = str(tick)
+	ms.erase(ms.length() - 1, 1)
+	var timestamp = str(tick/3600000)+":"+str(tick/60000).pad_zeros(2)+":"+str(tick/1000).pad_zeros(2)+"."+ms+"\t"
+	return timestamp

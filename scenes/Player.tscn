@@ -25,7 +25,7 @@ gradient = SubResource( 38 )
 [sub_resource type="Curve" id=40]
 _data = [ Vector2( 0.011236, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0955056, 0.336364 ), 4.70744, 4.70744, 0, 0, Vector2( 0.337079, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=41]
+[sub_resource type="CurveTexture" id=44]
 curve = SubResource( 40 )
 
 [sub_resource type="ParticlesMaterial" id=42]
@@ -42,7 +42,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = 100.0
 scale = 0.5
-scale_curve = SubResource( 41 )
+scale_curve = SubResource( 44 )
 color_ramp = SubResource( 43 )
 
 [sub_resource type="CapsuleShape2D" id=24]
@@ -2516,7 +2516,7 @@ scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 24 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-current = true
+visible = false
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 drag_margin_left = 0.1
