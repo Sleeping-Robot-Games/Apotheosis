@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/apo-scrap-003.png-89da624b61313443162f7aad13403c86.stex"
+path="res://.import/bullet002_4.png-d2280947a60bbf8af01dace03ae89ebe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/loot/apo-scrap-003.png"
-dest_files=[ "res://.import/apo-scrap-003.png-89da624b61313443162f7aad13403c86.stex" ]
+source_file="res://assets/bullet/bullet002_4.png"
+dest_files=[ "res://.import/bullet002_4.png-d2280947a60bbf8af01dace03ae89ebe.stex" ]
 
 [params]
 

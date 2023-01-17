@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blueprint.png-ed70d2ac4141bba047278bba7080c06a.stex"
+path="res://.import/bullet001_4.png-fb609e5075fbe972100bd2efde996abe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/blueprint.png"
-dest_files=[ "res://.import/blueprint.png-ed70d2ac4141bba047278bba7080c06a.stex" ]
+source_file="res://assets/bullet/bullet001_4.png"
+dest_files=[ "res://.import/bullet001_4.png-fb609e5075fbe972100bd2efde996abe.stex" ]
 
 [params]
 
