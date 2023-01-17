@@ -26,6 +26,8 @@ func enter() -> void:
 		switch_direction()
 
 func process(delta):
+	if actor.is_dead:
+		return null
 	if is_pacing:
 		current_pacing_time -= delta
 		if current_pacing_time < 0:
@@ -44,6 +46,8 @@ func process(delta):
 	return null
 
 func physics_process(_delta: float) -> BaseState:
+	if actor.is_dead:
+		return null
 	if is_pacing:
 		## Move the actor away from the ledge or wall
 		actor.velocity.y += actor.gravity

@@ -18,6 +18,8 @@ func enter():
 	actor.can_attack = false
 
 func physics_process(_delta: float) -> BaseState:
+	if actor.is_dead:
+		return null
 	actor.velocity.y += actor.gravity
 	actor.velocity.x = 200 * actor.push_direction
 	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)

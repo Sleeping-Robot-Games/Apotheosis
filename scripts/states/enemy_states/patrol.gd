@@ -25,6 +25,8 @@ func enter() -> void:
 	#actor.direction = 1
 
 func process(delta):
+	if actor.is_dead:
+		return null
 	current_patrol_time -= delta
 	idle_flip_time -= delta
 	
@@ -46,6 +48,8 @@ func process(delta):
 	return null
 
 func physics_process(_delta: float) -> BaseState:
+	if actor.is_dead:
+		return null
 	## Move the actor one direction, then switch based off current_patrol_timer
 	actor.velocity.y += actor.gravity
 	actor.velocity.x = actor.speed * actor.direction

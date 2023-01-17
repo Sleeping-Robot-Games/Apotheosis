@@ -17,6 +17,8 @@ func enter() -> void:
 	# actor.attack()
 
 func process(delta):
+	if actor.is_dead:
+		return null
 	current_attack_time -= delta
 	if current_attack_time < 0:
 		actor.attack()
@@ -26,6 +28,8 @@ func process(delta):
 	return null
 
 func physics_process(_delta: float) -> BaseState:
+	if actor.is_dead:
+		return null
 	var new_direction = -1 if actor.target.global_position.x < actor.global_position.x else 1
 	if actor.direction != new_direction:
 		actor.direction = new_direction

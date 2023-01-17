@@ -18,14 +18,17 @@ func enter():
 	patrol_flip_time = random.randf_range(0.5, 2)
 
 func process(delta: float) -> BaseState:
+	if actor.is_dead:
+		return null
 	patrol_flip_time -= delta
-	
 	if patrol_flip_time < 0:
 		return patrol_state
 		
 	return null
 
 func physics_process(_delta: float) -> BaseState:
+	if actor.is_dead:
+		return null
 	actor.velocity.y += actor.gravity
 	actor.velocity.x = lerp(actor.velocity.x, 0, actor.friction)
 	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)

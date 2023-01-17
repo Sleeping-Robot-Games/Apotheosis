@@ -14,6 +14,8 @@ func enter():
 	actor.can_attack = false
 	
 func physics_process(_delta: float) -> BaseState:
+	if actor.is_dead:
+		return null
 	actor.velocity.y += actor.gravity
 	if actor.velocity.y > max_fall_speed:
 		actor.velocity.y = max_fall_speed
