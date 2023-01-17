@@ -64,6 +64,9 @@ func play_animation(anim_name):
 func dmg(num):
 	if not is_dead:
 		hp -= num
+		for sprite in $SpriteHolder.get_children():
+			sprite.modulate = Color(1.0, 0.0, 0.0, 1.0)
+		$HurtRedTimer.start()
 		if hp <= 0:
 			$AnimationPlayer.play('death'+direction_string) ## TODO: Temp, use state
 			is_dead = true
@@ -109,3 +112,6 @@ func _on_ShootCD_timeout():
 func _on_SlashCD_timeout():
 	can_slash = true
 
+func _on_HurtRedTimer_timeout():
+	for sprite in $SpriteHolder.get_children():
+		sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)

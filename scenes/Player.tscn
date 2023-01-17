@@ -2593,6 +2593,10 @@ one_shot = true
 wait_time = 10.0
 one_shot = true
 
+[node name="HurtRedTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="timeout" from="ShootCD" to="." method="_on_ShootCD_timeout"]
 [connection signal="timeout" from="SlashCD" to="." method="_on_SlashCD_timeout"]
 [connection signal="body_entered" from="SlashAreaLeft" to="." method="_on_SlashArea_body_entered"]
@@ -2600,3 +2604,4 @@ one_shot = true
 [connection signal="body_entered" from="SlashAreaRight" to="." method="_on_SlashArea_body_entered"]
 [connection signal="body_exited" from="SlashAreaRight" to="." method="_on_SlashArea_body_exited"]
 [connection signal="timeout" from="debug_label/Timer" to="." method="_on_debugTimer_timeout"]
+[connection signal="timeout" from="HurtRedTimer" to="." method="_on_HurtRedTimer_timeout"]
