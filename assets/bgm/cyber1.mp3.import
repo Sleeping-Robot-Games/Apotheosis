@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cyber1.mp3-11d430c51cd55bf65b62750802648d54.mp3str"
+
+[deps]
+
+source_file="res://assets/bgm/cyber1.mp3"
+dest_files=[ "res://.import/cyber1.mp3-11d430c51cd55bf65b62750802648d54.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

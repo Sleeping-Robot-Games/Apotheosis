@@ -1636,6 +1636,7 @@ debug = true
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
+volume_db = -7.0
 autoplay = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -1736,3 +1737,8 @@ position = Vector2( 446, 369 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 42 )
+
+[node name="KillstreakTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="KillstreakTimer" to="." method="_on_KillstreakTimer_timeout"]

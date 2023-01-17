@@ -26,5 +26,8 @@ func _on_Timer_timeout():
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group(victims) and body.has_method('dmg') and body.get("is_dead") == false:
+		var damage = 1
+		if shot_by == "player" and g.current_killstreak >= g.killstreak_threshold:
+			damage = damage * 2
 		body.dmg(1)
 	queue_free()

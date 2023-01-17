@@ -4,6 +4,9 @@ onready var game = get_tree().get_root().get_child(1)
 
 var random = RandomNumberGenerator.new()
 
+var killstreak_threshold = 5
+var current_killstreak = 0
+
 var player_input_devices = {
 	'p1': 'keyboard',
 	'p2': null,
@@ -75,3 +78,10 @@ func play_sfx(sound, dB = 0):
 		sfx.stream = load("res://assets/sfx/dodge"+str(n)+".mp3")
 	
 	game.call_deferred('add_child', sfx)
+
+func increment_killstreak():
+	current_killstreak += 1
+	if current_killstreak >= killstreak_threshold:
+		game.activate_killstreak_mode()
+	game.get_node("KillstreakTimer").stop()
+	game.get_node("KillstreakTimer").start()

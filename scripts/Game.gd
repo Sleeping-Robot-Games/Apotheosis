@@ -42,3 +42,19 @@ func init_player_color(player):
 		sprite_node.material.set_shader_param("palette_swap", load(palette_path))
 		sprite_node.material.set_shader_param("greyscale_palette", load(gray_palette_path))
 		g.make_shaders_unique(sprite_node)
+
+func activate_killstreak_mode():
+	if $BGM.stream.resource_path.get_file() != "cyber1.mp3":
+		print("KILLSTREAK MODE ACTIVATED!! x2 Damage")
+		$BGM.stream = load ("res://assets/bgm/cyber1.mp3")
+		$BGM.play()
+		for player in $Players.get_children():
+			player.get_node("Killstreak").visible = true
+
+func _on_KillstreakTimer_timeout():
+	print("Killstreak Mode disabled")
+	g.current_killstreak = 0
+	$BGM.stream = load ("res://assets/bgm/background.mp3")
+	$BGM.play()
+	for player in $Players.get_children():
+		player.get_node("Killstreak").visible = false

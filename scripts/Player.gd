@@ -4,8 +4,8 @@ export (bool) var ui_disabled = false
 export (float) var gravity = 20.0
 export (float) var friction = 0.8
 export (int) var bullet_speed = 15
+export (int) var hp = 10
 
-export var hp = 10
 var scrap = 0
 
 var velocity = Vector2()

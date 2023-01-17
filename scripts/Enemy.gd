@@ -71,6 +71,7 @@ func dmg(num):
 		$AnimationPlayer.play(name.to_lower().rstrip("0123456789")+'Hurt')
 		if hp <= 0:
 			is_dead = true
+			g.increment_killstreak()
 			set_collision_mask_bit(1, false)
 			$AnimationPlayer.play(name.to_lower().rstrip("0123456789")+'Death')
 	
