@@ -19,6 +19,7 @@ onready var buttons = [[$Model/Prev, $Model/Next], [$Color/Prev, $Color/Next], [
 onready var player_sprites = {
 	"Back": $Player/SpriteHolder/Back,
 	"BackArm": $Player/SpriteHolder/BackArm,
+	"Gun": $Player/SpriteHolder/Gun,
 	"Torso": $Player/SpriteHolder/Torso,
 	"Head": $Player/SpriteHolder/Head,
 	"Legs": $Player/SpriteHolder/Legs,
