@@ -44,7 +44,7 @@ func play_animation(anim_name):
 	$AnimationPlayer.play(anim_name)
 
 func attack():
-	$AnimationPlayer.play(name.to_lower().rstrip("0123456789")+'Attack')
+	$AnimationPlayer.play(g.parse_enemy_name(name)+'Attack')
 	if type == 'range':
 		shoot()
 	else:
@@ -68,17 +68,18 @@ func slashed(num, dir, dist):
 func dmg(num):
 	if not is_dead:
 		hp -= num
-		var enemy_name = name.to_lower().rstrip("0123456789")
+		var enemy_name = g.parse_enemy_name(name)
 		$AnimationPlayer.play(enemy_name+'Hurt')
 		$Sprite.modulate = Color(1.0, 0.0, 0.0, 1.0)
 		$HurtRedTimer.start()
 		if hp <= 0:
 			is_dead = true
-			if enemy_name == "chickpea":
+			if g.parse_enemy_name(enemy_name) == "chickpea":
 				g.play_sfx("chickpea_death")
 			g.increment_killstreak()
+			# Disables bullet collisions
 			set_collision_mask_bit(1, false)
-			$AnimationPlayer.play(enemy_name+'Death')
+			$AnimationPlayer.play(g.parse_enemy_name(enemy_name)+'Death')
 	
 func ledge_detected():
 	return !left_ray.is_colliding() or !right_ray.is_colliding()

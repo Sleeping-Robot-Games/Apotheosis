@@ -87,3 +87,6 @@ func increment_killstreak():
 		game.activate_killstreak_mode()
 	game.get_node("KillstreakTimer").stop()
 	game.get_node("KillstreakTimer").start()
+
+func parse_enemy_name(name):
+	return name.to_lower().rstrip("0123456789@")
