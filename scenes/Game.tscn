@@ -1778,31 +1778,37 @@ wait_time = 5.0
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+drag_margin_left = 0.1
+drag_margin_top = 0.1
+drag_margin_right = 0.1
+drag_margin_bottom = 0.1
 script = ExtResource( 17 )
 
-[node name="HUD" type="Control" parent="Camera"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="KillCombo" type="Label" parent="Camera/HUD"]
-margin_left = 274.0
-margin_top = -231.0
-margin_right = 314.0
-margin_bottom = -217.0
+[node name="KillCombo" type="Label" parent="HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 581.0
+margin_top = 24.0
+margin_right = -19.0
+margin_bottom = -442.0
 text = "0"
 
-[node name="Killstreak" type="Node2D" parent="Camera/HUD"]
+[node name="Killstreak" type="Node2D" parent="HUD"]
 visible = false
 modulate = Color( 1, 1, 1, 0.207843 )
 position = Vector2( 278, -217 )
 scale = Vector2( 0.1, 0.1 )
 
-[node name="1" type="Particles2D" parent="Camera/HUD/Killstreak"]
+[node name="1" type="Particles2D" parent="HUD/Killstreak"]
 material = SubResource( 77 )
 process_material = SubResource( 81 )
 texture = ExtResource( 19 )
 
-[node name="2" type="Particles2D" parent="Camera/HUD/Killstreak"]
+[node name="2" type="Particles2D" parent="HUD/Killstreak"]
 material = SubResource( 77 )
 process_material = SubResource( 81 )
 texture = ExtResource( 18 )

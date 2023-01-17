@@ -19,9 +19,12 @@ var direction = 1 ## TODO: when this is updated in state make a signal to update
 var push_direction = 1
 var direction_string = "Right"
 var push_distance = 100
+var targets = []
 var target = null
 var can_attack = true
 var is_dead = false
+var is_attacking = false
+var is_pushed = false
 
 onready var states = $state_manager
 ## Might change when implementing levels
@@ -58,12 +61,10 @@ func shoot():
 	game.call_deferred('add_child', bullet)
 
 func slashed(num, dir, dist):
-	hp -= num
-	if hp <= 0:
-		return queue_free()
+	dmg(num)
 	push_direction = dir
 	push_distance = dist
-	states.change_state(states.get_node("pushed"))
+	is_pushed = true
 
 func dmg(num):
 	if not is_dead:
@@ -75,6 +76,7 @@ func dmg(num):
 		if hp <= 0:
 			is_dead = true
 			if g.parse_enemy_name(enemy_name) == "chickpea":
+				## TODO: Make this a function
 				g.play_sfx("chickpea_death")
 			g.increment_killstreak()
 			# Disables bullet collisions
@@ -97,26 +99,31 @@ func _on_DetectionArea_body_entered(body):
 	## TODO: What to do if a new player enters the area?
 	if can_attack:
 		if body.is_in_group('players') and body.hp > 0:
+			# targets.append(body)
 			target = body
-			states.change_state(states.get_node("chase"))
+			#states.change_state(states.get_node("chase"))
 
 func _on_DetectionArea_body_exited(body):
 	if body.is_in_group('players')  and body == target:
 		target = null
-		states.change_state(states.get_node("patrol"))
+		# states.change_state(states.get_node("patrol"))
 
 func _on_AttackArea_body_entered(body):
 	if can_attack:
 		if body.is_in_group('players') and body == target:
-			states.change_state(states.get_node("attacking"))
+			# states.change_state(states.get_node("attacking"))
+			is_attacking = true
 
 func _on_AttackArea_body_exited(body):
 	if body.is_in_group('players') :
-		if target == null or target.hp <= 0:
+		is_attacking = false
+		if target != null and target.hp <= 0:
 			target = null
-			states.change_state(states.get_node("patrol"))
-		elif not states.current_state.name in ['pushed', 'fall']:
-			states.change_state(states.get_node("chase"))
+			is_attacking = false
+			# states.change_state(states.get_node("patrol"))
+		#elif not states.current_state.name in ['pushed', 'fall']:
+
+			#states.change_state(states.get_node("chase"))
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if 'Death' in anim_name:

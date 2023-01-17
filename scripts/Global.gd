@@ -84,7 +84,7 @@ func play_sfx(sound, dB = 0):
 func increment_killstreak():
 	print(g.new_timestamp() + " enemy killed incrementing combo")
 	current_killstreak += 1
-	game.get_node("Camera/HUD/KillCombo").text = str(current_killstreak)
+	game.get_node("HUD/KillCombo").text = str(current_killstreak)
 	if current_killstreak >= killstreak_threshold:
 		game.activate_killstreak_mode()
 	game.get_node("KillstreakTimer").stop()

@@ -6,11 +6,13 @@ export (NodePath) var idle_node
 export (NodePath) var patrol_node
 export (NodePath) var chase_node
 export (NodePath) var fall_node
+export (NodePath) var push_node
 
 onready var idle_state: BaseState = get_node(idle_node)
 onready var patrol_state: BaseState =  get_node(patrol_node)
 onready var chase_state: BaseState = get_node(chase_node)
 onready var fall_state: BaseState = get_node(fall_node)
+onready var push_state: BaseState = get_node(push_node)
 
 var current_patrol_time: float = 0
 var idle_flip_time: float = 0
@@ -27,6 +29,13 @@ func enter() -> void:
 func process(delta):
 	if actor.is_dead:
 		return null
+	
+	if actor.is_pushed:
+		return push_state
+	
+	if actor.target != null:
+		return chase_state
+		
 	current_patrol_time -= delta
 	idle_flip_time -= delta
 	
@@ -44,6 +53,7 @@ func process(delta):
 	
 	if current_patrol_time < 0:
 		switch_direction()
+	
 	
 	return null
 

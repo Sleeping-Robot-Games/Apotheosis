@@ -4,11 +4,15 @@ export (NodePath) var idle_node
 export (NodePath) var patrol_node
 export (NodePath) var chase_node
 export (NodePath) var fall_node
+export (NodePath) var attacking_node
+export (NodePath) var push_node
 
 onready var idle_state: BaseState = get_node(idle_node)
 onready var patrol_state: BaseState =  get_node(patrol_node)
 onready var chase_state: BaseState = get_node(chase_node)
 onready var fall_state: BaseState = get_node(fall_node)
+onready var attacking_state: BaseState = get_node(attacking_node)
+onready var push_state: BaseState = get_node(push_node)
 
 var pacing_time = .2
 var current_pacing_time
@@ -28,6 +32,16 @@ func enter() -> void:
 func process(delta):
 	if actor.is_dead:
 		return null
+	
+	if actor.is_pushed:
+		return push_state
+		
+	if actor.target == null:
+		return patrol_state
+		
+	if actor.is_attacking:
+		return attacking_state
+		
 	if is_pacing:
 		current_pacing_time -= delta
 		if current_pacing_time < 0:
@@ -48,6 +62,10 @@ func process(delta):
 func physics_process(_delta: float) -> BaseState:
 	if actor.is_dead:
 		return null
+		
+	if actor.target == null:
+		return null
+		
 	if is_pacing:
 		## Move the actor away from the ledge or wall
 		actor.velocity.y += actor.gravity

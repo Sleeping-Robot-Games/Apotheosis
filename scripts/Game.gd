@@ -48,18 +48,18 @@ func activate_killstreak_mode():
 		print(g.new_timestamp() + "KILLSTREAK MODE ACTIVATED!! x2 Damage")
 		$BGM.stream = load ("res://assets/bgm/cyber1.mp3")
 		$BGM.play()
-		$Camera/HUD/Killstreak.visible = true
+		$HUD/Killstreak.visible = true
 		for player in $Players.get_children():
 			player.get_node("Killstreak").visible = true
 
 func _on_KillstreakTimer_timeout():
 	g.current_killstreak = 0
 	print(g.new_timestamp() + " Killstreak timed out resetting combo")
-	$Camera/HUD/KillCombo.text = "0"
+	$HUD/KillCombo.text = "0"
 	if $BGM.stream.resource_path.get_file() != "background.mp3":
 		print(g.new_timestamp() + "Killstreak Mode OVER returning to normal")
 		$BGM.stream = load ("res://assets/bgm/background.mp3")
 		$BGM.play()
-	$Camera/HUD/Killstreak.visible = false
+	$HUD/Killstreak.visible = false
 	for player in $Players.get_children():
 		player.get_node("Killstreak").visible = false
