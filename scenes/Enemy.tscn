@@ -139,10 +139,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 119.5, 11 )
+extents = Vector2( 126.5, 22 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 148, 45.25 )
+extents = Vector2( 198.5, 45.25 )
 
 [node name="Enemy" type="KinematicBody2D" groups=["enemies"]]
 collision_layer = 4
@@ -174,7 +174,7 @@ anims/dmg_test = SubResource( 5 )
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( 0.5, 5 )
+position = Vector2( -0.5, -6 )
 shape = SubResource( 7 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -182,7 +182,7 @@ visible = false
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2( 0, -29.75 )
+position = Vector2( 0.5, -29.75 )
 shape = SubResource( 2 )
 
 [node name="RayLeft" type="RayCast2D" parent="."]

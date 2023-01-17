@@ -13,6 +13,7 @@ func enter() -> void:
 		actor.direction_string = 'Left'
 		
 	if actor.is_in_group('players'):
+		actor.flip_close_range()
 		actor.play_animation(animation_name + actor.direction_string)
 	else:
 		actor.get_node('Sprite').flip_h = actor.direction == 1

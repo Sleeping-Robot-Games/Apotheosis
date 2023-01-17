@@ -24,6 +24,12 @@ var close_range_bodies = []
 var upgrade_cost = [100, 200, 300, 400, 500]
 var can_fabricate = false
 var fabricating_progress = 0
+var upgrades = {
+	'Tank': [],
+	'Barrel': [],
+	'Scope': [],
+	'Handle': []
+}
 
 onready var states = $state_manager
 ## TODO: change how game scene is assigned when implementing levels?
@@ -93,6 +99,21 @@ func shoot():
 	bullet.speed = bullet_speed * direction
 	game.call_deferred('add_child', bullet)
 
+func apply_pierce():
+	## TODO: Check upgrades to apply
+	pass
+
+func apply_range(num):
+	## TODO: Check upgrades to apply
+	pass
+	
+func apply_close_range():
+	## TODO: Check upgrades to apply
+	pass
+
+func apply_push(num):
+	## TODO: Check upgrades to apply
+	pass
 
 func get_scrap():
 	scrap += 10
@@ -109,8 +130,8 @@ func show_fabricate_icon(var pressed = false):
 	$Fabricate/Progress.visible = pressed
 	$Fabricate/Icon.texture = load("res://assets/" + btn + num)
 	$Fabricate/Icon.visible = true
-	if pressed:
-		$Fabricate/Tween.interpolate_property($Fabricate/Progress, "value", 0, 100, 3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	if pressed:## TODO: Match time to fabricate animation?
+		$Fabricate/Tween.interpolate_property($Fabricate/Progress, "value", 0, 100, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Fabricate/Tween.start()
 	else:
 		$Fabricate/Tween.stop_all()
@@ -124,6 +145,9 @@ func random_upgrade():
 	if upgrade_cost.size() > 0 and scrap >= upgrade_cost[0]:
 		can_fabricate = true
 		show_fabricate_icon()
+		
+func flip_close_range():
+	$CloseRangeArea.rotation_degrees = 180 if direction == 1 else 0
 
 func _on_FabricateTween_tween_all_completed():
 	$Fabricate.visible = false
@@ -131,11 +155,11 @@ func _on_FabricateTween_tween_all_completed():
 	fabricating_progress = 0
 	random_upgrade()
 
-func _on_SlashArea_body_entered(body):
+func _on_CloseRangeArea_body_entered(body):
 	if body.is_in_group('enemies'): 
 		close_range_bodies.append(body)
 
-func _on_SlashArea_body_exited(body):
+func _on_CloseRangeArea_body_exited(body):
 	if body.is_in_group('enemies'): 
 		close_range_bodies.erase(body)
 
@@ -146,3 +170,4 @@ func _on_ShootCD_timeout():
 func _on_HurtRedTimer_timeout():
 	for sprite in $SpriteHolder.get_children():
 		sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
+

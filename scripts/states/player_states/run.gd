@@ -33,6 +33,8 @@ func input(_event: InputEvent) -> BaseState:
 func physics_process(_delta: float) -> BaseState:
 	if !actor.is_on_floor():
 		return fall_state
+	
+	var prev_direction = actor.direction
 
 	actor.moving = false
 	if Input.is_action_pressed("right_" + actor.controller_id):
@@ -50,7 +52,10 @@ func physics_process(_delta: float) -> BaseState:
 	
 	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
 	
+	if prev_direction != actor.direction:
+		return run_state
+	
 	if not actor.moving:
 		return idle_state
 	
-	return run_state
+	return null

@@ -14,6 +14,7 @@
 [ext_resource path="res://shaders/textures/fire_02.png" type="Texture" id=12]
 [ext_resource path="res://assets/F_001.png" type="Texture" id=13]
 [ext_resource path="res://assets/ring.png" type="Texture" id=14]
+[ext_resource path="res://resources/fire.tres" type="Material" id=15]
 
 [sub_resource type="ShaderMaterial" id=37]
 
@@ -126,7 +127,7 @@ tracks/5/keys = {
 "values": [ 0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -215,7 +216,7 @@ tracks/5/keys = {
 "values": [ 4 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -304,7 +305,7 @@ tracks/5/keys = {
 "values": [ 6 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -392,7 +393,7 @@ tracks/5/keys = {
 "values": [ 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -480,7 +481,7 @@ tracks/5/keys = {
 "values": [ 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -568,7 +569,7 @@ tracks/5/keys = {
 "values": [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -656,7 +657,7 @@ tracks/5/keys = {
 "values": [ 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -745,7 +746,7 @@ tracks/5/keys = {
 "values": [ 26 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -834,7 +835,7 @@ tracks/5/keys = {
 "values": [ 29 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -922,7 +923,7 @@ tracks/5/keys = {
 "values": [ 20, 21 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1010,7 +1011,7 @@ tracks/5/keys = {
 "values": [ 22, 23 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1098,7 +1099,7 @@ tracks/5/keys = {
 "values": [ 0, 1 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1186,7 +1187,7 @@ tracks/5/keys = {
 "values": [ 2, 3 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1275,7 +1276,7 @@ tracks/5/keys = {
 "values": [ 0, 1 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1364,7 +1365,7 @@ tracks/5/keys = {
 "values": [ 100, 101 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1453,7 +1454,7 @@ tracks/5/keys = {
 "values": [ 102, 103 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1542,7 +1543,7 @@ tracks/5/keys = {
 "values": [ 104, 105 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1630,7 +1631,7 @@ tracks/5/keys = {
 "values": [ 24, 25 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1718,7 +1719,7 @@ tracks/5/keys = {
 "values": [ 27, 28 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1807,7 +1808,7 @@ tracks/5/keys = {
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1896,7 +1897,7 @@ tracks/5/keys = {
 "values": [ 14, 15, 16, 17, 18, 19 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1985,7 +1986,7 @@ tracks/5/keys = {
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -2074,7 +2075,7 @@ tracks/5/keys = {
 "values": [ 14, 15, 16, 17, 18, 19 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -2163,7 +2164,7 @@ tracks/5/keys = {
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -2252,7 +2253,7 @@ tracks/5/keys = {
 "values": [ 14, 15, 16, 17, 18, 19 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -2341,7 +2342,7 @@ tracks/5/keys = {
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -2430,7 +2431,7 @@ tracks/5/keys = {
 "values": [ 14, 15, 16, 17, 18, 19 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/path = NodePath("SpriteHolder/GunSpriteHolder:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -2443,10 +2444,7 @@ tracks/6/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=25]
-extents = Vector2( 11, 13.5 )
-
-[sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 11, 13.5 )
+extents = Vector2( 36, 13 )
 
 [node name="Player" type="KinematicBody2D" groups=["players"]]
 collision_mask = 56
@@ -2466,11 +2464,27 @@ texture = ExtResource( 5 )
 hframes = 8
 vframes = 17
 
-[node name="Gun" type="Sprite" parent="SpriteHolder"]
+[node name="GunSpriteHolder" type="Sprite" parent="SpriteHolder"]
 material = ExtResource( 9 )
 texture = ExtResource( 10 )
 hframes = 6
 vframes = 4
+
+[node name="Particles2D" type="Particles2D" parent="SpriteHolder/GunSpriteHolder"]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+position = Vector2( -25, 1 )
+emitting = false
+amount = 300
+speed_scale = 2.0
+process_material = ExtResource( 15 )
+
+[node name="Tank" type="Sprite" parent="SpriteHolder/GunSpriteHolder"]
+
+[node name="Barrel" type="Sprite" parent="SpriteHolder/GunSpriteHolder"]
+
+[node name="Scope" type="Sprite" parent="SpriteHolder/GunSpriteHolder"]
+
+[node name="Base" type="Sprite" parent="SpriteHolder/GunSpriteHolder"]
 
 [node name="Torso" type="Sprite" parent="SpriteHolder"]
 material = ExtResource( 9 )
@@ -2562,21 +2576,12 @@ anims/runSlashRight = SubResource( 36 )
 wait_time = 0.2
 one_shot = true
 
-[node name="SlashAreaLeft" type="Area2D" parent="."]
+[node name="CloseRangeArea" type="Area2D" parent="."]
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SlashAreaLeft"]
-visible = false
-position = Vector2( -11, 2 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CloseRangeArea"]
+position = Vector2( -36, 0 )
 shape = SubResource( 25 )
-
-[node name="SlashAreaRight" type="Area2D" parent="."]
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SlashAreaRight"]
-visible = false
-position = Vector2( 11, 2 )
-shape = SubResource( 26 )
 
 [node name="debug_label" type="Label" parent="."]
 margin_left = -20.0
@@ -2630,10 +2635,8 @@ tint_progress = Color( 0.780392, 0.752941, 0.0705882, 1 )
 [node name="Tween" type="Tween" parent="Fabricate"]
 
 [connection signal="timeout" from="ShootCD" to="." method="_on_ShootCD_timeout"]
-[connection signal="body_entered" from="SlashAreaLeft" to="." method="_on_SlashArea_body_entered"]
-[connection signal="body_exited" from="SlashAreaLeft" to="." method="_on_SlashArea_body_exited"]
-[connection signal="body_entered" from="SlashAreaRight" to="." method="_on_SlashArea_body_entered"]
-[connection signal="body_exited" from="SlashAreaRight" to="." method="_on_SlashArea_body_exited"]
+[connection signal="body_entered" from="CloseRangeArea" to="." method="_on_CloseRangeArea_body_entered"]
+[connection signal="body_exited" from="CloseRangeArea" to="." method="_on_CloseRangeArea_body_exited"]
 [connection signal="timeout" from="debug_label/Timer" to="." method="_on_debugTimer_timeout"]
 [connection signal="timeout" from="HurtRedTimer" to="." method="_on_HurtRedTimer_timeout"]
 [connection signal="tween_all_completed" from="Fabricate/Tween" to="." method="_on_FabricateTween_tween_all_completed"]
