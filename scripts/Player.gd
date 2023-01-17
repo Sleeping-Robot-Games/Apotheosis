@@ -19,6 +19,7 @@ var can_slash = true
 var is_dead = false
 var player_key = "p1"
 var controller_id = "kb"
+var prev_anim = ""
 var jump_padding = false
 
 var close_range_bodies = []
@@ -88,7 +89,10 @@ func dmg(num):
 			ui_disabled = true
 			g.play_sfx("player_death")
 		else:
-			$AnimationPlayer.play('hurt'+direction_string) 
+			if states.current_state.name == 'run':
+				$AnimationPlayer.play('runHurt'+direction_string) 
+			else:
+				$AnimationPlayer.play('hurt'+direction_string) 
 
 func shoot():
 	can_shoot = false
@@ -182,7 +186,6 @@ func _on_CloseRangeArea_body_exited(body):
 	if body.is_in_group('enemies'): 
 		close_range_bodies.erase(body)
 
-
 func _on_ShootCD_timeout():
 	can_shoot = true
 
@@ -190,3 +193,6 @@ func _on_HurtRedTimer_timeout():
 	for sprite in $SpriteHolder.get_children():
 		sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if 'hurt' in anim_name.to_lower():
+		play_animation(states.current_state.animation_name + direction_string)

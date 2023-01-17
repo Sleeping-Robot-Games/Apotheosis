@@ -1734,7 +1734,6 @@ tracks/6/keys = {
 [sub_resource type="Animation" id=31]
 resource_name = "runHurtLeft"
 length = 0.6
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteHolder/Head:frame")
 tracks/0/interp = 1
@@ -1823,7 +1822,6 @@ tracks/6/keys = {
 [sub_resource type="Animation" id=32]
 resource_name = "runHurtRight"
 length = 0.6
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteHolder/Head:frame")
 tracks/0/interp = 1
@@ -2634,6 +2632,7 @@ tint_progress = Color( 0.780392, 0.752941, 0.0705882, 1 )
 
 [node name="Tween" type="Tween" parent="Fabricate"]
 
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="ShootCD" to="." method="_on_ShootCD_timeout"]
 [connection signal="body_entered" from="CloseRangeArea" to="." method="_on_CloseRangeArea_body_entered"]
 [connection signal="body_exited" from="CloseRangeArea" to="." method="_on_CloseRangeArea_body_exited"]
