@@ -70,6 +70,8 @@ func dmg(num):
 		hp -= num
 		var enemy_name = name.to_lower().rstrip("0123456789")
 		$AnimationPlayer.play(enemy_name+'Hurt')
+		$Sprite.modulate = Color(1.0, 0.0, 0.0, 1.0)
+		$HurtRedTimer.start()
 		if hp <= 0:
 			is_dead = true
 			if enemy_name == "chickpea":
@@ -115,8 +117,10 @@ func _on_AttackArea_body_exited(body):
 		elif not states.current_state.name in ['pushed', 'fall']:
 			states.change_state(states.get_node("chase"))
 
-
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if 'Death' in anim_name:
 		drop_scrap()
 		queue_free()
+
+func _on_HurtRedTimer_timeout():
+	$Sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
