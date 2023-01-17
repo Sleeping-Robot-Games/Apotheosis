@@ -36,7 +36,7 @@ var upgrades = {
 
 onready var states = $state_manager
 ## TODO: change how game scene is assigned when implementing levels?
-onready var game = null if ui_disabled else get_tree().get_root().get_child(1)
+onready var game_viewport = null if ui_disabled else get_tree().get_root().get_node("Game/ViewportContainer/Viewport")
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 
 ## FOR DEBUGGING
@@ -104,7 +104,7 @@ func shoot():
 	bullet.global_position = global_position
 	bullet.speed = bullet_speed * direction
 	apply_upgrades(bullet)
-	game.call_deferred('add_child', bullet)
+	game_viewport.call_deferred('add_child', bullet)
 	
 func apply_upgrades(bullet):
 	## TODO: Check to see what to apply

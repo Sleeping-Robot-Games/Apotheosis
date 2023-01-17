@@ -1,6 +1,7 @@
 extends Node
 
 var game
+var game_viewport
 
 var random = RandomNumberGenerator.new()
 
@@ -79,16 +80,16 @@ func play_sfx(sound, dB = 0):
 	elif sound == "chickpea_death":
 		sfx.stream = load("res://assets/sfx/enemy_death.mp3")
 	
-	game.call_deferred('add_child', sfx)
+	game_viewport.call_deferred('add_child', sfx)
 
 func increment_killstreak():
 	print(g.new_timestamp() + " enemy killed incrementing combo")
 	current_killstreak += 1
-	game.get_node("HUD/KillCombo").text = str(current_killstreak)
+	game_viewport.get_node("HUD/KillCombo").text = str(current_killstreak)
 	if current_killstreak >= killstreak_threshold:
 		game.activate_killstreak_mode()
-	game.get_node("KillstreakTimer").stop()
-	game.get_node("KillstreakTimer").start()
+	game_viewport.get_node("KillstreakTimer").stop()
+	game_viewport.get_node("KillstreakTimer").start()
 
 func parse_enemy_name(name):
 	return name.to_lower().rstrip("0123456789@")

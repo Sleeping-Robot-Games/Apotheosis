@@ -19,7 +19,6 @@ onready var buttons = [[$Model/Prev, $Model/Next], [$Color/Prev, $Color/Next], [
 onready var player_sprites = {
 	"Back": $Player/SpriteHolder/Back,
 	"BackArm": $Player/SpriteHolder/BackArm,
-	"Gun": $Player/SpriteHolder/Gun,
 	"Torso": $Player/SpriteHolder/Torso,
 	"Head": $Player/SpriteHolder/Head,
 	"Legs": $Player/SpriteHolder/Legs,
@@ -91,7 +90,8 @@ func add_player(p_key):
 func create_random_character():
 	var sprite_folders = g.folders_in_dir(sprite_folder_path)
 	for folder in sprite_folders:
-		set_random_texture(folder)
+		if folder != "Gun":
+			set_random_texture(folder)
 	set_random_color()
 
 func set_random_texture(sprite_name: String) -> void:

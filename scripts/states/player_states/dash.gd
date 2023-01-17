@@ -71,4 +71,4 @@ func instance_ghost():
 	var ghost = dash_ghost_scene.instance()
 	ghost.set_sprites(actor.get_node('SpriteHolder'))
 	ghost.position = Vector2(actor.position.x, actor.position.y + 4)
-	actor.game.call_deferred('add_child', ghost)
+	actor.game_viewport.call_deferred('add_child', ghost)

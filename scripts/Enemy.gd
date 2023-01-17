@@ -28,7 +28,7 @@ var is_pushed = false
 
 onready var states = $state_manager
 ## Might change when implementing levels
-onready var game = get_tree().get_root().get_child(1)
+onready var game_viewport = get_tree().get_root().get_node("Game/ViewportContainer/Viewport")
 onready var right_ray = $RayRight
 onready var left_ray = $RayLeft
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
@@ -58,7 +58,7 @@ func shoot():
 	bullet.shot_by = 'enemy'
 	bullet.global_position = global_position
 	bullet.speed = bullet_speed * direction ## TODO: Find out why any speed less than 10 fails
-	game.call_deferred('add_child', bullet)
+	game_viewport.call_deferred('add_child', bullet)
 
 func pushed(num, dir, dist):
 	dmg(num)
@@ -93,7 +93,7 @@ func drop_scrap():
 	for n in range(num):
 		var new_scrap = scrap_scene.instance()
 		new_scrap.global_position = global_position
-		game.add_child(new_scrap)
+		game_viewport.add_child(new_scrap)
 
 func _on_DetectionArea_body_entered(body):
 	## TODO: What to do if a new player enters the area?
