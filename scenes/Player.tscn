@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://assets/character/sprites/Head/head_001.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/character/sprites/Back/back_001.png" type="Texture" id=7]
 [ext_resource path="res://assets/character/sprites/Legs/legs_001.png" type="Texture" id=8]
 [ext_resource path="res://shaders/materials/palette_swapper.tres" type="Material" id=9]
+[ext_resource path="res://assets/character/sprites/Gun/gun_001.png" type="Texture" id=10]
 
 [sub_resource type="CapsuleShape2D" id=24]
 radius = 8.0
@@ -83,6 +84,18 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -165,6 +178,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 4 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "dashRight"
@@ -242,6 +267,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 6 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="Animation" id=15]
 resource_name = "deathLeft"
@@ -317,6 +354,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -394,6 +443,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="Animation" id=17]
 resource_name = "fabricateLeft"
@@ -470,6 +531,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="Animation" id=18]
 resource_name = "fabricateRight"
@@ -545,6 +618,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -623,6 +708,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 26 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "fallRight"
@@ -700,6 +797,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 29 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="Animation" id=13]
 resource_name = "hurtLeft"
@@ -775,6 +884,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 20, 21 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -852,6 +973,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 22, 23 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "idleLeft"
@@ -927,6 +1060,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -1004,10 +1149,22 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 2, 3 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="Animation" id=27]
 resource_name = "idleShootLeft "
-length = 0.2
+length = 0.3
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteHolder/Head:frame")
@@ -1016,7 +1173,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 98, 99 ]
@@ -1028,7 +1185,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 98, 99 ]
@@ -1040,7 +1197,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 98, 99 ]
@@ -1052,7 +1209,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 98, 99 ]
@@ -1064,7 +1221,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 98, 99 ]
@@ -1076,15 +1233,27 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 4, 1 ]
+}
 
 [sub_resource type="Animation" id=28]
 resource_name = "idleShootRight"
-length = 0.2
+length = 0.3
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteHolder/Head:frame")
@@ -1093,7 +1262,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0976743 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 100, 101 ]
@@ -1105,7 +1274,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0976743 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 100, 101 ]
@@ -1117,7 +1286,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.0976743 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 100, 101 ]
@@ -1129,7 +1298,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.0976743 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 100, 101 ]
@@ -1141,7 +1310,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 100, 101 ]
@@ -1153,10 +1322,22 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 100, 101 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 5, 3 ]
 }
 
 [sub_resource type="Animation" id=29]
@@ -1235,6 +1416,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 102, 103 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="Animation" id=30]
 resource_name = "idleSlashRight"
@@ -1312,6 +1505,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 104, 105 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "jumpLeft"
@@ -1388,6 +1593,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 24, 25 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="Animation" id=10]
 resource_name = "jumpRight"
@@ -1463,6 +1680,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 27, 28 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
 }
 
 [sub_resource type="Animation" id=31]
@@ -1541,6 +1770,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="Animation" id=32]
 resource_name = "runHurtRight"
@@ -1617,6 +1858,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 14, 15, 16, 17, 18, 19 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -1695,6 +1948,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="Animation" id=12]
 resource_name = "runRight"
@@ -1771,6 +2036,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 14, 15, 16, 17, 18, 19 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
 }
 
 [sub_resource type="Animation" id=33]
@@ -1849,6 +2126,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 9, 10, 11 ]
+}
 
 [sub_resource type="Animation" id=34]
 resource_name = "runShootRight"
@@ -1925,6 +2214,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 14, 15, 16, 17, 18, 19 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15, 16, 17 ]
 }
 
 [sub_resource type="Animation" id=35]
@@ -2003,6 +2304,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="Animation" id=36]
 resource_name = "runSlashRight"
@@ -2080,6 +2393,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 14, 15, 16, 17, 18, 19 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("SpriteHolder/Gun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
 
 [sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 11, 13.5 )
@@ -2104,6 +2429,11 @@ material = ExtResource( 9 )
 texture = ExtResource( 5 )
 hframes = 8
 vframes = 17
+
+[node name="Gun" type="Sprite" parent="SpriteHolder"]
+texture = ExtResource( 10 )
+hframes = 6
+vframes = 4
 
 [node name="Torso" type="Sprite" parent="SpriteHolder"]
 material = ExtResource( 9 )
