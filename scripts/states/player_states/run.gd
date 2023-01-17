@@ -53,5 +53,4 @@ func physics_process(_delta: float) -> BaseState:
 	if not actor.moving:
 		return idle_state
 	
-	## TODO: Refactor so that other animations can play while running
 	return run_state
