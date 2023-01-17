@@ -1,30 +1,34 @@
 extends Node2D
 
 export var debug = false
-export (Vector2) var spawn_coords = Vector2(300, 250)
 export (int) var spawn_distancing = 100
 
 const player_scene = preload('res://scenes/Player.tscn')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	g.game = self
 	if debug:
 		return
 	spawn_players()
 
 func spawn_players():
+	var spawn_offset = 0
+	for debug_player in $Players.get_children():
+		debug_player.queue_free()
 	for player in g.player_input_devices:
 		var input_device = g.player_input_devices[player]
 		if input_device != null:
 			var player_instance = player_scene.instance()
 			player_instance.player_key = player
 			player_instance.controller_id = "kb" if input_device == "keyboard" else input_device.substr(4)
-			player_instance.global_position = spawn_coords
+			player_instance.global_position = $SpawnPoint.global_position
+			player_instance.global_position.x += spawn_offset
 			init_player_model(player_instance)
 			init_player_color(player_instance)
 			$Players.add_child(player_instance)
 			# increment spawn coordinates for next potential player
-			spawn_coords.x += spawn_distancing
+			spawn_offset += spawn_distancing
 
 func init_player_model(player):
 	var head_sprite = player.get_node("SpriteHolder/Head")

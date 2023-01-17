@@ -1,6 +1,6 @@
 extends Node
 
-onready var game = get_tree().get_root().get_child(1)
+var game
 
 var random = RandomNumberGenerator.new()
 

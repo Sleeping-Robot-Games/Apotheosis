@@ -1813,4 +1813,7 @@ material = SubResource( 77 )
 process_material = SubResource( 81 )
 texture = ExtResource( 18 )
 
+[node name="SpawnPoint" type="Position2D" parent="."]
+position = Vector2( 63, 360 )
+
 [connection signal="timeout" from="KillstreakTimer" to="." method="_on_KillstreakTimer_timeout"]
