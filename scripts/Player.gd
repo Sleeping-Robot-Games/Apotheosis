@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (bool) var ui_disabled = false 
+export (bool) var ui_disabled = false
 export (float) var gravity = 20.0
 export (float) var friction = 0.8
 export (int) var bullet_speed = 15
@@ -21,6 +21,9 @@ var player_key = "p1"
 var controller_id = "kb"
 
 var close_range_bodies = []
+var upgrade_cost = [100, 200, 300, 400, 500]
+var can_fabricate = false
+var fabricating_progress = 0
 
 onready var states = $state_manager
 ## TODO: change how game scene is assigned when implementing levels?
@@ -37,6 +40,12 @@ func _on_debugTimer_timeout():
 	
 func _ready():
 	states.init(self)
+
+func _input(event):
+	if can_fabricate and event.is_action_pressed("fab_" + str(controller_id)):
+		show_fabricate_icon(true)
+	elif can_fabricate and event.is_action_released("fab_" + str(controller_id)):
+		show_fabricate_icon(false)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if ui_disabled:
@@ -86,8 +95,41 @@ func shoot():
 
 
 func get_scrap():
-	scrap += 1
+	scrap += 10
 	show_debug_label('scrap: ' + str(scrap))
+	if upgrade_cost.size() > 0 and scrap >= upgrade_cost[0]:
+		can_fabricate = true
+		show_fabricate_icon()
+
+func show_fabricate_icon(var pressed = false):
+	var btn = "F" if controller_id == "kb" else "Y"
+	var num = "_002.png" if pressed else "_001.png"
+	$Fabricate.visible = true
+	$Fabricate/Label.visible = !pressed
+	$Fabricate/Progress.visible = pressed
+	$Fabricate/Icon.texture = load("res://assets/" + btn + num)
+	$Fabricate/Icon.visible = true
+	if pressed:
+		$Fabricate/Tween.interpolate_property($Fabricate/Progress, "value", 0, 100, 3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Fabricate/Tween.start()
+	else:
+		$Fabricate/Tween.stop_all()
+		fabricating_progress = 0
+
+func random_upgrade():
+	show_debug_label("UPGRADE INSTALLED")
+	scrap -= upgrade_cost[0]
+	upgrade_cost.remove(0)
+	can_fabricate = false
+	if upgrade_cost.size() > 0 and scrap >= upgrade_cost[0]:
+		can_fabricate = true
+		show_fabricate_icon()
+
+func _on_FabricateTween_tween_all_completed():
+	$Fabricate.visible = false
+	can_fabricate = false
+	fabricating_progress = 0
+	random_upgrade()
 
 func _on_SlashArea_body_entered(body):
 	if body.is_in_group('enemies'): 
