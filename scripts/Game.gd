@@ -52,9 +52,9 @@ func activate_killstreak_mode():
 			player.get_node("Killstreak").visible = true
 
 func _on_KillstreakTimer_timeout():
-	print("Killstreak Mode disabled")
 	g.current_killstreak = 0
 	if $BGM.stream.resource_path.get_file() != "background.mp3":
+		print("Killstreak Mode disabled")
 		$BGM.stream = load ("res://assets/bgm/background.mp3")
 		$BGM.play()
 	for player in $Players.get_children():
