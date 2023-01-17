@@ -68,12 +68,15 @@ func slashed(num, dir, dist):
 func dmg(num):
 	if not is_dead:
 		hp -= num
-		$AnimationPlayer.play(name.to_lower().rstrip("0123456789")+'Hurt')
+		var enemy_name = name.to_lower().rstrip("0123456789")
+		$AnimationPlayer.play(enemy_name+'Hurt')
 		if hp <= 0:
 			is_dead = true
+			if enemy_name == "chickpea":
+				g.play_sfx("chickpea_death")
 			g.increment_killstreak()
 			set_collision_mask_bit(1, false)
-			$AnimationPlayer.play(name.to_lower().rstrip("0123456789")+'Death')
+			$AnimationPlayer.play(enemy_name+'Death')
 	
 func ledge_detected():
 	return !left_ray.is_colliding() or !right_ray.is_colliding()
