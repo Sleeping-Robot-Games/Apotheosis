@@ -6,8 +6,6 @@ export (float) var friction = 0.8
 export (int) var bullet_speed = 15
 export (int) var hp = 10
 
-var scrap = 0
-
 var velocity = Vector2()
 var direction = 1
 var direction_string = "Right"
@@ -15,6 +13,7 @@ var moving = false
 var can_dash = true
 var can_jump = true
 var can_shoot = true
+var can_use_scope = true
 var can_use_tank = true
 var can_slash = true
 var is_dead = false
@@ -22,9 +21,10 @@ var jump_padding = false
 var player_key = "p1"
 var controller_id = "kb"
 var prev_anim = ""
-
+var scrap = 100
+var scope_range_bodies = []
 var tank_range_bodies = []
-var upgrade_cost = [100, 200, 300, 400, 500]
+var upgrade_cost = [50, 50, 100, 100, 200]
 var current_upgrade = 0
 var can_fabricate = false
 var fabricating_progress = 0
@@ -40,6 +40,7 @@ onready var states = $state_manager
 
 onready var level = null if ui_disabled else get_node('../../../Level')
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
+onready var crosshair_scene = preload("res://scenes/Crosshair.tscn")
 
 ## FOR DEBUGGING
 func show_debug_label(text):
@@ -59,6 +60,8 @@ func _input(event):
 		show_fabricate_icon(false)
 	elif can_use_tank and upgrades["Tank"].size() > 0 and Input.is_action_pressed("ability_a_" + controller_id):
 		use_tank()
+	elif can_use_scope and upgrades["Scope"].size() > 0 and Input.is_action_pressed("ability_b_" + controller_id):
+		use_scope()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if ui_disabled:
@@ -109,6 +112,16 @@ func shoot():
 	bullet.speed = bullet_speed * direction
 	apply_upgrades(bullet)
 	level.call_deferred('add_child', bullet)
+
+func use_scope():
+	print("USING SCOPE")
+	can_use_scope = false
+	for enemy in scope_range_bodies:
+		if enemy and not enemy.is_dead:
+			var crosshair_instance = crosshair_scene.instance()
+			crosshair_instance.target = enemy
+			enemy.add_child(crosshair_instance)
+	$ScopeCD.start()
 
 func use_tank():
 	print("USING TANK")
@@ -166,13 +179,13 @@ func random_upgrade():
 	
 	scrap -= upgrade_cost[0]
 	if current_upgrade == 0:
-		# Flamethrower Tank
 		show_debug_label("FLAMETHROWER INSTALLED")
 		upgrades["Tank"].append("Flame")
 		$SpriteHolder/GunSpriteHolder/Tank.texture = load("res://assets/character/sprites/Gun/tank_001.png")
 	elif current_upgrade == 1:
-		# TODO
-		pass
+		show_debug_label("SMART SCOPE INSTALLED")
+		upgrades["Scope"].append("Multishot")
+		$SpriteHolder/GunSpriteHolder/Scope.texture = load("res://assets/character/sprites/Gun/scope_001.png")
 	elif current_upgrade == 2:
 		# TODO
 		pass
@@ -223,6 +236,7 @@ func _on_TankDuration_timeout():
 	$TankCD.start()
 
 func _on_TankCD_timeout():
+	show_debug_label("tank off cooldown")
 	can_use_tank = true
 
 func _on_TankDoT_timeout():
@@ -232,7 +246,6 @@ func _on_TankDoT_timeout():
 		for enemy in tank_range_bodies:
 			enemy.dmg(2)
 		$TankDoT.start()
-	
 
 func _on_TankRangeArea_body_entered(body):
 	if body.is_in_group('enemies'): 
@@ -241,3 +254,15 @@ func _on_TankRangeArea_body_entered(body):
 func _on_TankRangeArea_body_exited(body):
 	if body.is_in_group('enemies'): 
 		tank_range_bodies.erase(body)
+
+func _on_ScopeCD_timeout():
+	show_debug_label("scope off cooldown")
+	can_use_scope = true
+
+func _on_ScopeRangeArea_body_entered(body):
+	if body.is_in_group('enemies'): 
+		scope_range_bodies.append(body)
+
+func _on_ScopeRangeArea_body_exited(body):
+	if body.is_in_group('enemies'): 
+		scope_range_bodies.erase(body)

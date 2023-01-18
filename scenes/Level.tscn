@@ -1823,6 +1823,15 @@ position = Vector2( -40, 1234 )
 [node name="Chickpea" parent="Enemies" instance=ExtResource( 2 )]
 position = Vector2( 862, 860 )
 
+[node name="Chickpea4" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 1048, 860 )
+
+[node name="Chickpea5" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 1242, 861 )
+
+[node name="Chickpea6" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 1493, 859 )
+
 [node name="Chickpea2" parent="Enemies" instance=ExtResource( 2 )]
 position = Vector2( 1374, 860 )
 
