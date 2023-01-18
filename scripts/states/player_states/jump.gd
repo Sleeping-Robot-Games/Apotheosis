@@ -18,7 +18,7 @@ func enter() -> void:
 	# This calls the base class enter function, which is necessary here
 	# to make sure the animation switches
 	.enter()
-	actor.velocity.y = -jump_force if not actor.jump_padding else -jump_force * 3
+	actor.velocity.y = -jump_force if not actor.jump_padding else -jump_force * 2
 
 func exit() -> void:
 	actor.jump_padding = false
