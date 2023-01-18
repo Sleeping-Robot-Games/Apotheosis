@@ -2930,8 +2930,8 @@ tracks/9/keys = {
 "values": [ 14, 15, 16, 17, 18, 19 ]
 }
 
-[sub_resource type="RectangleShape2D" id=25]
-extents = Vector2( 11, 13.5 )
+[sub_resource type="RectangleShape2D" id=45]
+extents = Vector2( 24, 10 )
 
 [node name="Player" type="KinematicBody2D" groups=["players"]]
 collision_mask = 56
@@ -2979,14 +2979,6 @@ vframes = 17
 material = ExtResource( 9 )
 hframes = 6
 vframes = 4
-
-[node name="Particles2D" type="Particles2D" parent="SpriteHolder/GunSpriteHolder"]
-modulate = Color( 1.5, 1.5, 1.5, 1 )
-position = Vector2( -25, 1 )
-emitting = false
-amount = 300
-speed_scale = 2.0
-process_material = ExtResource( 15 )
 
 [node name="Tank" type="Sprite" parent="SpriteHolder/GunSpriteHolder"]
 texture = ExtResource( 18 )
@@ -3062,12 +3054,21 @@ anims/runShootRight = SubResource( 34 )
 wait_time = 0.2
 one_shot = true
 
-[node name="CloseRangeArea" type="Area2D" parent="."]
+[node name="TankRangeArea" type="Area2D" parent="."]
+collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CloseRangeArea"]
-position = Vector2( -36, 0 )
-shape = SubResource( 25 )
+[node name="Particles2D" type="Particles2D" parent="TankRangeArea"]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+position = Vector2( -25, 1 )
+emitting = false
+amount = 300
+speed_scale = 2.0
+process_material = ExtResource( 15 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TankRangeArea"]
+position = Vector2( -42, 0 )
+shape = SubResource( 45 )
 
 [node name="debug_label" type="Label" parent="."]
 margin_left = -20.0
@@ -3130,10 +3131,13 @@ one_shot = true
 wait_time = 10.0
 one_shot = true
 
+[node name="TankDoT" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="ShootCD" to="." method="_on_ShootCD_timeout"]
-[connection signal="body_entered" from="CloseRangeArea" to="." method="_on_CloseRangeArea_body_entered"]
-[connection signal="body_exited" from="CloseRangeArea" to="." method="_on_CloseRangeArea_body_exited"]
+[connection signal="body_entered" from="TankRangeArea" to="." method="_on_TankRangeArea_body_entered"]
+[connection signal="body_exited" from="TankRangeArea" to="." method="_on_TankRangeArea_body_exited"]
 [connection signal="timeout" from="debug_label/Timer" to="." method="_on_debugTimer_timeout"]
 [connection signal="timeout" from="HurtRedTimer" to="." method="_on_HurtRedTimer_timeout"]
 [connection signal="tween_all_completed" from="Fabricate/Tween" to="." method="_on_FabricateTween_tween_all_completed"]
@@ -3141,3 +3145,4 @@ one_shot = true
 [connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
 [connection signal="timeout" from="TankDuration" to="." method="_on_TankDuration_timeout"]
 [connection signal="timeout" from="TankCD" to="." method="_on_TankCD_timeout"]
+[connection signal="timeout" from="TankDoT" to="." method="_on_TankDoT_timeout"]

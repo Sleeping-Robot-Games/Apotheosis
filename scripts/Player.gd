@@ -19,12 +19,11 @@ var can_use_tank = true
 var can_slash = true
 var is_dead = false
 var jump_padding = false
-var short_barrel = true
 var player_key = "p1"
 var controller_id = "kb"
 var prev_anim = ""
 
-var close_range_bodies = []
+var tank_range_bodies = []
 var upgrade_cost = [100, 200, 300, 400, 500]
 var current_upgrade = 0
 var can_fabricate = false
@@ -113,13 +112,10 @@ func shoot():
 
 func use_tank():
 	print("USING TANK")
-	if short_barrel:
-		# TODO: adjust area2D based on gun size
-		pass
 	can_use_tank = false
-	$SpriteHolder/GunSpriteHolder/Particles2D.emitting = true
+	$TankRangeArea/Particles2D.emitting = true
 	$TankDuration.start()
-	
+	$TankDoT.start()
 
 func apply_upgrades(bullet):
 	## TODO: Check to see what to apply
@@ -128,7 +124,7 @@ func apply_upgrades(bullet):
 #	Barrel - Piercing
 	apply_pierce()
 #	Tank - Flame
-	apply_close_range()
+	apply_tank_range()
 #	Handle - Pushback
 	apply_push(1)
 
@@ -138,7 +134,7 @@ func apply_pierce():
 func apply_range(num):
 	pass
 	
-func apply_close_range():
+func apply_tank_range():
 	pass
 
 func apply_push(num):
@@ -194,23 +190,14 @@ func random_upgrade():
 		can_fabricate = true
 		show_fabricate_icon()
 		
-func flip_close_range():
-	$CloseRangeArea.rotation_degrees = 180 if direction == 1 else 0
+func flip_tank_range():
+	$TankRangeArea.rotation_degrees = 180 if direction == 1 else 0
 
 func _on_FabricateTween_tween_all_completed():
 	$Fabricate.visible = false
 	can_fabricate = false
 	fabricating_progress = 0
 	random_upgrade()
-
-func _on_CloseRangeArea_body_entered(body):
-	print("ENTERED")
-	if body.is_in_group('enemies'): 
-		close_range_bodies.append(body)
-
-func _on_CloseRangeArea_body_exited(body):
-	if body.is_in_group('enemies'): 
-		close_range_bodies.erase(body)
 
 func _on_ShootCD_timeout():
 	can_shoot = true
@@ -231,10 +218,26 @@ func _on_VisibilityNotifier2D_viewport_entered(viewport):
 	if not ui_disabled and viewport.name == 'Viewport':
 		level.hide_offscreen(player_key)
 
-
 func _on_TankDuration_timeout():
-	$SpriteHolder/GunSpriteHolder/Particles2D.emitting = false
+	$TankRangeArea/Particles2D.emitting = false
 	$TankCD.start()
 
 func _on_TankCD_timeout():
 	can_use_tank = true
+
+func _on_TankDoT_timeout():
+	print("TankDoT")
+	# TODO: different fx for different tanks? e.g., lightning applies short stun?
+	if $TankDuration.time_left > 0:
+		for enemy in tank_range_bodies:
+			enemy.dmg(2)
+		$TankDoT.start()
+	
+
+func _on_TankRangeArea_body_entered(body):
+	if body.is_in_group('enemies'): 
+		tank_range_bodies.append(body)
+
+func _on_TankRangeArea_body_exited(body):
+	if body.is_in_group('enemies'): 
+		tank_range_bodies.erase(body)
