@@ -1,20 +1,14 @@
 extends Control
 
-export var debug = false
 export (int) var spawn_distancing = 100
 
 const player_scene = preload('res://scenes/Player.tscn')
 
-onready var spawn_coords = $ViewportContainer/Viewport/SpawnPoint.global_position
-onready var players = $ViewportContainer/Viewport/Players
-onready var bgm = $ViewportContainer/Viewport/BGM
-onready var kill_combo = $ViewportContainer/Viewport/HUD/KillCombo
-onready var killstreak_fx = $ViewportContainer/Viewport/HUD/Killstreak
+onready var spawn_coords = $ViewportContainer/Viewport/Level/SpawnPoint.global_position
+onready var players = $ViewportContainer/Viewport/Level/Players
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	g.game = self
-	g.game_viewport = $ViewportContainer/Viewport
 	spawn_players()
 
 func spawn_players():
@@ -72,26 +66,6 @@ func hide_offscreen(player_key):
 	#get_node("offscreen" + player_key).visible = false
 	$ViewportContainer/Viewport/HUD.get_node("offscreen" + player_key).visible = false
 
-func activate_killstreak_mode():
-	if bgm.stream.resource_path.get_file() != "cyber1.mp3":
-		#print(g.new_timestamp() + "KILLSTREAK MODE ACTIVATED!! x2 Damage")
-		bgm.stream = load ("res://assets/bgm/cyber1.mp3")
-		bgm.play()
-		killstreak_fx.visible = true
-		for player in players.get_children():
-			player.get_node("Killstreak").visible = true
-
-func _on_KillstreakTimer_timeout():
-	g.current_killstreak = 0
-	#print(g.new_timestamp() + " Killstreak timed out resetting combo")
-	kill_combo.text = "0"
-	if bgm.stream.resource_path.get_file() != "background.mp3":
-		#print(g.new_timestamp() + "Killstreak Mode OVER returning to normal")
-		bgm.stream = load ("res://assets/bgm/background.mp3")
-		bgm.play()
-	killstreak_fx.visible = false
-	for player in players.get_children():
-		player.get_node("Killstreak").visible = false
 
 func _on_OffCamera_body_entered(body):
 	print(body.player_key + " off camera")

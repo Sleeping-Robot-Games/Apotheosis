@@ -28,7 +28,7 @@ func enter() -> void:
 	
 	current_dash_time = dash_time
 	current_dash_ghost_interval = dash_ghost_interval
-	g.play_sfx("player_dash")
+	g.play_sfx(owner, "player_dash")
 	
 	# instance_ghost()
 
@@ -71,4 +71,4 @@ func instance_ghost():
 	var ghost = dash_ghost_scene.instance()
 	ghost.set_sprites(actor.get_node('SpriteHolder'))
 	ghost.position = Vector2(actor.position.x, actor.position.y + 4)
-	actor.game_viewport.call_deferred('add_child', ghost)
+	actor.level.call_deferred('add_child', ghost)

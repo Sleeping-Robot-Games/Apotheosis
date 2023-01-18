@@ -38,7 +38,7 @@ var upgrades = {
 onready var states = $state_manager
 ## TODO: change how game scene is assigned when implementing levels?
 
-onready var game_viewport = null if ui_disabled else get_tree().get_root().get_node("Game/ViewportContainer/Viewport")
+onready var level = null if ui_disabled else get_node('../../../Level')
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 
 ## FOR DEBUGGING
@@ -89,7 +89,7 @@ func dmg(num):
 			$AnimationPlayer.play('death'+direction_string) ## TODO: Temp, use state
 			is_dead = true
 			ui_disabled = true
-			g.play_sfx("player_death")
+			g.play_sfx(owner, "player_death")
 		else:
 			if states.current_state.name == 'run':
 				$AnimationPlayer.play('runHurt'+direction_string) 
@@ -106,7 +106,7 @@ func shoot():
 	bullet.global_position = global_position
 	bullet.speed = bullet_speed * direction
 	apply_upgrades(bullet)
-	game_viewport.call_deferred('add_child', bullet)
+	level.call_deferred('add_child', bullet)
 	
 func apply_upgrades(bullet):
 	## TODO: Check to see what to apply

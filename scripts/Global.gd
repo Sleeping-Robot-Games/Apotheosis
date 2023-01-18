@@ -1,8 +1,5 @@
 extends Node
 
-var game
-var game_viewport
-
 var random = RandomNumberGenerator.new()
 
 var killstreak_threshold = 5
@@ -67,35 +64,28 @@ func files_in_dir(path: String, keyword: String = "") -> Array:
 func make_shaders_unique(sprite: Sprite):
 	var mat = sprite.get_material().duplicate()
 	sprite.set_material(mat)
-
-func play_sfx(sound, dB = 0):
-	var sfx_scene = load("res://scenes/SFX.tscn")
-	var sfx = sfx_scene.instance()
-	sfx.volume_db = dB
+	
+func play_sfx(parent, sound, db_overide = 0):
+	var sfx_player = AudioStreamPlayer.new()
+	sfx_player.volume_db = db_overide
 	
 	if sound == "player_death":
-		sfx.stream = load("res://assets/sfx/death_sound.mp3")
+		sfx_player.stream = load("res://assets/sfx/death_sound.mp3")
 	elif sound == "player_dash":
 		random.randomize()
 		var n = random.randi_range(1, 2)
-		sfx.stream = load("res://assets/sfx/dodge"+str(n)+".mp3")
+		sfx_player.stream = load("res://assets/sfx/dodge"+str(n)+".mp3")
 	elif sound == "chickpea_death":
-		sfx.stream = load("res://assets/sfx/enemy_death.mp3")
+		sfx_player.stream = load("res://assets/sfx/enemy_death.mp3")
 	
-	game_viewport.call_deferred('add_child', sfx)
+	sfx_player.connect("finished", sfx_player, "queue_free")
 
-func increment_killstreak():
-	#print(g.new_timestamp() + " enemy killed incrementing combo")
-	current_killstreak += 1
-	game_viewport.get_node("HUD/KillCombo").text = str(current_killstreak)
-	if current_killstreak >= killstreak_threshold:
-		game.activate_killstreak_mode()
-	game_viewport.get_node("KillstreakTimer").stop()
-	game_viewport.get_node("KillstreakTimer").start()
+	parent.call_deferred('add_child', sfx_player)
+	sfx_player.play()
+
 
 func parse_enemy_name(name):
 	return name.to_lower().rstrip("0123456789@")
-
 
 func new_timestamp():
 	var tick = OS.get_ticks_msec()
