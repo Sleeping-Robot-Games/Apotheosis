@@ -41,7 +41,6 @@ func _ready():
 	connect("player_joined", player_selection, "handle_player_joined")
 	connect("player_left", player_selection, "handle_player_left")
 	connect("player_ready_changed", player_selection, "handle_player_ready_changed")
-	$Player/Camera2D.current = false
 	remove_player()
 
 func remove_player():
@@ -167,7 +166,6 @@ func _input(event):
 				focus_next_column()
 			elif event.is_action_pressed("ui_pad_accept"):
 				press_focused_button()
-		
 
 func focus_prev_row():
 	focused_button_index.x -= 1
@@ -274,6 +272,7 @@ func _on_ColorPrev_pressed():
 	g.player_colors[player_key] = new_color
 	for sprite in player_sprites.values():
 		set_sprite_color(sprite, new_color)
+	
 
 func _on_ColorNext_pressed():
 	var available_colors = []
