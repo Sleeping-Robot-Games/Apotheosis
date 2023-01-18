@@ -49,7 +49,6 @@ func _on_debugTimer_timeout():
 	$debug_label.text = ""
 	
 func _ready():
-	print(level)
 	states.init(self)
 
 func _input(event):
@@ -103,7 +102,7 @@ func shoot():
 		return
 	var bullet = bullet_scene.instance()
 	bullet.shot_by = 'player'
-	bullet.global_position = global_position
+	bullet.global_position = Vector2(global_position.x + 40 * direction, global_position.y) 
 	bullet.speed = bullet_speed * direction
 	apply_upgrades(bullet)
 	level.call_deferred('add_child', bullet)

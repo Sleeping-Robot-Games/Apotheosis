@@ -84,7 +84,7 @@ func play_sfx(parent, sound, db_overide = 0):
 	sfx_player.play()
 
 func parse_enemy_name(name):
-	return name.to_lower().rstrip("0123456789@")
+	return name.to_lower().rstrip("0123456789@").lstrip("0123456789@")
 
 func new_timestamp():
 	var tick = OS.get_ticks_msec()
