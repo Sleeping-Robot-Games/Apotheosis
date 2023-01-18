@@ -1,6 +1,7 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://scripts/Level.gd" type="Script" id=1]
+[ext_resource path="res://scenes/enemies/Chickpea.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/background/stars.tres" type="Texture" id=3]
 [ext_resource path="res://shaders/textures/fire_02.png" type="Texture" id=5]
 [ext_resource path="res://shaders/textures/fire_01.png" type="Texture" id=6]
@@ -1818,6 +1819,15 @@ position = Vector2( -29, 1600 )
 position = Vector2( -40, 1234 )
 
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="Chickpea" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 1294, 852 )
+
+[node name="Chickpea2" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 1294, 852 )
+
+[node name="Chickpea3" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 1294, 852 )
 
 [node name="Players" type="Node2D" parent="."]
 

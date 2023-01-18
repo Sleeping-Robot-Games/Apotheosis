@@ -15,9 +15,11 @@ var moving = false
 var can_dash = true
 var can_jump = true
 var can_shoot = true
+var can_use_tank = true
 var can_slash = true
 var is_dead = false
 var jump_padding = false
+var short_barrel = true
 var player_key = "p1"
 var controller_id = "kb"
 var prev_anim = ""
@@ -56,6 +58,8 @@ func _input(event):
 		show_fabricate_icon(true)
 	elif can_fabricate and event.is_action_released("fab_" + str(controller_id)):
 		show_fabricate_icon(false)
+	elif can_use_tank and upgrades["Tank"].size() > 0 and Input.is_action_pressed("ability_a_" + controller_id):
+		use_tank()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if ui_disabled:
@@ -106,7 +110,17 @@ func shoot():
 	bullet.speed = bullet_speed * direction
 	apply_upgrades(bullet)
 	level.call_deferred('add_child', bullet)
+
+func use_tank():
+	print("USING TANK")
+	if short_barrel:
+		# TODO: adjust area2D based on gun size
+		pass
+	can_use_tank = false
+	$SpriteHolder/GunSpriteHolder/Particles2D.emitting = true
+	$TankDuration.start()
 	
+
 func apply_upgrades(bullet):
 	## TODO: Check to see what to apply
 #	Scope - Range
@@ -153,11 +167,13 @@ func show_fabricate_icon(var pressed = false):
 		fabricating_progress = 0
 
 func random_upgrade():
-	show_debug_label("UPGRADE INSTALLED")
+	
 	scrap -= upgrade_cost[0]
 	if current_upgrade == 0:
-		# TODO
-		pass
+		# Flamethrower Tank
+		show_debug_label("FLAMETHROWER INSTALLED")
+		upgrades["Tank"].append("Flame")
+		$SpriteHolder/GunSpriteHolder/Tank.texture = load("res://assets/character/sprites/Gun/tank_001.png")
 	elif current_upgrade == 1:
 		# TODO
 		pass
@@ -188,6 +204,7 @@ func _on_FabricateTween_tween_all_completed():
 	random_upgrade()
 
 func _on_CloseRangeArea_body_entered(body):
+	print("ENTERED")
 	if body.is_in_group('enemies'): 
 		close_range_bodies.append(body)
 
@@ -213,3 +230,11 @@ func _on_VisibilityNotifier2D_viewport_exited(viewport):
 func _on_VisibilityNotifier2D_viewport_entered(viewport):
 	if not ui_disabled and viewport.name == 'Viewport':
 		level.hide_offscreen(player_key)
+
+
+func _on_TankDuration_timeout():
+	$SpriteHolder/GunSpriteHolder/Particles2D.emitting = false
+	$TankCD.start()
+
+func _on_TankCD_timeout():
+	can_use_tank = true
