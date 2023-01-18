@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://assets/background/stars.tres" type="Texture" id=3]
@@ -1634,18 +1634,6 @@ points = PoolVector2Array( 16, 11.9267, 0.0416565, 11.9267, 0.0416565, 0.834869,
 [sub_resource type="Environment" id=42]
 glow_enabled = true
 
-[sub_resource type="RectangleShape2D" id=82]
-extents = Vector2( 352, 5000 )
-
-[sub_resource type="RectangleShape2D" id=83]
-extents = Vector2( 352, -5000 )
-
-[sub_resource type="RectangleShape2D" id=84]
-extents = Vector2( -10000, 10000 )
-
-[sub_resource type="RectangleShape2D" id=85]
-extents = Vector2( 10000, 10000 )
-
 [sub_resource type="ShaderMaterial" id=77]
 
 [sub_resource type="Gradient" id=78]
@@ -1818,26 +1806,6 @@ drag_margin_right = 0.1
 drag_margin_bottom = 0.1
 script = ExtResource( 22 )
 
-[node name="OffCamera" type="Area2D" parent="Camera"]
-collision_layer = 0
-
-[node name="Top" type="CollisionShape2D" parent="Camera/OffCamera"]
-position = Vector2( 0, -5272 )
-shape = SubResource( 82 )
-one_way_collision_margin = 0.0
-
-[node name="Bottom" type="CollisionShape2D" parent="Camera/OffCamera"]
-position = Vector2( 0, 5272 )
-shape = SubResource( 83 )
-
-[node name="Left" type="CollisionShape2D" parent="Camera/OffCamera"]
-position = Vector2( -10352, 0 )
-shape = SubResource( 84 )
-
-[node name="Right" type="CollisionShape2D" parent="Camera/OffCamera"]
-position = Vector2( 10352, 0 )
-shape = SubResource( 85 )
-
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="KillCombo" type="Label" parent="HUD"]
@@ -1864,19 +1832,6 @@ texture = ExtResource( 6 )
 material = SubResource( 77 )
 process_material = SubResource( 81 )
 texture = ExtResource( 5 )
-
-[node name="offscreenp1" type="Label" parent="HUD"]
-visible = false
-margin_right = 40.0
-margin_bottom = 14.0
-text = "p1 is offscreen"
-
-[node name="offscreenp2" type="Label" parent="HUD"]
-visible = false
-margin_top = 20.0
-margin_right = 94.0
-margin_bottom = 34.0
-text = "p2 is offscreen"
 
 [node name="SpawnPoint" type="Position2D" parent="."]
 position = Vector2( 63, 360 )

@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var game = owner
+
 onready var players = $Players
 onready var bgm = $BGM
 onready var kill_combo = $HUD/KillCombo
@@ -37,3 +39,11 @@ func _on_KillstreakTimer_timeout():
 	killstreak_fx.visible = false
 	for player in players.get_children():
 		player.get_node("Killstreak").visible = false
+
+func show_offscreen(player_key):
+	#get_node("offscreen" + player_key).visible = true
+	game.get_node("offscreen" + player_key).visible = true
+
+func hide_offscreen(player_key):
+	#get_node("offscreen" + player_key).visible = false
+	game.get_node("offscreen" + player_key).visible = false

@@ -50,6 +50,7 @@ func _on_debugTimer_timeout():
 	$debug_label.text = ""
 	
 func _ready():
+	print(level)
 	states.init(self)
 
 func _input(event):
@@ -206,3 +207,15 @@ func _on_HurtRedTimer_timeout():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if 'hurt' in anim_name.to_lower():
 		play_animation(states.current_state.animation_name + direction_string)
+
+
+func _on_VisibilityNotifier2D_viewport_exited(viewport):
+	print(viewport.name)
+	if not ui_disabled and viewport.name == 'Viewport':
+		level.show_offscreen(player_key)
+
+
+func _on_VisibilityNotifier2D_viewport_entered(viewport):
+	print(viewport.name)
+	if not ui_disabled and viewport.name == 'Viewport':
+		level.hide_offscreen(player_key)

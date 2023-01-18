@@ -3138,3 +3138,5 @@ tint_progress = Color( 0.780392, 0.752941, 0.0705882, 1 )
 [connection signal="timeout" from="debug_label/Timer" to="." method="_on_debugTimer_timeout"]
 [connection signal="timeout" from="HurtRedTimer" to="." method="_on_HurtRedTimer_timeout"]
 [connection signal="tween_all_completed" from="Fabricate/Tween" to="." method="_on_FabricateTween_tween_all_completed"]
+[connection signal="viewport_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_entered"]
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]

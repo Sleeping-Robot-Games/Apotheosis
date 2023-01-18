@@ -10,6 +10,7 @@ onready var players = $ViewportContainer/Viewport/Level/Players
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	spawn_players()
+	print(g.player_input_devices)
 
 func spawn_players():
 	var spawn_offset = 0
@@ -32,10 +33,10 @@ func spawn_players():
 			var offscreen_scene = load("res://scenes/OffscreenIndicator.tscn")
 			var offscreen_instance = offscreen_scene.instance()
 			offscreen_instance.player = player_instance
-			offscreen_instance.get_node("ViewportContainer/Viewport").world_2d = $ViewportContainer/Viewport.world_2d
 			offscreen_instance.name = "offscreen" + player
 			offscreen_instance.visible = false
 			add_child(offscreen_instance)
+			offscreen_instance.get_node("ViewportContainer/MiniViewport").world_2d = $ViewportContainer/Viewport.world_2d
 			offscreen_instance.visible = false
 			
 			#player_instance.offscreen_indicator = offscreen_instance
@@ -58,24 +59,18 @@ func init_player_color(player):
 		sprite_node.material.set_shader_param("greyscale_palette", load(gray_palette_path))
 		g.make_shaders_unique(sprite_node)
 
-func show_offscreen(player_key):
-	#get_node("offscreen" + player_key).visible = true
-	$ViewportContainer/Viewport/HUD.get_node("offscreen" + player_key).visible = true
-
-func hide_offscreen(player_key):
-	#get_node("offscreen" + player_key).visible = false
-	$ViewportContainer/Viewport/HUD.get_node("offscreen" + player_key).visible = false
 
 
-func _on_OffCamera_body_entered(body):
-	print(body.player_key + " off camera")
-	if not g.offscreen_players.has(body.player_key):
-		g.offscreen_players.append(body.player_key)
-		get_node("offscreen" + body.player_key).visible = true
-		get_node("offscreen" + body.player_key).show()
 
-func _on_OffCamera_body_exited(body):
-	print(body.player_key + " back on camera")
-	g.offscreen_players.erase(body.player_key)
-	get_node("offscreen" + body.player_key).hide()
-	get_node("offscreen" + body.player_key).visible = false
+#func _on_OffCamera_body_entered(body):
+#	print(body.player_key + " off camera")
+#	if not g.offscreen_players.has(body.player_key):
+#		g.offscreen_players.append(body.player_key)
+#		get_node("offscreen" + body.player_key).visible = true
+#		get_node("offscreen" + body.player_key).show()
+#
+#func _on_OffCamera_body_exited(body):
+#	print(body.player_key + " back on camera")
+#	g.offscreen_players.erase(body.player_key)
+#	get_node("offscreen" + body.player_key).hide()
+#	get_node("offscreen" + body.player_key).visible = false
