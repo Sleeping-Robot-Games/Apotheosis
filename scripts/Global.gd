@@ -32,6 +32,8 @@ var player_models = {
 	'p4': null,
 }
 
+var offscreen_players = []
+
 func folders_in_dir(path: String) -> Array:
 	var folders = []
 	var dir = Directory.new()
@@ -83,7 +85,7 @@ func play_sfx(sound, dB = 0):
 	game_viewport.call_deferred('add_child', sfx)
 
 func increment_killstreak():
-	print(g.new_timestamp() + " enemy killed incrementing combo")
+	#print(g.new_timestamp() + " enemy killed incrementing combo")
 	current_killstreak += 1
 	game_viewport.get_node("HUD/KillCombo").text = str(current_killstreak)
 	if current_killstreak >= killstreak_threshold:

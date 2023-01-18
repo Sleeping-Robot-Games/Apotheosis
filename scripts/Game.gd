@@ -15,8 +15,6 @@ onready var killstreak_fx = $ViewportContainer/Viewport/HUD/Killstreak
 func _ready():
 	g.game = self
 	g.game_viewport = $ViewportContainer/Viewport
-	if debug:
-		return
 	spawn_players()
 
 func spawn_players():
@@ -41,11 +39,12 @@ func spawn_players():
 			var offscreen_instance = offscreen_scene.instance()
 			offscreen_instance.player = player_instance
 			offscreen_instance.get_node("ViewportContainer/Viewport").world_2d = $ViewportContainer/Viewport.world_2d
-			offscreen_instance.visible = false
 			offscreen_instance.name = "offscreen" + player
+			offscreen_instance.visible = false
 			add_child(offscreen_instance)
+			offscreen_instance.visible = false
 			
-			player_instance.offscreen_indicator = offscreen_instance
+			#player_instance.offscreen_indicator = offscreen_instance
 			#offscreen_instance.show()
 
 func init_player_model(player):
@@ -65,9 +64,17 @@ func init_player_color(player):
 		sprite_node.material.set_shader_param("greyscale_palette", load(gray_palette_path))
 		g.make_shaders_unique(sprite_node)
 
+func show_offscreen(player_key):
+	#get_node("offscreen" + player_key).visible = true
+	$ViewportContainer/Viewport/HUD.get_node("offscreen" + player_key).visible = true
+
+func hide_offscreen(player_key):
+	#get_node("offscreen" + player_key).visible = false
+	$ViewportContainer/Viewport/HUD.get_node("offscreen" + player_key).visible = false
+
 func activate_killstreak_mode():
 	if bgm.stream.resource_path.get_file() != "cyber1.mp3":
-		print(g.new_timestamp() + "KILLSTREAK MODE ACTIVATED!! x2 Damage")
+		#print(g.new_timestamp() + "KILLSTREAK MODE ACTIVATED!! x2 Damage")
 		bgm.stream = load ("res://assets/bgm/cyber1.mp3")
 		bgm.play()
 		killstreak_fx.visible = true
@@ -76,12 +83,25 @@ func activate_killstreak_mode():
 
 func _on_KillstreakTimer_timeout():
 	g.current_killstreak = 0
-	print(g.new_timestamp() + " Killstreak timed out resetting combo")
+	#print(g.new_timestamp() + " Killstreak timed out resetting combo")
 	kill_combo.text = "0"
 	if bgm.stream.resource_path.get_file() != "background.mp3":
-		print(g.new_timestamp() + "Killstreak Mode OVER returning to normal")
+		#print(g.new_timestamp() + "Killstreak Mode OVER returning to normal")
 		bgm.stream = load ("res://assets/bgm/background.mp3")
 		bgm.play()
 	killstreak_fx.visible = false
 	for player in players.get_children():
 		player.get_node("Killstreak").visible = false
+
+func _on_OffCamera_body_entered(body):
+	print(body.player_key + " off camera")
+	if not g.offscreen_players.has(body.player_key):
+		g.offscreen_players.append(body.player_key)
+		get_node("offscreen" + body.player_key).visible = true
+		get_node("offscreen" + body.player_key).show()
+
+func _on_OffCamera_body_exited(body):
+	print(body.player_key + " back on camera")
+	g.offscreen_players.erase(body.player_key)
+	get_node("offscreen" + body.player_key).hide()
+	get_node("offscreen" + body.player_key).visible = false

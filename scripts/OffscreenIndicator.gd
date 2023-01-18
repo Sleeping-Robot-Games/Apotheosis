@@ -1,6 +1,7 @@
 extends Control
 
 var player = null
+var is_showing = false
 
 func _process(_delta):
 	if visible and player != null:
