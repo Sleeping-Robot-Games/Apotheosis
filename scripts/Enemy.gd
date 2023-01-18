@@ -77,7 +77,7 @@ func dmg(num):
 			is_dead = true
 			if g.parse_enemy_name(enemy_name) == "chickpea":
 				## TODO: Make this a function
-				g.play_sfx(owner, "chickpea_death")
+				g.play_sfx(owner.level, "chickpea_death")
 			level.increment_killstreak()
 			# Disables bullet collisions
 			set_collision_mask_bit(1, false)

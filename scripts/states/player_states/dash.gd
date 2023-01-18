@@ -28,7 +28,7 @@ func enter() -> void:
 	
 	current_dash_time = dash_time
 	current_dash_ghost_interval = dash_ghost_interval
-	g.play_sfx(owner, "player_dash")
+	g.play_sfx(actor.level, "player_dash")
 	
 	# instance_ghost()
 

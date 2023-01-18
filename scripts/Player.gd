@@ -90,7 +90,7 @@ func dmg(num):
 			$AnimationPlayer.play('death'+direction_string) ## TODO: Temp, use state
 			is_dead = true
 			ui_disabled = true
-			g.play_sfx(owner, "player_death")
+			g.play_sfx(level, "player_death")
 		else:
 			if states.current_state.name == 'run':
 				$AnimationPlayer.play('runHurt'+direction_string) 
@@ -208,14 +208,10 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if 'hurt' in anim_name.to_lower():
 		play_animation(states.current_state.animation_name + direction_string)
 
-
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
-	print(viewport.name)
 	if not ui_disabled and viewport.name == 'Viewport':
 		level.show_offscreen(player_key)
 
-
 func _on_VisibilityNotifier2D_viewport_entered(viewport):
-	print(viewport.name)
 	if not ui_disabled and viewport.name == 'Viewport':
 		level.hide_offscreen(player_key)
