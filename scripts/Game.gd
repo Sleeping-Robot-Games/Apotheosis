@@ -7,6 +7,13 @@ const player_scene = preload('res://scenes/Player.tscn')
 onready var spawn_coords = $ViewportContainer/Viewport/Level/SpawnPoint.global_position
 onready var players = $ViewportContainer/Viewport/Level/Players
 
+var offscreen_positions = {
+	"p1": Vector2(0,0),
+	"p2": Vector2(512,0),
+	"p3": Vector2(0,352),
+	"p4": Vector2(512,352)
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	spawn_players()
@@ -35,12 +42,10 @@ func spawn_players():
 			offscreen_instance.player = player_instance
 			offscreen_instance.name = "offscreen" + player
 			offscreen_instance.visible = false
-			add_child(offscreen_instance)
+			offscreen_instance.set_border_color()
 			offscreen_instance.get_node("ViewportContainer/MiniViewport").world_2d = $ViewportContainer/Viewport.world_2d
-			offscreen_instance.visible = false
-			
-			#player_instance.offscreen_indicator = offscreen_instance
-			#offscreen_instance.show()
+			offscreen_instance.rect_position = offscreen_positions[player]
+			add_child(offscreen_instance)
 
 func init_player_model(player):
 	var head_sprite = player.get_node("SpriteHolder/Head")
@@ -58,19 +63,3 @@ func init_player_color(player):
 		sprite_node.material.set_shader_param("palette_swap", load(palette_path))
 		sprite_node.material.set_shader_param("greyscale_palette", load(gray_palette_path))
 		g.make_shaders_unique(sprite_node)
-
-
-
-
-#func _on_OffCamera_body_entered(body):
-#	print(body.player_key + " off camera")
-#	if not g.offscreen_players.has(body.player_key):
-#		g.offscreen_players.append(body.player_key)
-#		get_node("offscreen" + body.player_key).visible = true
-#		get_node("offscreen" + body.player_key).show()
-#
-#func _on_OffCamera_body_exited(body):
-#	print(body.player_key + " back on camera")
-#	g.offscreen_players.erase(body.player_key)
-#	get_node("offscreen" + body.player_key).hide()
-#	get_node("offscreen" + body.player_key).visible = false

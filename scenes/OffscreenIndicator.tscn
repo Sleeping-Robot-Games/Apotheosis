@@ -9,6 +9,10 @@ margin_bottom = 128.0
 mouse_filter = 2
 script = ExtResource( 1 )
 
+[node name="BG" type="ColorRect" parent="."]
+margin_right = 128.0
+margin_bottom = 128.0
+
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 margin_right = 128.0
 margin_bottom = 128.0

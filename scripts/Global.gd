@@ -64,7 +64,7 @@ func files_in_dir(path: String, keyword: String = "") -> Array:
 func make_shaders_unique(sprite: Sprite):
 	var mat = sprite.get_material().duplicate()
 	sprite.set_material(mat)
-	
+
 func play_sfx(parent, sound, db_overide = 0):
 	var sfx_player = AudioStreamPlayer.new()
 	sfx_player.volume_db = db_overide
@@ -82,7 +82,6 @@ func play_sfx(parent, sound, db_overide = 0):
 
 	parent.call_deferred('add_child', sfx_player)
 	sfx_player.play()
-
 
 func parse_enemy_name(name):
 	return name.to_lower().rstrip("0123456789@")

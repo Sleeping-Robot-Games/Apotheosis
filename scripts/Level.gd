@@ -20,6 +20,8 @@ func increment_killstreak():
 	get_node("KillstreakTimer").start()
 	
 func activate_killstreak_mode():
+	# TODO: re-enable
+	return
 	if bgm.stream == null or bgm.stream.resource_path.get_file() != "cyber1.mp3":
 		#print(g.new_timestamp() + "KILLSTREAK MODE ACTIVATED!! x2 Damage")
 		bgm.stream = load ("res://assets/bgm/cyber1.mp3")
@@ -41,9 +43,7 @@ func _on_KillstreakTimer_timeout():
 		player.get_node("Killstreak").visible = false
 
 func show_offscreen(player_key):
-	#get_node("offscreen" + player_key).visible = true
 	game.get_node("offscreen" + player_key).visible = true
 
 func hide_offscreen(player_key):
-	#get_node("offscreen" + player_key).visible = false
 	game.get_node("offscreen" + player_key).visible = false

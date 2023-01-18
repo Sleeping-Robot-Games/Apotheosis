@@ -21,7 +21,6 @@ var jump_padding = false
 var player_key = "p1"
 var controller_id = "kb"
 var prev_anim = ""
-var offscreen_indicator = null
 
 var close_range_bodies = []
 var upgrade_cost = [100, 200, 300, 400, 500]
