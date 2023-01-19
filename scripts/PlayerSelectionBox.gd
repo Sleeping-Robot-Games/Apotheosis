@@ -33,9 +33,9 @@ var focused_button_index = null
 var pressed_button = null
 var player_key = null
 var is_ready = null
-var join_high_pos = 90
-var join_mid_pos = 100
-var join_low_pos = 110
+var join_high_pos = 117
+var join_mid_pos = 127
+var join_low_pos = 137
 
 func _ready():
 	connect("player_joined", player_selection, "handle_player_joined")
@@ -298,7 +298,7 @@ func _on_Ready_pressed():
 	is_ready = !is_ready
 	$Checkmark.visible = is_ready
 	$Ready.text = "UNREADY" if is_ready else "READY"
-	$Ready.rect_size.x = 73
+	$Ready.rect_size.x = 136
 	emit_signal("player_ready_changed", player_key, is_ready)
 	if is_ready:
 		# TODO: change button to red

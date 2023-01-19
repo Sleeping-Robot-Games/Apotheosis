@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/abilityicon001.png-07e672dd4b1d47bb55281f463643d7c8.stex"
+path="res://.import/hp.png-f7a99d6aee334f90914767593d360da6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/abilityicon001.png"
-dest_files=[ "res://.import/abilityicon001.png-07e672dd4b1d47bb55281f463643d7c8.stex" ]
+source_file="res://assets/ui/hp.png"
+dest_files=[ "res://.import/hp.png-f7a99d6aee334f90914767593d360da6.stex" ]
 
 [params]
 

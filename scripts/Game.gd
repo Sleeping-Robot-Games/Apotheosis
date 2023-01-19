@@ -6,12 +6,13 @@ const player_scene = preload('res://scenes/Player.tscn')
 
 onready var spawn_coords = $ViewportContainer/Viewport/Level/SpawnPoint.global_position
 onready var players = $ViewportContainer/Viewport/Level/Players
+onready var HUD = $ViewportContainer/Viewport/Level/HUD
 
 var offscreen_positions = {
-	"p1": Vector2(0,0),
-	"p2": Vector2(832,0),
-	"p3": Vector2(0,412),
-	"p4": Vector2(832,412)
+	"p1": Vector2(0,86),
+	"p2": Vector2(832,86),
+	"p3": Vector2(0,323),
+	"p4": Vector2(832,323)
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -45,6 +46,12 @@ func spawn_players():
 			offscreen_instance.get_node("ViewportContainer/MiniViewport").world_2d = $ViewportContainer/Viewport.world_2d
 			offscreen_instance.rect_position = offscreen_positions[player]
 			add_child(offscreen_instance)
+			
+			# add player UI for this player
+			var player_ui_scene = load("res://scenes/PlayerUI.tscn")
+			var player_ui_instance = player_ui_scene.instance()
+			player_ui_instance.player_key = player
+			HUD.call_deferred('add_child', player_ui_instance)
 
 func init_player_model(player):
 	var head_sprite = player.get_node("SpriteHolder/Head")

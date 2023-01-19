@@ -7,12 +7,7 @@ func _process(_delta):
 		$ViewportContainer/MiniViewport/OffscreenCamera.global_position = player.global_position
 
 func set_border_color():
-	var player_color = g.player_colors[player.player_key]
-	var palette = load("res://assets/character/palettes/" + player_color)
-	var data = palette.get_data()
-	data.lock()
-	var pixel = data.get_pixel(1,0)
-	data.unlock()
-	$Border.modulate = pixel
-	$BG.modulate = pixel
+	var player_color = g.get_player_color(player.player_key)
+	$Border.modulate = player_color
+	$BG.modulate = player_color
 	$BG.modulate.a = 0.25

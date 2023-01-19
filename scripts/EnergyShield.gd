@@ -5,14 +5,8 @@ func _ready():
 	$Tween.start()
 
 func set_color(player_key):
-	var player_color = g.player_colors[player_key]
-	print("player_color: " + player_color)
-	var palette = load("res://assets/character/palettes/" + player_color)
-	var data = palette.get_data()
-	data.lock()
-	var pixel = data.get_pixel(1,0)
-	data.unlock()
-	$Sprite.modulate = pixel
+	var player_color = g.get_player_color(player_key)
+	$Sprite.modulate = player_color
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemies"):

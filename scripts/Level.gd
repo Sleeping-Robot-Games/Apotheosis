@@ -7,9 +7,6 @@ onready var bgm = $BGM
 onready var kill_combo = $HUD/KillCombo
 onready var killstreak_fx = $HUD/Killstreak
 
-func _ready():
-	pass # Replace with function body.
-	
 func increment_killstreak():
 	#print(g.new_timestamp() + " enemy killed incrementing combo")
 	g.current_killstreak += 1

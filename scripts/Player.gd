@@ -107,6 +107,7 @@ func play_animation(anim_name):
 func dmg(num):
 	if not is_dead:
 		hp -= num
+		g.player_ui[player_key].set_health(hp)
 		for sprite in $SpriteHolder.get_children():
 			sprite.modulate = Color(1.0, 0.0, 0.0, 1.0)
 		$HurtRedTimer.start()

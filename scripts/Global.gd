@@ -29,6 +29,13 @@ var player_models = {
 	'p4': null,
 }
 
+var player_ui = {
+	"p1": null,
+	"p2": null,
+	"p3": null,
+	"p4": null
+}
+
 var offscreen_players = []
 
 func folders_in_dir(path: String) -> Array:
@@ -92,3 +99,12 @@ func new_timestamp():
 	ms.erase(ms.length() - 1, 1)
 	var timestamp = str(tick/3600000)+":"+str(tick/60000).pad_zeros(2)+":"+str(tick/1000).pad_zeros(2)+"."+ms+"\t"
 	return timestamp
+
+func get_player_color(player_key: String) -> Color:
+	var player_color = player_colors[player_key]
+	var palette = load("res://assets/character/palettes/" + player_color)
+	var data = palette.get_data()
+	data.lock()
+	var pixel = data.get_pixel(1,0)
+	data.unlock()
+	return pixel

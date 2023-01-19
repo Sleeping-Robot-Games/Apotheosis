@@ -1,102 +1,158 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/PlayerSelectionBox.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/BarcadeBrawlRegular-plYD.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/PublicPixel-z84yD.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="StreamTexture" id=7]
 load_path = "res://.import/checkmark.png-5a88961c1c72d2a83fb11a78bf485998.stex"
 
+[sub_resource type="DynamicFont" id=11]
+size = 26
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 12
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 12
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=10]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=18]
+size = 12
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 12
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 14
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 14
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 3 )
+
 [node name="Box" type="Control"]
-margin_right = 320.0
-margin_bottom = 240.0
+margin_right = 480.0
+margin_bottom = 270.0
 script = ExtResource( 2 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+margin_right = 480.0
+margin_bottom = 270.0
+color = Color( 1, 1, 1, 0.14902 )
+
+[node name="InputDevice" type="Sprite" parent="."]
+position = Vector2( 25, 25 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Checkmark" type="Sprite" parent="."]
+position = Vector2( 140, 24 )
+scale = Vector2( 1.5, 1.5 )
+texture = SubResource( 7 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 105, 112 )
-scale = Vector2( 6, 6 )
+position = Vector2( 140, 130 )
+scale = Vector2( 7, 7 )
 collision_layer = 0
 collision_mask = 0
 ui_disabled = true
 
-[node name="InputDevice" type="Sprite" parent="."]
-position = Vector2( 19, 19 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Model" type="Label" parent="."]
-margin_left = 199.0
-margin_top = 83.0
-margin_right = 246.0
-margin_bottom = 103.0
-text = "MODEL"
-valign = 1
-
-[node name="Prev" type="Button" parent="Model"]
-margin_left = -33.0
-margin_right = -13.0
-margin_bottom = 20.0
-text = "<"
-
-[node name="Next" type="Button" parent="Model"]
-margin_left = 55.0
-margin_right = 75.0
-margin_bottom = 20.0
-text = ">"
-
-[node name="Color" type="Label" parent="."]
-margin_left = 199.0
-margin_top = 119.0
-margin_right = 244.0
-margin_bottom = 139.0
-text = "COLOR"
-valign = 1
-
-[node name="Prev" type="Button" parent="Color"]
-margin_left = -33.0
-margin_right = -13.0
-margin_bottom = 20.0
-text = "<"
-
-[node name="Next" type="Button" parent="Color"]
-margin_left = 55.0
-margin_right = 75.0
-margin_bottom = 20.0
-text = ">"
-
 [node name="Name" type="Label" parent="."]
-margin_left = 198.0
+margin_left = 300.0
 margin_top = 21.0
-margin_right = 238.0
-margin_bottom = 35.0
+margin_right = 374.0
+margin_bottom = 53.0
+custom_fonts/font = SubResource( 11 )
 text = "p0"
 align = 1
 uppercase = true
 
-[node name="Checkmark" type="Sprite" parent="."]
-position = Vector2( 110, 24 )
-texture = SubResource( 7 )
+[node name="Model" type="Label" parent="."]
+margin_left = 300.0
+margin_top = 100.0
+margin_right = 390.0
+margin_bottom = 120.0
+custom_fonts/font = SubResource( 9 )
+text = "MODEL"
+valign = 1
 
-[node name="Join" type="Label" parent="."]
-margin_left = 88.0
-margin_top = 104.0
-margin_right = 268.0
-margin_bottom = 118.0
-text = "PRESS ANY BUTTON TO JOIN"
+[node name="Prev" type="Button" parent="Model"]
+margin_left = -50.0
+margin_right = -20.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 16 )
+text = "<"
 
-[node name="Tween" type="Tween" parent="Join"]
+[node name="Next" type="Button" parent="Model"]
+margin_left = 110.0
+margin_right = 140.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 17 )
+text = ">"
+
+[node name="Color" type="Label" parent="."]
+margin_left = 300.0
+margin_top = 150.0
+margin_right = 390.0
+margin_bottom = 170.0
+custom_fonts/font = SubResource( 10 )
+text = "COLOR"
+valign = 1
+
+[node name="Prev" type="Button" parent="Color"]
+margin_left = -50.0
+margin_right = -20.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 18 )
+text = "<"
+
+[node name="Next" type="Button" parent="Color"]
+margin_left = 110.0
+margin_right = 140.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 15 )
+text = ">"
 
 [node name="Leave" type="Button" parent="."]
-margin_left = 161.0
-margin_top = 190.0
-margin_right = 211.0
-margin_bottom = 210.0
+margin_left = 220.0
+margin_top = 218.0
+margin_right = 322.0
+margin_bottom = 240.0
+custom_fonts/font = SubResource( 12 )
 text = "LEAVE"
 
 [node name="Ready" type="Button" parent="."]
-margin_left = 222.0
-margin_top = 190.0
-margin_right = 295.0
-margin_bottom = 210.0
+margin_left = 334.0
+margin_top = 218.0
+margin_right = 470.0
+margin_bottom = 240.0
+custom_fonts/font = SubResource( 13 )
 text = "READY"
+
+[node name="Join" type="Label" parent="."]
+margin_left = 43.0
+margin_top = 127.0
+margin_right = 437.0
+margin_bottom = 143.0
+custom_fonts/font = SubResource( 8 )
+text = "PRESS ANY BUTTON TO JOIN"
+
+[node name="Tween" type="Tween" parent="Join"]
 
 [node name="PressButtonTimer" type="Timer" parent="."]
 wait_time = 0.15
@@ -107,7 +163,7 @@ one_shot = true
 [connection signal="pressed" from="Model/Next" to="." method="_on_ModelNext_pressed"]
 [connection signal="pressed" from="Color/Prev" to="." method="_on_ColorPrev_pressed"]
 [connection signal="pressed" from="Color/Next" to="." method="_on_ColorNext_pressed"]
-[connection signal="tween_all_completed" from="Join/Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="pressed" from="Leave" to="." method="_on_Leave_pressed"]
 [connection signal="pressed" from="Ready" to="." method="_on_Ready_pressed"]
+[connection signal="tween_all_completed" from="Join/Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="timeout" from="PressButtonTimer" to="." method="_on_PressButtonTimer_timeout"]
