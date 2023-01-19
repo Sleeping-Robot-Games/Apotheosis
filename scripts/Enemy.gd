@@ -16,9 +16,10 @@ export var bullet_speed: int = 5
 
 var velocity = Vector2()
 var direction = 1 ## TODO: when this is updated in state make a signal to update animations
-var push_direction = 1
 var direction_string = "Right"
+var push_direction = 1
 var push_distance = 100
+var push_force_override = null
 var targets = []
 var target = null
 var can_attack = true

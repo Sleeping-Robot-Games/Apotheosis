@@ -17,7 +17,6 @@ var offscreen_positions = {
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	spawn_players()
-	print(g.player_input_devices)
 
 func spawn_players():
 	var spawn_offset = 0

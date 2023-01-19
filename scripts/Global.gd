@@ -16,7 +16,7 @@ var player_input_devices = {
 var ghost_inputs = ["Steam Virtual Gamepad"]
 
 var player_colors = {
-	'p1': 'color_000.png',
+	'p1': 'color_001.png',
 	'p2': null,
 	'p3': null,
 	'p4': null,

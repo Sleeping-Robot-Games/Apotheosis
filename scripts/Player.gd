@@ -16,6 +16,7 @@ var can_shoot = true
 var can_use_scope = true
 var can_use_tank = true
 var can_use_barrel = true
+var can_use_stock = true
 var laser_visible = true
 var laser_flickering = false
 var can_slash = true
@@ -27,7 +28,7 @@ var prev_anim = ""
 var scrap = 200
 var scope_range_bodies = []
 var tank_range_bodies = []
-var upgrade_cost = [50, 50, 100, 100, 200]
+var upgrade_cost = [10, 10, 10, 10, 2000]
 var current_upgrade = 0
 var can_fabricate = false
 var fabricating_progress = 0
@@ -35,7 +36,7 @@ var upgrades = {
 	'Tank': [],
 	'Barrel': [],
 	'Scope': [],
-	'Handle': []
+	'Stock': []
 }
 
 onready var states = $state_manager
@@ -44,6 +45,7 @@ onready var states = $state_manager
 onready var level = null if ui_disabled else get_node('../../../Level')
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 onready var crosshair_scene = preload("res://scenes/Crosshair.tscn")
+onready var energy_shield_scene = preload("res://scenes/EnergyShield.tscn")
 
 ## FOR DEBUGGING
 func show_debug_label(text):
@@ -67,6 +69,8 @@ func _input(event):
 		use_scope()
 	elif can_use_barrel and upgrades["Barrel"].size() > 0 and Input.is_action_pressed("ability_c_" + controller_id):
 		use_barrel()
+	elif can_use_stock and upgrades["Stock"].size() > 0 and Input.is_action_pressed("ability_d_" + controller_id):
+		use_stock()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if ui_disabled:
@@ -167,6 +171,14 @@ func use_barrel():
 	$BarrelFlickerTimer.start()
 	flicker_laser()
 
+func use_stock():
+	print("USING STOCK")
+	can_use_stock = false
+	$StockCD.start()
+	var energy_shield_instance = energy_shield_scene.instance()
+	energy_shield_instance.set_color(player_key)
+	add_child(energy_shield_instance)
+
 func flicker_laser():
 	$BarrelFlickerTween.interpolate_property($BarrelShot/Laser, "modulate:a", 0, 1.0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$BarrelFlickerTween.start()
@@ -231,10 +243,11 @@ func random_upgrade():
 		upgrades["Barrel"].append("Sniper")
 		$SpriteHolder/GunSpriteHolder/Barrel.texture = load("res://assets/character/sprites/Gun/barrel_001.png")
 	elif current_upgrade == 3:
-		# TODO
-		pass
+		show_debug_label("ENERGY SHIELD INSTALLED")
+		upgrades["Stock"].append("EnergyShield")
+		$SpriteHolder/GunSpriteHolder/Stock.texture = load("res://assets/character/sprites/Gun/stock_001.png")
 	elif current_upgrade == 4:
-		# TODO
+		# TODO Random Passive Bonus
 		pass
 	
 	current_upgrade += 1
@@ -324,3 +337,7 @@ func _on_BarrelLaserTimer_timeout():
 func _on_BarrelCD_timeout():
 	show_debug_label("barrel off cooldown")
 	can_use_barrel = true
+
+func _on_StockCD_timeout():
+	show_debug_label("stock off cooldown")
+	can_use_stock = true
