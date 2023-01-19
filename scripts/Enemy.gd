@@ -39,6 +39,10 @@ onready var rigid_bullet_scene = preload("res://scenes/RigidBullet.tscn")
 onready var scrap_scene = preload("res://scenes/Scrap.tscn")
 
 func _ready():
+	set_collision_layer_bit(2, true) # Enemy
+	set_collision_mask_bit(1, true) # Bullet
+	set_collision_mask_bit(3, true) # Walls
+	set_collision_mask_bit(7, true) # Energy Shields
 	states.init(self)
 
 func _physics_process(delta):
@@ -63,6 +67,7 @@ func shoot():
 		var bullet = rigid_bullet_scene.instance()
 		bullet.global_position = global_position
 		bullet.direction = direction
+		# bullet.speed ## TODO: If we want we can adjust speed based on target distance
 		level.call_deferred('add_child', bullet)
 	else:
 		var bullet = bullet_scene.instance()

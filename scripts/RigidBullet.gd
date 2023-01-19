@@ -2,9 +2,10 @@ extends RigidBody2D
 
 var direction = 1
 var damage = 2
+var speed = 420
 
 func _ready():
-	var x = 420 * direction
+	var x = speed * direction
 	linear_velocity = Vector2(x, -400)
 	$AnimatedSprite.play()
 
