@@ -1,8 +1,9 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/ChickpeaAlt.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/background/stars.tres" type="Texture" id=3]
+[ext_resource path="res://assets/towerc.png" type="Texture" id=4]
 [ext_resource path="res://shaders/textures/fire_02.png" type="Texture" id=5]
 [ext_resource path="res://shaders/textures/fire_01.png" type="Texture" id=6]
 [ext_resource path="res://assets/background/skycolorb.png" type="Texture" id=7]
@@ -11,12 +12,13 @@
 [ext_resource path="res://assets/background/planet_001.png" type="Texture" id=10]
 [ext_resource path="res://assets/background/skycolorc.png" type="Texture" id=11]
 [ext_resource path="res://assets/background/skycolor.png" type="Texture" id=12]
-[ext_resource path="res://assets/towertest.png" type="Texture" id=13]
+[ext_resource path="res://assets/towera.png" type="Texture" id=13]
 [ext_resource path="res://assets/background/planet_002.png" type="Texture" id=14]
 [ext_resource path="res://assets/background/greentwinkle.tres" type="Texture" id=15]
 [ext_resource path="res://assets/background/pinktwinkle.tres" type="Texture" id=16]
 [ext_resource path="res://assets/background/bluetwinkle.tres" type="Texture" id=17]
 [ext_resource path="res://assets/background/starsb.tres" type="Texture" id=18]
+[ext_resource path="res://assets/towerb.png" type="Texture" id=19]
 [ext_resource path="res://scenes/JumpPad.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scripts/Camera.gd" type="Script" id=22]
@@ -1731,22 +1733,22 @@ position = Vector2( 127, 401 )
 texture = ExtResource( 14 )
 
 [node name="TowerA" type="Sprite" parent="."]
-modulate = Color( 0.466667, 0.180392, 0.180392, 1 )
+modulate = Color( 0.568627, 0.54902, 0.588235, 1 )
 position = Vector2( 484, 688 )
 scale = Vector2( 2, 3 )
 texture = ExtResource( 13 )
 
 [node name="TowerB" type="Sprite" parent="."]
-modulate = Color( 0.466667, 0.4, 0.180392, 1 )
+modulate = Color( 0.552941, 0.439216, 0.439216, 1 )
 position = Vector2( 485, 304 )
 scale = Vector2( 2, 3 )
-texture = ExtResource( 13 )
+texture = ExtResource( 19 )
 
 [node name="TowerC" type="Sprite" parent="."]
-modulate = Color( 0.180392, 0.392157, 0.466667, 1 )
+modulate = Color( 0.568627, 0.54902, 0.588235, 1 )
 position = Vector2( 484, -80 )
 scale = Vector2( 2, 3 )
-texture = ExtResource( 13 )
+texture = ExtResource( 4 )
 
 [node name="Platform" type="TileMap" parent="."]
 modulate = Color( 0.627451, 0.67451, 0.741176, 1 )
@@ -1878,4 +1880,4 @@ process_material = SubResource( 81 )
 texture = ExtResource( 5 )
 
 [node name="SpawnPoint" type="Position2D" parent="."]
-position = Vector2( 254, 866 )
+position = Vector2( 258, 866 )
