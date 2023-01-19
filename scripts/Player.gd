@@ -261,6 +261,10 @@ func random_upgrade():
 func flip():
 	$TankRangeArea.rotation_degrees = 180 if direction == 1 else 0
 	$BarrelShot.rotation_degrees = 180 if direction == 1 else 0
+	if $TankRangeArea.rotation_degrees == 180:
+		$TankRangeArea/Particles2D.process_material.set("orbit_velocity", -0.1)
+	else:
+		$TankRangeArea/Particles2D.process_material.set("orbit_velocity", 0.1)
 
 func _on_FabricateTween_tween_all_completed():
 	$Fabricate.visible = false

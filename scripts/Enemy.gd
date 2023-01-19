@@ -35,6 +35,7 @@ onready var level = get_node('../../../Level')
 onready var right_ray = $RayRight
 onready var left_ray = $RayLeft
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
+onready var rigid_bullet_scene = preload("res://scenes/RigidBullet.tscn")
 onready var scrap_scene = preload("res://scenes/Scrap.tscn")
 
 func _ready():
@@ -52,18 +53,24 @@ func play_animation(anim_name):
 
 func attack():
 	if g.parse_enemy_name(name) != 'chumba':
-		$AnimationPlayer.play(g.parse_enemy_name(name)+'Attack')
+		$AnimationPlayer.play(g.parse_enemy_name(name).replace('alt', '')+'Attack')
 	if type == 'range':
 		shoot()
 	else:
 		target.dmg(1)
 
 func shoot():
-	var bullet = bullet_scene.instance()
-	bullet.shot_by = 'enemy'
-	bullet.global_position = global_position
-	bullet.speed = bullet_speed * direction ## TODO: Find out why any speed less than 10 fails
-	level.call_deferred('add_child', bullet)
+	if 'Alt' in name:
+		var bullet = rigid_bullet_scene.instance()
+		bullet.global_position = global_position
+		bullet.direction = direction
+		level.call_deferred('add_child', bullet)
+	else:
+		var bullet = bullet_scene.instance()
+		bullet.shot_by = 'enemy'
+		bullet.global_position = global_position
+		bullet.speed = bullet_speed * direction ## TODO: Find out why any speed less than 10 fails
+		level.call_deferred('add_child', bullet)
 
 func pushed(num, dir, dist):
 	dmg(num)
@@ -85,11 +92,12 @@ func dmg(num):
 			level.increment_killstreak()
 			# Disables bullet collisions
 			set_collision_mask_bit(1, false)
-			$AnimationPlayer.play(g.parse_enemy_name(enemy_name)+'Death')
+			$AnimationPlayer.play(g.parse_enemy_name(enemy_name).replace('alt', '')+'Death')
 		if enemy_name == 'chumba':
 			if is_transitioning_form or states.current_state.name == 'chase' or states.current_state.name == 'keep_rolling':
 				return
-		$AnimationPlayer.play(enemy_name+'Hurt')
+		if not is_dead:
+			$AnimationPlayer.play(enemy_name.replace('alt', '')+'Hurt')
 	
 func ledge_detected():
 	return !left_ray.is_colliding() or !right_ray.is_colliding()

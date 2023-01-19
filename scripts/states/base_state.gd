@@ -32,7 +32,7 @@ func enter() -> void:
 					chumba_anim = 'Reform' if name == 'keep_rolling' else 'RollingUp'
 				actor.play_animation('chumba' + chumba_anim)
 			else:
-				actor.play_animation(g.parse_enemy_name(actor.name) + animation_name)
+				actor.play_animation(g.parse_enemy_name(actor.name).replace('alt', '') + animation_name)
 			
 
 func exit() -> void:
