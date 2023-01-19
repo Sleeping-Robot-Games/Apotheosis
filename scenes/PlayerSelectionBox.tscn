@@ -1,11 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/PlayerSelectionBox.gd" type="Script" id=2]
-[ext_resource path="res://themes/button.tres" type="Theme" id=3]
 
 [sub_resource type="StreamTexture" id=7]
-flags = 4
 load_path = "res://.import/checkmark.png-5a88961c1c72d2a83fb11a78bf485998.stex"
 
 [node name="Box" type="Control"]
@@ -36,7 +34,6 @@ valign = 1
 margin_left = -33.0
 margin_right = -13.0
 margin_bottom = 20.0
-theme = ExtResource( 3 )
 text = "<"
 
 [node name="Next" type="Button" parent="Model"]

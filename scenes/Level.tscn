@@ -1854,11 +1854,12 @@ script = ExtResource( 22 )
 [node name="KillCombo" type="Label" parent="HUD"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 581.0
-margin_top = 24.0
-margin_right = -19.0
-margin_bottom = -442.0
+margin_left = 469.0
+margin_top = 7.0
+margin_right = -466.0
+margin_bottom = -515.0
 text = "0"
+align = 1
 
 [node name="Killstreak" type="Node2D" parent="HUD"]
 visible = false

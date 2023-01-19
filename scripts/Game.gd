@@ -9,9 +9,9 @@ onready var players = $ViewportContainer/Viewport/Level/Players
 
 var offscreen_positions = {
 	"p1": Vector2(0,0),
-	"p2": Vector2(512,0),
-	"p3": Vector2(0,352),
-	"p4": Vector2(512,352)
+	"p2": Vector2(832,0),
+	"p3": Vector2(0,412),
+	"p4": Vector2(832,412)
 }
 
 # Called when the node enters the scene tree for the first time.
