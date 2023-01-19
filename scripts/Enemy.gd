@@ -48,7 +48,6 @@ func _process(delta: float) -> void:
 	states.process(delta)
 	
 func play_animation(anim_name):
-	print('playing animation ' + anim_name)
 	$AnimationPlayer.play(anim_name)
 
 func attack():
