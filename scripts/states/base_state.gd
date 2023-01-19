@@ -16,9 +16,23 @@ func enter() -> void:
 		actor.flip()
 		actor.play_animation(animation_name + actor.direction_string)
 	else:
+		if actor.target:
+			var direction = (actor.target.global_position - actor.global_position).normalized()
+			direction.y += actor.gravity
+			actor.direction = -1 if actor.target.global_position.x < actor.global_position.x else 1
+			
 		actor.get_node('Sprite').flip_h = actor.direction == 1
 		if animation_name:
-			actor.play_animation(g.parse_enemy_name(actor.name) + animation_name)
+			## Chumba boi get special animation treatment
+			if g.parse_enemy_name(actor.name) == 'chumba':
+				if name == 'chase':
+					actor.is_transitioning_form = true
+				var chumba_anim = animation_name
+				if actor.is_transitioning_form: ## Transitiion Form means rolling up or out
+					chumba_anim = 'Reform' if name == 'keep_rolling' else 'RollingUp'
+				actor.play_animation('chumba' + chumba_anim)
+			else:
+				actor.play_animation(g.parse_enemy_name(actor.name) + animation_name)
 			
 
 func exit() -> void:

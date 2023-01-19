@@ -11,6 +11,7 @@ export var type: String = 'range'
 
 export var hp = 5
 export var attack_time: float = 1.0
+export var roll_time: float = 1.0
 export var start_attack_time: float = 0.5
 export var bullet_speed: int = 5
 
@@ -26,9 +27,10 @@ var can_attack = true
 var is_dead = false
 var is_attacking = false
 var is_pushed = false
+var is_transitioning_form = false
+var chumba_boi_hit = false
 
 onready var states = $state_manager
-## Might change when implementing levels
 onready var level = get_node('../../../Level')
 onready var right_ray = $RayRight
 onready var left_ray = $RayLeft
@@ -45,10 +47,12 @@ func _process(delta: float) -> void:
 	states.process(delta)
 	
 func play_animation(anim_name):
+	print('playing animation ' + anim_name)
 	$AnimationPlayer.play(anim_name)
 
 func attack():
-	$AnimationPlayer.play(g.parse_enemy_name(name)+'Attack')
+	if g.parse_enemy_name(name) != 'chumba':
+		$AnimationPlayer.play(g.parse_enemy_name(name)+'Attack')
 	if type == 'range':
 		shoot()
 	else:
@@ -71,7 +75,6 @@ func dmg(num):
 	if not is_dead:
 		hp -= num
 		var enemy_name = g.parse_enemy_name(name)
-		$AnimationPlayer.play(enemy_name+'Hurt')
 		$Sprite.modulate = Color(1.0, 0.0, 0.0, 1.0)
 		$HurtRedTimer.start()
 		if hp <= 0:
@@ -83,6 +86,10 @@ func dmg(num):
 			# Disables bullet collisions
 			set_collision_mask_bit(1, false)
 			$AnimationPlayer.play(g.parse_enemy_name(enemy_name)+'Death')
+		if enemy_name == 'chumba':
+			if is_transitioning_form or states.current_state.name == 'chase' or states.current_state.name == 'keep_rolling':
+				return
+		$AnimationPlayer.play(enemy_name+'Hurt')
 	
 func ledge_detected():
 	return !left_ray.is_colliding() or !right_ray.is_colliding()
@@ -97,39 +104,41 @@ func drop_scrap():
 		level.add_child(new_scrap)
 
 func _on_DetectionArea_body_entered(body):
-	## TODO: What to do if a new player enters the area?
 	if can_attack:
 		if body.is_in_group('players') and body.hp > 0:
-			# targets.append(body)
 			target = body
-			#states.change_state(states.get_node("chase"))
 
 func _on_DetectionArea_body_exited(body):
 	if body.is_in_group('players')  and body == target:
 		target = null
-		# states.change_state(states.get_node("patrol"))
 
 func _on_AttackArea_body_entered(body):
 	if can_attack:
 		if body.is_in_group('players') and body == target:
-			# states.change_state(states.get_node("attacking"))
+			if g.parse_enemy_name(name) == 'chumba':
+				chumba_boi_hit = true
+				attack()
 			is_attacking = true
 
 func _on_AttackArea_body_exited(body):
 	if body.is_in_group('players') :
 		is_attacking = false
+		chumba_boi_hit = false
 		if target != null and target.hp <= 0:
 			target = null
 			is_attacking = false
-			# states.change_state(states.get_node("patrol"))
-		#elif not states.current_state.name in ['pushed', 'fall']:
-
-			#states.change_state(states.get_node("chase"))
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if 'Death' in anim_name:
 		drop_scrap()
 		queue_free()
+	if g.parse_enemy_name(name) == 'chumba':
+		if anim_name == 'chumbaRollingUp':
+			is_transitioning_form = false
+			play_animation('chumbaRolling')
+		if anim_name == 'chumbaReform':
+			is_transitioning_form = false
+		
 
 func _on_HurtRedTimer_timeout():
 	$Sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)

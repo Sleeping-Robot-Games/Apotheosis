@@ -32,6 +32,10 @@ func process(delta):
 	
 	if actor.is_pushed:
 		return push_state
+		
+	# While chumba rolling up or out don't do shit
+	if actor.is_transitioning_form:
+		return null
 	
 	if actor.target != null:
 		return chase_state
@@ -60,6 +64,11 @@ func process(delta):
 func physics_process(_delta: float) -> BaseState:
 	if actor.is_dead:
 		return null
+		
+	# While chumba rolling up or out don't do shit
+	if actor.is_transitioning_form:
+		return null
+		
 	## Move the actor one direction, then switch based off current_patrol_timer
 	actor.velocity.y += actor.gravity
 	actor.velocity.x = actor.speed * actor.direction

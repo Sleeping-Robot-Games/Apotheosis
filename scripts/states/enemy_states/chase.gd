@@ -6,6 +6,7 @@ export (NodePath) var chase_node
 export (NodePath) var fall_node
 export (NodePath) var attacking_node
 export (NodePath) var push_node
+export (NodePath) var keep_rolling_node
 
 onready var idle_state: BaseState = get_node(idle_node)
 onready var patrol_state: BaseState =  get_node(patrol_node)
@@ -13,6 +14,7 @@ onready var chase_state: BaseState = get_node(chase_node)
 onready var fall_state: BaseState = get_node(fall_node)
 onready var attacking_state: BaseState = get_node(attacking_node)
 onready var push_state: BaseState = get_node(push_node)
+onready var keep_rolling_state: BaseState = get_node(keep_rolling_node)
 
 var pacing_time = .2
 var current_pacing_time
@@ -20,11 +22,13 @@ var is_pacing = false
 
 func enter() -> void:
 	.enter()
+
 	
 	is_pacing = false
 	current_pacing_time = pacing_time
 	actor.direction = -1 if actor.target.global_position.x < actor.global_position.x else 1
-	
+	if actor.ledge_detected():
+		actor.global_position.x += (10 * actor.direction)
 	if actor.is_on_wall():
 		actor.global_position.x += (10 * actor.direction)
 		switch_direction()
@@ -38,6 +42,14 @@ func process(delta):
 		
 	if actor.target == null:
 		return patrol_state
+	
+	# While chumba rolling up or out don't do shit
+	if actor.is_transitioning_form:
+		return null
+	
+	# Chumba hit while rolling, keep on going
+	if actor.chumba_boi_hit:
+		return keep_rolling_state
 		
 	if actor.is_attacking:
 		return attacking_state
@@ -65,6 +77,10 @@ func physics_process(_delta: float) -> BaseState:
 		
 	if actor.target == null:
 		return null
+			
+	# While chumba rolling up or out don't do shit
+	if actor.is_transitioning_form:
+		return null
 		
 	if is_pacing:
 		## Move the actor away from the ledge or wall
@@ -77,6 +93,8 @@ func physics_process(_delta: float) -> BaseState:
 		actor.direction = -1 if actor.target.global_position.x < actor.global_position.x else 1
 		actor.velocity = actor.move_and_slide(direction * actor.chase_speed, Vector2.UP)
 		
+		if g.parse_enemy_name(actor.name) == 'chumba':
+			actor.get_node('Sprite').flip_h = actor.direction == 1
 	if not actor.is_on_floor():
 		return fall_state
 		

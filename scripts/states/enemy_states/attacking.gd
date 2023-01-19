@@ -45,8 +45,10 @@ func process(delta):
 func physics_process(_delta: float) -> BaseState:
 	if actor.is_dead:
 		return null
+		
 	if actor.target == null:
 		return patrol_state
+		
 	prev_direction = actor.direction
 	actor.direction = -1 if actor.target.global_position.x < actor.global_position.x else 1
 	if prev_direction != actor.direction:

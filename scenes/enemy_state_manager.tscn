@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/states/state_manager.gd" type="Script" id=1]
 [ext_resource path="res://scripts/states/enemy_states/idle.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scripts/states/enemy_states/patrol.gd" type="Script" id=5]
 [ext_resource path="res://scripts/states/enemy_states/pushed.gd" type="Script" id=6]
 [ext_resource path="res://scripts/states/enemy_states/fall.gd" type="Script" id=7]
+[ext_resource path="res://scripts/states/enemy_states/keep_rolling.gd" type="Script" id=8]
 
 [node name="enemy_state_manager" type="Node"]
 script = ExtResource( 1 )
@@ -37,6 +38,7 @@ chase_node = NodePath(".")
 fall_node = NodePath("../fall")
 attacking_node = NodePath("../attacking")
 push_node = NodePath("../pushed")
+keep_rolling_node = NodePath("../keep_rolling")
 
 [node name="attacking" type="Node" parent="."]
 script = ExtResource( 4 )
@@ -56,3 +58,9 @@ fall_node = NodePath("../fall")
 script = ExtResource( 7 )
 patrol_node = NodePath("../patrol")
 chase_node = NodePath("../chase")
+
+[node name="keep_rolling" type="Node" parent="."]
+script = ExtResource( 8 )
+patrol_node = NodePath("../patrol")
+chase_node = NodePath("../chase")
+push_node = NodePath("../pushed")

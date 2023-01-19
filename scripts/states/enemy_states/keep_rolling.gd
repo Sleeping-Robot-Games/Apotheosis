@@ -10,14 +10,13 @@ onready var patrol_state: BaseState = get_node(patrol_node)
 onready var chase_state: BaseState = get_node(chase_node)
 onready var push_state: BaseState = get_node(push_node)
 
-var patrol_flip_time: float = 0
+var rolling_time: float = 0
 
 func enter():
 	.enter()
 	
-	randomize()
+	rolling_time = actor.roll_time
 	
-	patrol_flip_time = random.randf_range(0.5, 2)
 
 func process(delta: float) -> BaseState:
 	if actor.is_dead:
@@ -25,14 +24,15 @@ func process(delta: float) -> BaseState:
 	
 	if actor.is_pushed:
 		return push_state
+	
 		
-	if actor.target != null:
-		if g.parse_enemy_name(actor.name) == 'chumba':
-			actor.is_transitioning_form = true
-		return chase_state
+	rolling_time -= delta
+	
+	if rolling_time < 0 or actor.ledge_detected() or actor.is_on_wall():
+		rolling_time = actor.roll_time
 		
-	patrol_flip_time -= delta
-	if patrol_flip_time < 0:
+		if actor.target != null:
+			return chase_state
 		return patrol_state
 	
 	return null
@@ -40,8 +40,14 @@ func process(delta: float) -> BaseState:
 func physics_process(_delta: float) -> BaseState:
 	if actor.is_dead:
 		return null
+		
 	actor.velocity.y += actor.gravity
-	actor.velocity.x = lerp(actor.velocity.x, 0, actor.friction)
+	actor.velocity.x = actor.chase_speed * actor.direction
 	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
 
 	return null
+
+func exit():
+	.exit()
+	
+	actor.is_transitioning_form = true
