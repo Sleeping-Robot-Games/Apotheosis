@@ -234,18 +234,22 @@ func random_upgrade():
 	if current_upgrade == 0:
 		show_debug_label("FLAMETHROWER INSTALLED")
 		upgrades["Tank"].append("Flame")
+		g.player_ui[player_key].unlock_ability("Tank")
 		$SpriteHolder/GunSpriteHolder/Tank.texture = load("res://assets/character/sprites/Gun/tank_001.png")
 	elif current_upgrade == 1:
 		show_debug_label("SMART SCOPE INSTALLED")
 		upgrades["Scope"].append("Multishot")
+		g.player_ui[player_key].unlock_ability("Scope")
 		$SpriteHolder/GunSpriteHolder/Scope.texture = load("res://assets/character/sprites/Gun/scope_001.png")
 	elif current_upgrade == 2:
 		show_debug_label("SNIPER BARREL INSTALLED")
 		upgrades["Barrel"].append("Sniper")
+		g.player_ui[player_key].unlock_ability("Barrel")
 		$SpriteHolder/GunSpriteHolder/Barrel.texture = load("res://assets/character/sprites/Gun/barrel_001.png")
 	elif current_upgrade == 3:
 		show_debug_label("ENERGY SHIELD INSTALLED")
 		upgrades["Stock"].append("EnergyShield")
+		g.player_ui[player_key].unlock_ability("Stock")
 		$SpriteHolder/GunSpriteHolder/Stock.texture = load("res://assets/character/sprites/Gun/stock_001.png")
 	elif current_upgrade == 4:
 		# TODO Random Passive Bonus

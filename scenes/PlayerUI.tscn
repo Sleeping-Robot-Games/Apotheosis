@@ -113,19 +113,19 @@ custom_fonts/font = SubResource( 1 )
 text = "P1"
 uppercase = true
 
-[node name="AbilityIcons" type="Control" parent="."]
+[node name="Abilities" type="Control" parent="."]
 margin_left = 2.5
 margin_top = 27.0
 margin_right = 66.5
 margin_bottom = 43.0
 
-[node name="1" type="TextureRect" parent="AbilityIcons"]
+[node name="One" type="TextureRect" parent="Abilities"]
 texture = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="2" type="TextureRect" parent="AbilityIcons"]
+[node name="Two" type="TextureRect" parent="Abilities"]
 margin_left = 16.0
 margin_right = 32.0
 margin_bottom = 16.0
@@ -134,13 +134,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="3" type="TextureRect" parent="AbilityIcons"]
+[node name="Three" type="TextureRect" parent="Abilities"]
 margin_left = 32.0
 margin_right = 48.0
 margin_bottom = 16.0
 texture = ExtResource( 9 )
 
-[node name="4" type="TextureRect" parent="AbilityIcons"]
+[node name="Four" type="TextureRect" parent="Abilities"]
 margin_left = 48.0
 margin_right = 64.0
 margin_bottom = 16.0

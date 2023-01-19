@@ -47,4 +47,13 @@ func set_health(hp):
 	elif hp == 0:
 		$Sprite.frame = 70
 		$Sprite.offset = Vector2(2, 0)
-	# TODO replace sprites past damage thresholds
+
+func unlock_ability(gun_part):
+	if gun_part == "Tank":
+		$Abilities/One.texture = load("res://assets/ui/ability_001.png")
+	elif gun_part == "Scope":
+		$Abilities/Two.texture = load("res://assets/ui/ability_002.png")
+	elif gun_part == "Barrel":
+		$Abilities/Three.texture = load("res://assets/ui/ability_003.png")
+	elif gun_part == "Stock":
+		$Abilities/Four.texture = load("res://assets/ui/ability_004.png")
