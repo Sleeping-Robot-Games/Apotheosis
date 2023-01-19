@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/ui/border.png" type="Texture" id=1]
 [ext_resource path="res://assets/character/sprites/Head/head_001.png" type="Texture" id=2]
@@ -16,6 +16,21 @@ size = 7
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
+
+[sub_resource type="StreamTexture" id=6]
+load_path = "res://.import/ability_000.png-cfb0e18e5ee5cd4d1d326fdfe895298f.stex"
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/ring.png-ab0d914e767d5a0c911e3ddc53c0eec7.stex"
+
+[sub_resource type="StreamTexture" id=3]
+load_path = "res://.import/ring.png-ab0d914e767d5a0c911e3ddc53c0eec7.stex"
+
+[sub_resource type="StreamTexture" id=4]
+load_path = "res://.import/ring.png-ab0d914e767d5a0c911e3ddc53c0eec7.stex"
+
+[sub_resource type="StreamTexture" id=5]
+load_path = "res://.import/ring.png-ab0d914e767d5a0c911e3ddc53c0eec7.stex"
 
 [node name="PlayerUI" type="Control"]
 anchor_right = 1.0
@@ -120,19 +135,41 @@ margin_right = 66.5
 margin_bottom = 43.0
 
 [node name="One" type="TextureRect" parent="Abilities"]
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = SubResource( 6 )
+
+[node name="CD" type="TextureProgress" parent="Abilities/One"]
+visible = false
+margin_left = 2.0
+margin_top = 1.5
+margin_right = 66.0
+margin_bottom = 65.5
+rect_scale = Vector2( 0.2, 0.2 )
+texture_under = SubResource( 2 )
+texture_progress = SubResource( 2 )
+fill_mode = 4
+tint_under = Color( 0.0862745, 0.0862745, 0.0862745, 0.607843 )
+
+[node name="TweenOne" type="Tween" parent="Abilities/One"]
 
 [node name="Two" type="TextureRect" parent="Abilities"]
 margin_left = 16.0
 margin_right = 32.0
 margin_bottom = 16.0
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="CD" type="TextureProgress" parent="Abilities/Two"]
+visible = false
+margin_left = 2.0
+margin_top = 1.5
+margin_right = 66.0
+margin_bottom = 65.5
+rect_scale = Vector2( 0.2, 0.2 )
+texture_under = SubResource( 3 )
+texture_progress = SubResource( 3 )
+fill_mode = 4
+tint_under = Color( 0.0862745, 0.0862745, 0.0862745, 0.607843 )
+
+[node name="TweenTwo" type="Tween" parent="Abilities/Two"]
 
 [node name="Three" type="TextureRect" parent="Abilities"]
 margin_left = 32.0
@@ -140,8 +177,41 @@ margin_right = 48.0
 margin_bottom = 16.0
 texture = ExtResource( 9 )
 
+[node name="CD" type="TextureProgress" parent="Abilities/Three"]
+visible = false
+margin_left = 2.0
+margin_top = 1.5
+margin_right = 66.0
+margin_bottom = 65.5
+rect_scale = Vector2( 0.2, 0.2 )
+texture_under = SubResource( 4 )
+texture_progress = SubResource( 4 )
+fill_mode = 4
+tint_under = Color( 0.0862745, 0.0862745, 0.0862745, 0.607843 )
+
+[node name="TweenThree" type="Tween" parent="Abilities/Three"]
+
 [node name="Four" type="TextureRect" parent="Abilities"]
 margin_left = 48.0
 margin_right = 64.0
 margin_bottom = 16.0
 texture = ExtResource( 9 )
+
+[node name="CD" type="TextureProgress" parent="Abilities/Four"]
+visible = false
+margin_left = 2.0
+margin_top = 1.5
+margin_right = 66.0
+margin_bottom = 65.5
+rect_scale = Vector2( 0.2, 0.2 )
+texture_under = SubResource( 5 )
+texture_progress = SubResource( 5 )
+fill_mode = 4
+tint_under = Color( 0.0862745, 0.0862745, 0.0862745, 0.607843 )
+
+[node name="TweenFour" type="Tween" parent="Abilities/Four"]
+
+[connection signal="tween_all_completed" from="Abilities/One/TweenOne" to="." method="_on_TweenOne_tween_all_completed"]
+[connection signal="tween_all_completed" from="Abilities/Two/TweenTwo" to="." method="_on_TweenTwo_tween_all_completed"]
+[connection signal="tween_all_completed" from="Abilities/Three/TweenThree" to="." method="_on_TweenThree_tween_all_completed"]
+[connection signal="tween_all_completed" from="Abilities/Four/TweenFour" to="." method="_on_TweenFour_tween_all_completed"]

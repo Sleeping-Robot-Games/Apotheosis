@@ -7,6 +7,13 @@ var screen_positions = {
 	"p3": Vector2(0,456),
 	"p4": Vector2(834,456)
 }
+# null if not unlocked, false if available, true if in cooldown
+var ability_cd = {
+	"Tank": null,
+	"Scope": null,
+	"Barrel": null,
+	"Stock": null,
+}
 
 var model_folder = "res://assets/character/sprites/Head/"
 var palette_folder = "res://assets/character/palettes/"
@@ -57,3 +64,51 @@ func unlock_ability(gun_part):
 		$Abilities/Three.texture = load("res://assets/ui/ability_003.png")
 	elif gun_part == "Stock":
 		$Abilities/Four.texture = load("res://assets/ui/ability_004.png")
+	if ability_cd[gun_part] == null:
+		ability_cd[gun_part] = false
+
+func ability_cooldown(gun_part, duration):
+	print("ability_cooldown " + gun_part + " duration:" + str(duration))
+	if ability_cd[gun_part] != false:
+		return
+	ability_cd[gun_part] = true
+	if gun_part == "Tank":
+		$Abilities/One.texture = load("res://assets/ui/abilitycd_001.png")
+		$Abilities/One/CD.visible = true
+		$Abilities/One/TweenOne.interpolate_property($Abilities/One/CD, "value", 0, 100, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Abilities/One/TweenOne.start()
+	elif gun_part == "Scope":
+		$Abilities/Two.texture = load("res://assets/ui/abilitycd_002.png")
+		$Abilities/Two/CD.visible = true
+		$Abilities/Two/TweenTwo.interpolate_property($Abilities/Two/CD, "value", 0, 100, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Abilities/Two/TweenTwo.start()
+	elif gun_part == "Barrel":
+		$Abilities/Three.texture = load("res://assets/ui/abilitycd_003.png")
+		$Abilities/Three/CD.visible = true
+		$Abilities/Three/TweenThree.interpolate_property($Abilities/Three/CD, "value", 0, 100, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Abilities/Three/TweenThree.start()
+	elif gun_part == "Stock":
+		$Abilities/Four.texture = load("res://assets/ui/abilitycd_004.png")
+		$Abilities/Four/CD.visible = true
+		$Abilities/Four/TweenFour.interpolate_property($Abilities/Four/CD, "value", 0, 100, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Abilities/Four/TweenFour.start()
+
+func _on_TweenOne_tween_all_completed():
+	ability_cd["Tank"] = false
+	$Abilities/One.texture = load("res://assets/ui/ability_001.png")
+	$Abilities/One/CD.visible = false
+
+func _on_TweenTwo_tween_all_completed():
+	ability_cd["Scope"] = false
+	$Abilities/Two.texture = load("res://assets/ui/ability_002.png")
+	$Abilities/Two/CD.visible = false
+
+func _on_TweenThree_tween_all_completed():
+	ability_cd["Barrel"] = false
+	$Abilities/Three.texture = load("res://assets/ui/ability_003.png")
+	$Abilities/Three/CD.visible = false
+
+func _on_TweenFour_tween_all_completed():
+	ability_cd["Stock"] = false
+	$Abilities/Four.texture = load("res://assets/ui/ability_004.png")
+	$Abilities/Four/CD.visible = false

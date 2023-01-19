@@ -153,11 +153,14 @@ func use_scope():
 			var crosshair_instance = crosshair_scene.instance()
 			crosshair_instance.target = enemy
 			enemy.add_child(crosshair_instance)
+	g.player_ui[player_key].ability_cooldown("Scope", $ScopeCD.wait_time)
 	$ScopeCD.start()
 
 func use_tank():
 	print("USING TANK")
 	can_use_tank = false
+	g.player_ui[player_key].ability_cooldown("Tank", $TankCD.wait_time)
+	$TankCD.start()
 	$TankRangeArea/Particles2D.emitting = true
 	$TankDuration.start()
 	$TankDoT.start()
@@ -167,14 +170,16 @@ func use_barrel():
 	can_use_barrel = false
 	laser_visible = true
 	laser_flickering = true
-	$BarrelShot.visible = true
+	g.player_ui[player_key].ability_cooldown("Barrel", $BarrelCD.wait_time)
 	$BarrelCD.start()
+	$BarrelShot.visible = true
 	$BarrelFlickerTimer.start()
 	flicker_laser()
 
 func use_stock():
 	print("USING STOCK")
 	can_use_stock = false
+	g.player_ui[player_key].ability_cooldown("Stock", $StockCD.wait_time)
 	$StockCD.start()
 	var energy_shield_instance = energy_shield_scene.instance()
 	energy_shield_instance.set_color(player_key)
@@ -214,7 +219,7 @@ func get_scrap():
 		can_fabricate = true
 		show_fabricate_icon()
 
-func show_fabricate_icon(var pressed = false):
+func show_fabricate_icon(pressed = false):
 	var btn = "F" if controller_id == "kb" else "Y"
 	var num = "_002.png" if pressed else "_001.png"
 	$Fabricate.visible = true
@@ -297,7 +302,6 @@ func _on_VisibilityNotifier2D_viewport_entered(viewport):
 
 func _on_TankDuration_timeout():
 	$TankRangeArea/Particles2D.emitting = false
-	$TankCD.start()
 
 func _on_TankCD_timeout():
 	show_debug_label("tank off cooldown")
