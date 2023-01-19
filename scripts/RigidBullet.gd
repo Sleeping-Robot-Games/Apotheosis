@@ -4,7 +4,7 @@ var direction = 1
 var damage = 2
 
 func _ready():
-	var x = 500 * direction
+	var x = 420 * direction
 	linear_velocity = Vector2(x, -400)
 	$AnimatedSprite.play()
 
