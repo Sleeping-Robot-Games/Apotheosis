@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=25 format=2]
 
+[ext_resource path="res://assets/bullet/bullet002_3.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Bullet.gd" type="Script" id=2]
 [ext_resource path="res://assets/bullet/bullet001_1.png" type="Texture" id=3]
 [ext_resource path="res://assets/bullet/bullet001_4.png" type="Texture" id=4]
@@ -7,10 +8,45 @@
 [ext_resource path="res://assets/bullet/bullet001_3.png" type="Texture" id=6]
 [ext_resource path="res://assets/bullet/bullet001_6.png" type="Texture" id=7]
 [ext_resource path="res://assets/bullet/bullet001_2.png" type="Texture" id=8]
+[ext_resource path="res://assets/bullet/bullet002_6.png" type="Texture" id=9]
+[ext_resource path="res://assets/bullet/bullet002_4.png" type="Texture" id=10]
+[ext_resource path="res://assets/bullet/bullet002_1.png" type="Texture" id=11]
+[ext_resource path="res://assets/bullet/bullet002_2.png" type="Texture" id=12]
+[ext_resource path="res://assets/bullet/bullet002_5.png" type="Texture" id=13]
+[ext_resource path="res://assets/bullet/bullet003_1.png" type="Texture" id=14]
+[ext_resource path="res://assets/bullet/bullet003_3.png" type="Texture" id=15]
+[ext_resource path="res://assets/bullet/bullet003_2.png" type="Texture" id=16]
+[ext_resource path="res://assets/bullet/bullet004_3.png" type="Texture" id=17]
+[ext_resource path="res://assets/bullet/bullet004_2.png" type="Texture" id=18]
+[ext_resource path="res://assets/bullet/bullet004_1.png" type="Texture" id=19]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 1 ), ExtResource( 10 ), ExtResource( 13 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 16 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 19 ), ExtResource( 18 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -22,11 +58,30 @@ extents = Vector2( 3, 3 )
 [node name="Bullet" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="001" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-frame = 5
+frame = 2
 playing = true
 offset = Vector2( 3, 0 )
+
+[node name="002" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 3 )
+playing = true
+offset = Vector2( 3, 0 )
+
+[node name="003" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 4 )
+frame = 1
+playing = true
+
+[node name="004" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 5 )
+frame = 1
+playing = true
+offset = Vector2( 2, 0 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

@@ -3058,6 +3058,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="ScopeRangeArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -3147,6 +3148,34 @@ one_shot = true
 [node name="ScopeCD" type="Timer" parent="."]
 wait_time = 10.0
 
+[node name="BarrelShot" type="Node2D" parent="."]
+visible = false
+
+[node name="Raycast2D" type="RayCast2D" parent="BarrelShot"]
+position = Vector2( -32, 0 )
+enabled = true
+cast_to = Vector2( -1968, 0 )
+collision_mask = 8
+collide_with_areas = true
+
+[node name="Laser" type="ColorRect" parent="BarrelShot"]
+margin_left = -2000.0
+margin_right = -32.0
+margin_bottom = 1.0
+color = Color( 1, 0, 0, 0.560784 )
+
+[node name="BarrelFlickerTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BarrelFlickerTween" type="Tween" parent="."]
+
+[node name="BarrelLaserTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BarrelCD" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="ShootCD" to="." method="_on_ShootCD_timeout"]
 [connection signal="body_entered" from="ScopeRangeArea" to="." method="_on_ScopeRangeArea_body_entered"]
@@ -3162,3 +3191,6 @@ wait_time = 10.0
 [connection signal="timeout" from="TankCD" to="." method="_on_TankCD_timeout"]
 [connection signal="timeout" from="TankDoT" to="." method="_on_TankDoT_timeout"]
 [connection signal="timeout" from="ScopeCD" to="." method="_on_ScopeCD_timeout"]
+[connection signal="tween_all_completed" from="BarrelFlickerTween" to="." method="_on_BarrelFlickerTween_tween_all_completed"]
+[connection signal="timeout" from="BarrelLaserTimer" to="." method="_on_BarrelLaserTimer_timeout"]
+[connection signal="timeout" from="BarrelCD" to="." method="_on_BarrelCD_timeout"]

@@ -15,13 +15,16 @@ var can_jump = true
 var can_shoot = true
 var can_use_scope = true
 var can_use_tank = true
+var can_use_barrel = true
+var laser_visible = true
+var laser_flickering = false
 var can_slash = true
 var is_dead = false
 var jump_padding = false
 var player_key = "p1"
 var controller_id = "kb"
 var prev_anim = ""
-var scrap = 100
+var scrap = 200
 var scope_range_bodies = []
 var tank_range_bodies = []
 var upgrade_cost = [50, 50, 100, 100, 200]
@@ -62,6 +65,8 @@ func _input(event):
 		use_tank()
 	elif can_use_scope and upgrades["Scope"].size() > 0 and Input.is_action_pressed("ability_b_" + controller_id):
 		use_scope()
+	elif can_use_barrel and upgrades["Barrel"].size() > 0 and Input.is_action_pressed("ability_c_" + controller_id):
+		use_barrel()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if ui_disabled:
@@ -81,6 +86,17 @@ func _process(delta: float) -> void:
 	if can_shoot and Input.is_action_pressed("shoot_" + controller_id):
 		shoot()
 	
+	if laser_visible:
+		var barrel_offset = 32
+		var max_distance = -1968
+		if $BarrelShot/Raycast2D.is_colliding():
+			var collision_point = $BarrelShot/Raycast2D.get_collision_point()
+			var laser_distance = global_position.distance_to(collision_point)
+			$BarrelShot/Laser.rect_position.x = clamp(abs(laser_distance) * -1, max_distance, barrel_offset * -1)
+		else:
+			$BarrelShot/Laser.rect_position.x = max_distance
+		$BarrelShot/Laser.rect_size.x = abs($BarrelShot/Laser.rect_position.x) - barrel_offset
+
 func play_animation(anim_name):
 	$AnimationPlayer.play(anim_name)
 
@@ -113,6 +129,16 @@ func shoot():
 	apply_upgrades(bullet)
 	level.call_deferred('add_child', bullet)
 
+func barrel_shoot():
+	var bullet = bullet_scene.instance()
+	bullet.shot_by = 'player'
+	bullet.global_position = Vector2(global_position.x + 40 * direction, global_position.y) 
+	bullet.speed = bullet_speed * direction
+	bullet.get_node("001").visible = false
+	bullet.get_node("002").visible = true
+	bullet.piercing = true
+	level.call_deferred('add_child', bullet)
+
 func use_scope():
 	print("USING SCOPE")
 	can_use_scope = false
@@ -129,6 +155,20 @@ func use_tank():
 	$TankRangeArea/Particles2D.emitting = true
 	$TankDuration.start()
 	$TankDoT.start()
+
+func use_barrel():
+	print("USING BARREL")
+	can_use_barrel = false
+	laser_visible = true
+	laser_flickering = true
+	$BarrelShot.visible = true
+	$BarrelCD.start()
+	$BarrelFlickerTimer.start()
+	flicker_laser()
+
+func flicker_laser():
+	$BarrelFlickerTween.interpolate_property($BarrelShot/Laser, "modulate:a", 0, 1.0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$BarrelFlickerTween.start()
 
 func apply_upgrades(bullet):
 	## TODO: Check to see what to apply
@@ -176,7 +216,6 @@ func show_fabricate_icon(var pressed = false):
 		fabricating_progress = 0
 
 func random_upgrade():
-	
 	scrap -= upgrade_cost[0]
 	if current_upgrade == 0:
 		show_debug_label("FLAMETHROWER INSTALLED")
@@ -187,8 +226,9 @@ func random_upgrade():
 		upgrades["Scope"].append("Multishot")
 		$SpriteHolder/GunSpriteHolder/Scope.texture = load("res://assets/character/sprites/Gun/scope_001.png")
 	elif current_upgrade == 2:
-		# TODO
-		pass
+		show_debug_label("SNIPER BARREL INSTALLED")
+		upgrades["Barrel"].append("Sniper")
+		$SpriteHolder/GunSpriteHolder/Barrel.texture = load("res://assets/character/sprites/Gun/barrel_001.png")
 	elif current_upgrade == 3:
 		# TODO
 		pass
@@ -203,8 +243,9 @@ func random_upgrade():
 		can_fabricate = true
 		show_fabricate_icon()
 		
-func flip_tank_range():
+func flip():
 	$TankRangeArea.rotation_degrees = 180 if direction == 1 else 0
+	$BarrelShot.rotation_degrees = 180 if direction == 1 else 0
 
 func _on_FabricateTween_tween_all_completed():
 	$Fabricate.visible = false
@@ -266,3 +307,19 @@ func _on_ScopeRangeArea_body_entered(body):
 func _on_ScopeRangeArea_body_exited(body):
 	if body.is_in_group('enemies'): 
 		scope_range_bodies.erase(body)
+
+func _on_BarrelFlickerTween_tween_all_completed():
+	if $BarrelFlickerTimer.time_left > 0:
+		flicker_laser()
+	else:
+		laser_flickering = false
+		$BarrelLaserTimer.start()
+
+func _on_BarrelLaserTimer_timeout():
+	laser_visible = false
+	$BarrelShot.visible = false
+	barrel_shoot()
+
+func _on_BarrelCD_timeout():
+	show_debug_label("barrel off cooldown")
+	can_use_barrel = true
