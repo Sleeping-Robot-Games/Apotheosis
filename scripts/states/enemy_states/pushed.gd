@@ -10,19 +10,22 @@ onready var fall_state: BaseState = get_node(fall_node)
 
 var pushed_start = 0
 var pushed_distance = 0
+var baseline_push_force = 200
+var push_force = 200
 
 func enter():
 	.enter()
 	
 	pushed_start = actor.global_position.x + (actor.push_direction * 10)
 	actor.can_attack = false
+	push_force = actor.push_force_override if actor.push_force_override > 0 else baseline_push_force
 
 func physics_process(_delta: float) -> BaseState:
 	if actor.is_dead:
 		return null
 		
 	actor.velocity.y += actor.gravity
-	actor.velocity.x = 200 * actor.push_direction
+	actor.velocity.x = push_force * actor.push_direction
 	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
 	
 	pushed_distance = abs(actor.global_position.x) - pushed_start
@@ -35,11 +38,25 @@ func physics_process(_delta: float) -> BaseState:
 			return chase_state
 		return patrol_state
 	if actor.is_on_wall():
-		actor.is_pushed = false
+		var valid_wall_collision = false
+		for i in actor.get_slide_count():
+			var collision = actor.get_slide_collision(i)
+			# pushed left and ran into wall on left
+			if actor.push_direction < 0 and collision.normal.x > 0 \
+				and not collision.collider.name == "EnergyShield":
+					valid_wall_collision = true
+					break
+			# or pushed right and ran into wall on right
+			elif actor.push_direction > 0 and collision.normal.x < 0 \
+				and not collision.collider.name == "EnergyShield":
+					valid_wall_collision = true
+					break
+		if valid_wall_collision:
+			actor.is_pushed = false
 		
-		if actor.target != null:
-			return chase_state
-		return patrol_state
+			if actor.target != null:
+				return chase_state
+			return patrol_state
 		
 	return null
 
