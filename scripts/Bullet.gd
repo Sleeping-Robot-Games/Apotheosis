@@ -8,10 +8,8 @@ var piercing = false
 var damage = 1
 
 func _ready():
-	print('shot by '+ shot_by)
 	if shot_by == 'player':
 		victims = 'enemies'
-		print('setting collision mask bits')	
 		$Area2D.set_collision_mask_bit(2 , true) # enemies
 		$Area2D.set_collision_mask_bit(0 , false) # player
 		$Area2D.set_collision_mask_bit(7 , false) # shields
@@ -28,6 +26,7 @@ func _on_Timer_timeout():
 	queue_free()
 
 func _on_Area2D_body_entered(body):
+	print(body.name)
 	if body.is_in_group(victims) and body.has_method('dmg') and body.get("is_dead") == false:
 		if shot_by == "player" and g.current_killstreak >= g.killstreak_threshold:
 			damage = damage * 2

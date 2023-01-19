@@ -1820,8 +1820,8 @@ position = Vector2( -40, 1234 )
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="ChickpeaAlt" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 655, 862 )
+[node name="ChickpeaAlt3" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 624, 859 )
 
 [node name="Players" type="Node2D" parent="."]
 
