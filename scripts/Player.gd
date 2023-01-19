@@ -135,7 +135,7 @@ func barrel_shoot():
 	bullet.global_position = Vector2(global_position.x + 40 * direction, global_position.y) 
 	bullet.speed = bullet_speed * direction
 	bullet.get_node("001").visible = false
-	bullet.get_node("002").visible = true
+	bullet.get_node("003").visible = true
 	bullet.damage = 5
 	bullet.piercing = true
 	level.call_deferred('add_child', bullet)
