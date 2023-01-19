@@ -8,8 +8,10 @@ var piercing = false
 var damage = 1
 
 func _ready():
+	print('shot by '+ shot_by)
 	if shot_by == 'player':
 		victims = 'enemies'
+		print('setting collision mask bits')	
 		$Area2D.set_collision_mask_bit(2 , true) # enemies
 		$Area2D.set_collision_mask_bit(0 , false) # player
 		$Area2D.set_collision_mask_bit(7 , false) # shields
