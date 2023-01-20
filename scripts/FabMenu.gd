@@ -19,28 +19,28 @@ var fab_menu_options = {
 		{"Cost": 500, "Rank": 4, "Title": "Flamethrower +4", "Desc": "DMG: 10\nCD: 10"}
 	],
 	"Ability2": [
-		{"Cost": 200, "Rank": 0, "Title": "Multishot", "Desc": "DPS: 3\nCD: 10"},
-		{"Cost": 200, "Rank": 1, "Title": "Multishot +1", "Desc": "DPS: 5\nCD: 10"},
-		{"Cost": 200, "Rank": 2, "Title": "Multishot +2", "Desc": "DPS: 7\nCD: 10"},
-		{"Cost": 200, "Rank": 3, "Title": "Multishot +3", "Desc": "DPS: 8\nCD: 10"},
-		{"Cost": 200, "Rank": 4, "Title": "Multishot +4", "Desc": "DPS: 10\nCD: 10"}
+		{"Cost": 200, "Rank": 0, "Title": "Multishot", "Desc": "DMG: 3\nCD: 10"},
+		{"Cost": 300, "Rank": 1, "Title": "Multishot +1", "Desc": "DMG: 4\nCD: 10"},
+		{"Cost": 400, "Rank": 2, "Title": "Multishot +2", "Desc": "DMG: 5\nCD: 10"},
+		{"Cost": 500, "Rank": 3, "Title": "Multishot +3", "Desc": "DMG: 6\nCD: 10"},
+		{"Cost": 600, "Rank": 4, "Title": "Multishot +4", "Desc": "DMG: 7\nCD: 10"}
 	],
 	"Ability3": [
-		{"Cost": 250, "Rank": 0, "Title": "Sniper", "Desc": "DPS: 3\nCD: 10"},
-		{"Cost": 250, "Rank": 1, "Title": "Sniper +1", "Desc": "DPS: 5\nCD: 10"},
-		{"Cost": 250, "Rank": 2, "Title": "Sniper +2", "Desc": "DPS: 7\nCD: 10"},
-		{"Cost": 250, "Rank": 3, "Title": "Sniper +3", "Desc": "DPS: 8\nCD: 10"},
-		{"Cost": 250, "Rank": 4, "Title": "Sniper +4", "Desc": "DPS: 10\nCD: 10"}
+		{"Cost": 250, "Rank": 0, "Title": "Sniper", "Desc": "DMG: 3\nCD: 10"},
+		{"Cost": 250, "Rank": 1, "Title": "Sniper +1", "Desc": "DMG: 5\nCD: 10"},
+		{"Cost": 250, "Rank": 2, "Title": "Sniper +2", "Desc": "DMG: 7\nCD: 10"},
+		{"Cost": 250, "Rank": 3, "Title": "Sniper +3", "Desc": "DMG: 8\nCD: 10"},
+		{"Cost": 250, "Rank": 4, "Title": "Sniper +4", "Desc": "DMG: 10\nCD: 10"}
 	],
 	"Ability4": [
-		{"Cost": 150, "Rank": 0, "Title": "Shield", "Desc": "DPS: 3\nCD: 10"},
-		{"Cost": 150, "Rank": 1, "Title": "Shield +1", "Desc": "DPS: 5\nCD: 10"},
-		{"Cost": 150, "Rank": 2, "Title": "Shield +2", "Desc": "DPS: 7\nCD: 10"},
-		{"Cost": 150, "Rank": 3, "Title": "Shield +3", "Desc": "DPS: 8\nCD: 10"},
-		{"Cost": 150, "Rank": 4, "Title": "Shield +4", "Desc": "DPS: 10\nCD: 10"}
+		{"Cost": 150, "Rank": 0, "Title": "Shield", "Desc": "DMG: 3\nCD: 10"},
+		{"Cost": 150, "Rank": 1, "Title": "Shield +1", "Desc": "DMG: 5\nCD: 10"},
+		{"Cost": 150, "Rank": 2, "Title": "Shield +2", "Desc": "DMG: 7\nCD: 10"},
+		{"Cost": 150, "Rank": 3, "Title": "Shield +3", "Desc": "DMG: 8\nCD: 10"},
+		{"Cost": 150, "Rank": 4, "Title": "Shield +4", "Desc": "DMG: 10\nCD: 10"}
 	],
 	"Ability5": [
-		{"Cost": 120, "Rank": 0, "Title": "RNG Buff", "Desc": "Passive Buff!"}
+		{"Cost": 120, "Rank": 0, "Title": "RNG", "Desc": "Passive Buff!\nRoll the dice"}
 	]
 }
 var green = Color(0.04, 0.52, 0.11, 1.0)

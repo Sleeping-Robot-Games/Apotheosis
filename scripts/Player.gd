@@ -157,6 +157,7 @@ func use_scope():
 	for enemy in scope_range_bodies:
 		if enemy and not enemy.is_dead:
 			var crosshair_instance = crosshair_scene.instance()
+			crosshair_instance.rank = g.ability_ranks[player_key]["Ability2"]
 			crosshair_instance.target = enemy
 			enemy.add_child(crosshair_instance)
 	g.player_ui[player_key].ability_cooldown("Ability2", $ScopeCD.wait_time)
