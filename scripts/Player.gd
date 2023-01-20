@@ -40,6 +40,7 @@ var upgrades = {
 	'Scope': [],
 	'Stock': []
 }
+var jump_force_multiplier = 2
 
 onready var states = $state_manager
 ## TODO: change how game scene is assigned when implementing levels?
