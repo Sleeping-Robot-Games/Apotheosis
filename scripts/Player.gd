@@ -140,7 +140,15 @@ func barrel_shoot():
 	bullet.speed = bullet_speed * direction
 	bullet.get_node("001").visible = false
 	bullet.get_node("003").visible = true
-	bullet.damage = 5
+	var rank = g.ability_ranks[player_key]["Ability3"]
+	var damage = {
+		0: 4,
+		1: 5,
+		2: 6,
+		3: 7,
+		4: 10
+	}
+	bullet.damage = damage[rank]
 	bullet.piercing = true
 	level.call_deferred('add_child', bullet)
 
