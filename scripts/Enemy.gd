@@ -29,7 +29,7 @@ var is_attacking = false
 var is_pushed = false
 var is_transitioning_form = false
 var chumba_boi_hit = false
-var max_hp = 0
+var max_hp = 0 # updated in ready
 
 onready var states = $state_manager
 onready var level = get_node('../../../Level')

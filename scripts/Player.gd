@@ -6,9 +6,11 @@ export (float) var friction = 0.8
 export (int) var bullet_speed = 15
 export (int) var hp = 10
 
+var max_hp = 0 # updated in ready
 var velocity = Vector2()
 var direction = 1
 var direction_string = "Right"
+var dmg_color = Color(1.0, 1.0, 1.0, 1.0)
 var moving = false
 var can_dash = true
 var can_jump = true
@@ -53,6 +55,8 @@ func _on_debugTimer_timeout():
 	$debug_label.text = ""
 	
 func _ready():
+	max_hp = hp
+	dmg_color = g.get_player_color(player_key, 2)
 	states.init(self)
 
 func _input(event):
@@ -106,6 +110,7 @@ func play_animation(anim_name):
 func dmg(num):
 	if not is_dead:
 		hp -= num
+		$FloatTextSpawner.float_text(str(num), dmg_color)
 		g.player_ui[player_key].set_health(hp)
 		for sprite in $SpriteHolder.get_children():
 			sprite.modulate = Color(1.0, 0.0, 0.0, 1.0)
