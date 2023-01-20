@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile_0325.png-73c2ddb11c4b62934e6d5b44c93797d1.stex"
+path="res://.import/selector_yellow.png-7a7183cea77d327da68a00fdfb911bf6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/keys/tile_0325.png"
-dest_files=[ "res://.import/tile_0325.png-73c2ddb11c4b62934e6d5b44c93797d1.stex" ]
+source_file="res://assets/ui/selector_yellow.png"
+dest_files=[ "res://.import/selector_yellow.png-7a7183cea77d327da68a00fdfb911bf6.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

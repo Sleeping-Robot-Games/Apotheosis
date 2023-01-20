@@ -25,7 +25,7 @@ var jump_padding = false
 var player_key = "p1"
 var controller_id = "kb"
 var prev_anim = ""
-var scrap = 200
+var scrap = 120
 var scope_range_bodies = []
 var tank_range_bodies = []
 var upgrade_cost = [10, 10, 10, 10, 2000]
@@ -72,6 +72,13 @@ func _input(event):
 			$FabMenu.show_menu()
 		else:
 			$FabMenu.hide_menu()
+	
+	# can't use abilities while fab menu is open
+	if fab_menu_open:
+		return
+	
+	if can_shoot and Input.is_action_pressed("shoot_" + controller_id):
+		shoot()
 	elif can_use_tank and upgrades["Tank"].size() > 0 and Input.is_action_pressed("ability_a_" + controller_id):
 		use_tank()
 	elif can_use_scope and upgrades["Scope"].size() > 0 and Input.is_action_pressed("ability_b_" + controller_id):
@@ -95,9 +102,6 @@ func _process(delta: float) -> void:
 	if ui_disabled:
 		return
 	states.process(delta)
-	
-	if can_shoot and Input.is_action_pressed("shoot_" + controller_id):
-		shoot()
 	
 	if laser_visible:
 		var barrel_offset = 32
@@ -223,6 +227,7 @@ func apply_push(num):
 
 func get_scrap():
 	scrap += 10
+	$FabMenu.refresh()
 	show_debug_label('scrap: ' + str(scrap))
 	# TODO: when upgrades can be purchased, show temp indicator
 	#if upgrade_cost.size() > 0 and scrap >= upgrade_cost[0]:
