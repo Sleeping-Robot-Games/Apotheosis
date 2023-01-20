@@ -106,6 +106,18 @@ func deselect_all():
 	$SubMenu.visible = false
 	$SubMenuBG.visible = false
 
+func update_purchase_btn(playing = true):
+	if player.controller_id == "kb":
+		$PurchaseLabel/ControllerButton.visible = false
+		$PurchaseLabel/KeyboardButton.visible = true
+		$PurchaseLabel/KeyboardButton.frame = 0
+		$PurchaseLabel/KeyboardButton.playing = playing
+	else:
+		$PurchaseLabel/KeyboardButton.visible = false
+		$PurchaseLabel/ControllerButton.visible = true
+		$PurchaseLabel/ControllerButton.frame = 0
+		$PurchaseLabel/ControllerButton.playing = playing
+
 func update_options():
 	for i in range(1,6):
 		var ability = "Ability" + str(i)
@@ -157,9 +169,18 @@ func select_current():
 		get_node(current_selection+"/Selection").visible = true
 		get_node(current_selection).modulate.a = 1.0
 		
-		# don't render submenu if ability is maxed out
+		# don't render submenu if ability is maxed out?
 		if fab_menu_options[current_selection].size() == 0:
-			return
+			$PurchaseLabel.modulate.a = 0.25
+			update_purchase_btn(false)
+		
+		var cost = fab_menu_options[current_selection][0].Cost
+		if cost > player.scrap:
+			$PurchaseLabel.modulate.a = 0.25
+			update_purchase_btn(false)
+		else:
+			$PurchaseLabel.modulate.a = 1.0
+			update_purchase_btn(true)
 		
 		$SubMenu/Title.text = fab_menu_options[current_selection][0].Title
 		$SubMenu/Desc.text = fab_menu_options[current_selection][0].Desc
@@ -187,13 +208,13 @@ func attempt_purchase():
 			else:
 				var title = fab_menu_options[current_selection][0].Title
 				var rank = fab_menu_options[current_selection][0].Rank
-				player.show_debug_label(title + " INSTALLED")
+				player.show_debug_label(title)
 				g.ability_ranks[player.player_key][current_selection] = rank
 				g.player_ui[player.player_key].set_ability_rank(current_selection, rank)
 				if rank == 0:
 					update_gun_sprite(current_selection)
 				fab_menu_options[current_selection].remove(0)
-			close_menu()
+	close_menu()
 
 func update_gun_sprite(ability):
 	if ability == "Ability1":
