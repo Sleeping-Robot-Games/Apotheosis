@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/ui/border.png" type="Texture" id=1]
 [ext_resource path="res://assets/character/sprites/Head/head_001.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://shaders/materials/palette_swapper.tres" type="Material" id=8]
 [ext_resource path="res://assets/ui/ability_000.png" type="Texture" id=9]
 [ext_resource path="res://assets/ui/border2bg.png" type="Texture" id=10]
+[ext_resource path="res://assets/loot/scrap.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 7
@@ -31,6 +32,11 @@ load_path = "res://.import/ring.png-ab0d914e767d5a0c911e3ddc53c0eec7.stex"
 
 [sub_resource type="StreamTexture" id=5]
 load_path = "res://.import/ring.png-ab0d914e767d5a0c911e3ddc53c0eec7.stex"
+
+[sub_resource type="DynamicFont" id=7]
+size = 5
+outline_size = 1
+font_data = ExtResource( 6 )
 
 [node name="PlayerUI" type="Control"]
 anchor_right = 1.0
@@ -223,6 +229,25 @@ fill_mode = 4
 tint_under = Color( 0.0862745, 0.0862745, 0.0862745, 0.607843 )
 
 [node name="TweenFour" type="Tween" parent="Abilities/Four"]
+
+[node name="Scrap" type="TextureRect" parent="."]
+margin_left = 55.5
+margin_top = 11.5
+margin_right = 71.5
+margin_bottom = 27.5
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 11 )
+
+[node name="ScrapLabel" type="Label" parent="."]
+margin_left = 16.5
+margin_top = 12.5
+margin_right = 56.5
+margin_bottom = 19.5
+custom_colors/font_color = Color( 0.980392, 0.976471, 0.65098, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "0"
+align = 2
 
 [connection signal="tween_all_completed" from="Abilities/One/TweenOne" to="." method="_on_TweenOne_tween_all_completed"]
 [connection signal="tween_all_completed" from="Abilities/Two/TweenTwo" to="." method="_on_TweenTwo_tween_all_completed"]

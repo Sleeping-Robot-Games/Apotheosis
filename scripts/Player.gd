@@ -196,9 +196,16 @@ func flicker_laser():
 
 func get_scrap():
 	scrap += 10
+	g.player_ui[player_key].set_scrap(scrap)
 	$FabMenu.refresh()
 	show_debug_label('scrap: ' + str(scrap))
-	# TODO: when upgrades can be purchased, show temp indicator
+	# TODO: when upgrades can be purchased, show temp indicator?
+
+func spend_scrap(amount):
+	scrap -= amount
+	if scrap < 0:
+		scrap = 0
+	g.player_ui[player_key].set_scrap(scrap)
 
 func start_fabricator():
 	$FabPrep/StopTween.stop_all()

@@ -180,7 +180,7 @@ func attempt_purchase():
 			if cost > player.scrap:
 				return
 			# purchase upgrade
-			player.scrap -= cost
+			player.spend_scrap(cost)
 			if current_selection == "Ability5":
 				# TODO random passive buff
 				pass

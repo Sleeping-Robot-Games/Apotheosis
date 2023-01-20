@@ -55,6 +55,11 @@ func set_health(hp):
 		$Sprite.frame = 70
 		$Sprite.offset = Vector2(2, 0)
 
+func set_scrap(scrap):
+	if scrap < 0:
+		scrap = 0
+	$ScrapLabel.text = str(scrap)
+
 func set_ability_rank(ability, rank):
 	# unlock ability if it wasn't already
 	if ability_cd[ability] == null:
