@@ -9,7 +9,7 @@ func _ready():
 	$Label.visible = false
 
 func _input(event):
-	if heal_receiver and Input.is_action_just_pressed("fab_"+ heal_receiver.controller_id):
+	if heal_receiver and Input.is_action_just_pressed("interact_"+ heal_receiver.controller_id):
 		is_healing = true
 		heal_receiver.ui_disabled = true
 		heal_receiver.global_position = global_position
@@ -20,6 +20,8 @@ func _input(event):
 func _on_Area2D_body_entered(body):
 	if body.is_in_group('players') and not heal_receiver:
 		heal_receiver = body
+		var key = "kb_up.png" if heal_receiver.controller_id == "kb" else "dpad_up.png"
+		$Label/Key.texture = load("res://assets/ui/keys/" + key)
 		$Label.visible = true
 
 func _on_Area2D_body_exited(body):
