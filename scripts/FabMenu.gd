@@ -8,7 +8,7 @@ onready var button_mappings = {
 	"Ability3": "e.png" if using_kb else "rb.png",
 	"Ability4": "r.png" if using_kb else "rt.png"
 }
-var current_selection = null
+var current_selection = "Ability1"
 
 var fab_menu_options = {
 	"Ability1": [
@@ -54,14 +54,23 @@ func _ready():
 func _input(event):
 	if visible == false:
 		return
+	elif using_kb and event.is_action_pressed("ui_up"):
+		focus_up()
+	elif using_kb and event.is_action_pressed("ui_down"):
+		focus_down()
 	elif using_kb and event.is_action_pressed("ui_kb_accept"):
 		attempt_purchase()
+	elif not using_kb and event.is_action_pressed("ui_up_" + str(player.controller_id)):
+		focus_up()
+	elif not using_kb and event.is_action_pressed("ui_down_" + str(player.controller_id)):
+		focus_down()
 	elif not using_kb and event.is_action_pressed("ui_pad_accept") \
 		and player.controller_id == str(event.device):
 			attempt_purchase()
 
 func open_menu():
 	# TODO: if any fab reminders showing hide them
+	current_selection = "Ability1"
 	player.fab_menu_open = true
 	refresh()
 	visible = true
@@ -69,6 +78,20 @@ func open_menu():
 func close_menu():
 	player.fab_menu_open = false
 	visible = false
+
+func focus_up():
+	var ability_num = int(current_selection.substr(7)) - 1
+	if ability_num < 1:
+		ability_num = 5
+	current_selection = "Ability"+str(ability_num)
+	refresh()
+
+func focus_down():
+	var ability_num = int(current_selection.substr(7)) + 1
+	if ability_num > 5:
+		ability_num = 1
+	current_selection = "Ability"+str(ability_num)
+	refresh()
 
 func deselect_all():
 	for i in range(1, 6):
@@ -181,34 +204,3 @@ func refresh():
 	deselect_all()
 	update_options()
 	select_current()
-
-func _on_Ability1_mouse_entered():
-	if using_kb:
-		current_selection = "Ability1"
-		refresh()
-
-func _on_Ability2_mouse_entered():
-	if using_kb:
-		current_selection = "Ability2"
-		refresh()
-
-func _on_Ability3_mouse_entered():
-	if using_kb:
-		current_selection = "Ability3"
-		refresh()
-
-func _on_Ability4_mouse_entered():
-	if using_kb:
-		current_selection = "Ability4"
-		refresh()
-
-func _on_Ability5_mouse_entered():
-	if using_kb:
-		current_selection = "Ability5"
-		refresh()
-
-func _on_FabMenu_mouse_exited():
-	# note: if mouse is moving too fast this might not fire
-	if using_kb:
-		current_selection = null
-		refresh()
