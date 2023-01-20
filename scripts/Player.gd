@@ -187,6 +187,7 @@ func use_stock():
 	$StockCD.start()
 	var energy_shield_instance = energy_shield_scene.instance()
 	energy_shield_instance.set_color(player_key)
+	energy_shield_instance.rank = g.ability_ranks[player_key]["Ability4"]
 	add_child(energy_shield_instance)
 
 func flicker_laser():
