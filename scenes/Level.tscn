@@ -1846,6 +1846,13 @@ margin_right = -1561.0
 margin_bottom = -14.0
 text = "Critical Component"
 
+[node name="Label17" type="Label" parent="Platform"]
+margin_left = 1147.0
+margin_top = -724.0
+margin_right = 1269.0
+margin_bottom = -710.0
+text = "Critical Component"
+
 [node name="Label9" type="Label" parent="Platform"]
 margin_left = 1131.0
 margin_top = 348.0
@@ -1858,9 +1865,6 @@ position = Vector2( 1225, 352 )
 
 [node name="HealingConsole" parent="HealingConsoles" instance=ExtResource( 2 )]
 position = Vector2( -1015, 400 )
-
-[node name="HealingConsole5" parent="HealingConsoles" instance=ExtResource( 2 )]
-position = Vector2( -807, 511 )
 
 [node name="HealingConsole2" parent="HealingConsoles" instance=ExtResource( 2 )]
 position = Vector2( -1698, 416 )
