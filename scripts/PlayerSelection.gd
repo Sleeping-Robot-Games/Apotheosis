@@ -1,14 +1,21 @@
 extends Control
 # warning-ignore-all:return_value_discarded
 
+
+var yellow = Color(0.88, 0.77, 0.23, 1.0)
+var green = Color(0.04, 0.52, 0.11, 1.0)
+
 var player_ready_status: Dictionary = {}
 var aye_aye_captain = false
 var ready_text = ["3", "2", "1", "GO!"]
 var ready_index = null
 
+
+
 func _ready():
 	$Camera2D.current = true
 	$Boxes/Box1.add_player("p1")
+	$ReadyCountdown.set("custom_colors/font_color", yellow)
 
 func _input(event):
 	# skip checking for new players if no empty slots left
@@ -89,6 +96,7 @@ func show_ready_text():
 
 func cancel_ready_countdown():
 	ready_index = null
+	$ReadyCountdown.set("custom_colors/font_color", yellow)
 	$ReadyCountdown.text = ""
 	$ReadyCountdown.modulate.a = 1.0
 	$ReadyCountdown/GrowTween.stop_all()
@@ -110,6 +118,8 @@ func _on_FadeTween_tween_all_completed():
 		return
 	if ready_index < ready_text.size() - 1:
 		ready_index += 1
+		if ready_index == ready_text.size() - 1:
+			$ReadyCountdown.set("custom_colors/font_color", green)
 		show_ready_text()
 	else:
 		get_tree().change_scene("res://scenes/Game.tscn")
