@@ -4008,6 +4008,7 @@ jump_force_multiplier = 4.1
 [node name="JumpPad4" parent="JumpPads" instance=ExtResource( 20 )]
 position = Vector2( 1263, 867 )
 jump_force_multiplier = 2.2
+disabled = true
 
 [node name="JumpPad9" parent="JumpPads" instance=ExtResource( 20 )]
 position = Vector2( -1057, 722 )
