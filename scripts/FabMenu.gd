@@ -76,8 +76,12 @@ func open_menu():
 	visible = true
 
 func close_menu():
-	player.fab_menu_open = false
+	# close via a short timer to prevent player from triggering a jump when purchasing
+	player.get_node("CloseFabTimer").start()
 	visible = false
+
+func _on_CloseFabTimer_timeout():
+	player.fab_menu_open = false
 
 func focus_up():
 	var ability_num = int(current_selection.substr(7)) - 1

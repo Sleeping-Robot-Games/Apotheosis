@@ -3547,6 +3547,9 @@ one_shot = true
 wait_time = 10.0
 one_shot = true
 
+[node name="CloseFabTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="ShootCD" to="." method="_on_ShootCD_timeout"]
 [connection signal="body_entered" from="ScopeRangeArea" to="." method="_on_ScopeRangeArea_body_entered"]
@@ -3567,3 +3570,4 @@ one_shot = true
 [connection signal="timeout" from="BarrelLaserTimer" to="." method="_on_BarrelLaserTimer_timeout"]
 [connection signal="timeout" from="BarrelCD" to="." method="_on_BarrelCD_timeout"]
 [connection signal="timeout" from="StockCD" to="." method="_on_StockCD_timeout"]
+[connection signal="timeout" from="CloseFabTimer" to="FabMenu" method="_on_CloseFabTimer_timeout"]
