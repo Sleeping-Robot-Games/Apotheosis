@@ -279,11 +279,18 @@ func _on_TankCD_timeout():
 	can_use_tank = true
 
 func _on_TankDoT_timeout():
-	print("TankDoT")
 	# TODO: different fx for different tanks? e.g., lightning applies short stun?
 	if $TankDuration.time_left > 0:
+		var rank = g.ability_ranks[player_key]["Ability1"]
+		var damage = {
+			0: 2,
+			1: 4,
+			2: 6,
+			3: 8,
+			4: 10
+		}
 		for enemy in tank_range_bodies:
-			enemy.dmg(2)
+			enemy.dmg(damage[rank])
 		$TankDoT.start()
 
 func _on_TankRangeArea_body_entered(body):

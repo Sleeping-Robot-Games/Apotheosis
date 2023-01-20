@@ -12,11 +12,11 @@ var current_selection = "Ability1"
 
 var fab_menu_options = {
 	"Ability1": [
-		{"Cost": 100, "Rank": 0, "Title": "Flamethrower", "Desc": "DPS: 3\nCD: 10"},
-		{"Cost": 200, "Rank": 1, "Title": "Flamethrower +1", "Desc": "DPS: 5\nCD: 10"},
-		{"Cost": 100, "Rank": 2, "Title": "Flamethrower +2", "Desc": "DPS: 7\nCD: 10"},
-		{"Cost": 100, "Rank": 3, "Title": "Flamethrower +3", "Desc": "DPS: 8\nCD: 10"},
-		{"Cost": 100, "Rank": 4, "Title": "Flamethrower +4", "Desc": "DPS: 10\nCD: 10"}
+		{"Cost": 100, "Rank": 0, "Title": "Flamethrower", "Desc": "DMG: 2\nCD: 10"},
+		{"Cost": 200, "Rank": 1, "Title": "Flamethrower +1", "Desc": "DMG: 4\nCD: 10"},
+		{"Cost": 300, "Rank": 2, "Title": "Flamethrower +2", "Desc": "DMG: 6\nCD: 10"},
+		{"Cost": 400, "Rank": 3, "Title": "Flamethrower +3", "Desc": "DMG: 8\nCD: 10"},
+		{"Cost": 500, "Rank": 4, "Title": "Flamethrower +4", "Desc": "DMG: 10\nCD: 10"}
 	],
 	"Ability2": [
 		{"Cost": 200, "Rank": 0, "Title": "Multishot", "Desc": "DPS: 3\nCD: 10"},
@@ -49,7 +49,6 @@ var yellow = Color(0.88, 0.77, 0.23, 1.0)
 
 func _ready():
 	refresh()
-	print(player.controller_id)
 
 func _input(event):
 	if visible == false:
@@ -136,7 +135,7 @@ func update_options():
 			# rank
 			var rank = fab_menu_options[ability][0].Rank
 			if rank > 0:
-				get_node(ability+"/Rank").texture = load("res://assets/ui/rank" + str(rank))
+				get_node(ability+"/Rank").texture = load("res://assets/ui/rank" + str(rank) + ".png")
 			get_node(ability+"/Rank").visible = rank > 0
 		else:
 			# cost

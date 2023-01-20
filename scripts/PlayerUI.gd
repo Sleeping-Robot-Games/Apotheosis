@@ -85,20 +85,7 @@ func set_rank_texture(ability: String, num: String, rank: int):
 	else:
 		rank_node.texture = load("res://assets/ui/rank"+str(rank)+".png")
 
-#func unlock_ability(ability):
-#	if ability == "Ability1":
-#		$Abilities/One.texture = load("res://assets/ui/ability_001.png")
-#	elif ability == "Ability2":
-#		$Abilities/Two.texture = load("res://assets/ui/ability_002.png")
-#	elif ability == "Ability3":
-#		$Abilities/Three.texture = load("res://assets/ui/ability_003.png")
-#	elif ability == "Ability4":
-#		$Abilities/Four.texture = load("res://assets/ui/ability_004.png")
-#	if ability_cd[ability] == null:
-#		ability_cd[ability] = false
-
 func ability_cooldown(ability, duration):
-	print("ability_cooldown " + ability + " duration:" + str(duration))
 	if ability_cd[ability] != false:
 		return
 	ability_cd[ability] = true

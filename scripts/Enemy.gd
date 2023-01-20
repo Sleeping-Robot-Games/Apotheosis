@@ -29,6 +29,7 @@ var is_attacking = false
 var is_pushed = false
 var is_transitioning_form = false
 var chumba_boi_hit = false
+var max_hp = 0
 
 onready var states = $state_manager
 onready var level = get_node('../../../Level')
@@ -39,6 +40,7 @@ onready var rigid_bullet_scene = preload("res://scenes/RigidBullet.tscn")
 onready var scrap_scene = preload("res://scenes/Scrap.tscn")
 
 func _ready():
+	max_hp = hp
 	set_collision_layer_bit(2, true) # Enemy
 	set_collision_mask_bit(1, true) # Bullet
 	set_collision_mask_bit(3, true) # Walls
@@ -82,9 +84,21 @@ func pushed(num, dir, dist):
 	push_distance = dist
 	is_pushed = true
 
+func get_dmg_color(num):
+	var divided_hp = max_hp / 4.0
+	if num >= divided_hp * 3:
+		return Color(1.0, 0.0, 0.0, 1.0) # red
+	elif num >= divided_hp * 2:
+		return Color(0.95, 0.41, 0.03, 1.0) # orange
+	elif num >= divided_hp:
+		return Color(0.81, 0.75, 0.03, 1.0) # yellow
+	else:
+		return Color(1.0, 1.0, 1.0, 1.0) # white
+
 func dmg(num):
 	if not is_dead:
 		hp -= num
+		$FloatTextSpawner.float_text(str(num), get_dmg_color(num))
 		var enemy_name = g.parse_enemy_name(name)
 		$Sprite.modulate = Color(1.0, 0.0, 0.0, 1.0)
 		$HurtRedTimer.start()
@@ -102,10 +116,10 @@ func dmg(num):
 				return
 		if not is_dead:
 			$AnimationPlayer.play(enemy_name.replace('alt', '')+'Hurt')
-	
+
 func ledge_detected():
 	return !left_ray.is_colliding() or !right_ray.is_colliding()
-	
+
 func drop_scrap():
 	random.randomize()
 	var num = random.randi_range(3, 10)
