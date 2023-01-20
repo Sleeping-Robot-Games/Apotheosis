@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://assets/character/sprites/Head/head_001.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -18,6 +18,23 @@
 [ext_resource path="res://assets/character/sprites/Gun/scope_000.png" type="Texture" id=16]
 [ext_resource path="res://assets/character/sprites/Gun/stock_000.png" type="Texture" id=17]
 [ext_resource path="res://assets/character/sprites/Gun/tank_000.png" type="Texture" id=18]
+[ext_resource path="res://assets/ui/ability_002.png" type="Texture" id=19]
+[ext_resource path="res://assets/ui/keys/tile_0655.png" type="Texture" id=20]
+[ext_resource path="res://assets/ui/fabricatemenubg.png" type="Texture" id=21]
+[ext_resource path="res://assets/ui/ability_004.png" type="Texture" id=22]
+[ext_resource path="res://assets/ui/ability_003.png" type="Texture" id=23]
+[ext_resource path="res://assets/ui/ability_001.png" type="Texture" id=24]
+[ext_resource path="res://assets/ui/fabricatemenu.png" type="Texture" id=25]
+[ext_resource path="res://assets/ui/keys/tile_0653.png" type="Texture" id=26]
+[ext_resource path="res://assets/loot/scrap.png" type="Texture" id=27]
+[ext_resource path="res://assets/fonts/PublicPixel-z84yD.ttf" type="DynamicFontData" id=28]
+[ext_resource path="res://assets/ui/border.png" type="Texture" id=29]
+[ext_resource path="res://assets/ui/selection_indicator.png" type="Texture" id=30]
+[ext_resource path="res://assets/ui/rank1.png" type="Texture" id=31]
+[ext_resource path="res://scripts/FabMenu.gd" type="Script" id=32]
+[ext_resource path="res://assets/ui/ability_005.png" type="Texture" id=33]
+[ext_resource path="res://assets/ui/keys/tile_0654.png" type="Texture" id=34]
+[ext_resource path="res://assets/ui/keys/tile_0656.png" type="Texture" id=35]
 
 [sub_resource type="ShaderMaterial" id=37]
 
@@ -2936,6 +2953,15 @@ extents = Vector2( 480, 270 )
 [sub_resource type="RectangleShape2D" id=45]
 extents = Vector2( 34.25, 10 )
 
+[sub_resource type="DynamicFont" id=47]
+size = 6
+font_data = ExtResource( 28 )
+
+[sub_resource type="DynamicFont" id=48]
+size = 8
+outline_size = 1
+font_data = ExtResource( 28 )
+
 [node name="Player" type="KinematicBody2D" groups=["players"]]
 collision_mask = 56
 script = ExtResource( 2 )
@@ -3101,13 +3127,492 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
+[node name="FabMenu" type="Control" parent="."]
+margin_top = 15.0
+margin_right = 40.0
+margin_bottom = 55.0
+rect_scale = Vector2( 2, 2 )
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+script = ExtResource( 32 )
+
+[node name="BG" type="TextureRect" parent="FabMenu"]
+margin_left = -24.0
+margin_top = -68.0
+margin_right = 24.0
+margin_bottom = -20.0
+mouse_filter = 2
+texture = ExtResource( 21 )
+
+[node name="Ability1" type="Control" parent="FabMenu"]
+margin_left = -24.0
+margin_top = -67.0
+margin_right = 72.0
+margin_bottom = -44.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="Selection" type="TextureRect" parent="FabMenu/Ability1"]
+margin_left = 2.0
+margin_top = 6.0
+margin_right = 18.0
+margin_bottom = 22.0
+mouse_filter = 2
+texture = ExtResource( 30 )
+
+[node name="SubMenuBG" type="ColorRect" parent="FabMenu/Ability1"]
+visible = false
+margin_left = 98.0
+margin_top = -2.0
+margin_right = 176.0
+margin_bottom = 48.0
+mouse_filter = 2
+color = Color( 0.0117647, 0.0470588, 0.160784, 0.556863 )
+
+[node name="SubMenu" type="NinePatchRect" parent="FabMenu/Ability1"]
+visible = false
+margin_left = 98.0
+margin_top = -2.0
+margin_right = 176.0
+margin_bottom = 48.0
+texture = ExtResource( 29 )
+patch_margin_left = 23
+patch_margin_top = 3
+patch_margin_right = 23
+patch_margin_bottom = 1
+
+[node name="Title" type="Label" parent="FabMenu/Ability1/SubMenu"]
+margin_left = 4.0
+margin_top = 14.0
+margin_right = 76.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 47 )
+text = "Flamethrower"
+valign = 1
+
+[node name="Desc" type="Label" parent="FabMenu/Ability1/SubMenu"]
+margin_left = 4.0
+margin_top = 28.0
+margin_right = 76.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 47 )
+text = "DPS: 3
+CD: 10"
+
+[node name="Button" type="TextureRect" parent="FabMenu/Ability1/SubMenu"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 18.0
+margin_bottom = 18.0
+mouse_filter = 2
+texture = ExtResource( 26 )
+
+[node name="Scrap" type="TextureRect" parent="FabMenu/Ability1"]
+margin_left = 78.0
+margin_top = 8.0
+margin_right = 94.0
+margin_bottom = 24.0
+rect_scale = Vector2( 0.75, 0.75 )
+mouse_filter = 2
+texture = ExtResource( 27 )
+
+[node name="Cost" type="Label" parent="FabMenu/Ability1"]
+margin_left = 44.0
+margin_top = 6.0
+margin_right = 76.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0, 0.823529, 0.117647, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 48 )
+text = "x100"
+valign = 1
+
+[node name="Icon" type="TextureRect" parent="FabMenu/Ability1"]
+margin_left = 22.0
+margin_top = 6.0
+margin_right = 38.0
+margin_bottom = 22.0
+mouse_filter = 2
+texture = ExtResource( 24 )
+
+[node name="Rank" type="TextureRect" parent="FabMenu/Ability1"]
+visible = false
+margin_left = 22.0
+margin_top = 6.0
+margin_right = 38.0
+margin_bottom = 22.0
+mouse_filter = 2
+texture = ExtResource( 31 )
+
+[node name="Ability2" type="Control" parent="FabMenu"]
+margin_left = -24.0
+margin_top = -55.0
+margin_right = 72.0
+margin_bottom = -38.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="Selection" type="TextureRect" parent="FabMenu/Ability2"]
+margin_left = 2.0
+margin_right = 18.0
+margin_bottom = 16.0
+texture = ExtResource( 30 )
+
+[node name="SubMenuBG" type="ColorRect" parent="FabMenu/Ability2"]
+visible = false
+margin_left = 98.0
+margin_top = -16.0
+margin_right = 176.0
+margin_bottom = 34.0
+color = Color( 0.0117647, 0.0470588, 0.160784, 0.556863 )
+
+[node name="SubMenu" type="NinePatchRect" parent="FabMenu/Ability2"]
+visible = false
+margin_left = 98.0
+margin_top = -16.0
+margin_right = 176.0
+margin_bottom = 34.0
+texture = ExtResource( 29 )
+patch_margin_left = 23
+patch_margin_top = 3
+patch_margin_right = 23
+patch_margin_bottom = 1
+
+[node name="Title" type="Label" parent="FabMenu/Ability2/SubMenu"]
+margin_left = 4.0
+margin_top = 14.0
+margin_right = 76.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 47 )
+text = "Flamethrower"
+valign = 1
+
+[node name="Desc" type="Label" parent="FabMenu/Ability2/SubMenu"]
+margin_left = 4.0
+margin_top = 28.0
+margin_right = 76.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 47 )
+text = "DPS: 3
+CD: 10"
+
+[node name="Button" type="TextureRect" parent="FabMenu/Ability2/SubMenu"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 18.0
+margin_bottom = 18.0
+texture = ExtResource( 20 )
+
+[node name="Scrap" type="TextureRect" parent="FabMenu/Ability2"]
+margin_left = 78.0
+margin_top = 2.0
+margin_right = 94.0
+margin_bottom = 18.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 27 )
+
+[node name="Cost" type="Label" parent="FabMenu/Ability2"]
+margin_left = 44.0
+margin_right = 76.0
+margin_bottom = 16.0
+custom_colors/font_color = Color( 0, 0.823529, 0.117647, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 48 )
+text = "x100"
+valign = 1
+
+[node name="Icon" type="TextureRect" parent="FabMenu/Ability2"]
+margin_left = 22.0
+margin_right = 38.0
+margin_bottom = 16.0
+texture = ExtResource( 19 )
+
+[node name="Rank" type="TextureRect" parent="FabMenu/Ability2"]
+visible = false
+margin_left = 22.0
+margin_right = 38.0
+margin_bottom = 16.0
+texture = ExtResource( 31 )
+
+[node name="Ability3" type="Control" parent="FabMenu"]
+margin_left = -24.0
+margin_top = -46.0
+margin_right = 72.0
+margin_bottom = -29.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="Selection" type="TextureRect" parent="FabMenu/Ability3"]
+margin_left = 2.0
+margin_right = 18.0
+margin_bottom = 16.0
+texture = ExtResource( 30 )
+
+[node name="SubMenuBG" type="ColorRect" parent="FabMenu/Ability3"]
+visible = false
+margin_left = 98.0
+margin_top = -12.0
+margin_right = 176.0
+margin_bottom = 38.0
+color = Color( 0.0117647, 0.0470588, 0.160784, 0.556863 )
+
+[node name="SubMenu" type="NinePatchRect" parent="FabMenu/Ability3"]
+visible = false
+margin_left = 98.0
+margin_top = -12.0
+margin_right = 176.0
+margin_bottom = 38.0
+texture = ExtResource( 29 )
+patch_margin_left = 23
+patch_margin_top = 3
+patch_margin_right = 23
+patch_margin_bottom = 1
+
+[node name="Title" type="Label" parent="FabMenu/Ability3/SubMenu"]
+margin_left = 4.0
+margin_top = 14.0
+margin_right = 76.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 47 )
+text = "Flamethrower"
+valign = 1
+
+[node name="Desc" type="Label" parent="FabMenu/Ability3/SubMenu"]
+margin_left = 4.0
+margin_top = 28.0
+margin_right = 76.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 47 )
+text = "DPS: 3
+CD: 10"
+
+[node name="Button" type="TextureRect" parent="FabMenu/Ability3/SubMenu"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 18.0
+margin_bottom = 18.0
+texture = ExtResource( 34 )
+
+[node name="Scrap" type="TextureRect" parent="FabMenu/Ability3"]
+margin_left = 78.0
+margin_top = 2.0
+margin_right = 94.0
+margin_bottom = 18.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 27 )
+
+[node name="Cost" type="Label" parent="FabMenu/Ability3"]
+margin_left = 44.0
+margin_right = 76.0
+margin_bottom = 16.0
+custom_colors/font_color = Color( 0, 0.823529, 0.117647, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 48 )
+text = "x100"
+valign = 1
+
+[node name="Icon" type="TextureRect" parent="FabMenu/Ability3"]
+margin_left = 22.0
+margin_right = 38.0
+margin_bottom = 16.0
+texture = ExtResource( 23 )
+
+[node name="Rank" type="TextureRect" parent="FabMenu/Ability3"]
+visible = false
+margin_left = 22.0
+margin_right = 38.0
+margin_bottom = 16.0
+texture = ExtResource( 31 )
+
+[node name="Ability4" type="Control" parent="FabMenu"]
+margin_left = -24.0
+margin_top = -37.0
+margin_right = 72.0
+margin_bottom = -20.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="Selection" type="TextureRect" parent="FabMenu/Ability4"]
+margin_left = 2.0
+margin_right = 18.0
+margin_bottom = 16.0
+texture = ExtResource( 30 )
+
+[node name="SubMenuBG" type="ColorRect" parent="FabMenu/Ability4"]
+visible = false
+margin_left = 98.0
+margin_top = -16.0
+margin_right = 176.0
+margin_bottom = 34.0
+color = Color( 0.0117647, 0.0470588, 0.160784, 0.556863 )
+
+[node name="SubMenu" type="NinePatchRect" parent="FabMenu/Ability4"]
+visible = false
+margin_left = 98.0
+margin_top = -16.0
+margin_right = 176.0
+margin_bottom = 34.0
+texture = ExtResource( 29 )
+patch_margin_left = 23
+patch_margin_top = 3
+patch_margin_right = 23
+patch_margin_bottom = 1
+
+[node name="Title" type="Label" parent="FabMenu/Ability4/SubMenu"]
+margin_left = 4.0
+margin_top = 14.0
+margin_right = 76.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 47 )
+text = "Flamethrower"
+valign = 1
+
+[node name="Desc" type="Label" parent="FabMenu/Ability4/SubMenu"]
+margin_left = 4.0
+margin_top = 28.0
+margin_right = 76.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 47 )
+text = "DPS: 3
+CD: 10"
+
+[node name="Button" type="TextureRect" parent="FabMenu/Ability4/SubMenu"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 18.0
+margin_bottom = 18.0
+texture = ExtResource( 35 )
+
+[node name="Scrap" type="TextureRect" parent="FabMenu/Ability4"]
+margin_left = 78.0
+margin_top = 2.0
+margin_right = 94.0
+margin_bottom = 18.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 27 )
+
+[node name="Cost" type="Label" parent="FabMenu/Ability4"]
+margin_left = 44.0
+margin_right = 76.0
+margin_bottom = 16.0
+custom_colors/font_color = Color( 0, 0.823529, 0.117647, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 48 )
+text = "x100"
+valign = 1
+
+[node name="Icon" type="TextureRect" parent="FabMenu/Ability4"]
+margin_left = 22.0
+margin_right = 38.0
+margin_bottom = 16.0
+texture = ExtResource( 22 )
+
+[node name="Rank" type="TextureRect" parent="FabMenu/Ability4"]
+visible = false
+margin_left = 22.0
+margin_right = 38.0
+margin_bottom = 16.0
+texture = ExtResource( 31 )
+
+[node name="Ability5" type="Control" parent="FabMenu"]
+margin_left = -24.0
+margin_top = -28.0
+margin_right = 72.0
+margin_bottom = -4.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="Selection" type="TextureRect" parent="FabMenu/Ability5"]
+margin_left = 2.0
+margin_right = 18.0
+margin_bottom = 16.0
+texture = ExtResource( 30 )
+
+[node name="SubMenuBG" type="ColorRect" parent="FabMenu/Ability5"]
+visible = false
+margin_left = 98.0
+margin_top = -26.0
+margin_right = 176.0
+margin_bottom = 24.0
+color = Color( 0.0117647, 0.0470588, 0.160784, 0.556863 )
+
+[node name="SubMenu" type="NinePatchRect" parent="FabMenu/Ability5"]
+visible = false
+margin_left = 98.0
+margin_top = -26.0
+margin_right = 176.0
+margin_bottom = 24.0
+texture = ExtResource( 29 )
+patch_margin_left = 23
+patch_margin_top = 3
+patch_margin_right = 23
+patch_margin_bottom = 1
+
+[node name="Title" type="Label" parent="FabMenu/Ability5/SubMenu"]
+margin_left = 4.0
+margin_top = 14.0
+margin_right = 76.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 47 )
+text = "Flamethrower"
+valign = 1
+
+[node name="Desc" type="Label" parent="FabMenu/Ability5/SubMenu"]
+margin_left = 4.0
+margin_top = 28.0
+margin_right = 76.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 47 )
+text = "DPS: 3
+CD: 10"
+
+[node name="Button" type="TextureRect" parent="FabMenu/Ability5/SubMenu"]
+visible = false
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 18.0
+margin_bottom = 18.0
+
+[node name="Scrap" type="TextureRect" parent="FabMenu/Ability5"]
+margin_left = 78.0
+margin_top = 2.0
+margin_right = 94.0
+margin_bottom = 18.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 27 )
+
+[node name="Cost" type="Label" parent="FabMenu/Ability5"]
+margin_left = 44.0
+margin_right = 76.0
+margin_bottom = 16.0
+custom_colors/font_color = Color( 0, 0.823529, 0.117647, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 48 )
+text = "x100"
+valign = 1
+
+[node name="Icon" type="TextureRect" parent="FabMenu/Ability5"]
+margin_left = 22.0
+margin_right = 38.0
+margin_bottom = 16.0
+texture = ExtResource( 33 )
+
+[node name="Rank" type="TextureRect" parent="FabMenu/Ability5"]
+visible = false
+margin_left = 22.0
+margin_right = 38.0
+margin_bottom = 16.0
+texture = ExtResource( 31 )
+
+[node name="Border" type="TextureRect" parent="FabMenu"]
+margin_left = -24.0
+margin_top = -68.0
+margin_right = 24.0
+margin_bottom = -20.0
+mouse_filter = 2
+texture = ExtResource( 25 )
+
 [node name="Fabricate" type="Control" parent="."]
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="Fabricate"]
-visible = false
 margin_left = -55.0
 margin_top = -57.0
 margin_right = 56.0
@@ -3115,12 +3620,10 @@ margin_bottom = -43.0
 text = "Hold To Fabricate"
 
 [node name="Icon" type="Sprite" parent="Fabricate"]
-visible = false
 position = Vector2( 0, -31 )
 texture = ExtResource( 13 )
 
 [node name="Progress" type="TextureProgress" parent="Fabricate"]
-visible = false
 margin_left = -14.0
 margin_top = -45.0
 margin_right = 50.0
@@ -3191,6 +3694,12 @@ one_shot = true
 [connection signal="body_exited" from="TankRangeArea" to="." method="_on_TankRangeArea_body_exited"]
 [connection signal="timeout" from="debug_label/Timer" to="." method="_on_debugTimer_timeout"]
 [connection signal="timeout" from="HurtRedTimer" to="." method="_on_HurtRedTimer_timeout"]
+[connection signal="mouse_exited" from="FabMenu" to="FabMenu" method="_on_FabMenu_mouse_exited"]
+[connection signal="mouse_entered" from="FabMenu/Ability1" to="FabMenu" method="_on_Ability1_mouse_entered"]
+[connection signal="mouse_entered" from="FabMenu/Ability2" to="FabMenu" method="_on_Ability2_mouse_entered"]
+[connection signal="mouse_entered" from="FabMenu/Ability3" to="FabMenu" method="_on_Ability3_mouse_entered"]
+[connection signal="mouse_entered" from="FabMenu/Ability4" to="FabMenu" method="_on_Ability4_mouse_entered"]
+[connection signal="mouse_entered" from="FabMenu/Ability5" to="FabMenu" method="_on_Ability5_mouse_entered"]
 [connection signal="tween_all_completed" from="Fabricate/Tween" to="." method="_on_FabricateTween_tween_all_completed"]
 [connection signal="viewport_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_entered"]
 [connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]

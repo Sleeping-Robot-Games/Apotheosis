@@ -29,8 +29,10 @@ var scrap = 200
 var scope_range_bodies = []
 var tank_range_bodies = []
 var upgrade_cost = [10, 10, 10, 10, 2000]
+
 var current_upgrade = 0
-var can_fabricate = false
+#var can_fabricate = false
+var fab_menu_open = false
 var fabricating_progress = 0
 var upgrades = {
 	'Tank': [],
@@ -59,10 +61,16 @@ func _ready():
 	states.init(self)
 
 func _input(event):
-	if can_fabricate and event.is_action_pressed("fab_" + str(controller_id)):
-		show_fabricate_icon(true)
-	elif can_fabricate and event.is_action_released("fab_" + str(controller_id)):
-		show_fabricate_icon(false)
+	#if can_fabricate and event.is_action_pressed("fab_" + str(controller_id)):
+	#	show_fabricate_icon(true)
+	#elif can_fabricate and event.is_action_released("fab_" + str(controller_id)):
+	#	show_fabricate_icon(false)
+	if event.is_action_pressed("fab_" + str(controller_id)):
+		fab_menu_open = !fab_menu_open
+		if fab_menu_open:
+			$FabMenu.show_menu()
+		else:
+			$FabMenu.hide_menu()
 	elif can_use_tank and upgrades["Tank"].size() > 0 and Input.is_action_pressed("ability_a_" + controller_id):
 		use_tank()
 	elif can_use_scope and upgrades["Scope"].size() > 0 and Input.is_action_pressed("ability_b_" + controller_id):
@@ -215,9 +223,10 @@ func apply_push(num):
 func get_scrap():
 	scrap += 10
 	show_debug_label('scrap: ' + str(scrap))
-	if upgrade_cost.size() > 0 and scrap >= upgrade_cost[0]:
-		can_fabricate = true
-		show_fabricate_icon()
+	# TODO: when upgrades can be purchased, show temp indicator
+	#if upgrade_cost.size() > 0 and scrap >= upgrade_cost[0]:
+	#	can_fabricate = true
+	#	show_fabricate_icon()
 
 func show_fabricate_icon(pressed = false):
 	var btn = "F" if controller_id == "kb" else "Y"
@@ -262,9 +271,9 @@ func random_upgrade():
 	
 	current_upgrade += 1
 	upgrade_cost.remove(0)
-	can_fabricate = false
+	#can_fabricate = false
 	if upgrade_cost.size() > 0 and scrap >= upgrade_cost[0]:
-		can_fabricate = true
+		#can_fabricate = true
 		show_fabricate_icon()
 		
 func flip():
@@ -277,7 +286,7 @@ func flip():
 
 func _on_FabricateTween_tween_all_completed():
 	$Fabricate.visible = false
-	can_fabricate = false
+	#can_fabricate = false
 	fabricating_progress = 0
 	random_upgrade()
 
