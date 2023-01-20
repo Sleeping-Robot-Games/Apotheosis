@@ -2960,7 +2960,7 @@ size = 8
 font_data = ExtResource( 28 )
 
 [sub_resource type="DynamicFont" id=49]
-size = 8
+size = 12
 font_data = ExtResource( 28 )
 
 [node name="Player" type="KinematicBody2D" groups=["players"]]
@@ -3175,6 +3175,7 @@ margin_left = 44.0
 margin_top = 6.0
 margin_right = 76.0
 margin_bottom = 22.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 48 )
 text = "x100"
@@ -3223,7 +3224,7 @@ texture = ExtResource( 27 )
 margin_left = 44.0
 margin_right = 76.0
 margin_bottom = 16.0
-custom_colors/font_color = Color( 0, 0.823529, 0.117647, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 48 )
 text = "x100"
@@ -3268,7 +3269,7 @@ texture = ExtResource( 27 )
 margin_left = 44.0
 margin_right = 76.0
 margin_bottom = 16.0
-custom_colors/font_color = Color( 0, 0.823529, 0.117647, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 48 )
 text = "x100"
@@ -3313,7 +3314,7 @@ texture = ExtResource( 27 )
 margin_left = 44.0
 margin_right = 76.0
 margin_bottom = 16.0
-custom_colors/font_color = Color( 0, 0.823529, 0.117647, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 48 )
 text = "x100"
@@ -3358,7 +3359,7 @@ texture = ExtResource( 27 )
 margin_left = 44.0
 margin_right = 76.0
 margin_bottom = 16.0
-custom_colors/font_color = Color( 0, 0.823529, 0.117647, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 48 )
 text = "x100"
@@ -3379,18 +3380,18 @@ texture = ExtResource( 31 )
 
 [node name="SubMenuBG" type="ColorRect" parent="FabMenu"]
 margin_left = 58.0
-margin_top = 8.0
-margin_right = 158.0
-margin_bottom = 83.0
+margin_top = 14.5
+margin_right = 208.0
+margin_bottom = 89.5
 rect_scale = Vector2( 0.5, 0.5 )
 mouse_filter = 2
 color = Color( 0.0117647, 0.0470588, 0.160784, 0.556863 )
 
 [node name="SubMenu" type="NinePatchRect" parent="FabMenu"]
 margin_left = 58.0
-margin_top = 8.0
-margin_right = 158.0
-margin_bottom = 83.0
+margin_top = 14.5
+margin_right = 208.0
+margin_bottom = 89.5
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 29 )
 patch_margin_left = 23
@@ -3400,18 +3401,18 @@ patch_margin_bottom = 1
 
 [node name="Title" type="Label" parent="FabMenu/SubMenu"]
 margin_left = 4.0
-margin_top = 14.0
-margin_right = 76.0
-margin_bottom = 30.0
+margin_top = 35.0
+margin_right = 100.0
+margin_bottom = 51.0
 custom_fonts/font = SubResource( 47 )
 text = "Flamethrower"
 valign = 1
 
 [node name="Desc" type="Label" parent="FabMenu/SubMenu"]
 margin_left = 4.0
-margin_top = 28.0
+margin_top = 49.0
 margin_right = 76.0
-margin_bottom = 44.0
+margin_bottom = 68.0
 custom_fonts/font = SubResource( 47 )
 text = "DPS: 3
 CD: 10"
@@ -3421,15 +3422,16 @@ margin_left = 2.0
 margin_top = 2.0
 margin_right = 18.0
 margin_bottom = 18.0
+rect_scale = Vector2( 2, 2 )
 mouse_filter = 2
 texture = ExtResource( 26 )
 
 [node name="Passive" type="Label" parent="FabMenu/SubMenu"]
 visible = false
 margin_left = 4.0
-margin_top = 6.0
-margin_right = 60.0
-margin_bottom = 20.0
+margin_top = 12.0
+margin_right = 95.0
+margin_bottom = 26.0
 custom_colors/font_color = Color( 0.568627, 0.576471, 0.290196, 1 )
 custom_fonts/font = SubResource( 49 )
 text = "Passive"

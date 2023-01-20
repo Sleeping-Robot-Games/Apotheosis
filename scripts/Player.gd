@@ -25,7 +25,7 @@ var jump_padding = false
 var player_key = "p1"
 var controller_id = "kb"
 var prev_anim = ""
-var scrap = 120
+var scrap = 600
 var scope_range_bodies = []
 var tank_range_bodies = []
 var upgrade_cost = [10, 10, 10, 10, 2000]
@@ -34,12 +34,13 @@ var current_upgrade = 0
 #var can_fabricate = false
 var fab_menu_open = false
 var fabricating_progress = 0
-var upgrades = {
-	'Tank': [],
-	'Barrel': [],
-	'Scope': [],
-	'Stock': []
-}
+#var upgrades = {
+#	'Tank': [],
+#	'Barrel': [],
+#	'Scope': [],
+#	'Stock': []
+#}
+
 var jump_force_multiplier = 2
 
 onready var states = $state_manager
@@ -67,25 +68,24 @@ func _input(event):
 	#elif can_fabricate and event.is_action_released("fab_" + str(controller_id)):
 	#	show_fabricate_icon(false)
 	if event.is_action_pressed("fab_" + str(controller_id)):
-		fab_menu_open = !fab_menu_open
 		if fab_menu_open:
-			$FabMenu.show_menu()
+			$FabMenu.close_menu()
 		else:
-			$FabMenu.hide_menu()
+			$FabMenu.open_menu()
 	
 	# can't use abilities while fab menu is open
 	if fab_menu_open:
 		return
 	
-	if can_shoot and Input.is_action_pressed("shoot_" + controller_id):
+	if can_shoot and Input.is_action_pressed("shoot_" + controller_id) and not ui_disabled:
 		shoot()
-	elif can_use_tank and upgrades["Tank"].size() > 0 and Input.is_action_pressed("ability_a_" + controller_id):
+	elif can_use_tank and g.ability_ranks[player_key]["Ability1"] > -1 and Input.is_action_pressed("ability_a_" + controller_id):
 		use_tank()
-	elif can_use_scope and upgrades["Scope"].size() > 0 and Input.is_action_pressed("ability_b_" + controller_id):
+	elif can_use_scope and g.ability_ranks[player_key]["Ability2"] > -1 and Input.is_action_pressed("ability_b_" + controller_id):
 		use_scope()
-	elif can_use_barrel and upgrades["Barrel"].size() > 0 and Input.is_action_pressed("ability_c_" + controller_id):
+	elif can_use_barrel and g.ability_ranks[player_key]["Ability3"] > -1 and Input.is_action_pressed("ability_c_" + controller_id):
 		use_barrel()
-	elif can_use_stock and upgrades["Stock"].size() > 0 and Input.is_action_pressed("ability_d_" + controller_id):
+	elif can_use_stock and g.ability_ranks[player_key]["Ability4"] > -1 and Input.is_action_pressed("ability_d_" + controller_id):
 		use_stock()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -158,6 +158,15 @@ func barrel_shoot():
 	bullet.piercing = true
 	level.call_deferred('add_child', bullet)
 
+func use_tank():
+	print("USING TANK")
+	can_use_tank = false
+	g.player_ui[player_key].ability_cooldown("Ability1", $TankCD.wait_time)
+	$TankCD.start()
+	$TankRangeArea/Particles2D.emitting = true
+	$TankDuration.start()
+	$TankDoT.start()
+
 func use_scope():
 	print("USING SCOPE")
 	can_use_scope = false
@@ -166,24 +175,15 @@ func use_scope():
 			var crosshair_instance = crosshair_scene.instance()
 			crosshair_instance.target = enemy
 			enemy.add_child(crosshair_instance)
-	g.player_ui[player_key].ability_cooldown("Scope", $ScopeCD.wait_time)
+	g.player_ui[player_key].ability_cooldown("Ability2", $ScopeCD.wait_time)
 	$ScopeCD.start()
-
-func use_tank():
-	print("USING TANK")
-	can_use_tank = false
-	g.player_ui[player_key].ability_cooldown("Tank", $TankCD.wait_time)
-	$TankCD.start()
-	$TankRangeArea/Particles2D.emitting = true
-	$TankDuration.start()
-	$TankDoT.start()
 
 func use_barrel():
 	print("USING BARREL")
 	can_use_barrel = false
 	laser_visible = true
 	laser_flickering = true
-	g.player_ui[player_key].ability_cooldown("Barrel", $BarrelCD.wait_time)
+	g.player_ui[player_key].ability_cooldown("Ability3", $BarrelCD.wait_time)
 	$BarrelCD.start()
 	$BarrelShot.visible = true
 	$BarrelFlickerTimer.start()
@@ -192,7 +192,7 @@ func use_barrel():
 func use_stock():
 	print("USING STOCK")
 	can_use_stock = false
-	g.player_ui[player_key].ability_cooldown("Stock", $StockCD.wait_time)
+	g.player_ui[player_key].ability_cooldown("Ability4", $StockCD.wait_time)
 	$StockCD.start()
 	var energy_shield_instance = energy_shield_scene.instance()
 	energy_shield_instance.set_color(player_key)
@@ -249,38 +249,38 @@ func show_fabricate_icon(pressed = false):
 		$Fabricate/Tween.stop_all()
 		fabricating_progress = 0
 
-func random_upgrade():
-	scrap -= upgrade_cost[0]
-	if current_upgrade == 0:
-		show_debug_label("FLAMETHROWER INSTALLED")
-		upgrades["Tank"].append("Flame")
-		g.player_ui[player_key].unlock_ability("Tank")
-		$SpriteHolder/GunSpriteHolder/Tank.texture = load("res://assets/character/sprites/Gun/tank_001.png")
-	elif current_upgrade == 1:
-		show_debug_label("SMART SCOPE INSTALLED")
-		upgrades["Scope"].append("Multishot")
-		g.player_ui[player_key].unlock_ability("Scope")
-		$SpriteHolder/GunSpriteHolder/Scope.texture = load("res://assets/character/sprites/Gun/scope_001.png")
-	elif current_upgrade == 2:
-		show_debug_label("SNIPER BARREL INSTALLED")
-		upgrades["Barrel"].append("Sniper")
-		g.player_ui[player_key].unlock_ability("Barrel")
-		$SpriteHolder/GunSpriteHolder/Barrel.texture = load("res://assets/character/sprites/Gun/barrel_001.png")
-	elif current_upgrade == 3:
-		show_debug_label("ENERGY SHIELD INSTALLED")
-		upgrades["Stock"].append("EnergyShield")
-		g.player_ui[player_key].unlock_ability("Stock")
-		$SpriteHolder/GunSpriteHolder/Stock.texture = load("res://assets/character/sprites/Gun/stock_001.png")
-	elif current_upgrade == 4:
-		# TODO Random Passive Bonus
-		pass
-	
-	current_upgrade += 1
-	upgrade_cost.remove(0)
-	#can_fabricate = false
-	if upgrade_cost.size() > 0 and scrap >= upgrade_cost[0]:
-		#can_fabricate = true
-		show_fabricate_icon()
+#func random_upgrade():
+#	scrap -= upgrade_cost[0]
+#	if current_upgrade == 0:
+#		show_debug_label("FLAMETHROWER INSTALLED")
+#		upgrades["Tank"].append("Flame")
+#		g.player_ui[player_key].unlock_ability("Tank")
+#		$SpriteHolder/GunSpriteHolder/Tank.texture = load("res://assets/character/sprites/Gun/tank_001.png")
+#	elif current_upgrade == 1:
+#		show_debug_label("SMART SCOPE INSTALLED")
+#		upgrades["Scope"].append("Multishot")
+#		g.player_ui[player_key].unlock_ability("Scope")
+#		$SpriteHolder/GunSpriteHolder/Scope.texture = load("res://assets/character/sprites/Gun/scope_001.png")
+#	elif current_upgrade == 2:
+#		show_debug_label("SNIPER BARREL INSTALLED")
+#		upgrades["Barrel"].append("Sniper")
+#		g.player_ui[player_key].unlock_ability("Barrel")
+#		$SpriteHolder/GunSpriteHolder/Barrel.texture = load("res://assets/character/sprites/Gun/barrel_001.png")
+#	elif current_upgrade == 3:
+#		show_debug_label("ENERGY SHIELD INSTALLED")
+#		upgrades["Stock"].append("EnergyShield")
+#		g.player_ui[player_key].unlock_ability("Stock")
+#		$SpriteHolder/GunSpriteHolder/Stock.texture = load("res://assets/character/sprites/Gun/stock_001.png")
+#	elif current_upgrade == 4:
+#		# TODO Random Passive Bonus
+#		pass
+#	
+#	current_upgrade += 1
+#	upgrade_cost.remove(0)
+#	#can_fabricate = false
+#	if upgrade_cost.size() > 0 and scrap >= upgrade_cost[0]:
+#		#can_fabricate = true
+#		show_fabricate_icon()
 		
 func flip():
 	$TankRangeArea.rotation_degrees = 180 if direction == 1 else 0
@@ -294,7 +294,7 @@ func _on_FabricateTween_tween_all_completed():
 	$Fabricate.visible = false
 	#can_fabricate = false
 	fabricating_progress = 0
-	random_upgrade()
+	#random_upgrade()
 
 func _on_ShootCD_timeout():
 	can_shoot = true

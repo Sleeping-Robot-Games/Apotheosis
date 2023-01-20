@@ -36,6 +36,33 @@ var player_ui = {
 	"p4": null
 }
 
+var ability_ranks = {
+	"p1": {
+		"Ability1": -1,
+		"Ability2": -1,
+		"Ability3": -1,
+		"Ability4": -1
+	},
+	"p2": {
+		"Ability1": -1,
+		"Ability2": -1,
+		"Ability3": -1,
+		"Ability4": -1
+	},
+	"p3": {
+		"Ability1": -1,
+		"Ability2": -1,
+		"Ability3": -1,
+		"Ability4": -1
+	},
+	"p4": {
+		"Ability1": -1,
+		"Ability2": -1,
+		"Ability3": -1,
+		"Ability4": -1
+	}
+}
+
 var offscreen_players = []
 
 func folders_in_dir(path: String) -> Array:

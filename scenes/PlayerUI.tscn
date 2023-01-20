@@ -134,6 +134,10 @@ margin_bottom = 43.0
 [node name="One" type="TextureRect" parent="Abilities"]
 texture = SubResource( 6 )
 
+[node name="Rank" type="TextureRect" parent="Abilities/One"]
+margin_right = 16.0
+margin_bottom = 16.0
+
 [node name="CD" type="TextureProgress" parent="Abilities/One"]
 visible = false
 margin_left = 2.0
@@ -153,6 +157,10 @@ margin_left = 16.0
 margin_right = 32.0
 margin_bottom = 16.0
 texture = ExtResource( 9 )
+
+[node name="Rank" type="TextureRect" parent="Abilities/Two"]
+margin_right = 16.0
+margin_bottom = 16.0
 
 [node name="CD" type="TextureProgress" parent="Abilities/Two"]
 visible = false
@@ -174,6 +182,10 @@ margin_right = 48.0
 margin_bottom = 16.0
 texture = ExtResource( 9 )
 
+[node name="Rank" type="TextureRect" parent="Abilities/Three"]
+margin_right = 16.0
+margin_bottom = 16.0
+
 [node name="CD" type="TextureProgress" parent="Abilities/Three"]
 visible = false
 margin_left = 2.0
@@ -193,6 +205,10 @@ margin_left = 48.0
 margin_right = 64.0
 margin_bottom = 16.0
 texture = ExtResource( 9 )
+
+[node name="Rank" type="TextureRect" parent="Abilities/Four"]
+margin_right = 16.0
+margin_bottom = 16.0
 
 [node name="CD" type="TextureProgress" parent="Abilities/Four"]
 visible = false

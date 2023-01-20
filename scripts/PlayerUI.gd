@@ -9,10 +9,10 @@ var screen_positions = {
 }
 # null if not unlocked, false if available, true if in cooldown
 var ability_cd = {
-	"Tank": null,
-	"Scope": null,
-	"Barrel": null,
-	"Stock": null,
+	"Ability1": null,
+	"Ability2": null,
+	"Ability3": null,
+	"Ability4": null,
 }
 
 var model_folder = "res://assets/character/sprites/Head/"
@@ -55,60 +55,98 @@ func set_health(hp):
 		$Sprite.frame = 70
 		$Sprite.offset = Vector2(2, 0)
 
-func unlock_ability(gun_part):
-	if gun_part == "Tank":
-		$Abilities/One.texture = load("res://assets/ui/ability_001.png")
-	elif gun_part == "Scope":
-		$Abilities/Two.texture = load("res://assets/ui/ability_002.png")
-	elif gun_part == "Barrel":
-		$Abilities/Three.texture = load("res://assets/ui/ability_003.png")
-	elif gun_part == "Stock":
-		$Abilities/Four.texture = load("res://assets/ui/ability_004.png")
-	if ability_cd[gun_part] == null:
-		ability_cd[gun_part] = false
+func set_ability_rank(ability, rank):
+	# unlock ability if it wasn't already
+	if ability_cd[ability] == null:
+		ability_cd[ability] = false
+	
+	var prefix = "abilitycd_" if ability_cd[ability] else "ability_"
+	if ability == "Ability1":
+		$Abilities/One.texture = load("res://assets/ui/" + prefix + "001.png")
+		set_rank_texture(ability, "One", rank)
+	elif ability == "Ability2":
+		$Abilities/Two.texture = load("res://assets/ui/" + prefix + "002.png")
+		set_rank_texture(ability, "Two", rank)
+	elif ability == "Ability3":
+		$Abilities/Three.texture = load("res://assets/ui/" + prefix + "003.png")
+		set_rank_texture(ability, "Three", rank)
+	elif ability == "Ability4":
+		$Abilities/Four.texture = load("res://assets/ui/" + prefix + "004.png")
+		set_rank_texture(ability, "Four", rank)
+	if ability_cd[ability] == null:
+		ability_cd[ability] = false
 
-func ability_cooldown(gun_part, duration):
-	print("ability_cooldown " + gun_part + " duration:" + str(duration))
-	if ability_cd[gun_part] != false:
+func set_rank_texture(ability: String, num: String, rank: int):
+	var rank_node = get_node("Abilities/" + num + "/Rank")
+	if rank == 0:
+		rank_node.texture = null
+	elif ability_cd[ability] == true:
+		rank_node.texture = load("res://assets/ui/rank"+str(rank)+"cd.png")
+	else:
+		rank_node.texture = load("res://assets/ui/rank"+str(rank)+".png")
+
+#func unlock_ability(ability):
+#	if ability == "Ability1":
+#		$Abilities/One.texture = load("res://assets/ui/ability_001.png")
+#	elif ability == "Ability2":
+#		$Abilities/Two.texture = load("res://assets/ui/ability_002.png")
+#	elif ability == "Ability3":
+#		$Abilities/Three.texture = load("res://assets/ui/ability_003.png")
+#	elif ability == "Ability4":
+#		$Abilities/Four.texture = load("res://assets/ui/ability_004.png")
+#	if ability_cd[ability] == null:
+#		ability_cd[ability] = false
+
+func ability_cooldown(ability, duration):
+	print("ability_cooldown " + ability + " duration:" + str(duration))
+	if ability_cd[ability] != false:
 		return
-	ability_cd[gun_part] = true
-	if gun_part == "Tank":
+	ability_cd[ability] = true
+	if ability == "Ability1":
 		$Abilities/One.texture = load("res://assets/ui/abilitycd_001.png")
 		$Abilities/One/CD.visible = true
+		set_rank_texture(ability, "One", g.ability_ranks[player_key][ability])
 		$Abilities/One/TweenOne.interpolate_property($Abilities/One/CD, "value", 0, 100, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Abilities/One/TweenOne.start()
-	elif gun_part == "Scope":
+	elif ability == "Ability2":
 		$Abilities/Two.texture = load("res://assets/ui/abilitycd_002.png")
 		$Abilities/Two/CD.visible = true
+		set_rank_texture(ability, "Two", g.ability_ranks[player_key][ability])
 		$Abilities/Two/TweenTwo.interpolate_property($Abilities/Two/CD, "value", 0, 100, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Abilities/Two/TweenTwo.start()
-	elif gun_part == "Barrel":
+	elif ability == "Ability3":
 		$Abilities/Three.texture = load("res://assets/ui/abilitycd_003.png")
 		$Abilities/Three/CD.visible = true
+		set_rank_texture(ability, "Three", g.ability_ranks[player_key][ability])
 		$Abilities/Three/TweenThree.interpolate_property($Abilities/Three/CD, "value", 0, 100, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Abilities/Three/TweenThree.start()
-	elif gun_part == "Stock":
+	elif ability == "Ability4":
 		$Abilities/Four.texture = load("res://assets/ui/abilitycd_004.png")
 		$Abilities/Four/CD.visible = true
+		set_rank_texture(ability, "Four", g.ability_ranks[player_key][ability])
 		$Abilities/Four/TweenFour.interpolate_property($Abilities/Four/CD, "value", 0, 100, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Abilities/Four/TweenFour.start()
 
 func _on_TweenOne_tween_all_completed():
-	ability_cd["Tank"] = false
+	ability_cd["Ability1"] = false
 	$Abilities/One.texture = load("res://assets/ui/ability_001.png")
+	set_rank_texture("Ability1", "One", g.ability_ranks[player_key]["Ability1"])
 	$Abilities/One/CD.visible = false
 
 func _on_TweenTwo_tween_all_completed():
-	ability_cd["Scope"] = false
+	ability_cd["Ability2"] = false
 	$Abilities/Two.texture = load("res://assets/ui/ability_002.png")
+	set_rank_texture("Ability2", "One", g.ability_ranks[player_key]["Ability2"])
 	$Abilities/Two/CD.visible = false
 
 func _on_TweenThree_tween_all_completed():
-	ability_cd["Barrel"] = false
+	ability_cd["Ability3"] = false
 	$Abilities/Three.texture = load("res://assets/ui/ability_003.png")
+	set_rank_texture("Ability3", "One", g.ability_ranks[player_key]["Ability3"])
 	$Abilities/Three/CD.visible = false
 
 func _on_TweenFour_tween_all_completed():
-	ability_cd["Stock"] = false
+	ability_cd["Ability4"] = false
 	$Abilities/Four.texture = load("res://assets/ui/ability_004.png")
+	set_rank_texture("Ability4", "One", g.ability_ranks[player_key]["Ability4"])
 	$Abilities/Four/CD.visible = false

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rankmax.png-e9e2f95ab14ee6c80332a4ae7958e692.stex"
+path="res://.import/rank4cd.png-b791286feb279a5735d1971b97a17265.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/rankmax.png"
-dest_files=[ "res://.import/rankmax.png-e9e2f95ab14ee6c80332a4ae7958e692.stex" ]
+source_file="res://assets/ui/rank4cd.png"
+dest_files=[ "res://.import/rank4cd.png-b791286feb279a5735d1971b97a17265.stex" ]
 
 [params]
 

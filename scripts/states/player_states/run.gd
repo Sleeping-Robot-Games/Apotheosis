@@ -22,7 +22,7 @@ func enter() -> void:
 	actor.can_jump = true
 	
 func input(_event: InputEvent) -> BaseState:
-	if actor.is_on_floor() and Input.is_action_just_pressed("jump_" + actor.controller_id):
+	if actor.is_on_floor() and Input.is_action_just_pressed("jump_" + actor.controller_id) and actor.fab_menu_open == false:
 		return jump_state
 		
 	if actor.can_dash and Input.is_action_just_pressed("dash_" + actor.controller_id):

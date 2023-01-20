@@ -20,7 +20,7 @@ func input(_event: InputEvent) -> BaseState:
 	if Input.is_action_just_pressed("left_" + actor.controller_id) \
 		or Input.is_action_just_pressed("right_" + actor.controller_id):
 			return run_state
-	elif actor.is_on_floor() and Input.is_action_just_pressed("jump_" + actor.controller_id):
+	elif actor.is_on_floor() and Input.is_action_just_pressed("jump_" + actor.controller_id) and actor.fab_menu_open == false:
 		return jump_state
 	elif actor.can_dash and Input.is_action_just_pressed("dash_" + actor.controller_id):
 		return dash_state

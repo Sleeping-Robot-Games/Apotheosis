@@ -13,7 +13,7 @@ var current_selection = null
 var fab_menu_options = {
 	"Ability1": [
 		{"Cost": 100, "Rank": 0, "Title": "Flamethrower", "Desc": "DPS: 3\nCD: 10"},
-		{"Cost": 100, "Rank": 1, "Title": "Flamethrower +1", "Desc": "DPS: 5\nCD: 10"},
+		{"Cost": 200, "Rank": 1, "Title": "Flamethrower +1", "Desc": "DPS: 5\nCD: 10"},
 		{"Cost": 100, "Rank": 2, "Title": "Flamethrower +2", "Desc": "DPS: 7\nCD: 10"},
 		{"Cost": 100, "Rank": 3, "Title": "Flamethrower +3", "Desc": "DPS: 8\nCD: 10"},
 		{"Cost": 100, "Rank": 4, "Title": "Flamethrower +4", "Desc": "DPS: 10\nCD: 10"}
@@ -45,16 +45,29 @@ var fab_menu_options = {
 }
 var green = Color(0.04, 0.52, 0.11, 1.0)
 var red = Color(0.52, 0.04, 0.04, 1.0)
+var yellow = Color(0.88, 0.77, 0.23, 1.0)
 
 func _ready():
 	refresh()
+	print(player.controller_id)
 
-func show_menu():
+func _input(event):
+	if visible == false:
+		return
+	elif using_kb and event.is_action_pressed("ui_kb_accept"):
+		attempt_purchase()
+	elif not using_kb and event.is_action_pressed("ui_pad_accept") \
+		and player.controller_id == str(event.device):
+			attempt_purchase()
+
+func open_menu():
 	# TODO: if any fab reminders showing hide them
+	player.fab_menu_open = true
 	refresh()
 	visible = true
 
-func hide_menu():
+func close_menu():
+	player.fab_menu_open = false
 	visible = false
 
 func deselect_all():
@@ -99,9 +112,17 @@ func update_options():
 				get_node(ability+"/Rank").texture = load("res://assets/ui/rank" + str(rank))
 			get_node(ability+"/Rank").visible = rank > 0
 		else:
+			# cost
+			get_node(ability+"/Cost").text = "MAX"
+			get_node(ability+"/Cost").set("custom_colors/font_color", yellow)
+			# icon
+			var ability_num = ability.substr(7)
+			var cd_icon = load("res://assets/ui/abilitycd_00" + ability_num + ".png")
+			get_node(ability+"/Icon").texture = cd_icon
 			# selector
 			var selector = load("res://assets/ui/selector_yellow.png")
 			get_node(ability+"/Selection").texture = selector
+			
 
 func select_current():
 	if fab_menu_options.has(current_selection):
@@ -112,6 +133,8 @@ func select_current():
 		if fab_menu_options[current_selection].size() == 0:
 			return
 		
+		$SubMenu/Title.text = fab_menu_options[current_selection][0].Title
+		$SubMenu/Desc.text = fab_menu_options[current_selection][0].Desc
 		$SubMenu.visible = true
 		$SubMenuBG.visible = true
 		if current_selection == "Ability5":
@@ -121,6 +144,38 @@ func select_current():
 			$SubMenu/Button.texture = load("res://assets/ui/keys/" + button_mappings[current_selection])
 			$SubMenu/Button.visible = true
 			$SubMenu/Passive.visible = false
+
+func attempt_purchase():
+	if fab_menu_options.has(current_selection) \
+		and fab_menu_options[current_selection].size() > 0:
+			var cost = fab_menu_options[current_selection][0].Cost
+			if cost > player.scrap:
+				return
+			# purchase upgrade
+			player.scrap -= cost
+			if current_selection == "Ability5":
+				# TODO random passive buff
+				pass
+			else:
+				var title = fab_menu_options[current_selection][0].Title
+				var rank = fab_menu_options[current_selection][0].Rank
+				player.show_debug_label(title + " INSTALLED")
+				g.ability_ranks[player.player_key][current_selection] = rank
+				g.player_ui[player.player_key].set_ability_rank(current_selection, rank)
+				if rank == 0:
+					update_gun_sprite(current_selection)
+				fab_menu_options[current_selection].remove(0)
+			close_menu()
+
+func update_gun_sprite(ability):
+	if ability == "Ability1":
+		player.get_node("SpriteHolder/GunSpriteHolder/Tank").texture = load("res://assets/character/sprites/Gun/tank_001.png")
+	elif ability == "Ability2":
+		player.get_node("SpriteHolder/GunSpriteHolder/Scope").texture = load("res://assets/character/sprites/Gun/scope_001.png")
+	elif ability == "Ability3":
+		player.get_node("SpriteHolder/GunSpriteHolder/Barrel").texture = load("res://assets/character/sprites/Gun/barrel_001.png")
+	elif ability == "Ability4":
+		player.get_node("SpriteHolder/GunSpriteHolder/Stock").texture = load("res://assets/character/sprites/Gun/stock_001.png")
 
 func refresh():
 	deselect_all()
