@@ -33,6 +33,10 @@ var current_upgrade = 0
 var fab_menu_open = false
 var fabricating_progress = 0
 var jump_force_multiplier = 2
+# TODO: other RNG mods (push, piercing, etc)
+var bullet_mods = {
+	"damage": 1,
+}
 
 onready var states = $state_manager
 onready var level = null if ui_disabled else get_node('../../../Level')
@@ -126,7 +130,7 @@ func shoot():
 	bullet.shot_by = 'player'
 	bullet.global_position = Vector2(global_position.x + 40 * direction, global_position.y) 
 	bullet.speed = bullet_speed * direction
-	apply_upgrades(bullet)
+	bullet.damage = bullet_mods.damage
 	level.call_deferred('add_child', bullet)
 
 func barrel_shoot():
@@ -141,7 +145,6 @@ func barrel_shoot():
 	level.call_deferred('add_child', bullet)
 
 func use_tank():
-	print("USING TANK")
 	can_use_tank = false
 	g.player_ui[player_key].ability_cooldown("Ability1", $TankCD.wait_time)
 	$TankCD.start()
@@ -150,7 +153,6 @@ func use_tank():
 	$TankDoT.start()
 
 func use_scope():
-	print("USING SCOPE")
 	can_use_scope = false
 	for enemy in scope_range_bodies:
 		if enemy and not enemy.is_dead:
@@ -161,7 +163,6 @@ func use_scope():
 	$ScopeCD.start()
 
 func use_barrel():
-	print("USING BARREL")
 	can_use_barrel = false
 	laser_visible = true
 	laser_flickering = true
@@ -172,7 +173,6 @@ func use_barrel():
 	flicker_laser()
 
 func use_stock():
-	print("USING STOCK")
 	can_use_stock = false
 	g.player_ui[player_key].ability_cooldown("Ability4", $StockCD.wait_time)
 	$StockCD.start()
@@ -183,29 +183,6 @@ func use_stock():
 func flicker_laser():
 	$BarrelFlickerTween.interpolate_property($BarrelShot/Laser, "modulate:a", 0, 1.0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$BarrelFlickerTween.start()
-
-func apply_upgrades(bullet):
-	## TODO: Check to see what to apply
-#	Scope - Range
-	apply_range(1)
-#	Barrel - Piercing
-	apply_pierce()
-#	Tank - Flame
-	apply_tank_range()
-#	Handle - Pushback
-	apply_push(1)
-
-func apply_pierce():
-	pass
-
-func apply_range(num):
-	pass
-	
-func apply_tank_range():
-	pass
-
-func apply_push(num):
-	pass
 
 func get_scrap():
 	scrap += 10
