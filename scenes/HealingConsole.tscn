@@ -140,6 +140,13 @@ playing = true
 position = Vector2( 47, 7 )
 texture = ExtResource( 6 )
 
+[node name="Cost" type="Label" parent="."]
+margin_left = -32.0
+margin_top = -53.0
+margin_right = 34.0
+margin_bottom = -39.0
+text = "Scrap: 500"
+
 [connection signal="animation_finished" from="Active" to="." method="_on_Active_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
