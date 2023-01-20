@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/enemies/chumba.png" type="Texture" id=2]
-[ext_resource path="res://scripts/Enemy.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=11]
 resource_name = "chumbaDeath"
@@ -126,7 +125,6 @@ extents = Vector2( 10, 11.0833 )
 
 [node name="Chumba" instance=ExtResource( 1 )]
 scale = Vector2( 1.5, 1.5 )
-script = ExtResource( 3 )
 chase_speed = 200
 type = "melee"
 bullet_speed = 5
