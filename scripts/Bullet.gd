@@ -6,6 +6,7 @@ var shot_by: String = 'player'
 var victims: String
 var piercing = false
 var damage = 1
+var body_found = false
 
 func _ready():
 	if shot_by == 'player':
@@ -24,13 +25,15 @@ func _ready():
 func _physics_process(_delta):
 	position.x += speed
 	$RayCast2D.force_raycast_update()
-	if $RayCast2D.is_colliding():
+	# Looks for enemies and if colliding with one move the bullet there to trigger area2D
+	if not body_found and $RayCast2D.is_colliding(): 
 		global_position = $RayCast2D.get_collision_point()
 
 func _on_Timer_timeout():
 	queue_free()
 
 func _on_Area2D_body_entered(body):
+	body_found = true
 	if body.is_in_group(victims) and body.has_method('dmg') and body.get("is_dead") == false:
 		if shot_by == "player" and g.current_killstreak >= g.killstreak_threshold:
 			damage = damage * 2
