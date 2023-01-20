@@ -3128,6 +3128,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="FabMenu" type="Control" parent="."]
+visible = false
 margin_top = 15.0
 margin_right = 40.0
 margin_bottom = 55.0
