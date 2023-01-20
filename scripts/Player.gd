@@ -29,23 +29,12 @@ var scrap = 600
 var scope_range_bodies = []
 var tank_range_bodies = []
 var upgrade_cost = [10, 10, 10, 10, 2000]
-
 var current_upgrade = 0
-#var can_fabricate = false
 var fab_menu_open = false
 var fabricating_progress = 0
-#var upgrades = {
-#	'Tank': [],
-#	'Barrel': [],
-#	'Scope': [],
-#	'Stock': []
-#}
-
 var jump_force_multiplier = 2
 
 onready var states = $state_manager
-## TODO: change how game scene is assigned when implementing levels?
-
 onready var level = null if ui_disabled else get_node('../../../Level')
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 onready var crosshair_scene = preload("res://scenes/Crosshair.tscn")
@@ -63,19 +52,12 @@ func _ready():
 	states.init(self)
 
 func _input(event):
-	#if can_fabricate and event.is_action_pressed("fab_" + str(controller_id)):
-	#	show_fabricate_icon(true)
-	#elif can_fabricate and event.is_action_released("fab_" + str(controller_id)):
-	#	show_fabricate_icon(false)
-	if event.is_action_pressed("fab_" + str(controller_id)):
-		if fab_menu_open:
-			$FabMenu.close_menu()
-		else:
-			$FabMenu.open_menu()
-	
-	# can't use abilities while fab menu is open
-	if fab_menu_open:
-		return
+	if fab_menu_open == false and event.is_action_pressed("fab_" + str(controller_id)):
+		start_fabricator()
+	elif fab_menu_open == false and event.is_action_released("fab_" + str(controller_id)):
+		stop_fabricator()
+	elif fab_menu_open == true and event.is_action_pressed("fab_" + str(controller_id)):
+		$FabMenu.close_menu()
 	
 	if can_shoot and Input.is_action_pressed("shoot_" + controller_id) and not ui_disabled:
 		shoot()
@@ -230,58 +212,31 @@ func get_scrap():
 	$FabMenu.refresh()
 	show_debug_label('scrap: ' + str(scrap))
 	# TODO: when upgrades can be purchased, show temp indicator
-	#if upgrade_cost.size() > 0 and scrap >= upgrade_cost[0]:
-	#	can_fabricate = true
-	#	show_fabricate_icon()
 
-func show_fabricate_icon(pressed = false):
+func start_fabricator():
+	$FabPrep/StopTween.stop_all()
 	var btn = "F" if controller_id == "kb" else "Y"
-	var num = "_002.png" if pressed else "_001.png"
-	$Fabricate.visible = true
-	$Fabricate/Label.visible = !pressed
-	$Fabricate/Progress.visible = pressed
-	$Fabricate/Icon.texture = load("res://assets/" + btn + num)
-	$Fabricate/Icon.visible = true
-	if pressed:## TODO: Match time to fabricate animation?
-		$Fabricate/Tween.interpolate_property($Fabricate/Progress, "value", 0, 100, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		$Fabricate/Tween.start()
-	else:
-		$Fabricate/Tween.stop_all()
-		fabricating_progress = 0
+	$FabPrep/Label.text = "Starting Fabricator..."
+	$FabPrep/Icon.texture = load("res://assets/" + btn + "_002.png")
+	$FabPrep.visible = true
+	# TODO: match time to fabricate animation?
+	var current_progress = $FabPrep/Progress.value
+	var duration = (100 - current_progress) * 0.01
+	$FabPrep/StartTween.interpolate_property($FabPrep/Progress, "value", current_progress, 100, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$FabPrep/StartTween.start()
 
-#func random_upgrade():
-#	scrap -= upgrade_cost[0]
-#	if current_upgrade == 0:
-#		show_debug_label("FLAMETHROWER INSTALLED")
-#		upgrades["Tank"].append("Flame")
-#		g.player_ui[player_key].unlock_ability("Tank")
-#		$SpriteHolder/GunSpriteHolder/Tank.texture = load("res://assets/character/sprites/Gun/tank_001.png")
-#	elif current_upgrade == 1:
-#		show_debug_label("SMART SCOPE INSTALLED")
-#		upgrades["Scope"].append("Multishot")
-#		g.player_ui[player_key].unlock_ability("Scope")
-#		$SpriteHolder/GunSpriteHolder/Scope.texture = load("res://assets/character/sprites/Gun/scope_001.png")
-#	elif current_upgrade == 2:
-#		show_debug_label("SNIPER BARREL INSTALLED")
-#		upgrades["Barrel"].append("Sniper")
-#		g.player_ui[player_key].unlock_ability("Barrel")
-#		$SpriteHolder/GunSpriteHolder/Barrel.texture = load("res://assets/character/sprites/Gun/barrel_001.png")
-#	elif current_upgrade == 3:
-#		show_debug_label("ENERGY SHIELD INSTALLED")
-#		upgrades["Stock"].append("EnergyShield")
-#		g.player_ui[player_key].unlock_ability("Stock")
-#		$SpriteHolder/GunSpriteHolder/Stock.texture = load("res://assets/character/sprites/Gun/stock_001.png")
-#	elif current_upgrade == 4:
-#		# TODO Random Passive Bonus
-#		pass
-#	
-#	current_upgrade += 1
-#	upgrade_cost.remove(0)
-#	#can_fabricate = false
-#	if upgrade_cost.size() > 0 and scrap >= upgrade_cost[0]:
-#		#can_fabricate = true
-#		show_fabricate_icon()
-		
+func stop_fabricator():
+	$FabPrep/StartTween.stop_all()
+	var btn = "F" if controller_id == "kb" else "Y"
+	$FabPrep/Label.text = "Stopping Fabricator..."
+	$FabPrep/Icon.texture = load("res://assets/" + btn + "_001.png")
+	$FabPrep.visible = true
+	# TODO: match time to fabricate animation?
+	var current_progress = $FabPrep/Progress.value
+	var duration = current_progress * 0.01
+	$FabPrep/StopTween.interpolate_property($FabPrep/Progress, "value", current_progress, 0, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$FabPrep/StopTween.start()
+
 func flip():
 	$TankRangeArea.rotation_degrees = 180 if direction == 1 else 0
 	$BarrelShot.rotation_degrees = 180 if direction == 1 else 0
@@ -290,11 +245,13 @@ func flip():
 	else:
 		$TankRangeArea/Particles2D.process_material.set("orbit_velocity", 0.1)
 
-func _on_FabricateTween_tween_all_completed():
-	$Fabricate.visible = false
-	#can_fabricate = false
-	fabricating_progress = 0
-	#random_upgrade()
+func _on_StartTween_tween_all_completed():
+	$FabPrep.visible = false
+	$FabPrep/Progress.value = 0
+	$FabMenu.open_menu()
+
+func _on_StopTween_tween_all_completed():
+	$FabPrep.visible = false
 
 func _on_ShootCD_timeout():
 	can_shoot = true
@@ -319,7 +276,6 @@ func _on_TankDuration_timeout():
 	$TankRangeArea/Particles2D.emitting = false
 
 func _on_TankCD_timeout():
-	show_debug_label("tank off cooldown")
 	can_use_tank = true
 
 func _on_TankDoT_timeout():
@@ -339,7 +295,6 @@ func _on_TankRangeArea_body_exited(body):
 		tank_range_bodies.erase(body)
 
 func _on_ScopeCD_timeout():
-	show_debug_label("scope off cooldown")
 	can_use_scope = true
 
 func _on_ScopeRangeArea_body_entered(body):
@@ -363,9 +318,7 @@ func _on_BarrelLaserTimer_timeout():
 	barrel_shoot()
 
 func _on_BarrelCD_timeout():
-	show_debug_label("barrel off cooldown")
 	can_use_barrel = true
 
 func _on_StockCD_timeout():
-	show_debug_label("stock off cooldown")
 	can_use_stock = true
