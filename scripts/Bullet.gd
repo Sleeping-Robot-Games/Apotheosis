@@ -13,7 +13,6 @@ func _ready():
 		victims = 'enemies'
 		$Area2D.set_collision_mask_bit(2 , true) # enemies
 		$Area2D.set_collision_mask_bit(0 , false) # player
-		$Area2D.set_collision_mask_bit(7 , false) # shields
 	else:
 		victims = 'players'
 		$Area2D.set_collision_mask_bit(2 , false)
@@ -40,8 +39,5 @@ func _on_Area2D_body_entered(body):
 		body.dmg(damage)
 		if piercing == false:
 			queue_free()
-	elif body.is_in_group("shields"):
-		# TODO if reflective, bounce bullet back
-		queue_free()
 	elif not body.has_method("dmg"): # aka if body is a wall
 		queue_free()

@@ -44,7 +44,6 @@ func _ready():
 	set_collision_layer_bit(2, true) # Enemy
 	set_collision_mask_bit(1, true) # Bullet
 	set_collision_mask_bit(3, true) # Walls
-	set_collision_mask_bit(7, true) # Energy Shields
 	states.init(self)
 
 func _physics_process(delta):

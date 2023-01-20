@@ -11,7 +11,7 @@ onready var button_mappings = {
 var current_selection = "Ability1"
 
 
-# TODO: include push force for shield, replace CD on all abilities with range?
+# TODO: include push force for energy pulse, replace CD on all abilities with range?
 var fab_menu_options = {
 	"Ability1": [
 		{"Cost": 100, "Rank": 0, "Title": "Flamethrower", "Desc": "DMG: 2\nCD: 10"},
@@ -35,11 +35,11 @@ var fab_menu_options = {
 		{"Cost": 900, "Rank": 4, "Title": "Sniper +4", "Desc": "DMG: 10\nCD: 10"}
 	],
 	"Ability4": [
-		{"Cost": 150, "Rank": 0, "Title": "Shield", "Desc": "DMG: 1\nCD: 10"},
-		{"Cost": 250, "Rank": 1, "Title": "Shield +1", "Desc": "DMG: 2\nCD: 10"},
-		{"Cost": 350, "Rank": 2, "Title": "Shield +2", "Desc": "DMG: 3\nCD: 10"},
-		{"Cost": 450, "Rank": 3, "Title": "Shield +3", "Desc": "DMG: 4\nCD: 10"},
-		{"Cost": 550, "Rank": 4, "Title": "Shield +4", "Desc": "DMG: 5\nCD: 10"}
+		{"Cost": 150, "Rank": 0, "Title": "Shockwave", "Desc": "DMG: 1\nCD: 10"},
+		{"Cost": 250, "Rank": 1, "Title": "Shockwave +1", "Desc": "DMG: 2\nCD: 10"},
+		{"Cost": 350, "Rank": 2, "Title": "Shockwave +2", "Desc": "DMG: 3\nCD: 10"},
+		{"Cost": 450, "Rank": 3, "Title": "Shockwave +3", "Desc": "DMG: 4\nCD: 10"},
+		{"Cost": 550, "Rank": 4, "Title": "Shockwave +4", "Desc": "DMG: 5\nCD: 10"}
 	],
 	"Ability5": [
 		{"Cost": 120, "Rank": 0, "Title": "RNG", "Desc": "Passive Buff!\nRoll the dice"}

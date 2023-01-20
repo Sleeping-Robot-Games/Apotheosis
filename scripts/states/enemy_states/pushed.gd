@@ -42,15 +42,13 @@ func physics_process(_delta: float) -> BaseState:
 		for i in actor.get_slide_count():
 			var collision = actor.get_slide_collision(i)
 			# pushed left and ran into wall on left
-			if actor.push_direction < 0 and collision.normal.x > 0 \
-				and not collision.collider.name == "EnergyShield":
-					valid_wall_collision = true
-					break
+			if actor.push_direction < 0 and collision.normal.x > 0:
+				valid_wall_collision = true
+				break
 			# or pushed right and ran into wall on right
-			elif actor.push_direction > 0 and collision.normal.x < 0 \
-				and not collision.collider.name == "EnergyShield":
-					valid_wall_collision = true
-					break
+			elif actor.push_direction > 0 and collision.normal.x < 0:
+				valid_wall_collision = true
+				break
 		if valid_wall_collision:
 			actor.is_pushed = false
 		

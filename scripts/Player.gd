@@ -42,7 +42,7 @@ onready var states = $state_manager
 onready var level = null if ui_disabled else get_node('../../../Level')
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 onready var crosshair_scene = preload("res://scenes/Crosshair.tscn")
-onready var energy_shield_scene = preload("res://scenes/EnergyShield.tscn")
+onready var energy_pulse_scene = preload("res://scenes/EnergyPulse.tscn")
 
 ## FOR DEBUGGING
 func show_debug_label(text):
@@ -185,10 +185,10 @@ func use_stock():
 	can_use_stock = false
 	g.player_ui[player_key].ability_cooldown("Ability4", $StockCD.wait_time)
 	$StockCD.start()
-	var energy_shield_instance = energy_shield_scene.instance()
-	energy_shield_instance.set_color(player_key)
-	energy_shield_instance.rank = g.ability_ranks[player_key]["Ability4"]
-	add_child(energy_shield_instance)
+	var energy_pulse_instance = energy_pulse_scene.instance()
+	energy_pulse_instance.set_color(player_key)
+	energy_pulse_instance.rank = g.ability_ranks[player_key]["Ability4"]
+	add_child(energy_pulse_instance)
 
 func flicker_laser():
 	$BarrelFlickerTween.interpolate_property($BarrelShot/Laser, "modulate:a", 0, 1.0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

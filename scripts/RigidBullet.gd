@@ -18,9 +18,6 @@ func _on_Area2D_body_entered(body):
 	if body.is_in_group('players') and body.has_method('dmg') and body.get("is_dead") == false:
 		body.dmg(damage)
 		show_and_play_explody()
-	elif body.is_in_group("shields"):
-		# TODO if reflective, bounce bullet back
-		show_and_play_explody()
 	elif not body.has_method("dmg"): # aka if body is a wall
 		if $RayCast2D.is_colliding():
 			$Explody.frames = explody_floor_frames
