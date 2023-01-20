@@ -18,6 +18,8 @@ func _ready():
 		$Area2D.set_collision_mask_bit(2 , false)
 		$Area2D.set_collision_mask_bit(0 , true)
 		$Area2D.set_collision_mask_bit(7 , true)
+	
+	scale.x = 1 if speed < 0 else -1
 
 func _physics_process(_delta):
 	position.x += speed
