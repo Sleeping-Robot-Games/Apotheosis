@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/torch.png-505b32be81f6b820a20f2236594f7592.stex"
+path="res://.import/LightSprite.png-480f8ed5aa4bcec3595082d8db32be88.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background/torch.png"
-dest_files=[ "res://.import/torch.png-505b32be81f6b820a20f2236594f7592.stex" ]
+source_file="res://assets/background/LightSprite.png"
+dest_files=[ "res://.import/LightSprite.png-480f8ed5aa4bcec3595082d8db32be88.stex" ]
 
 [params]
 

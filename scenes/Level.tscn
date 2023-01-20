@@ -4556,7 +4556,7 @@ position = Vector2( 751, 864 )
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource( 21 )]
-position = Vector2( 282, 1180 )
+position = Vector2( 396, 861 )
 
 [node name="PlayerSpawnPoints" type="Node2D" parent="."]
 
