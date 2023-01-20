@@ -3,7 +3,7 @@
 [ext_resource path="res://fire_color.tres" type="Texture" id=1]
 
 [sub_resource type="Curve" id=13]
-_data = [ Vector2( 0.011236, 0.025 ), 0.0, 14.8873, 0, 0, Vector2( 0.185393, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.977528, 1 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.822727 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.404545 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=14]
 curve = SubResource( 13 )
