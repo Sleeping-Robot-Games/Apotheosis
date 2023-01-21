@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Tears_You_Apart.mp3-9d6f69ed86c267e5d59806aec1c92d59.mp3str"
+
+[deps]
+
+source_file="res://assets/bgm/Tears_You_Apart.mp3"
+dest_files=[ "res://.import/Tears_You_Apart.mp3-9d6f69ed86c267e5d59806aec1c92d59.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

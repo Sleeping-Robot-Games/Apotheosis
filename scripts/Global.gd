@@ -2,7 +2,7 @@ extends Node
 
 var random = RandomNumberGenerator.new()
 
-var killstreak_threshold = 5
+var killstreak_threshold = 3
 var current_killstreak = 0
 var tower_state = 0
 var total_kills = 0

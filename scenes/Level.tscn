@@ -1,4 +1,4 @@
-[gd_scene load_steps=138 format=2]
+[gd_scene load_steps=139 format=2]
 
 [ext_resource path="res://scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HealingConsole.tscn" type="PackedScene" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://assets/background/easteregg.png" type="Texture" id=27]
 [ext_resource path="res://assets/background/walldeco.png" type="Texture" id=28]
 [ext_resource path="res://scenes/Torch.tscn" type="PackedScene" id=29]
+[ext_resource path="res://assets/bgm/Tears_You_Apart.mp3" type="AudioStream" id=30]
 
 [sub_resource type="TileSet" id=3]
 0/name = "skycolor.png 0"
@@ -4273,6 +4274,14 @@ stream = ExtResource( 21 )
 volume_db = -10.0
 autoplay = true
 
+[node name="KillstreakBGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 30 )
+volume_db = -80.0
+
+[node name="FadeInTween" type="Tween" parent="."]
+
+[node name="FadeOutTween" type="Tween" parent="."]
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -4680,7 +4689,7 @@ align = 1
 [node name="Killstreak" type="Node2D" parent="HUD"]
 visible = false
 modulate = Color( 1, 1, 1, 0.207843 )
-position = Vector2( 278, -217 )
+position = Vector2( 480, 70 )
 scale = Vector2( 0.1, 0.1 )
 
 [node name="1" type="Particles2D" parent="HUD/Killstreak"]
@@ -4713,4 +4722,5 @@ autostart = true
 [node name="SpawnPoint" type="Position2D" parent="."]
 position = Vector2( 390, 865 )
 
+[connection signal="tween_all_completed" from="FadeOutTween" to="." method="_on_FadeOutTween_tween_all_completed"]
 [connection signal="timeout" from="HUD/ProgressBar/EnemyHeatTimer" to="." method="_on_EnemyHeatTimer_timeout"]
