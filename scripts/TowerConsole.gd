@@ -7,7 +7,7 @@ var base_required = scrap_required / 10
 
 func _ready():
 	scrap_required *= tower_console_number
-	$Label.text = str(scrap_required) + ' Scrap required to \n reassemble Sat. Tower'
+	$Label.text = 'Critical Component and \n X Scrap required to \n reassemble Sat. Tower'.replace('X', str(scrap_required))
 	$Label.hide()
 	$InteractLabel.hide()
 	
@@ -18,7 +18,7 @@ func _input(event):
 			player.spend_scrap(base_required) ## FOR TESTING
 			## TODO: Don't let it go negative
 			scrap_required = max(scrap_required - base_required, 0)
-			$Label.text = str(scrap_required) + ' Scrap required to \n reassemble Sat. Tower'
+			$Label.text = 'Critical Component and \n X Scrap required to \n reassemble Sat. Tower'.replace('X', str(scrap_required))
 			if scrap_required == 0:
 				if any_player_have_the_component():
 					g.tower_state = tower_console_number
@@ -41,7 +41,7 @@ func _on_Area2D_body_entered(body):
 	if body.is_in_group("players"):
 		if scrap_required != 0:
 			$Label.visible = true
-			$Label.text = str(scrap_required) + ' Scrap required to \n reassemble Sat. Tower'
+			$Label.text = 'Critical Component and \n X Scrap required to \n reassemble Sat. Tower'.replace('X', str(scrap_required))
 			var key = "kb_up.png" if body.controller_id == "kb" else "dpad_up.png"
 			$InteractLabel/Key.texture = load("res://assets/ui/keys/" + key)
 			$InteractLabel.visible = true
