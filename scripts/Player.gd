@@ -215,6 +215,7 @@ func use_barrel():
 	can_use_barrel = false
 	laser_visible = true
 	laser_flickering = true
+	g.play_sfx(level, "barrel_shot")
 	g.player_ui[player_key].ability_cooldown("Ability3", $BarrelCD.wait_time)
 	$BarrelCD.start()
 	$BarrelShot.visible = true
@@ -347,7 +348,6 @@ func _on_BarrelFlickerTween_tween_all_completed():
 		flicker_laser()
 	else:
 		laser_flickering = false
-		g.play_sfx(level, "barrel_shot")
 		$BarrelLaserTimer.start()
 
 func _on_BarrelLaserTimer_timeout():
