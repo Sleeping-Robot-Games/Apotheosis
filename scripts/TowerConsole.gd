@@ -13,15 +13,23 @@ func _ready():
 	$InteractLabel.hide()
 	
 func _input(event):
-	if player != null \
-		and Input.is_action_just_pressed("interact_"+ player.controller_id) \
-		and player.scrap > 0 and player.scrap >= base_required:
-			player.spend_scrap(base_required) ## FOR TESTING
-			## TODO: Don't let it go negative
-			scrap_required = max(scrap_required - base_required, 0)
-			$Label.text = 'Critical Component and \n X Scrap required to \n reassemble Sat. Tower'.replace('X', str(scrap_required))
-			if scrap_required == 0:
-				print(any_player_has_the_component())
+	if player != null and Input.is_action_just_pressed("interact_"+ player.controller_id):
+			if scrap_required > 0:
+				if player.scrap >= base_required:
+					player.spend_scrap(base_required)
+					scrap_required = max(scrap_required - base_required, 0)
+					$Label.text = 'Critical Component and \n X Scrap required to \n reassemble Sat. Tower'.replace('X', str(scrap_required))
+				if scrap_required == 0:
+					$Label.text = 'Critical Component required'
+					if any_player_has_the_component():
+						component_delivered = true
+						g.tower_state = tower_console_number
+						owner.get_node('Tower' + str(tower_console_number)).show()
+						$Label.visible = false
+						$InteractLabel.visible = false
+						if tower_console_number == 1:
+							enable_jump_pad()
+			elif scrap_required == 0:
 				if any_player_has_the_component():
 					component_delivered = true
 					g.tower_state = tower_console_number
