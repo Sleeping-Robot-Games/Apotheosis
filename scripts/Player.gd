@@ -142,7 +142,7 @@ func shoot():
 	bullet.shot_by = 'player'
 	bullet.global_position = Vector2(global_position.x + 40 * direction, global_position.y) 
 	bullet.speed = bullet_speed * direction
-	bullet.damage = bullet_mods.damage
+	bullet.damage = bullet_mods.Damage
 	level.call_deferred('add_child', bullet)
 
 func barrel_shoot():
