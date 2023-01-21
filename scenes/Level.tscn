@@ -1,4 +1,4 @@
-[gd_scene load_steps=158 format=2]
+[gd_scene load_steps=159 format=2]
 
 [ext_resource path="res://scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HealingConsole.tscn" type="PackedScene" id=2]
@@ -31,9 +31,9 @@
 [ext_resource path="res://scenes/Torch.tscn" type="PackedScene" id=29]
 [ext_resource path="res://scenes/KillstreakBGM.tscn" type="PackedScene" id=30]
 [ext_resource path="res://assets/bgm/Tears_You_Apart.mp3" type="AudioStream" id=31]
-[ext_resource path="res://scenes/enemies/Chumba.tscn" type="PackedScene" id=32]
-[ext_resource path="res://scenes/enemies/ChickpeaAlt.tscn" type="PackedScene" id=33]
-[ext_resource path="res://scenes/enemies/Chickpea.tscn" type="PackedScene" id=34]
+[ext_resource path="res://assets/ui/thermometer_border.png" type="Texture" id=32]
+[ext_resource path="res://assets/ui/thermometer_bar.png" type="Texture" id=33]
+[ext_resource path="res://assets/fonts/PublicPixel-z84yD.ttf" type="DynamicFontData" id=34]
 
 [sub_resource type="TileSet" id=3]
 0/name = "skycolor.png 0"
@@ -4812,6 +4812,10 @@ scale = 0.5
 scale_curve = SubResource( 41 )
 color_ramp = SubResource( 79 )
 
+[sub_resource type="DynamicFont" id=159]
+size = 12
+font_data = ExtResource( 34 )
+
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -5318,43 +5322,6 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -3407797, 4, 0, -3342261, 5, 0, -3276725, 6, 0, -1048506, 0, 0, -1048505, 1, 0, -982970, 2, 0, -982969, 3, 0, 1179548, 4, 0, 1245084, 5, 0, 1310620, 6, 0, 1900528, 0, 0, 1900529, 1, 0, 1966064, 2, 0, 1966065, 3, 0, 4718595, 4, 0, 4784131, 5, 0, 4849667, 6, 0, 6225931, 0, 0, 6225932, 1, 0, 6291467, 2, 0, 6291468, 3, 0 )
 
-[node name="Label" type="Label" parent="Platform"]
-margin_left = 398.0
-margin_top = 1287.0
-margin_right = 452.0
-margin_bottom = 1301.0
-text = "Lots of enemies here"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label2" type="Label" parent="Platform"]
-margin_left = 109.0
-margin_top = 1032.0
-margin_right = 245.0
-margin_bottom = 1046.0
-text = "Lots of enemies here"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label4" type="Label" parent="Platform"]
-margin_left = 49.0
-margin_top = 1595.0
-margin_right = 128.0
-margin_bottom = 1609.0
-text = "Critical Item"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label6" type="Label" parent="Platform"]
-margin_left = 347.0
-margin_top = 1590.0
-margin_right = 426.0
-margin_bottom = 1604.0
-text = "Enemies"
-
 [node name="Label8" type="Label" parent="Platform"]
 margin_left = -643.0
 margin_top = 585.0
@@ -5506,17 +5473,6 @@ jump_force_multiplier = 2.0
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="ChickpeaAlt" parent="Enemies" instance=ExtResource( 33 )]
-position = Vector2( 636, 856 )
-scale = Vector2( 1.5, 1.5 )
-
-[node name="Chickpea" parent="Enemies" instance=ExtResource( 34 )]
-position = Vector2( 297, 857 )
-scale = Vector2( 1.5, 1.5 )
-
-[node name="Chumba" parent="Enemies" instance=ExtResource( 32 )]
-position = Vector2( 1134, 857 )
-
 [node name="Players" type="Node2D" parent="."]
 
 [node name="PlayerSpawnPoints" type="Node2D" parent="."]
@@ -5640,18 +5596,22 @@ material = SubResource( 77 )
 process_material = SubResource( 81 )
 texture = ExtResource( 5 )
 
-[node name="ProgressBar" type="ProgressBar" parent="HUD"]
-margin_left = 426.0
+[node name="ProgressBar" type="TextureProgress" parent="HUD"]
+margin_left = 430.0
 margin_top = 28.0
-margin_right = 539.0
+margin_right = 543.0
 margin_bottom = 51.0
 max_value = 1000.0
+value = 210.0
+texture_over = ExtResource( 32 )
+texture_progress = ExtResource( 33 )
 
 [node name="Label" type="Label" parent="HUD/ProgressBar"]
-margin_left = -6.0
+margin_left = -60.0
 margin_top = -20.0
-margin_right = 113.0
-margin_bottom = -6.0
+margin_right = 196.0
+margin_bottom = -4.0
+custom_fonts/font = SubResource( 159 )
 text = "Enemy Heat Meter"
 
 [node name="EnemyHeatTimer" type="Timer" parent="HUD/ProgressBar"]

@@ -67,20 +67,17 @@ func focus_next():
 	focus_button()
 
 func focus_button():
-	# unfocus all buttons
-	for button in buttons:
-		button.add_stylebox_override("normal", null)
 	if focused_button_index == null:
 		return
-	buttons[focused_button_index].add_stylebox_override("normal", focused_stylebox)
+	buttons[focused_button_index].grab_focus()
 
 func press_focused_button():
 	pressed_button = buttons[focused_button_index]
-	pressed_button.add_stylebox_override("normal", pressed_stylebox)
+	#pressed_button.add_stylebox_override("normal", pressed_stylebox)
 	$PressButtonTimer.start()
 
 func _on_PressButtonTimer_timeout():
-	pressed_button.add_stylebox_override("normal", focused_stylebox)
+	#pressed_button.add_stylebox_override("normal", focused_stylebox)
 	pressed_button.emit_signal("pressed")
 	pressed_button = null
 
