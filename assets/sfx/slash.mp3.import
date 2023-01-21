@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/slash.mp3-ad0ab1f5f2f67aad1ba6804ab6c824da.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/slash.mp3"
+dest_files=[ "res://.import/slash.mp3-ad0ab1f5f2f67aad1ba6804ab6c824da.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

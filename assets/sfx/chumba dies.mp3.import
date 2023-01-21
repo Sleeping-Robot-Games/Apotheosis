@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/chumba dies.mp3-03dddb45cb25e4dd3727c3cde4b5c306.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/chumba dies.mp3"
+dest_files=[ "res://.import/chumba dies.mp3-03dddb45cb25e4dd3727c3cde4b5c306.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
