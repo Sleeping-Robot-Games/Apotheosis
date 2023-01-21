@@ -10,7 +10,6 @@ onready var button_mappings = {
 }
 var current_selection = "Ability1"
 
-
 # TODO: include push force for energy pulse, replace CD on all abilities with range?
 var fab_menu_options = {
 	"Ability1": [
@@ -42,8 +41,39 @@ var fab_menu_options = {
 		{"Cost": 550, "Rank": 4, "Title": "Shockwave +4", "Desc": "DMG: 5\nPush Force: 3\n>>Reflect Bullets"}
 	],
 	"Ability5": [
-		{"Cost": 120, "Rank": 0, "Title": "RNG", "Desc": "Passive Buff!\nRoll the dice"}
+		{"Cost": 333, "Rank": 0, "Title": "RNG", "Desc": "Passive Buff!\nRoll the dice"}
 	]
+}
+
+var improvements = {
+	"Ability1": {
+		0: "",
+		1: "+1\n\n+1s",
+		2: "+1\n+0.25x\n+1s",
+		3: "+1\n+0.25x\n+1s",
+		4: "+1\n+0.5x\n+1s",
+	},
+	"Ability2": {
+		0: "",
+		1: "+1\n+1",
+		2: "+1\n+1",
+		3: "+1\n+1",
+		4: "+1\n+2",
+	},
+	"Ability3": {
+		0: "",
+		1: "+1\n+1",
+		2: "+1\n+1",
+		3: "+1\n+1",
+		4: "+3\n+1",
+	},
+	"Ability4": {
+		0: "",
+		1: "+1\n\n+",
+		2: "+1\n\n+",
+		3: "+1\n+1",
+		4: "+1\n+1",
+	},
 }
 
 var fab_menu_maxed_options = {
@@ -189,10 +219,15 @@ func select_current():
 			$PurchaseLabel.modulate.a = 0.25
 			$SubMenu.modulate.a = 0.75
 			$SubMenuBG.modulate.a = 0.75
+			$SubMenu/Improvements.text = ""
 			update_purchase_btn(false)
 		else:
 			$SubMenu.modulate.a = 1.0
 			$SubMenuBG.modulate.a = 1.0
+			if current_selection == "Ability5":
+				$SubMenu/Improvements.text = ""
+			else:
+				$SubMenu/Improvements.text = improvements[current_selection][option.Rank]
 			var cost = option.Cost
 			if cost > player.scrap:
 				$PurchaseLabel.modulate.a = 0.25
