@@ -128,17 +128,17 @@ func _on_TweenOne_tween_all_completed():
 func _on_TweenTwo_tween_all_completed():
 	ability_cd["Ability2"] = false
 	$Abilities/Two.texture = load("res://assets/ui/ability_002.png")
-	set_rank_texture("Ability2", "One", g.ability_ranks[player_key]["Ability2"])
+	set_rank_texture("Ability2", "Two", g.ability_ranks[player_key]["Ability2"])
 	$Abilities/Two/CD.visible = false
 
 func _on_TweenThree_tween_all_completed():
 	ability_cd["Ability3"] = false
 	$Abilities/Three.texture = load("res://assets/ui/ability_003.png")
-	set_rank_texture("Ability3", "One", g.ability_ranks[player_key]["Ability3"])
+	set_rank_texture("Ability3", "Three", g.ability_ranks[player_key]["Ability3"])
 	$Abilities/Three/CD.visible = false
 
 func _on_TweenFour_tween_all_completed():
 	ability_cd["Ability4"] = false
 	$Abilities/Four.texture = load("res://assets/ui/ability_004.png")
-	set_rank_texture("Ability4", "One", g.ability_ranks[player_key]["Ability4"])
+	set_rank_texture("Ability4", "Four", g.ability_ranks[player_key]["Ability4"])
 	$Abilities/Four/CD.visible = false
