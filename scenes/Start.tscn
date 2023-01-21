@@ -979,9 +979,6 @@ margin_top = -23.0
 margin_right = 983.0
 margin_bottom = 577.0
 color = Color( 0.0784314, 0.133333, 0.25098, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="53-Theme-Ass-Required" type="Sprite" parent="Splash/GwjSplash"]
 position = Vector2( 654, 510 )
@@ -998,6 +995,9 @@ position = Vector2( 496, 281 )
 scale = Vector2( 0.0813803, 0.0813803 )
 texture = ExtResource( 12 )
 
+[node name="GWJTimer" type="Timer" parent="Splash/GwjSplash"]
+one_shot = true
+
 [node name="SrgSplash" type="ColorRect" parent="Splash"]
 margin_left = -13.0
 margin_top = -21.0
@@ -1010,10 +1010,10 @@ modulate = Color( 0.772549, 0.768627, 0.792157, 1 )
 position = Vector2( 493, 295 )
 scale = Vector2( 1.70313, 1.70313 )
 frames = SubResource( 5 )
-frame = 3
 speed_scale = 0.75
 
 [node name="Sleeping" type="Label" parent="Splash/SrgSplash"]
+visible = false
 margin_left = 323.0
 margin_top = 61.0
 margin_right = 548.0
@@ -1024,6 +1024,7 @@ text = "Sleeping"
 align = 2
 
 [node name="Robot" type="Label" parent="Splash/SrgSplash"]
+visible = false
 margin_left = 484.0
 margin_top = 106.0
 margin_right = 614.0
@@ -1034,6 +1035,7 @@ text = "Robot"
 align = 2
 
 [node name="Games" type="Label" parent="Splash/SrgSplash"]
+visible = false
 margin_left = 380.0
 margin_top = 155.0
 margin_right = 545.0
@@ -1049,3 +1051,5 @@ anims/SRG = SubResource( 9 )
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="timeout" from="PressButtonTimer" to="." method="_on_PressButtonTimer_timeout"]
+[connection signal="timeout" from="Splash/GwjSplash/GWJTimer" to="." method="_on_GWJTimer_timeout"]
+[connection signal="animation_finished" from="Splash/SrgSplash/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

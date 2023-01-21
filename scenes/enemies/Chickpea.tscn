@@ -134,6 +134,8 @@ tracks/0/keys = {
 extents = Vector2( 125, 11.0833 )
 
 [node name="Chickpea" instance=ExtResource( 1 )]
+hp = 2
+bullet_speed = 2
 
 [node name="AnimationPlayer" parent="." index="2"]
 anims/RESET = SubResource( 2 )

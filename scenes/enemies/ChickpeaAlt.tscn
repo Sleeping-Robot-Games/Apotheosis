@@ -135,6 +135,7 @@ tracks/0/keys = {
 extents = Vector2( 186, 11.0833 )
 
 [node name="ChickpeaAlt" instance=ExtResource( 2 )]
+hp = 3
 attack_time = 2.0
 
 [node name="Sprite" parent="." index="0"]

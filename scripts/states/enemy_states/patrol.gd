@@ -20,7 +20,7 @@ var idle_flip_time: float = 0
 func enter() -> void:
 	.enter()
 	
-	randomize()
+	random.randomize()
 	
 	current_patrol_time = actor.patrol_time
 	idle_flip_time = random.randf_range(0.5, current_patrol_time)

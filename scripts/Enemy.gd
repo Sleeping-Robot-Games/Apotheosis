@@ -142,7 +142,7 @@ func _on_DetectionArea_body_exited(body):
 		target = null
 
 func _on_AttackArea_body_entered(body):
-	print(body)
+	## TODO: Fix chumba, if you enter them they attack no matter what
 	if body.is_in_group('players') and body == target:
 		if g.parse_enemy_name(name) == 'chumba':
 			chumba_boi_hit = true

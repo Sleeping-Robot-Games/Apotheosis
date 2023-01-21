@@ -14,7 +14,7 @@ export (int) var max_speed = 150
 export (int) var max_fall_speed= 500
 export (int) var accel = 40
 export (float) var jump_buffer_time = 0.1
-export (float) var coyote_time = 0.1
+export (float) var coyote_time = 0.2
 
 var coyote_timer: float = 0
 var jump_buffer_timer: float = 0

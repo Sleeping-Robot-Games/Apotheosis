@@ -60,31 +60,32 @@ script = ExtResource( 2 )
 
 [node name="001" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
+frame = 5
 playing = true
 offset = Vector2( 3, 0 )
 
 [node name="002" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 3 )
-frame = 4
+frame = 3
 playing = true
 offset = Vector2( 3, 0 )
 
 [node name="003" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 4 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="004" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 5 )
-frame = 2
+frame = 1
 playing = true
 offset = Vector2( 2, 0 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 0.5
 one_shot = true
 autostart = true
 

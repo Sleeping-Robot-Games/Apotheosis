@@ -88,3 +88,11 @@ func _on_StartButton_pressed():
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	$Splash/SrgSplash.hide()
+	$Splash/GwjSplash/GWJTimer.start()
+
+func _on_GWJTimer_timeout():
+	$Splash/GwjSplash.hide()

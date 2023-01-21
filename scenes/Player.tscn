@@ -2996,7 +2996,7 @@ animations = [ {
 [node name="Player" type="KinematicBody2D" groups=["players"]]
 collision_mask = 56
 script = ExtResource( 2 )
-bullet_speed = 12
+bullet_speed = 10
 
 [node name="SpriteHolder" type="Node2D" parent="."]
 

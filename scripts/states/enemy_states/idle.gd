@@ -15,7 +15,7 @@ var patrol_flip_time: float = 0
 func enter():
 	.enter()
 	
-	randomize()
+	random.randomize()
 	
 	patrol_flip_time = random.randf_range(0.5, 2)
 

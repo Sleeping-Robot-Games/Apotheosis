@@ -35,7 +35,7 @@ func process(delta):
 	
 	current_attack_time -= delta
 	if current_attack_time < 0:
-		actor.attack()
+		actor.call_deferred('attack')
 		current_attack_time = actor.attack_time
 		
 	if actor.target.hp <= 0:
