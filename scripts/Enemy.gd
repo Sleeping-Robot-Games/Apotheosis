@@ -167,7 +167,10 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			play_animation('chumbaRolling')
 		if anim_name == 'chumbaReform':
 			is_transitioning_form = false
-		
 
 func _on_HurtRedTimer_timeout():
 	$Sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
+
+func _on_AnimationPlayer_animation_started(anim_name):
+	if g.parse_enemy_name(name) == "chickpeaalt" and anim_name == "chickpeaAttack":
+		g.play_sfx(level, "chickpea_mortar_launch")

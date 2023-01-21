@@ -159,3 +159,5 @@ shape = SubResource( 1 )
 
 [node name="DetectionArea" parent="." index="5"]
 visible = false
+
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]

@@ -113,6 +113,10 @@ func play_sfx(parent, sound, db_overide = 0):
 		random.randomize()
 		var n = random.randi_range(1, 2)
 		sfx_player.stream = load("res://assets/sfx/dodge"+str(n)+".mp3")
+	elif sound == "chickpea_mortar_launch":
+		sfx_player.stream = load("res://assets/sfx/incoming_mortar_no_explosion.mp3")
+	elif sound == "chickpea_mortar_explosion":
+		sfx_player.stream = load("res://assets/sfx/incoming_mortar_explosion_only.mp3")
 	elif sound == "chickpea_death":
 		sfx_player.stream = load("res://assets/sfx/enemy_death.mp3")
 	

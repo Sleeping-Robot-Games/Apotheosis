@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/incoming_mortar_no_explosion.mp3-52d7fb8c2f71fe5972be8ba624a99392.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/incoming_mortar_no_explosion.mp3"
+dest_files=[ "res://.import/incoming_mortar_no_explosion.mp3-52d7fb8c2f71fe5972be8ba624a99392.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
