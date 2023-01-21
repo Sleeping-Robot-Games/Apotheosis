@@ -260,7 +260,7 @@ func attempt_purchase():
 			player.spend_scrap(cost)
 			if current_selection == "Ability5":
 				# TODO random passive buff
-				pass
+				g.play_sfx(player.level, "slot_machine")
 			else:
 				var title = fab_menu_options[current_selection][0].Title
 				var rank = fab_menu_options[current_selection][0].Rank

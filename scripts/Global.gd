@@ -131,6 +131,8 @@ func play_sfx(parent, sound, db_overide = 0):
 		sfx_player.stream = load("res://assets/sfx/sniper.mp3")
 	elif sound == "energy_pulse":
 		sfx_player.stream = load("res://assets/sfx/slash.mp3")
+	elif sound == "slot_machine":
+		sfx_player.stream = load("res://assets/sfx/coins.mp3")
 	elif sound == "chickpea_mortar_launch":
 		sfx_player.stream = load("res://assets/sfx/incoming_mortar_no_explosion.mp3")
 	elif sound == "chickpea_mortar_explosion":
