@@ -6,8 +6,10 @@ var enemy_scene
 var interval = 10
 
 func _ready():
-	$Timer.wait_time = interval
-	enemy_scene = load("res://scenes/enemies/"+ enemy_name +".tscn")
+	if enemy_name:
+		$Timer.wait_time = interval
+		enemy_scene = load("res://scenes/enemies/"+ enemy_name +".tscn")
+		$Timer.start()
 
 func _on_Timer_timeout():
 	$Timer.wait_time = interval

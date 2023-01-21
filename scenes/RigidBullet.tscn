@@ -50,7 +50,6 @@ shape = SubResource( 3 )
 
 [node name="Explody" type="AnimatedSprite" parent="."]
 visible = false
-position = Vector2( 0, -22 )
 frames = ExtResource( 8 )
 speed_scale = 3.0
 
