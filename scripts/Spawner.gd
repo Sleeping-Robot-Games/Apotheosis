@@ -10,7 +10,6 @@ var interval
 var my_bois = []
 
 func _ready():
-	return # TEMP
 	random.randomize()
 	
 	interval = random.randi_range(20, 25)
