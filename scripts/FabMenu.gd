@@ -264,7 +264,7 @@ func attempt_purchase():
 			else:
 				var title = fab_menu_options[current_selection][0].Title
 				var rank = fab_menu_options[current_selection][0].Rank
-				player.show_debug_label(title)
+				# player.show_debug_label(title)
 				g.ability_ranks[player.player_key][current_selection] = rank
 				g.player_ui[player.player_key].set_ability_rank(current_selection, rank)
 				if rank == 0:

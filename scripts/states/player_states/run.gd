@@ -15,10 +15,12 @@ onready var dash_state: BaseState = get_node(dash_node)
 export (int) var max_speed = 150
 export (int) var accel = 40
 
+var dash_timer: float = 0
+
 func enter() -> void:
 	.enter()
-	# Dashes get reset whenever the character starts running again
-	actor.can_dash = true
+	
+	dash_timer = actor.dash_cd
 	actor.can_jump = true
 	
 func input(_event: InputEvent) -> BaseState:
@@ -33,6 +35,11 @@ func input(_event: InputEvent) -> BaseState:
 	return null
 
 func process(_delta: float) -> BaseState:
+	dash_timer -= _delta
+	
+	if not actor.can_dash and dash_timer < 0:
+		actor.can_dash = true
+		
 	if actor.jump_padding:
 		return jump_state
 	

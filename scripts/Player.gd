@@ -5,6 +5,7 @@ export (float) var gravity = 20.0
 export (float) var friction = 0.8
 export (int) var bullet_speed = 15
 export (int) var hp = 10
+export (float) var dash_cd = 0.5
 
 var max_hp = 0 # updated in ready
 var velocity = Vector2()
@@ -42,6 +43,7 @@ var bullet_mods = {
 	"PushForce": 0,
 	"PushDistance": 0,
 }
+var component_stage = 0
 
 onready var states = $state_manager
 onready var level = null if ui_disabled else get_node('../../../Level')
@@ -118,7 +120,7 @@ func play_animation(anim_name):
 	$AnimationPlayer.play(anim_name)
 
 func dmg(num):
-	if not is_dead:
+	if not is_dead and states.current_state.name != 'dash':
 		hp -= num
 		$FloatTextSpawner.float_text(str(num), dmg_color)
 		g.player_ui[player_key].set_health(hp)
@@ -243,8 +245,11 @@ func get_scrap(amount = 10):
 	scrap += amount
 	g.player_ui[player_key].set_scrap(scrap)
 	$FabMenu.refresh()
-	show_debug_label('scrap: ' + str(scrap))
+	# show_debug_label('scrap: ' + str(scrap))
 	# TODO: when upgrades can be purchased, show temp indicator?
+
+func get_component(stage):
+	component_stage = stage
 
 func spend_scrap(amount):
 	scrap -= amount

@@ -39,6 +39,7 @@ func input(_event: InputEvent) -> BaseState:
 func process(delta: float) -> BaseState:
 	jump_buffer_timer -= delta
 	coyote_timer -= delta
+	
 	return null
 
 func physics_process(_delta: float) -> BaseState:
