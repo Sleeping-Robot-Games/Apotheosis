@@ -1,4 +1,4 @@
-[gd_scene load_steps=139 format=2]
+[gd_scene load_steps=140 format=2]
 
 [ext_resource path="res://scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HealingConsole.tscn" type="PackedScene" id=2]
@@ -29,7 +29,8 @@
 [ext_resource path="res://assets/background/easteregg.png" type="Texture" id=27]
 [ext_resource path="res://assets/background/walldeco.png" type="Texture" id=28]
 [ext_resource path="res://scenes/Torch.tscn" type="PackedScene" id=29]
-[ext_resource path="res://assets/bgm/Tears_You_Apart.mp3" type="AudioStream" id=30]
+[ext_resource path="res://scenes/KillstreakBGM.tscn" type="PackedScene" id=30]
+[ext_resource path="res://assets/bgm/Tears_You_Apart.mp3" type="AudioStream" id=31]
 
 [sub_resource type="TileSet" id=3]
 0/name = "skycolor.png 0"
@@ -4274,9 +4275,8 @@ stream = ExtResource( 21 )
 volume_db = -10.0
 autoplay = true
 
-[node name="KillstreakBGM" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 30 )
-volume_db = -80.0
+[node name="KillstreakBGM" parent="." instance=ExtResource( 30 )]
+stream = ExtResource( 31 )
 
 [node name="FadeInTween" type="Tween" parent="."]
 
@@ -4662,7 +4662,7 @@ enemy_name = "chickpea"
 environment = SubResource( 42 )
 
 [node name="KillstreakTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
@@ -4723,4 +4723,5 @@ autostart = true
 position = Vector2( 390, 865 )
 
 [connection signal="tween_all_completed" from="FadeOutTween" to="." method="_on_FadeOutTween_tween_all_completed"]
+[connection signal="timeout" from="KillstreakTimer" to="." method="_on_KillstreakTimer_timeout"]
 [connection signal="timeout" from="HUD/ProgressBar/EnemyHeatTimer" to="." method="_on_EnemyHeatTimer_timeout"]

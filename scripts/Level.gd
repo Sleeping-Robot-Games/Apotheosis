@@ -28,13 +28,13 @@ func activate_killstreak_mode():
 		return
 	#print(g.new_timestamp() + "KILLSTREAK MODE ACTIVATED!! x2 Damage")
 	killstreak_active = true
-	$KillstreakBGM.volume_db = -80
+	$KillstreakBGM.volume_db = -40
 	$KillstreakBGM.play(15)
 	$FadeInTween.stop_all()
 	$FadeOutTween.stop_all()
 	var bgm_volume = $BGM.volume_db
-	$FadeInTween.interpolate_property($KillstreakBGM, "volume_db", -80, -10, 3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$FadeInTween.interpolate_property($BGM, "volume_db", bgm_volume, -80, 3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$FadeInTween.interpolate_property($KillstreakBGM, "volume_db", -40, -10, 3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$FadeInTween.interpolate_property($BGM, "volume_db", bgm_volume, -40, 3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$FadeInTween.start()
 	killstreak_fx.visible = true
 	for player in players.get_children():
@@ -52,7 +52,8 @@ func _on_KillstreakTimer_timeout():
 		$FadeOutTween.stop_all()
 		var killstreak_volume = $KillstreakBGM.volume_db
 		var bgm_volume = $BGM.volume_db
-		$FadeOutTween.interpolate_property($KillstreakBGM, "volume_db", killstreak_volume, -80, 3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$BGM.seek($KillstreakBGM.get_playback_position())
+		$FadeOutTween.interpolate_property($KillstreakBGM, "volume_db", killstreak_volume, -40, 3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$FadeOutTween.interpolate_property($BGM, "volume_db", bgm_volume, -10, 3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$FadeOutTween.start()
 	killstreak_fx.visible = false
