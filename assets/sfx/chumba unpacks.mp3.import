@@ -11,5 +11,5 @@ dest_files=[ "res://.import/chumba unpacks.mp3-58dfb90e6c038f7ce0000a6f99ab853d.
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

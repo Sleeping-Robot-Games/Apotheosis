@@ -11,5 +11,5 @@ dest_files=[ "res://.import/chumba hurt.mp3-4318e9431239da0c450412d846aaabbe.mp3
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

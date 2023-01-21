@@ -11,5 +11,5 @@ dest_files=[ "res://.import/player getting hit error.mp3-966ebf51949eb8d9394670f
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
