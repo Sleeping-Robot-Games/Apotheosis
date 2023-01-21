@@ -119,6 +119,12 @@ func play_sfx(parent, sound, db_overide = 0):
 		sfx_player.stream = load("res://assets/sfx/incoming_mortar_explosion_only.mp3")
 	elif sound == "chickpea_death":
 		sfx_player.stream = load("res://assets/sfx/enemy_death.mp3")
+	elif sound == "chickpea_alt_death":
+		sfx_player.stream = load("res://assets/sfx/chickpea_alt_death.mp3")
+	elif sound == "chumba_death":
+		sfx_player.stream = load("res://assets/sfx/chumba_dies.mp3")
+	elif sound == "chumba_reform":
+		sfx_player.stream = load("res://assets/sfx/chumba_unpacks.mp3")
 	
 	sfx_player.connect("finished", sfx_player, "queue_free")
 

@@ -106,14 +106,19 @@ func dmg(num):
 		if hp <= 0:
 			g.total_kills += 1
 			is_dead = true
-			if g.parse_enemy_name(enemy_name) == "chickpea":
+			if enemy_name == "chickpea":
 				## TODO: Make this a function
 				g.play_sfx(level, "chickpea_death")
+			elif enemy_name == "chickpeaalt":
+				g.play_sfx(level, "chickpea_alt_death")
+			elif enemy_name == "chumba":
+				g.play_sfx(level, "chumba_death")
 			level.increment_killstreak()
 			# Disables bullet collisions
 			set_collision_mask_bit(1, false)
 			$AnimationPlayer.play(g.parse_enemy_name(enemy_name).replace('alt', '')+'Death')
 		if enemy_name == 'chumba':
+			
 			if is_transitioning_form or states.current_state.name == 'chase' or states.current_state.name == 'keep_rolling':
 				return
 		if not is_dead:
@@ -171,3 +176,10 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_HurtRedTimer_timeout():
 	$Sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
+
+
+func _on_AnimationPlayer_animation_started(anim_name):
+	# TODO chumba reform is never playing?
+	#print("animation player started: " + anim_name)
+	if anim_name == "chumbaReform":
+		g.play_sfx(level, "chumba_reform")

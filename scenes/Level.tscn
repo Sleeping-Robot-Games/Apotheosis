@@ -1,4 +1,4 @@
-[gd_scene load_steps=139 format=2]
+[gd_scene load_steps=140 format=2]
 
 [ext_resource path="res://scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HealingConsole.tscn" type="PackedScene" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://assets/background/walldeco.png" type="Texture" id=28]
 [ext_resource path="res://scenes/Torch.tscn" type="PackedScene" id=29]
 [ext_resource path="res://scenes/enemies/ChickpeaAlt.tscn" type="PackedScene" id=30]
+[ext_resource path="res://scenes/enemies/Chumba.tscn" type="PackedScene" id=31]
 
 [sub_resource type="TileSet" id=3]
 0/name = "skycolor.png 0"
@@ -4272,7 +4273,6 @@ script = ExtResource( 1 )
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
 volume_db = -10.0
-autoplay = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -4356,17 +4356,17 @@ tile_data = PoolIntArray( 3014572, 12, 0, 3014573, 13, 0, 4849683, 10, 0, 530845
 
 [node name="Torch" parent="Wall/WallDeco" instance=ExtResource( 29 )]
 position = Vector2( -480, 306 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch3" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -144, 0 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch2" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 448, 642 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Platform" type="TileMap" parent="."]
@@ -4576,6 +4576,9 @@ jump_force_multiplier = 2.0
 
 [node name="ChickpeaAlt" parent="Enemies" instance=ExtResource( 30 )]
 position = Vector2( 705, 861 )
+
+[node name="Chumba" parent="Enemies" instance=ExtResource( 31 )]
+position = Vector2( 113, 849 )
 
 [node name="Players" type="Node2D" parent="."]
 

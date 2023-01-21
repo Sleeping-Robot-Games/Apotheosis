@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/chickpea_alt_death.mp3-85d7226c5d0bb81a0d242cb6ad0219ce.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/chickpea_alt_death.mp3"
+dest_files=[ "res://.import/chickpea_alt_death.mp3-85d7226c5d0bb81a0d242cb6ad0219ce.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
