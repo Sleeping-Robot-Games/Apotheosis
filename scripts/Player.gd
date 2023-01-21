@@ -61,6 +61,8 @@ func _ready():
 	max_hp = hp
 	dmg_color = g.get_player_color(player_key, 2)
 	states.init(self)
+	if ui_disabled == false:
+		$DevTimer.start()
 
 # TODO: remove
 func _on_DevTimer_timeout():
