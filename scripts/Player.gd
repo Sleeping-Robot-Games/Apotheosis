@@ -347,6 +347,7 @@ func _on_BarrelFlickerTween_tween_all_completed():
 		flicker_laser()
 	else:
 		laser_flickering = false
+		g.play_sfx(level, "barrel_shot")
 		$BarrelLaserTimer.start()
 
 func _on_BarrelLaserTimer_timeout():

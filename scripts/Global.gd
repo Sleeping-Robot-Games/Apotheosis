@@ -123,6 +123,8 @@ func play_sfx(parent, sound, db_overide = 0):
 		sfx_player.stream = load("res://assets/sfx/throwing_flames_7_seconds.mp3")
 	elif sound == "flamethrower_8":
 		sfx_player.stream = load("res://assets/sfx/throwing_flames_8_seconds.mp3")
+	elif sound == "barrel_shot":
+		sfx_player.stream = load("res://assets/sfx/rifle_shooting.mp3")
 	elif sound == "chickpea_mortar_launch":
 		sfx_player.stream = load("res://assets/sfx/incoming_mortar_no_explosion.mp3")
 	elif sound == "chickpea_mortar_explosion":
