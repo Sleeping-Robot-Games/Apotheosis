@@ -66,6 +66,7 @@ func attack():
 
 func shoot():
 	if 'Alt' in name:
+		g.play_sfx(level, "chickpea_mortar_launch")
 		var bullet = rigid_bullet_scene.instance()
 		bullet.global_position = global_position
 		bullet.direction = direction
@@ -170,7 +171,3 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_HurtRedTimer_timeout():
 	$Sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
-
-func _on_AnimationPlayer_animation_started(anim_name):
-	if g.parse_enemy_name(name) == "chickpeaalt" and anim_name == "chickpeaAttack":
-		g.play_sfx(level, "chickpea_mortar_launch")

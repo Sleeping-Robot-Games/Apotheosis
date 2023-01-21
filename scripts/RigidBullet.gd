@@ -4,6 +4,7 @@ var direction = 1
 var damage = 2
 var speed = 420
 var exploded = false
+onready var level = get_parent()
 
 func _ready():
 	var x = speed * direction
@@ -28,7 +29,9 @@ func show_and_play_explody():
 	else:
 		$ExplodyAir.visible = true
 		$ExplodyAir.play()
+	
 	$AnimatedSprite.visible = false
+	g.play_sfx(level, "chickpea_mortar_explosion")
 
 func _on_Explody_animation_finished():
 	queue_free()
