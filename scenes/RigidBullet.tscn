@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/bullet/bullet001_2.png" type="Texture" id=1]
 [ext_resource path="res://assets/bullet/bullet001_4.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/bullet/bullet001_6.png" type="Texture" id=6]
 [ext_resource path="res://scripts/RigidBullet.gd" type="Script" id=7]
 [ext_resource path="res://resources/air_explody.tres" type="SpriteFrames" id=8]
+[ext_resource path="res://resources/floor_explody.tres" type="SpriteFrames" id=9]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 7.0
@@ -48,9 +49,14 @@ collision_mask = 9
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 3 )
 
-[node name="Explody" type="AnimatedSprite" parent="."]
+[node name="ExplodyAir" type="AnimatedSprite" parent="."]
 visible = false
 frames = ExtResource( 8 )
+speed_scale = 3.0
+
+[node name="ExplodyFloor" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -26 )
+frames = ExtResource( 9 )
 speed_scale = 3.0
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
@@ -60,4 +66,5 @@ cast_to = Vector2( 0, 13 )
 collision_mask = 8
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="animation_finished" from="Explody" to="." method="_on_Explody_animation_finished"]
+[connection signal="animation_finished" from="ExplodyAir" to="." method="_on_Explody_animation_finished"]
+[connection signal="animation_finished" from="ExplodyFloor" to="." method="_on_Explody_animation_finished"]

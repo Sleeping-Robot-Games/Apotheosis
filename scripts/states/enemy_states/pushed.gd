@@ -16,8 +16,9 @@ var push_force = 200
 func enter():
 	.enter()
 	
-	pushed_start = actor.global_position.x
 	actor.can_attack = false
+	
+	pushed_start = actor.global_position.x
 	push_force = actor.push_force_override if actor.push_force_override > 0 else baseline_push_force
 
 func physics_process(_delta: float) -> BaseState:
@@ -64,4 +65,4 @@ func physics_process(_delta: float) -> BaseState:
 func exit():
 	.exit()
 	
-	actor.can_attack = true
+	actor.can_attack = false

@@ -7,6 +7,11 @@ onready var bgm = $BGM
 onready var kill_combo = $HUD/KillCombo
 onready var killstreak_fx = $HUD/Killstreak
 
+func _ready():
+	get_node("Tower1").hide()
+	get_node("Tower2").hide()
+	get_node("Tower3").hide()
+
 func increment_killstreak():
 	#print(g.new_timestamp() + " enemy killed incrementing combo")
 	g.current_killstreak += 1
@@ -44,3 +49,8 @@ func show_offscreen(player_key):
 
 func hide_offscreen(player_key):
 	game.get_node("offscreen" + player_key).visible = false
+
+
+func _on_EnemyHeatTimer_timeout():
+	## Polls total_kills to set the progress bar and update spawners
+	$HUD/ProgressBar.value = g.total_kills

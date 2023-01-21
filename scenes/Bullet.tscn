@@ -60,26 +60,26 @@ script = ExtResource( 2 )
 
 [node name="001" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-frame = 2
 playing = true
 offset = Vector2( 3, 0 )
 
 [node name="002" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 3 )
+frame = 4
 playing = true
 offset = Vector2( 3, 0 )
 
 [node name="003" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 4 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="004" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 5 )
-frame = 1
+frame = 2
 playing = true
 offset = Vector2( 2, 0 )
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=139 format=2]
+[gd_scene load_steps=137 format=2]
 
 [ext_resource path="res://scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HealingConsole.tscn" type="PackedScene" id=2]
@@ -20,7 +20,6 @@
 [ext_resource path="res://assets/background/starsb.tres" type="Texture" id=18]
 [ext_resource path="res://assets/towerb.png" type="Texture" id=19]
 [ext_resource path="res://scenes/JumpPad.tscn" type="PackedScene" id=20]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scripts/Camera.gd" type="Script" id=22]
 [ext_resource path="res://scenes/TowerConsole.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/background/wallart.png" type="Texture" id=24]
@@ -29,7 +28,6 @@
 [ext_resource path="res://assets/background/easteregg.png" type="Texture" id=27]
 [ext_resource path="res://assets/background/walldeco.png" type="Texture" id=28]
 [ext_resource path="res://scenes/Torch.tscn" type="PackedScene" id=29]
-[ext_resource path="res://scenes/enemies/Chickpea.tscn" type="PackedScene" id=30]
 
 [sub_resource type="TileSet" id=3]
 0/name = "skycolor.png 0"
@@ -4320,19 +4318,19 @@ texture = ExtResource( 10 )
 position = Vector2( 127, 401 )
 texture = ExtResource( 14 )
 
-[node name="TowerA" type="Sprite" parent="."]
+[node name="Tower1" type="Sprite" parent="."]
 modulate = Color( 0.568627, 0.54902, 0.588235, 1 )
 position = Vector2( 481, 753 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 13 )
 
-[node name="TowerB" type="Sprite" parent="."]
+[node name="Tower2" type="Sprite" parent="."]
 modulate = Color( 0.552941, 0.439216, 0.439216, 1 )
 position = Vector2( 481, 497 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 19 )
 
-[node name="TowerC" type="Sprite" parent="."]
+[node name="Tower3" type="Sprite" parent="."]
 modulate = Color( 0.568627, 0.54902, 0.588235, 1 )
 position = Vector2( 481, 113 )
 scale = Vector2( 2, 2 )
@@ -4516,9 +4514,11 @@ position = Vector2( -736, 513 )
 
 [node name="TowerConsole2" parent="TowerConsoles" instance=ExtResource( 23 )]
 position = Vector2( -743, 240 )
+tower_console_number = 2
 
 [node name="TowerConsole3" parent="TowerConsoles" instance=ExtResource( 23 )]
 position = Vector2( -743, 0 )
+tower_console_number = 3
 
 [node name="JumpPads" type="Node2D" parent="."]
 
@@ -4530,7 +4530,7 @@ jump_force_multiplier = 2.0
 position = Vector2( -673, 1602 )
 jump_force_multiplier = 4.1
 
-[node name="JumpPad4" parent="JumpPads" instance=ExtResource( 20 )]
+[node name="TowerJumpPad" parent="JumpPads" instance=ExtResource( 20 )]
 position = Vector2( 1263, 867 )
 jump_force_multiplier = 2.2
 disabled = true
@@ -4569,31 +4569,7 @@ jump_force_multiplier = 2.0
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Chickpea" parent="Enemies" instance=ExtResource( 29 )]
-position = Vector2( 648, 862 )
-
-[node name="Chickpea" parent="Enemies" instance=ExtResource( 30 )]
-position = Vector2( -362, 857 )
-
-[node name="Chickpea2" parent="Enemies" instance=ExtResource( 30 )]
-position = Vector2( -338, 861 )
-
-[node name="Chickpea3" parent="Enemies" instance=ExtResource( 30 )]
-position = Vector2( -322, 866 )
-
-[node name="Chickpea4" parent="Enemies" instance=ExtResource( 30 )]
-position = Vector2( -292, 862 )
-
-[node name="Chickpea5" parent="Enemies" instance=ExtResource( 30 )]
-position = Vector2( 179, 1050 )
-
-[node name="Chickpea6" parent="Enemies" instance=ExtResource( 30 )]
-position = Vector2( -411, 858 )
-
 [node name="Players" type="Node2D" parent="."]
-
-[node name="Player" parent="Players" instance=ExtResource( 21 )]
-position = Vector2( 396, 861 )
 
 [node name="PlayerSpawnPoints" type="Node2D" parent="."]
 
@@ -4601,7 +4577,8 @@ position = Vector2( 396, 861 )
 position = Vector2( 469, -125 )
 
 [node name="Spawner" parent="EnemySpawnPoints" instance=ExtResource( 25 )]
-position = Vector2( 329, 988 )
+position = Vector2( 290, 986 )
+enemy_name = "chickpea"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 42 )
@@ -4647,5 +4624,24 @@ material = SubResource( 77 )
 process_material = SubResource( 81 )
 texture = ExtResource( 5 )
 
+[node name="ProgressBar" type="ProgressBar" parent="HUD"]
+margin_left = 829.0
+margin_top = 34.0
+margin_right = 942.0
+margin_bottom = 57.0
+max_value = 1000.0
+
+[node name="Label" type="Label" parent="HUD/ProgressBar"]
+margin_left = -6.0
+margin_top = -20.0
+margin_right = 113.0
+margin_bottom = -6.0
+text = "Enemy Heat Meter"
+
+[node name="EnemyHeatTimer" type="Timer" parent="HUD/ProgressBar"]
+autostart = true
+
 [node name="SpawnPoint" type="Position2D" parent="."]
-position = Vector2( 245, 859 )
+position = Vector2( 681, 860 )
+
+[connection signal="timeout" from="HUD/ProgressBar/EnemyHeatTimer" to="." method="_on_EnemyHeatTimer_timeout"]

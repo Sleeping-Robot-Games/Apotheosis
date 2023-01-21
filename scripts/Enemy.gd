@@ -12,7 +12,7 @@ export var type: String = 'range'
 export var hp = 15
 export var attack_time: float = 1.0
 export var roll_time: float = 1.0
-export var start_attack_time: float = 0.5
+export var start_attack_time: float = 0
 export var bullet_speed: int = 5
 
 var velocity = Vector2()
@@ -59,6 +59,7 @@ func attack():
 	if g.parse_enemy_name(name) != 'chumba':
 		$AnimationPlayer.play(g.parse_enemy_name(name).replace('alt', '')+'Attack')
 	if type == 'range':
+		yield(get_tree().create_timer(0.5), "timeout")
 		shoot()
 	else:
 		target.dmg(1)
@@ -102,6 +103,7 @@ func dmg(num):
 		$Sprite.modulate = Color(1.0, 0.0, 0.0, 1.0)
 		$HurtRedTimer.start()
 		if hp <= 0:
+			g.total_kills += 1
 			is_dead = true
 			if g.parse_enemy_name(enemy_name) == "chickpea":
 				## TODO: Make this a function
@@ -128,22 +130,24 @@ func drop_scrap():
 		new_scrap.global_position = global_position
 		level.add_child(new_scrap)
 
+
 func _on_DetectionArea_body_entered(body):
-	if can_attack:
-		if body.is_in_group('players') and body.hp > 0:
-			target = body
+	if body.is_in_group('players') and body.hp > 0:
+		target = body
+		$AttackArea.monitoring = true
+
 
 func _on_DetectionArea_body_exited(body):
 	if body.is_in_group('players')  and body == target:
 		target = null
 
 func _on_AttackArea_body_entered(body):
-	if can_attack:
-		if body.is_in_group('players') and body == target:
-			if g.parse_enemy_name(name) == 'chumba':
-				chumba_boi_hit = true
-				attack()
-			is_attacking = true
+	print(body)
+	if body.is_in_group('players') and body == target:
+		if g.parse_enemy_name(name) == 'chumba':
+			chumba_boi_hit = true
+			attack()
+		is_attacking = true
 
 func _on_AttackArea_body_exited(body):
 	if body.is_in_group('players') :

@@ -16,6 +16,7 @@ var prev_direction
 func enter() -> void:
 	.enter()
 	current_attack_time = actor.start_attack_time
+	print('current_attack_time', current_attack_time)
 	## TODO: Maybe remove this so the player doesn't get attacked right away
 	# actor.attack()
 

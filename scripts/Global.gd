@@ -4,6 +4,8 @@ var random = RandomNumberGenerator.new()
 
 var killstreak_threshold = 5
 var current_killstreak = 0
+var tower_state = 0
+var total_kills = 0
 
 var player_input_devices = {
 	'p1': 'keyboard',
