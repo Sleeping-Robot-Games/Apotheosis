@@ -203,6 +203,7 @@ func use_scope():
 	
 	can_use_scope = false
 	var count = 0
+	g.play_sfx(level, "multishot")
 	for enemy in scope_range_bodies:
 		if enemy and not enemy.is_dead and count < rank_mods[rank].Targets:
 			var crosshair_instance = crosshair_scene.instance()
