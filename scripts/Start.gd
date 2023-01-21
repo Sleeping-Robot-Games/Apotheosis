@@ -12,6 +12,7 @@ func _ready():
 	g.player_input_devices["p1"] = "keyboard"
 	handle_new_input()
 	$Splash/SrgSplash/AnimationPlayer.play("SRG")
+	$BGHolder/Apotheosis/AnimationPlayer.play("glow")
 
 func _input(event):
 	# keyboard
