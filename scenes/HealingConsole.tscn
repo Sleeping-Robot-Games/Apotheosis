@@ -133,7 +133,6 @@ text = "Press      to Heal"
 visible = false
 position = Vector2( 47, 7 )
 frames = SubResource( 22 )
-frame = 1
 playing = true
 
 [node name="Key" type="Sprite" parent="Label"]

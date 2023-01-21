@@ -4601,7 +4601,7 @@ position = Vector2( 396, 861 )
 position = Vector2( 469, -125 )
 
 [node name="Spawner" parent="EnemySpawnPoints" instance=ExtResource( 25 )]
-position = Vector2( 332, 996 )
+position = Vector2( 329, 988 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 42 )
@@ -4648,4 +4648,4 @@ process_material = SubResource( 81 )
 texture = ExtResource( 5 )
 
 [node name="SpawnPoint" type="Position2D" parent="."]
-position = Vector2( 540, 864 )
+position = Vector2( 245, 859 )

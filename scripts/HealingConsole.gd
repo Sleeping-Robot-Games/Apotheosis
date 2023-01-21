@@ -26,7 +26,7 @@ func _input(event):
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group('players') and not heal_receiver:
-		if body.scrap >= scrap_cost:
+		if body.max_hp != body.hp and body.scrap >= scrap_cost:
 			heal_receiver = body
 			var key = "kb_up.png" if heal_receiver.controller_id == "kb" else "dpad_up.png"
 			$Label/Key.texture = load("res://assets/ui/keys/" + key)
