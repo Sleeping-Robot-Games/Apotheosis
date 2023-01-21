@@ -1,4 +1,4 @@
-[gd_scene load_steps=161 format=2]
+[gd_scene load_steps=162 format=2]
 
 [ext_resource path="res://scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HealingConsole.tscn" type="PackedScene" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://assets/background/easteregg.png" type="Texture" id=27]
 [ext_resource path="res://assets/background/walldeco.png" type="Texture" id=28]
 [ext_resource path="res://scenes/Torch.tscn" type="PackedScene" id=29]
+[ext_resource path="res://scenes/enemies/Chickpea.tscn" type="PackedScene" id=30]
 
 [sub_resource type="TileSet" id=3]
 0/name = "skycolor.png 0"
@@ -4834,17 +4835,14 @@ tile_data = PoolIntArray( 3014572, 12, 0, 3014573, 13, 0, 4849683, 10, 0, 530845
 
 [node name="Torch" parent="Wall/WallDeco" instance=ExtResource( 29 )]
 position = Vector2( -480, 306 )
-frame = 1
 playing = true
 
 [node name="Torch3" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -144, 0 )
-frame = 1
 playing = true
 
 [node name="Torch2" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 448, 642 )
-frame = 1
 playing = true
 
 [node name="Platform" type="TileMap" parent="."]
@@ -5050,6 +5048,9 @@ jump_force_multiplier = 2.0
 
 [node name="ChickpeaAlt" parent="Enemies" instance=ExtResource( 25 )]
 position = Vector2( 751, 864 )
+
+[node name="Chickpea" parent="Enemies" instance=ExtResource( 30 )]
+position = Vector2( -362, 857 )
 
 [node name="Players" type="Node2D" parent="."]
 
