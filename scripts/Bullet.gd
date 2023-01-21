@@ -7,8 +7,14 @@ var victims: String
 var piercing = false
 var damage = 1
 var body_found = false
+var sprite = "001"
 
 func _ready():
+	get_node(sprite).visible = true
+	prep_bullet()
+	scale.x = 1 if speed < 0 else -1
+
+func prep_bullet():
 	if shot_by == 'player':
 		victims = 'enemies'
 		$Area2D.set_collision_mask_bit(2 , true) # enemies
@@ -17,8 +23,16 @@ func _ready():
 		victims = 'players'
 		$Area2D.set_collision_mask_bit(2 , false)
 		$Area2D.set_collision_mask_bit(0 , true)
-		$Area2D.set_collision_mask_bit(7 , true)
-	
+
+func reflect():
+	print("REFLECTING BULLET")
+	shot_by = "player" if shot_by == "enemy" else "enemy"
+	prep_bullet()
+	# change bullet sprite to 002 and reverse direction
+	get_node(sprite).visible = false
+	sprite = "002"
+	get_node(sprite).visible = true
+	speed *= -1
 	scale.x = 1 if speed < 0 else -1
 
 func _physics_process(_delta):

@@ -27,7 +27,7 @@ var jump_padding = false
 var player_key = "p1"
 var controller_id = "kb"
 var prev_anim = ""
-var scrap = 600
+var scrap = 0
 var scope_range_bodies = []
 var tank_range_bodies = []
 var upgrade_cost = [10, 10, 10, 10, 2000]
@@ -58,6 +58,10 @@ func _ready():
 	max_hp = hp
 	dmg_color = g.get_player_color(player_key, 2)
 	states.init(self)
+
+# TODO: remove
+func _on_DevTimer_timeout():
+	get_scrap(2000)
 
 func _input(event):
 	if fab_menu_open == false and event.is_action_pressed("fab_" + str(controller_id)):
@@ -199,8 +203,8 @@ func flicker_laser():
 	$BarrelFlickerTween.interpolate_property($BarrelShot/Laser, "modulate:a", 0, 1.0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$BarrelFlickerTween.start()
 
-func get_scrap():
-	scrap += 10
+func get_scrap(amount = 10):
+	scrap += amount
 	g.player_ui[player_key].set_scrap(scrap)
 	$FabMenu.refresh()
 	show_debug_label('scrap: ' + str(scrap))

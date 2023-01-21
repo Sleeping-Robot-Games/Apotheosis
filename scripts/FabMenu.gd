@@ -35,16 +35,24 @@ var fab_menu_options = {
 		{"Cost": 900, "Rank": 4, "Title": "Sniper +4", "Desc": "DMG: 10\nCD: 10"}
 	],
 	"Ability4": [
-		{"Cost": 150, "Rank": 0, "Title": "Shockwave", "Desc": "DMG: 1\nCD: 10"},
-		{"Cost": 250, "Rank": 1, "Title": "Shockwave +1", "Desc": "DMG: 2\nCD: 10"},
-		{"Cost": 350, "Rank": 2, "Title": "Shockwave +2", "Desc": "DMG: 3\nCD: 10"},
-		{"Cost": 450, "Rank": 3, "Title": "Shockwave +3", "Desc": "DMG: 4\nCD: 10"},
-		{"Cost": 550, "Rank": 4, "Title": "Shockwave +4", "Desc": "DMG: 5\nCD: 10"}
+		{"Cost": 150, "Rank": 0, "Title": "Shockwave", "Desc": "DMG: 1\nPush Force: 1"},
+		{"Cost": 250, "Rank": 1, "Title": "Shockwave +1", "Desc": "DMG: 2\nPush Force: 1\n>>Absorb Bullets"},
+		{"Cost": 350, "Rank": 2, "Title": "Shockwave +2", "Desc": "DMG: 3\nPush Force: 1\n>>Reflect Bullets"},
+		{"Cost": 450, "Rank": 3, "Title": "Shockwave +3", "Desc": "DMG: 4\nPush Force: 2\n>>Reflect Bullets"},
+		{"Cost": 550, "Rank": 4, "Title": "Shockwave +4", "Desc": "DMG: 5\nPush Force: 3\n>>Reflect Bullets"}
 	],
 	"Ability5": [
 		{"Cost": 120, "Rank": 0, "Title": "RNG", "Desc": "Passive Buff!\nRoll the dice"}
 	]
 }
+
+var fab_menu_maxed_options = {
+	"Ability1": {"Cost": 500, "Rank": 4, "Title": "Flamethrower +4", "Desc": "DMG: 10\nCD: 10"},
+	"Ability2": {"Cost": 600, "Rank": 4, "Title": "Multishot +4", "Desc": "DMG: 7\nCD: 10"},
+	"Ability3": {"Cost": 900, "Rank": 4, "Title": "Sniper +4", "Desc": "DMG: 10\nCD: 10"},
+	"Ability4": {"Cost": 550, "Rank": 4, "Title": "Shockwave +4", "Desc": "DMG: 5\nPush Force: 3\n>>Reflect Bullets"},
+}
+
 var green = Color(0.04, 0.52, 0.11, 1.0)
 var red = Color(0.52, 0.04, 0.04, 1.0)
 var yellow = Color(0.88, 0.77, 0.23, 1.0)
@@ -169,21 +177,32 @@ func select_current():
 		get_node(current_selection+"/Selection").visible = true
 		get_node(current_selection).modulate.a = 1.0
 		
-		# don't render submenu if ability is maxed out?
+		var option
+		var is_maxed = false
 		if fab_menu_options[current_selection].size() == 0:
-			$PurchaseLabel.modulate.a = 0.25
-			update_purchase_btn(false)
+			is_maxed = true
+			option = fab_menu_maxed_options[current_selection]
+		else:
+			option = fab_menu_options[current_selection][0]
 		
-		var cost = fab_menu_options[current_selection][0].Cost
-		if cost > player.scrap:
+		if is_maxed:
 			$PurchaseLabel.modulate.a = 0.25
+			$SubMenu.modulate.a = 0.75
+			$SubMenuBG.modulate.a = 0.75
 			update_purchase_btn(false)
 		else:
-			$PurchaseLabel.modulate.a = 1.0
-			update_purchase_btn(true)
+			$SubMenu.modulate.a = 1.0
+			$SubMenuBG.modulate.a = 1.0
+			var cost = option.Cost
+			if cost > player.scrap:
+				$PurchaseLabel.modulate.a = 0.25
+				update_purchase_btn(false)
+			else:
+				$PurchaseLabel.modulate.a = 1.0
+				update_purchase_btn(true)
 		
-		$SubMenu/Title.text = fab_menu_options[current_selection][0].Title
-		$SubMenu/Desc.text = fab_menu_options[current_selection][0].Desc
+		$SubMenu/Title.text = option.Title
+		$SubMenu/Desc.text = option.Desc
 		$SubMenu.visible = true
 		$SubMenuBG.visible = true
 		if current_selection == "Ability5":

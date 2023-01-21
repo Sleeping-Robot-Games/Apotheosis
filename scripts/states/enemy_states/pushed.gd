@@ -16,7 +16,7 @@ var push_force = 200
 func enter():
 	.enter()
 	
-	pushed_start = actor.global_position.x + (actor.push_direction * 10)
+	pushed_start = actor.global_position.x
 	actor.can_attack = false
 	push_force = actor.push_force_override if actor.push_force_override > 0 else baseline_push_force
 
@@ -28,8 +28,10 @@ func physics_process(_delta: float) -> BaseState:
 	actor.velocity.x = push_force * actor.push_direction
 	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
 	
-	pushed_distance = abs(actor.global_position.x) - pushed_start
-	if abs(pushed_distance) > actor.push_distance:
+	var smaller_x = min(actor.global_position.x, pushed_start)
+	var bigger_x = max(actor.global_position.x, pushed_start)
+	var pushed_distance = abs(abs(bigger_x) - abs(smaller_x))
+	if pushed_distance > actor.push_distance:
 		actor.is_pushed = false
 		
 		if not actor.is_on_floor():
