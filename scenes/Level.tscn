@@ -4364,14 +4364,17 @@ tile_data = PoolIntArray( 3014572, 12, 0, 3014573, 13, 0, 4849683, 10, 0, 530845
 
 [node name="Torch" parent="Wall/WallDeco" instance=ExtResource( 29 )]
 position = Vector2( -480, 306 )
+frame = 1
 playing = true
 
 [node name="Torch3" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -144, 0 )
+frame = 1
 playing = true
 
 [node name="Torch2" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 448, 642 )
+frame = 1
 playing = true
 
 [node name="Platform" type="TileMap" parent="."]
