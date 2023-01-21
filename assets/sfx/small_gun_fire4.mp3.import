@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/small_gun_fire4.mp3-39c9e0b76648ef56edf2007f1c58c722.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/small_gun_fire4.mp3"
+dest_files=[ "res://.import/small_gun_fire4.mp3-39c9e0b76648ef56edf2007f1c58c722.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
