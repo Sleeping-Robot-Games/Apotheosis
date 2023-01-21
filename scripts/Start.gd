@@ -11,6 +11,7 @@ var pressed_button = null
 func _ready():
 	g.player_input_devices["p1"] = "keyboard"
 	handle_new_input()
+	$Splash/SrgSplash/AnimationPlayer.play("SRG")
 
 func _input(event):
 	# keyboard

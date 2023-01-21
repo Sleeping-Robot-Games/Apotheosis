@@ -10,7 +10,6 @@ onready var button_mappings = {
 }
 var current_selection = "Ability1"
 
-# TODO: include push force for energy pulse, replace CD on all abilities with range?
 var fab_menu_options = {
 	"Ability1": [
 		{"Cost": 100, "Rank": 0, "Title": "Flamethrower", "Desc": "DMG: 2\nSize: 1x\nDuration: 4s"},
