@@ -5618,7 +5618,7 @@ text = "Enemy Heat Meter"
 autostart = true
 
 [node name="SpawnPoint" type="Position2D" parent="."]
-position = Vector2( 822, 867 )
+position = Vector2( 643, 855 )
 
 [connection signal="tween_all_completed" from="FadeOutTween" to="." method="_on_FadeOutTween_tween_all_completed"]
 [connection signal="timeout" from="KillstreakTimer" to="." method="_on_KillstreakTimer_timeout"]
