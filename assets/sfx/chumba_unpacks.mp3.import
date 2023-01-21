@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/chumba_unpacks.mp3-66413f8c6422c268bc08ed64a50c8b83.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/chumba_unpacks.mp3"
+dest_files=[ "res://.import/chumba_unpacks.mp3-66413f8c6422c268bc08ed64a50c8b83.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/player_getting_hit_error.mp3-34f517cd136f307daf9f700e0a26800f.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/player_getting_hit_error.mp3"
+dest_files=[ "res://.import/player_getting_hit_error.mp3-34f517cd136f307daf9f700e0a26800f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

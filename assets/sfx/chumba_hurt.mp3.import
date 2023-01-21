@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/chumba_hurt.mp3-7e5bfe6ed184bc28133baddb00b24c2f.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/chumba_hurt.mp3"
+dest_files=[ "res://.import/chumba_hurt.mp3-7e5bfe6ed184bc28133baddb00b24c2f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

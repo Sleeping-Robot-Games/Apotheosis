@@ -131,6 +131,7 @@ func dmg(num):
 			ui_disabled = true
 			g.play_sfx(level, "player_death")
 		else:
+			g.play_sfx(level, "player_hit")
 			if states.current_state.name == 'run':
 				$AnimationPlayer.play('runHurt'+direction_string) 
 			else:

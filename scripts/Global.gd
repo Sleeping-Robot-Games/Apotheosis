@@ -107,6 +107,8 @@ func play_sfx(parent, sound, db_overide = 0):
 	
 	if sound == "player_death":
 		sfx_player.stream = load("res://assets/sfx/death_sound.mp3")
+	elif sound == "player_hit":
+		sfx_player.stream = load("res://assets/sfx/player_getting_hit_error.mp3")
 	elif sound == "player_dash":
 		random.randomize()
 		var n = random.randi_range(1, 2)
