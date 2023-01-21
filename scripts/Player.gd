@@ -142,7 +142,7 @@ func shoot():
 	$ShootCD.start()
 	if states.current_state.name == 'dash':
 		return
-	g.play_sfx(level, "player_shoot")
+	g.play_sfx(level, "player_shoot", -10)
 	var bullet = bullet_scene.instance()
 	bullet.shot_by = 'player'
 	bullet.global_position = Vector2(global_position.x + 40 * direction, global_position.y) 
