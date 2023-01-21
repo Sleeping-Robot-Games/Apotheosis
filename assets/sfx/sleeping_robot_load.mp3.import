@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sleeping_robot_load.mp3-e2b90e402d88297e0361dc110de5afbc.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/sleeping_robot_load.mp3"
+dest_files=[ "res://.import/sleeping_robot_load.mp3-e2b90e402d88297e0361dc110de5afbc.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
