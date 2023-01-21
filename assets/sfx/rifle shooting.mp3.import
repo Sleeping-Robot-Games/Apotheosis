@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/rifle shooting.mp3-7f6bd269782ef96ebeb63ee5878d6397.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/rifle shooting.mp3"
+dest_files=[ "res://.import/rifle shooting.mp3-7f6bd269782ef96ebeb63ee5878d6397.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
