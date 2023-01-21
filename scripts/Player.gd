@@ -66,7 +66,7 @@ func _ready():
 
 # TODO: remove
 func _on_DevTimer_timeout():
-	return
+	#return
 	get_scrap(3000)
 
 func _input(event):
@@ -185,6 +185,7 @@ func use_tank():
 	$TankRangeArea.scale = Vector2(rank_mods[rank].Size, rank_mods[rank].Size)
 	$TankRangeArea/Particles2D.emitting = true
 	$TankDuration.wait_time = rank_mods[rank].Duration
+	g.play_sfx(level, "flamethrower_" + str(rank_mods[rank].Duration))
 	$TankDuration.start()
 	$TankDoT.start()
 

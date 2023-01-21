@@ -113,6 +113,16 @@ func play_sfx(parent, sound, db_overide = 0):
 		random.randomize()
 		var n = random.randi_range(1, 2)
 		sfx_player.stream = load("res://assets/sfx/dodge"+str(n)+".mp3")
+	elif sound == "flamethrower_4":
+		sfx_player.stream = load("res://assets/sfx/throwing_flames_4_seconds.mp3")
+	elif sound == "flamethrower_5":
+		sfx_player.stream = load("res://assets/sfx/throwing_flames_5_seconds.mp3")
+	elif sound == "flamethrower_6":
+		sfx_player.stream = load("res://assets/sfx/throwing_flames_6_seconds.mp3")
+	elif sound == "flamethrower_7":
+		sfx_player.stream = load("res://assets/sfx/throwing_flames_7_seconds.mp3")
+	elif sound == "flamethrower_8":
+		sfx_player.stream = load("res://assets/sfx/throwing_flames_8_seconds.mp3")
 	elif sound == "chickpea_mortar_launch":
 		sfx_player.stream = load("res://assets/sfx/incoming_mortar_no_explosion.mp3")
 	elif sound == "chickpea_mortar_explosion":

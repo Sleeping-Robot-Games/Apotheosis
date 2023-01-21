@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/throwing_flames_5_seconds.mp3-04b9f4e0a18bfc8f165d2fb7a1f28af3.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/throwing_flames_5_seconds.mp3"
+dest_files=[ "res://.import/throwing_flames_5_seconds.mp3-04b9f4e0a18bfc8f165d2fb7a1f28af3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -177,7 +177,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func _on_HurtRedTimer_timeout():
 	$Sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
-
 func _on_AnimationPlayer_animation_started(anim_name):
 	# TODO chumba reform is never playing?
 	#print("animation player started: " + anim_name)
