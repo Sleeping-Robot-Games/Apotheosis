@@ -9,7 +9,7 @@ export (int) var speed = 50
 export (int) var chase_speed = 100
 export var type: String = 'range'
 
-export var hp = 5
+export var hp = 15
 export var attack_time: float = 1.0
 export var roll_time: float = 1.0
 export var start_attack_time: float = 0.5

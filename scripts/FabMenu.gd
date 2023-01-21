@@ -28,11 +28,11 @@ var fab_menu_options = {
 		{"Cost": 600, "Rank": 4, "Title": "Multishot +4", "Desc": "DMG: 7\nCD: 10"}
 	],
 	"Ability3": [
-		{"Cost": 300, "Rank": 0, "Title": "Sniper", "Desc": "DMG: 4\nCD: 10"},
-		{"Cost": 400, "Rank": 1, "Title": "Sniper +1", "Desc": "DMG: 5\nCD: 10"},
-		{"Cost": 500, "Rank": 2, "Title": "Sniper +2", "Desc": "DMG: 6\nCD: 10"},
-		{"Cost": 600, "Rank": 3, "Title": "Sniper +3", "Desc": "DMG: 7\nCD: 10"},
-		{"Cost": 900, "Rank": 4, "Title": "Sniper +4", "Desc": "DMG: 10\nCD: 10"}
+		{"Cost": 300, "Rank": 0, "Title": "Sniper", "Desc": "DMG: 4\nPiercing: 1"},
+		{"Cost": 400, "Rank": 1, "Title": "Sniper +1", "Desc": "DMG: 5\nPiercing: 2"},
+		{"Cost": 500, "Rank": 2, "Title": "Sniper +2", "Desc": "DMG: 6\nPiercing: 3"},
+		{"Cost": 600, "Rank": 3, "Title": "Sniper +3", "Desc": "DMG: 7\nPiercing: 4"},
+		{"Cost": 900, "Rank": 4, "Title": "Sniper +4", "Desc": "DMG: 10\nPiercing: 5"}
 	],
 	"Ability4": [
 		{"Cost": 150, "Rank": 0, "Title": "Shockwave", "Desc": "DMG: 1\nPush Force: 1"},

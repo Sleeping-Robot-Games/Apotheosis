@@ -37,7 +37,10 @@ var fabricating_progress = 0
 var jump_force_multiplier = 2
 # TODO: other RNG mods (push, piercing, etc)
 var bullet_mods = {
-	"damage": 1,
+	"Damage": 1,
+	"Piercing": 0,
+	"PushForce": 0,
+	"PushDistance": 0,
 }
 
 onready var states = $state_manager
@@ -61,7 +64,7 @@ func _ready():
 
 # TODO: remove
 func _on_DevTimer_timeout():
-	get_scrap(2000)
+	get_scrap(3000)
 
 func _input(event):
 	if fab_menu_open == false and event.is_action_pressed("fab_" + str(controller_id)):
@@ -149,16 +152,16 @@ func barrel_shoot():
 	bullet.speed = bullet_speed * direction
 	bullet.get_node("001").visible = false
 	bullet.get_node("003").visible = true
-	var rank = g.ability_ranks[player_key]["Ability3"]
-	var damage = {
-		0: 4,
-		1: 5,
-		2: 6,
-		3: 7,
-		4: 10
-	}
-	bullet.damage = damage[rank]
-	bullet.piercing = true
+	var rank = g.ability_ranks[player_key]["Ability3"]	
+	var rank_mods = {
+		0: {"Damage": 4, "Piercing": 1,},
+		1: {"Damage": 5, "Piercing": 2,},
+		2: {"Damage": 6, "Piercing": 3,},
+		3: {"Damage": 7, "Piercing": 4,},
+		4: {"Damage": 10, "Piercing": 5,},
+	}	
+	bullet.damage = rank_mods[rank].Damage
+	bullet.piercing = rank_mods[rank].Piercing
 	level.call_deferred('add_child', bullet)
 
 func use_tank():

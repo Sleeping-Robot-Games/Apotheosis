@@ -4,7 +4,7 @@ var speed = 15
 
 var shot_by: String = 'player'
 var victims: String
-var piercing = false
+var piercing = 0
 var damage = 1
 var body_found = false
 var sprite = "001"
@@ -51,7 +51,9 @@ func _on_Area2D_body_entered(body):
 		if shot_by == "player" and g.current_killstreak >= g.killstreak_threshold:
 			damage = damage * 2
 		body.dmg(damage)
-		if piercing == false:
+		if piercing > 0:
+			piercing -= 1
+		else:
 			queue_free()
 	elif not body.has_method("dmg"): # aka if body is a wall
 		queue_free()
