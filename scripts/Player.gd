@@ -225,6 +225,7 @@ func use_barrel():
 
 func use_stock():
 	can_use_stock = false
+	g.play_sfx(level, "energy_pulse")
 	g.player_ui[player_key].ability_cooldown("Ability4", $StockCD.wait_time)
 	$StockCD.start()
 	var energy_pulse_instance = energy_pulse_scene.instance()
