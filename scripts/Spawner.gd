@@ -4,24 +4,24 @@ var random = RandomNumberGenerator.new()
 
 export var enemy_name = ""
 export var tower_state = 0
+export var boi_count = 3
 
 var enemy_scene
 var interval
 var my_bois = []
 
 func _ready():
-	return
 	random.randomize()
 	
 	interval = random.randi_range(20, 25)
 	
 	if enemy_name:
-		$Timer.wait_time = 1
+		$Timer.wait_time = interval #1
 		enemy_scene = load("res://scenes/enemies/"+ enemy_name[0].to_upper() + enemy_name.substr(1,-1) +".tscn")
 		$Timer.start()
 
 func _on_Timer_timeout():
-	if tower_state >= g.tower_state and my_bois.size() < 5:
+	if tower_state >= g.tower_state and my_bois.size() <= boi_count:
 		interval = interval - (g.total_kills * (interval - 2) / 1000)
 		$Timer.wait_time = interval
 		var new_enemy = enemy_scene.instance()

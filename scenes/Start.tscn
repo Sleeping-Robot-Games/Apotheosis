@@ -840,10 +840,6 @@ tracks/0/keys = {
 "values": [ Color( 0.65098, 0.862745, 0.87451, 1 ), Color( 0.65098, 0.862745, 0.87451, 1 ), Color( 0.768627, 0.913725, 0.921569, 1 ), Color( 0.905882, 0.960784, 0.964706, 1 ), Color( 0.768627, 0.913725, 0.921569, 1 ), Color( 0.65098, 0.862745, 0.87451, 1 ), Color( 0.65098, 0.862745, 0.87451, 0.6 ) ]
 }
 
-[sub_resource type="DynamicFont" id=12]
-size = 10
-font_data = ExtResource( 20 )
-
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 14 ), ExtResource( 19 ), ExtResource( 15 ), ExtResource( 18 ), ExtResource( 17 ), ExtResource( 16 ) ],
@@ -860,13 +856,101 @@ font_data = ExtResource( 20 )
 size = 32
 font_data = ExtResource( 20 )
 
+[sub_resource type="Animation" id=12]
+resource_name = "SRG"
+length = 4.8
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 2.4, 2.6, 2.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sleeping:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.4, 3.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sleeping:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.4, 1.6, 2, 2.4, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 0.666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.666667 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Robot:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.2, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Robot:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1.2, 1.4, 1.8, 2, 2.2, 3, 3.2, 3.6, 3.8, 4, 4.2, 4.4, 4.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 0.666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.666667 ), Color( 1, 1, 1, 0.333333 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Games:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Games:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 1, 1.2, 1.6, 1.8, 2, 2.8, 3, 3.6, 3.8, 4, 4.2, 4.4, 4.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 0.666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.666667 ), Color( 1, 1, 1, 0.333333 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
 [node name="Start" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 79, 54 )
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false,
 "_edit_vertical_guides_": [ 480.0 ]
 }
 
@@ -924,28 +1008,21 @@ method_call_mode = 1
 anims/RESET = SubResource( 10 )
 anims/glow = SubResource( 11 )
 
-[node name="Apotheosis2" type="Label" parent="BGHolder"]
-margin_left = 236.0
-margin_top = 483.0
-margin_right = 482.0
-margin_bottom = 495.0
-rect_scale = Vector2( 2, 2 )
-custom_colors/font_color = Color( 0.65098, 0.862745, 0.87451, 1 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 12 )
-text = "Controller Recommended"
-align = 1
-
 [node name="StartButton" type="TextureButton" parent="."]
 margin_left = 447.0
 margin_top = 348.0
 margin_right = 497.0
 margin_bottom = 368.0
 rect_scale = Vector2( 2, 1.5 )
+focus_mode = 0
+enabled_focus_mode = 0
 texture_normal = ExtResource( 24 )
 texture_pressed = ExtResource( 23 )
 texture_hover = ExtResource( 25 )
 texture_focused = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="StartButton"]
 margin_left = 1.5
@@ -964,6 +1041,8 @@ margin_top = 382.0
 margin_right = 492.0
 margin_bottom = 402.0
 rect_scale = Vector2( 2, 1.5 )
+focus_mode = 0
+enabled_focus_mode = 0
 texture_normal = ExtResource( 24 )
 texture_pressed = ExtResource( 23 )
 texture_hover = ExtResource( 25 )
@@ -1070,6 +1149,7 @@ text = "Games"
 align = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Splash/SrgSplash"]
+anims/SRG = SubResource( 12 )
 
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]

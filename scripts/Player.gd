@@ -68,7 +68,7 @@ func _ready():
 
 # TODO: remove
 func _on_DevTimer_timeout():
-	#return
+	return
 	get_scrap(3000)
 
 func _input(event):

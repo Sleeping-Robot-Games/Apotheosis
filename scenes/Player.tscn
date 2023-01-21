@@ -3112,7 +3112,7 @@ anims/runShootRight = SubResource( 34 )
 [node name="state_manager" parent="." instance=ExtResource( 3 )]
 
 [node name="ShootCD" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.3
 one_shot = true
 
 [node name="ScopeRangeArea" type="Area2D" parent="."]

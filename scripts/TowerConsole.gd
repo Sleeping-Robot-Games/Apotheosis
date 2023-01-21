@@ -27,8 +27,7 @@ func _input(event):
 						owner.get_node('Tower' + str(tower_console_number)).show()
 						$Label.visible = false
 						$InteractLabel.visible = false
-						if tower_console_number == 1:
-							enable_jump_pad()
+						enable_jump_pad(tower_console_number)
 			elif scrap_required == 0:
 				if any_player_has_the_component():
 					component_delivered = true
@@ -36,8 +35,7 @@ func _input(event):
 					owner.get_node('Tower' + str(tower_console_number)).show()
 					$Label.visible = false
 					$InteractLabel.visible = false
-					if tower_console_number == 1:
-						enable_jump_pad()
+					enable_jump_pad(tower_console_number)
 				else:
 					$Label.text = 'Critical Component required'
 
@@ -72,6 +70,6 @@ func _on_Area2D_body_exited(body):
 		$InteractLabel.visible = false
 		player = null
 
-func enable_jump_pad():
-	owner.get_node('JumpPads/TowerJumpPad').disabled = false
-	owner.get_node('JumpPads/TowerJumpPad/AnimatedSprite').playing = true
+func enable_jump_pad(stage):
+	owner.get_node('JumpPads/TowerJumpPad'+str(stage)).disabled = false
+	owner.get_node('JumpPads/TowerJumpPad'+str(stage)+'/AnimatedSprite').playing = true
