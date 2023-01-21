@@ -152,14 +152,14 @@ func barrel_shoot():
 	bullet.speed = bullet_speed * direction
 	bullet.get_node("001").visible = false
 	bullet.get_node("003").visible = true
-	var rank = g.ability_ranks[player_key]["Ability3"]	
+	var rank = g.ability_ranks[player_key]["Ability3"]
 	var rank_mods = {
 		0: {"Damage": 4, "Piercing": 1,},
 		1: {"Damage": 5, "Piercing": 2,},
 		2: {"Damage": 6, "Piercing": 3,},
 		3: {"Damage": 7, "Piercing": 4,},
 		4: {"Damage": 10, "Piercing": 5,},
-	}	
+	}
 	bullet.damage = rank_mods[rank].Damage
 	bullet.piercing = rank_mods[rank].Piercing
 	level.call_deferred('add_child', bullet)
@@ -173,13 +173,24 @@ func use_tank():
 	$TankDoT.start()
 
 func use_scope():
+	var rank = g.ability_ranks[player_key]["Ability2"]
+	var rank_mods = {
+		0: {"Damage": 3, "Targets": 2,},
+		1: {"Damage": 4, "Targets": 3,},
+		2: {"Damage": 5, "Targets": 4,},
+		3: {"Damage": 6, "Targets": 5,},
+		4: {"Damage": 7, "Targets": 7,},
+	}
+	
 	can_use_scope = false
+	var count = 0
 	for enemy in scope_range_bodies:
-		if enemy and not enemy.is_dead:
+		if enemy and not enemy.is_dead and count < rank_mods[rank].Targets:
 			var crosshair_instance = crosshair_scene.instance()
-			crosshair_instance.rank = g.ability_ranks[player_key]["Ability2"]
 			crosshair_instance.target = enemy
+			crosshair_instance.damage = rank_mods[rank].Damage
 			enemy.add_child(crosshair_instance)
+			count += 1
 	g.player_ui[player_key].ability_cooldown("Ability2", $ScopeCD.wait_time)
 	$ScopeCD.start()
 
