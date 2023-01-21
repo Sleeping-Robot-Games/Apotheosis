@@ -4,6 +4,7 @@ export var tower_console_number = 1
 var player = null
 var scrap_required = 2000
 var base_required = scrap_required / 10
+var component_delivered = false
 
 func _ready():
 	scrap_required *= tower_console_number
@@ -14,13 +15,15 @@ func _ready():
 func _input(event):
 	if player != null \
 		and Input.is_action_just_pressed("interact_"+ player.controller_id) \
-		and player.scrap > 0 and player.scrap >= base_required and scrap_required != 0:
+		and player.scrap > 0 and player.scrap >= base_required:
 			player.spend_scrap(base_required) ## FOR TESTING
 			## TODO: Don't let it go negative
 			scrap_required = max(scrap_required - base_required, 0)
 			$Label.text = 'Critical Component and \n X Scrap required to \n reassemble Sat. Tower'.replace('X', str(scrap_required))
 			if scrap_required == 0:
-				if any_player_have_the_component():
+				print(any_player_has_the_component())
+				if any_player_has_the_component():
+					component_delivered = true
 					g.tower_state = tower_console_number
 					owner.get_node('Tower' + str(tower_console_number)).show()
 					$Label.visible = false
@@ -30,8 +33,9 @@ func _input(event):
 				else:
 					$Label.text = 'Critical Component required'
 
-func any_player_have_the_component():
+func any_player_has_the_component():
 	for player in owner.get_node('Players').get_children():
+		print(player.component_stage)
 		if player.component_stage == tower_console_number:
 			return true
 		return false
@@ -39,13 +43,20 @@ func any_player_have_the_component():
 ## TODO: SHOW THE RIGHT MESSAGE IF THE PLAYERS DON'T HAVE THE COMPONENT
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("players"):
-		if scrap_required != 0:
-			$Label.visible = true
-			$Label.text = 'Critical Component and \n X Scrap required to \n reassemble Sat. Tower'.replace('X', str(scrap_required))
-			var key = "kb_up.png" if body.controller_id == "kb" else "dpad_up.png"
-			$InteractLabel/Key.texture = load("res://assets/ui/keys/" + key)
-			$InteractLabel.visible = true
-			player = body
+		if scrap_required == 0 and component_delivered:
+			return
+			
+		$Label.visible = true
+		
+		if scrap_required > 0 and not component_delivered:
+			$Label.text = 'Critical Component and \n {scrap} Scrap required to \n reassemble Sat. Tower'.format({'scrap': str(scrap_required)})
+		else:
+			$Label.text = 'Critical Component required'
+		
+		var key = "kb_up.png" if body.controller_id == "kb" else "dpad_up.png"
+		$InteractLabel/Key.texture = load("res://assets/ui/keys/" + key)
+		$InteractLabel.visible = true
+		player = body
 
 func _on_Area2D_body_exited(body):
 	if body.is_in_group("players"):
