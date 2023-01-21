@@ -32,7 +32,6 @@ func _input(event):
 		var device_name = Input.get_joy_name(event.device)
 		var device_id = "joy_" + str(event.device)
 		# skip if ghost input or if input is already assigned to a player
-		print(device_name)
 		if g.ghost_inputs.has(device_name) or g.player_input_devices.values().has(device_id):
 			return
 		handle_new_input(device_id)

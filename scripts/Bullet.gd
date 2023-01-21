@@ -14,11 +14,11 @@ func _ready():
 	get_node(sprite).visible = true
 	prep_bullet()
 	scale.x = 1 if speed < 0 else -1
-	$Timer.wait_time = duration
 	$Timer.start()
 
 func prep_bullet():
 	if shot_by == 'player':
+		$Timer.wait_time = duration
 		victims = 'enemies'
 		$Area2D.set_collision_mask_bit(2 , true) # enemies
 		$Area2D.set_collision_mask_bit(0 , false) # player
@@ -26,6 +26,7 @@ func prep_bullet():
 		victims = 'players'
 		$Area2D.set_collision_mask_bit(2 , false)
 		$Area2D.set_collision_mask_bit(0 , true)
+		$Timer.wait_time = 1
 
 func reflect():
 	shot_by = "player" if shot_by == "enemy" else "enemy"

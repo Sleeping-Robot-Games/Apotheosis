@@ -19,7 +19,8 @@ func enter() -> void:
 		if actor.target:
 			var direction = (actor.target.global_position - actor.global_position).normalized()
 			direction.y += actor.gravity
-			actor.direction = -1 if actor.target.global_position.x < actor.global_position.x else 1
+			if g.parse_enemy_name(actor.name) == 'chumba' and name != 'keep_rolling':
+				actor.direction = -1 if actor.target.global_position.x < actor.global_position.x else 1
 			
 		actor.get_node('Sprite').flip_h = actor.direction == 1
 		if animation_name:
@@ -29,7 +30,7 @@ func enter() -> void:
 					actor.is_transitioning_form = true
 				var chumba_anim = animation_name
 				if actor.is_transitioning_form: ## Transitiion Form means rolling up or out
-					chumba_anim = 'Reform' if name == 'keep_rolling' else 'RollingUp'
+					chumba_anim = 'Reform' if name == 'patrol' else 'RollingUp'
 				actor.play_animation('chumba' + chumba_anim)
 			else:
 				actor.play_animation(g.parse_enemy_name(actor.name).replace('alt', '') + animation_name)

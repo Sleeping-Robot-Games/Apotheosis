@@ -131,8 +131,8 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0, 0.811765, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 186, 11.0833 )
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 124, 11.0833 )
 
 [node name="ChickpeaAlt" instance=ExtResource( 2 )]
 hp = 3
@@ -155,7 +155,7 @@ anims/chickpeaWalk = SubResource( 8 )
 anims/dmg_test = SubResource( 9 )
 
 [node name="CollisionShape2D" parent="AttackArea" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 10 )
 
 [node name="DetectionArea" parent="." index="5"]
 visible = false

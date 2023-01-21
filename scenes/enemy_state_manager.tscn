@@ -61,6 +61,7 @@ chase_node = NodePath("../chase")
 
 [node name="keep_rolling" type="Node" parent="."]
 script = ExtResource( 8 )
+animation_name = "Rolling"
 patrol_node = NodePath("../patrol")
 chase_node = NodePath("../chase")
 push_node = NodePath("../pushed")

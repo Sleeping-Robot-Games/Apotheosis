@@ -22,7 +22,7 @@ var is_pacing = false
 
 func enter() -> void:
 	.enter()
-
+	
 	
 	is_pacing = false
 	current_pacing_time = pacing_time
@@ -31,7 +31,9 @@ func enter() -> void:
 		actor.global_position.x += (10 * actor.direction)
 	if actor.is_on_wall():
 		actor.global_position.x += (10 * actor.direction)
+	if g.parse_enemy_name(actor.name) != 'chumba':
 		switch_direction()
+	
 
 func process(delta):
 	if actor.is_dead:
@@ -46,6 +48,14 @@ func process(delta):
 	# While chumba rolling up or out don't do shit
 	if actor.is_transitioning_form:
 		return null
+		
+	if g.parse_enemy_name(actor.name) == 'chumba':
+		if actor.direction == 1:
+			if actor.target.global_position.x < actor.global_position.x:
+				return keep_rolling_state
+		else:
+			if actor.target.global_position.x > actor.global_position.x:
+				return keep_rolling_state
 	
 	# Chumba hit while rolling, keep on going
 	if actor.chumba_boi_hit:
@@ -60,7 +70,7 @@ func process(delta):
 			current_pacing_time = pacing_time
 			is_pacing = false
 			switch_direction()
-	if not is_pacing:
+	if not is_pacing and g.parse_enemy_name(actor.name) != 'chumba':
 		if actor.is_on_wall():
 			switch_direction()
 			is_pacing = true
@@ -88,13 +98,18 @@ func physics_process(_delta: float) -> BaseState:
 		actor.velocity.x = actor.chase_speed * actor.direction
 		actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
 	else:
-		var direction = (actor.target.global_position - actor.global_position).normalized()
-		direction.y += actor.gravity
-		actor.direction = -1 if actor.target.global_position.x < actor.global_position.x else 1
-		actor.velocity = actor.move_and_slide(direction * actor.chase_speed, Vector2.UP)
-		
 		if g.parse_enemy_name(actor.name) == 'chumba':
-			actor.get_node('Sprite').flip_h = actor.direction == 1
+			actor.velocity.y += actor.gravity
+			actor.velocity.x = actor.chase_speed * actor.direction
+			actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
+		else:
+			var direction = (actor.target.global_position - actor.global_position).normalized()
+			direction.y += actor.gravity
+			actor.direction = -1 if actor.target.global_position.x < actor.global_position.x else 1
+			actor.velocity = actor.move_and_slide(direction * actor.chase_speed, Vector2.UP)
+#
+#		if g.parse_enemy_name(actor.name) == 'chumba':
+#			actor.get_node('Sprite').flip_h = actor.direction == 1
 	if not actor.is_on_floor():
 		return fall_state
 		
@@ -103,3 +118,4 @@ func physics_process(_delta: float) -> BaseState:
 func switch_direction():
 	# Switch direction
 	actor.direction = -actor.direction if actor.direction == 1 else 1
+

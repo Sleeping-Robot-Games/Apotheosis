@@ -120,8 +120,8 @@ tracks/0/keys = {
 "values": [ 24, 25, 26, 27, 28, 29 ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 11.0833 )
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 10, 7.37498 )
 
 [node name="Chumba" instance=ExtResource( 1 )]
 scale = Vector2( 1.5, 1.5 )
@@ -145,6 +145,10 @@ anims/chumbaRollingUp = SubResource( 12 )
 anims/chumbaWalk = SubResource( 13 )
 
 [node name="CollisionShape2D" parent="AttackArea" index="0"]
-shape = SubResource( 1 )
+position = Vector2( 0, 8.70832 )
+shape = SubResource( 16 )
+
+[node name="CollisionShape2D" parent="DetectionArea" index="0"]
+position = Vector2( 0, -11 )
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]

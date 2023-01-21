@@ -135,6 +135,7 @@ extents = Vector2( 125, 11.0833 )
 
 [node name="Chickpea" instance=ExtResource( 1 )]
 hp = 2
+attack_time = 2.0
 bullet_speed = 2
 
 [node name="AnimationPlayer" parent="." index="2"]

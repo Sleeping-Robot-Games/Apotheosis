@@ -76,7 +76,7 @@ func shoot():
 		var bullet = bullet_scene.instance()
 		bullet.shot_by = 'enemy'
 		bullet.global_position = global_position
-		bullet.speed = bullet_speed * direction ## TODO: Find out why any speed less than 10 fails
+		bullet.speed = bullet_speed * direction
 		level.call_deferred('add_child', bullet)
 
 func pushed(num, dir, dist):
@@ -130,7 +130,6 @@ func ledge_detected():
 func drop_scrap():
 	random.randomize()
 	var num = random.randi_range(3, 10)
-	print(str(num) + " scrap dropped")
 	for n in range(num):
 		var new_scrap = scrap_scene.instance()
 		new_scrap.global_position = global_position
@@ -148,11 +147,11 @@ func _on_DetectionArea_body_exited(body):
 		target = null
 
 func _on_AttackArea_body_entered(body):
-	## TODO: Fix chumba, if you enter them they attack no matter what
 	if body.is_in_group('players') and body == target:
 		if g.parse_enemy_name(name) == 'chumba':
-			chumba_boi_hit = true
-			attack()
+			if (states.current_state.name == 'chase' or states.current_state.name == 'keep_rolling') and not is_transitioning_form:
+				chumba_boi_hit = true
+				attack()
 		is_attacking = true
 
 func _on_AttackArea_body_exited(body):

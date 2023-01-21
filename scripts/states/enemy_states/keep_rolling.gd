@@ -31,8 +31,9 @@ func process(delta: float) -> BaseState:
 	if rolling_time < 0 or actor.ledge_detected() or actor.is_on_wall():
 		rolling_time = actor.roll_time
 		
-		if actor.target != null:
-			return chase_state
+#		if actor.target != null:
+#			print('entering chase from keep rolling')
+#			return chase_state
 		return patrol_state
 	
 	return null
