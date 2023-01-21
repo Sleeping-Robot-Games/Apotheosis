@@ -167,10 +167,21 @@ func barrel_shoot():
 	level.call_deferred('add_child', bullet)
 
 func use_tank():
+	var rank = g.ability_ranks[player_key]["Ability1"]
+	var rank_mods = {
+		0: {"Damage": 2, "Size": 1, "Duration": 4},
+		1: {"Damage": 3, "Size": 1, "Duration": 5},
+		2: {"Damage": 4, "Size": 1.25, "Duration": 6},
+		3: {"Damage": 5, "Size": 1.5, "Duration": 7},
+		4: {"Damage": 6, "Size": 2, "Duration": 8},
+	}
+	
 	can_use_tank = false
 	g.player_ui[player_key].ability_cooldown("Ability1", $TankCD.wait_time)
 	$TankCD.start()
+	$TankRangeArea.scale = Vector2(rank_mods[rank].Size, rank_mods[rank].Size)
 	$TankRangeArea/Particles2D.emitting = true
+	$TankDuration.wait_time = rank_mods[rank].Duration
 	$TankDuration.start()
 	$TankDoT.start()
 
@@ -297,15 +308,15 @@ func _on_TankDoT_timeout():
 	# TODO: different fx for different tanks? e.g., lightning applies short stun?
 	if $TankDuration.time_left > 0:
 		var rank = g.ability_ranks[player_key]["Ability1"]
-		var damage = {
-			0: 2,
-			1: 4,
-			2: 6,
-			3: 8,
-			4: 10
+		var rank_mods = {
+			0: {"Damage": 2, "Size": 1, "Duration": 4},
+			1: {"Damage": 3, "Size": 1, "Duration": 5},
+			2: {"Damage": 4, "Size": 1.25, "Duration": 6},
+			3: {"Damage": 5, "Size": 1.5, "Duration": 7},
+			4: {"Damage": 6, "Size": 2, "Duration": 8},
 		}
 		for enemy in tank_range_bodies:
-			enemy.dmg(damage[rank])
+			enemy.dmg(rank_mods[rank].Damage)
 		$TankDoT.start()
 
 func _on_TankRangeArea_body_entered(body):

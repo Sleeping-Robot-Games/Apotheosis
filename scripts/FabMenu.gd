@@ -14,11 +14,11 @@ var current_selection = "Ability1"
 # TODO: include push force for energy pulse, replace CD on all abilities with range?
 var fab_menu_options = {
 	"Ability1": [
-		{"Cost": 100, "Rank": 0, "Title": "Flamethrower", "Desc": "DMG: 2\nCD: 10"},
-		{"Cost": 200, "Rank": 1, "Title": "Flamethrower +1", "Desc": "DMG: 4\nCD: 10"},
-		{"Cost": 300, "Rank": 2, "Title": "Flamethrower +2", "Desc": "DMG: 6\nCD: 10"},
-		{"Cost": 400, "Rank": 3, "Title": "Flamethrower +3", "Desc": "DMG: 8\nCD: 10"},
-		{"Cost": 500, "Rank": 4, "Title": "Flamethrower +4", "Desc": "DMG: 10\nCD: 10"}
+		{"Cost": 100, "Rank": 0, "Title": "Flamethrower", "Desc": "DMG: 2\nSize: 1x\nDuration: 4s"},
+		{"Cost": 200, "Rank": 1, "Title": "Flamethrower +1", "Desc": "DMG: 3\nSize: 1x\nDuration: 5s"},
+		{"Cost": 300, "Rank": 2, "Title": "Flamethrower +2", "Desc": "DMG: 4\nSize: 1.25x\nDuration: 6s"},
+		{"Cost": 400, "Rank": 3, "Title": "Flamethrower +3", "Desc": "DMG: 5\nSize: 1.5x\nDuration: 7s"},
+		{"Cost": 500, "Rank": 4, "Title": "Flamethrower +4", "Desc": "DMG: 6\nSize: 2x\nDuration: 8s"}
 	],
 	"Ability2": [
 		{"Cost": 200, "Rank": 0, "Title": "Multishot", "Desc": "DMG: 3\nTargets: 2"},
@@ -47,7 +47,7 @@ var fab_menu_options = {
 }
 
 var fab_menu_maxed_options = {
-	"Ability1": {"Title": "Flamethrower +4", "Desc": "DMG: 10\nCD: 10"},
+	"Ability1": {"Title": "Flamethrower +4", "Desc": "DMG: 6\nSize: 2x\nDuration: 8s"},
 	"Ability2": {"Title": "Multishot +4", "Desc": "DMG: 7\nTargets: 7"},
 	"Ability3": {"Title": "Sniper +4", "Desc": "DMG: 10\nPiercing: 5"},
 	"Ability4": {"Title": "Shockwave +4", "Desc": "DMG: 5\nPush Force: 3\n>>Reflect Bullets"},

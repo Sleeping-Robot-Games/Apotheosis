@@ -3133,7 +3133,6 @@ speed_scale = 2.0
 process_material = ExtResource( 15 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TankRangeArea"]
-visible = false
 position = Vector2( -43.25, 1 )
 shape = SubResource( 45 )
 
