@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://scripts/Start.gd" type="Script" id=1]
 [ext_resource path="res://assets/background/stars.tres" type="Texture" id=2]
@@ -20,6 +20,11 @@
 [ext_resource path="res://splash/sleepingrobotlogo005.png" type="Texture" id=18]
 [ext_resource path="res://splash/sleepingrobotlogo002.png" type="Texture" id=19]
 [ext_resource path="res://assets/fonts/AstroSpace-0Wl3o.otf" type="DynamicFontData" id=20]
+[ext_resource path="res://assets/background/planet_001.png" type="Texture" id=21]
+[ext_resource path="res://assets/background/planet_002.png" type="Texture" id=22]
+[ext_resource path="res://assets/ui/buttonpress.png" type="Texture" id=23]
+[ext_resource path="res://assets/ui/button.png" type="Texture" id=24]
+[ext_resource path="res://assets/ui/buttonhover.png" type="Texture" id=25]
 
 [sub_resource type="TileSet" id=1]
 0/name = "skycolor.png 0"
@@ -799,6 +804,42 @@
 2/shapes = [  ]
 2/z_index = 0
 
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = ExtResource( 20 )
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.65098, 0.862745, 0.87451, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "glow"
+length = 1.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.65098, 0.862745, 0.87451, 1 ), Color( 0.65098, 0.862745, 0.87451, 1 ), Color( 0.768627, 0.913725, 0.921569, 1 ), Color( 0.905882, 0.960784, 0.964706, 1 ), Color( 0.768627, 0.913725, 0.921569, 1 ), Color( 0.65098, 0.862745, 0.87451, 1 ), Color( 0.65098, 0.862745, 0.87451, 0.6 ) ]
+}
+
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 14 ), ExtResource( 19 ), ExtResource( 15 ), ExtResource( 18 ), ExtResource( 17 ), ExtResource( 16 ) ],
@@ -806,10 +847,6 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
-
-[sub_resource type="DynamicFont" id=6]
-size = 32
-font_data = ExtResource( 20 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 32
@@ -914,6 +951,7 @@ anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 79, 54 )
 script = ExtResource( 1 )
 __meta__ = {
+"_edit_use_anchors_": false,
 "_edit_vertical_guides_": [ 480.0 ]
 }
 
@@ -943,26 +981,81 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -393210, 1, 0, -393198, 0, 0, -262152, 1, 0, -327639, 1073741826, 0, -196614, 1073741826, 0, -262140, 0, 0, -196585, 1073741825, 0, -65549, 2, 0, -131065, 2, 0, -131052, 1, 0, 22, 1073741825, 0, 131062, 0, 0, 65551, 2, 0, 65552, 0, 0, 65569, 0, 0, 65572, 0, 0, 65585, 1, 0, 196596, 2, 0, 131074, 0, 0, 131093, 1073741824, 0, 131119, 0, 0, 131123, 2, 0, 196645, 1, 0, 327676, 2, 0, 262173, 1, 0, 262197, 1, 0, 327686, 1, 0, 327697, 0, 0, 327721, 2, 0, 458741, 2, 0, 393216, 2, 0, 393228, 0, 0, 589818, 0, 0, 524338, 0, 0, 589829, 2, 0, 589846, 2, 0, 589857, 0, 0, 589860, 1, 0, 655361, 0, 0, 655374, 1073741826, 0, 655406, 2, 0, 786425, 2, 0, 851956, 1, 0, 786438, 1, 0, 786462, 1, 0, 851980, 0, 0, 851984, 2, 0, 917508, 2, 0, 917542, 1073741826, 0, 983049, 2, 0, 983063, 1, 0, 983084, 0, 0, 1048576, 1, 0, 1048608, 2, 0, 1048615, 0, 0, 1048628, 2, 0, 1114160, 2, 0, 1179654, 0, 0, 1179663, 1073741824, 0, 1179686, 0, 0, 1245187, 1073741826, 0, 1245200, 0, 0, 1310741, 1073741824, 0, 1310748, 0, 0, 1441778, 2, 0, 1376297, 2, 0, 1507318, 0, 0, 1441796, 2, 0, 1441797, 1, 0, 1507334, 2, 0, 1507341, 2, 0, 1507348, 1073741825, 0, 1507365, 2, 0, 1572919, 1, 0, 1835009, 1073741824, 0, 1835019, 1073741826, 0, 1835026, 1073741824, 0, 1835046, 1073741826, 0, 2031610, 1073741825, 0, 2031643, 2, 0, 2031655, 1073741825, 0, 2031661, 2, 0, 2031669, 0, 0, 2097165, 1073741826, 0, 2097175, 1073741825, 0, 2097195, 1073741826, 0, 2097211, 0, 0, 2162720, 1073741826, 0 )
 
-[node name="StartButton" type="Button" parent="."]
-margin_left = 455.0
-margin_top = 337.0
-margin_right = 505.0
-margin_bottom = 357.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "START"
+[node name="Planet001" type="Sprite" parent="BGHolder"]
+position = Vector2( 98, 77 )
+texture = ExtResource( 21 )
+
+[node name="Planet002" type="Sprite" parent="BGHolder"]
+position = Vector2( 126, 95 )
+texture = ExtResource( 22 )
+
+[node name="Apotheosis" type="Label" parent="BGHolder"]
+margin_left = 238.0
+margin_top = 221.0
+margin_right = 484.0
+margin_bottom = 290.0
+rect_scale = Vector2( 2, 2 )
+custom_colors/font_color = Color( 0.65098, 0.862745, 0.87451, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Apotheosis"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="QuitButton" type="Button" parent="."]
-margin_left = 458.0
-margin_top = 371.0
-margin_right = 503.0
-margin_bottom = 391.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BGHolder/Apotheosis"]
+method_call_mode = 1
+anims/RESET = SubResource( 10 )
+anims/glow = SubResource( 11 )
+
+[node name="StartButton" type="TextureButton" parent="."]
+margin_left = 447.0
+margin_top = 348.0
+margin_right = 497.0
+margin_bottom = 368.0
+rect_scale = Vector2( 2, 1.5 )
 focus_mode = 0
 enabled_focus_mode = 0
+texture_normal = ExtResource( 24 )
+texture_pressed = ExtResource( 23 )
+texture_hover = ExtResource( 25 )
+texture_focused = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="StartButton"]
+margin_left = 1.5
+margin_top = 4.0
+margin_right = 41.5
+margin_bottom = 18.0
+rect_scale = Vector2( 0.75, 0.75 )
+text = "START"
+
+[node name="QuitButton" type="TextureButton" parent="."]
+margin_left = 447.0
+margin_top = 382.0
+margin_right = 492.0
+margin_bottom = 402.0
+rect_scale = Vector2( 2, 1.5 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 24 )
+texture_pressed = ExtResource( 23 )
+texture_hover = ExtResource( 25 )
+texture_focused = ExtResource( 25 )
+
+[node name="Quit" type="Label" parent="QuitButton"]
+margin_left = 3.0
+margin_top = 4.0
+margin_right = 43.0
+margin_bottom = 18.0
+rect_scale = Vector2( 0.75, 0.75 )
 text = "QUIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="InputDevice" type="Sprite" parent="."]
 position = Vector2( 764, 491 )
@@ -974,11 +1067,15 @@ one_shot = true
 [node name="Splash" type="Node2D" parent="."]
 
 [node name="GwjSplash" type="ColorRect" parent="Splash"]
+visible = false
 margin_left = -17.0
 margin_top = -23.0
 margin_right = 983.0
 margin_bottom = 577.0
 color = Color( 0.0784314, 0.133333, 0.25098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="53-Theme-Ass-Required" type="Sprite" parent="Splash/GwjSplash"]
 position = Vector2( 654, 510 )
@@ -999,6 +1096,7 @@ texture = ExtResource( 12 )
 one_shot = true
 
 [node name="SrgSplash" type="ColorRect" parent="Splash"]
+visible = false
 margin_left = -13.0
 margin_top = -21.0
 margin_right = 976.0
@@ -1010,10 +1108,10 @@ modulate = Color( 0.772549, 0.768627, 0.792157, 1 )
 position = Vector2( 493, 295 )
 scale = Vector2( 1.70313, 1.70313 )
 frames = SubResource( 5 )
+frame = 3
 speed_scale = 0.75
 
 [node name="Sleeping" type="Label" parent="Splash/SrgSplash"]
-visible = false
 margin_left = 323.0
 margin_top = 61.0
 margin_right = 548.0
@@ -1024,7 +1122,6 @@ text = "Sleeping"
 align = 2
 
 [node name="Robot" type="Label" parent="Splash/SrgSplash"]
-visible = false
 margin_left = 484.0
 margin_top = 106.0
 margin_right = 614.0
@@ -1035,7 +1132,6 @@ text = "Robot"
 align = 2
 
 [node name="Games" type="Label" parent="Splash/SrgSplash"]
-visible = false
 margin_left = 380.0
 margin_top = 155.0
 margin_right = 545.0

@@ -4869,10 +4869,6 @@ motion_mirroring = Vector2( 1024, 1024 )
 position = Vector2( 99, 383 )
 texture = ExtResource( 10 )
 
-[node name="Planet003" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
-position = Vector2( 99, 383 )
-texture = ExtResource( 10 )
-
 [node name="Planet002" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
 position = Vector2( 127, 401 )
 texture = ExtResource( 14 )

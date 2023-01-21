@@ -25,6 +25,7 @@ animations = [ {
 
 [sub_resource type="Animation" id=5]
 resource_name = "flicker"
+length = 0.3
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:energy")
@@ -33,10 +34,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0.75, 0.4, 0.7 ]
+"values": [ 1.5, 1.25, 0.7 ]
 }
 
 [node name="Torch" type="AnimatedSprite"]
@@ -46,7 +47,7 @@ frames = SubResource( 4 )
 texture = ExtResource( 2 )
 texture_scale = 0.15
 color = Color( 0.443137, 0.901961, 0.839216, 1 )
-energy = 0.481044
+energy = 1.18402
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Light2D"]
 anims/flicker = SubResource( 5 )
