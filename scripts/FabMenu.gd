@@ -103,6 +103,9 @@ func _input(event):
 		focus_up()
 	elif not using_kb and event.is_action_pressed("ui_down_" + str(player.controller_id)):
 		focus_down()
+	elif not using_kb and event.is_action_pressed("ui_pad_cancel") \
+		and player.controller_id == str(event.device):
+			close_menu()
 	elif not using_kb and event.is_action_pressed("ui_pad_accept") \
 		and player.controller_id == str(event.device):
 			attempt_purchase()
