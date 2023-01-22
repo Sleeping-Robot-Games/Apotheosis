@@ -197,7 +197,7 @@ func update_purchase_btn(playing = true):
 func update_options():
 	for i in range(1,6):
 		var ability = "Ability" + str(i)
-		if fab_menu_options[ability].size() > 0:
+		if (fab_menu_options[ability].size() > 0 and ability != "Ability5") or (ability == "Ability5" and rng_mods.size() > 0):
 			# cost
 			var cost = fab_menu_options[ability][0].Cost
 			var color = g.green if cost <= player.scrap else g.red
@@ -281,6 +281,15 @@ func select_current():
 		if current_selection == "Ability5":
 			$SubMenu/Button.visible = false
 			$SubMenu/Passive.visible = true
+			# if no more abilities to unlock
+			if rng_mods.size() == 0:
+				$PurchaseLabel.modulate.a = 0.25
+				$SubMenu.modulate.a = 0.75
+				$SubMenuBG.modulate.a = 0.75
+				update_purchase_btn(false)
+				$Ability5/Cost.text = "MAX"
+				$Ability5/Cost.set("custom_colors/font_color", g.yellow)
+				$SubMenu/Desc.text = "No more upgrades"
 		else:
 			$SubMenu/Button.texture = load("res://assets/ui/keys/" + button_mappings[current_selection])
 			$SubMenu/Button.visible = true

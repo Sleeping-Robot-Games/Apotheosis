@@ -84,7 +84,7 @@ func arise():
 # TODO: remove
 func _on_DevTimer_timeout():
 	#return
-	get_scrap(8000)
+	get_scrap(80000)
 
 func _input(event):
 	if is_dead:
