@@ -89,9 +89,7 @@ func _input(event):
 			repair_target.repair()
 			repair_target = null
 	if fab_menu_open == false and event.is_action_pressed("fab_" + str(controller_id)):
-		start_fabricator()
-	elif fab_menu_open == false and event.is_action_released("fab_" + str(controller_id)):
-		stop_fabricator()
+		$FabMenu.open_menu()
 	elif fab_menu_open == true and event.is_action_pressed("fab_" + str(controller_id)):
 		$FabMenu.close_menu()
 	
@@ -321,41 +319,9 @@ func spend_scrap(amount):
 		scrap = 0
 	g.player_ui[player_key].set_scrap(scrap)
 
-func start_fabricator():
-	$FabPrep/StopTween.stop_all()
-	var btn = "F" if controller_id == "kb" else "Y"
-	$FabPrep/Label.text = "Starting Fabricator..."
-	$FabPrep/Icon.texture = load("res://assets/" + btn + "_002.png")
-	$FabPrep.visible = true
-	# TODO: match time to fabricate animation?
-	var current_progress = $FabPrep/Progress.value
-	var duration = (100 - current_progress) * 0.01
-	$FabPrep/StartTween.interpolate_property($FabPrep/Progress, "value", current_progress, 100, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$FabPrep/StartTween.start()
-
-func stop_fabricator():
-	$FabPrep/StartTween.stop_all()
-	var btn = "F" if controller_id == "kb" else "Y"
-	$FabPrep/Label.text = "Stopping Fabricator..."
-	$FabPrep/Icon.texture = load("res://assets/" + btn + "_001.png")
-	$FabPrep.visible = true
-	# TODO: match time to fabricate animation?
-	var current_progress = $FabPrep/Progress.value
-	var duration = current_progress * 0.01
-	$FabPrep/StopTween.interpolate_property($FabPrep/Progress, "value", current_progress, 0, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$FabPrep/StopTween.start()
-
 func flip():
 	$TankRangeArea.rotation_degrees = 180 if direction == 1 else 0
 	$BarrelShot.rotation_degrees = 180 if direction == 1 else 0
-
-func _on_StartTween_tween_all_completed():
-	$FabPrep.visible = false
-	$FabPrep/Progress.value = 0
-	$FabMenu.open_menu()
-
-func _on_StopTween_tween_all_completed():
-	$FabPrep.visible = false
 
 func _on_ShootCD_timeout():
 	can_shoot = true

@@ -142,11 +142,13 @@ func open_menu():
 	# TODO: if any fab reminders showing hide them
 	current_selection = "Ability1"
 	player.fab_menu_open = true
+	g.play_sfx(player.level, "menu_select", -5)
 	refresh()
 	visible = true
 
 func close_menu():
 	# close via a short timer to prevent player from triggering a jump when purchasing
+	g.play_sfx(player.level, "menu_select", -5)
 	player.get_node("CloseFabTimer").start()
 	visible = false
 
@@ -288,7 +290,6 @@ func attempt_purchase():
 			if cost > player.scrap:
 				return
 			# purchase upgrade
-			g.play_sfx(player.level, "menu_select", -5)
 			player.spend_scrap(cost)
 			if current_selection == "Ability5":
 				unlock_rng(cost / 111)
