@@ -67,6 +67,10 @@ var ability_ranks = {
 
 var offscreen_players = []
 
+var green = Color(0.04, 0.52, 0.11, 1.0)
+var red = Color(0.52, 0.04, 0.04, 1.0)
+var yellow = Color(0.88, 0.77, 0.23, 1.0)
+
 func folders_in_dir(path: String) -> Array:
 	var folders = []
 	var dir = Directory.new()

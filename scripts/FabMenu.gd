@@ -110,10 +110,6 @@ var rng_messages = {
 	"Speed": "INCREASED MOVE SPEED"
 }
 
-var green = Color(0.04, 0.52, 0.11, 1.0)
-var red = Color(0.52, 0.04, 0.04, 1.0)
-var yellow = Color(0.88, 0.77, 0.23, 1.0)
-
 var reroll_odds = 0
 
 func _ready():
@@ -194,25 +190,25 @@ func update_options():
 		if fab_menu_options[ability].size() > 0:
 			# cost
 			var cost = fab_menu_options[ability][0].Cost
-			var color = green if cost <= player.scrap else red
+			var color = g.green if cost <= player.scrap else g.red
 			get_node(ability+"/Cost").text = str(cost)
 			get_node(ability+"/Cost").set("custom_colors/font_color", color)
 			# icon
 			var ability_num = ability.substr(7)
-			if color == red:
+			if color == g.red:
 				var cd_icon = load("res://assets/ui/abilitycd_00" + ability_num + ".png")
 				get_node(ability+"/Icon").texture = cd_icon
 			else:
 				var icon = load("res://assets/ui/ability_00" + ability_num + ".png")
 				get_node(ability+"/Icon").texture = icon
 			# selector
-			var selector_color = "red" if color == red else "green"
+			var selector_color = "red" if color == g.red else "green"
 			var selector = load("res://assets/ui/selector_" + selector_color + ".png")
 			get_node(ability+"/Selection").texture = selector
 			# cursor
 			if using_kb:
 				get_node(ability).mouse_filter = MOUSE_FILTER_STOP
-				var cursor = CURSOR_FORBIDDEN if color == red else CURSOR_POINTING_HAND
+				var cursor = CURSOR_FORBIDDEN if color == g.red else CURSOR_POINTING_HAND
 				get_node(ability).mouse_default_cursor_shape = cursor
 			else:
 				get_node(ability).mouse_filter = MOUSE_FILTER_IGNORE
@@ -224,7 +220,7 @@ func update_options():
 		else:
 			# cost
 			get_node(ability+"/Cost").text = "MAX"
-			get_node(ability+"/Cost").set("custom_colors/font_color", yellow)
+			get_node(ability+"/Cost").set("custom_colors/font_color", g.yellow)
 			# icon
 			var ability_num = ability.substr(7)
 			var cd_icon = load("res://assets/ui/abilitycd_00" + ability_num + ".png")
@@ -327,7 +323,7 @@ func unlock_rng(cost):
 	var mod_index = random.randi_range(0, rng_mods.size() - 1)
 	var mod = rng_mods[mod_index]
 	player.mods[mod] += 1
-	player.get_node("FloatTextSpawner").float_text(rng_messages[mod], yellow)
+	player.get_node("FloatTextSpawner").float_text(rng_messages[mod], g.yellow)
 	rng_mods.remove(mod_index)
 	
 	# cost of RNG determines odds of multiple unlocks

@@ -7,6 +7,8 @@ export (int) var bullet_speed = 15
 export (int) var hp = 10
 export (float) var dash_cd = 0.5
 
+var random = RandomNumberGenerator.new()
+
 var max_hp = 0 # updated in ready
 var velocity = Vector2()
 var direction = 1
@@ -143,6 +145,12 @@ func repair():
 
 func dmg(num):
 	if not is_dead and states.current_state.name != 'dash':
+		var dodge_chance = mods.Dodge * 5
+		random.randomize()
+		var dodge_roll = random.randi_range(1, 100)
+		if dodge_chance >= dodge_roll:
+			$FloatTextSpawner.float_text("DODGED", g.yellow)
+			return
 		hp -= num
 		$FloatTextSpawner.float_text(str(num), dmg_color)
 		g.player_ui[player_key].set_health(hp)
@@ -169,12 +177,16 @@ func shoot():
 	if states.current_state.name == 'dash':
 		return
 	g.play_sfx(level, "player_shoot", -10)
-	var bullet = bullet_scene.instance()
-	bullet.shot_by = 'player'
-	bullet.global_position = Vector2(global_position.x + 40 * direction, global_position.y) 
-	bullet.speed = bullet_speed * direction
-	bullet.damage = mods.Damage
-	level.call_deferred('add_child', bullet)
+	var y_offset = 0
+	for i in range(mods.Bullets):
+		var bullet = bullet_scene.instance()
+		bullet.shot_by = 'player'
+		bullet.global_position = Vector2(global_position.x + 40 * direction, global_position.y + y_offset) 
+		bullet.speed = bullet_speed * direction
+		bullet.damage = mods.Damage
+		bullet.piercing = mods.Piercing
+		level.call_deferred('add_child', bullet)
+		y_offset -= 7
 
 func barrel_shoot():
 	var bullet = bullet_scene.instance()
@@ -416,9 +428,18 @@ func _on_RezArea_body_entered(body):
 		body.get_node('RezArea/Label/Key').texture = load("res://assets/ui/keys/" + key)
 		body.get_node('RezArea/Label').visible = true
 		repair_target = body
-		
 
 func _on_RezArea_body_exited(body):
 	if is_dead and body.is_in_group('players'):
 		$RezArea/Label.visible = false
 		repair_target = null
+
+func _on_HealTimer_timeout():
+	if mods.Healing > 0 and is_dead == false and hp < max_hp:
+		var starting_hp = hp
+		hp = clamp(hp + mods.Healing, 1, max_hp)
+		g.player_ui[player_key].set_health(hp)
+		var healed_hp = hp - starting_hp
+		if healed_hp > 0:
+			# TODO: healing particle fx
+			$FloatTextSpawner.float_text("+"+str(healed_hp), g.green)
