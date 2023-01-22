@@ -15,6 +15,32 @@ func _ready():
 	$Camera2D.current = true
 	$Boxes/Box1.add_player("p1")
 	$ReadyCountdown.set("custom_colors/font_color", yellow)
+	g.ability_ranks = {
+	"p1": {
+		"Ability1": -1,
+		"Ability2": -1,
+		"Ability3": -1,
+		"Ability4": -1
+	},
+	"p2": {
+		"Ability1": -1,
+		"Ability2": -1,
+		"Ability3": -1,
+		"Ability4": -1
+	},
+	"p3": {
+		"Ability1": -1,
+		"Ability2": -1,
+		"Ability3": -1,
+		"Ability4": -1
+	},
+	"p4": {
+		"Ability1": -1,
+		"Ability2": -1,
+		"Ability3": -1,
+		"Ability4": -1
+	}
+}
 
 func _input(event):
 	# skip checking for new players if no empty slots left

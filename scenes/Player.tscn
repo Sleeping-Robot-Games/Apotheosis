@@ -3142,16 +3142,6 @@ process_material = ExtResource( 15 )
 position = Vector2( -43.25, 1 )
 shape = SubResource( 45 )
 
-[node name="debug_label" type="Label" parent="."]
-margin_left = -20.0
-margin_top = -26.0
-margin_right = 20.0
-margin_bottom = -12.0
-
-[node name="Timer" type="Timer" parent="debug_label"]
-wait_time = 0.5
-one_shot = true
-
 [node name="HotstreakTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
@@ -3581,9 +3571,6 @@ one_shot = true
 
 [node name="FloatTextSpawner" parent="." instance=ExtResource( 37 )]
 
-[node name="DevTimer" type="Timer" parent="."]
-one_shot = true
-
 [node name="RezArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RezArea"]
@@ -3608,6 +3595,7 @@ texture = ExtResource( 39 )
 visible = false
 position = Vector2( 64, -11 )
 frames = ExtResource( 38 )
+frame = 1
 playing = true
 
 [node name="RerollRNGTimer" type="Timer" parent="."]
@@ -3647,7 +3635,6 @@ align = 1
 [connection signal="area_entered" from="TankRangeArea" to="." method="_on_TankRangeArea_area_entered"]
 [connection signal="body_entered" from="TankRangeArea" to="." method="_on_TankRangeArea_body_entered"]
 [connection signal="body_exited" from="TankRangeArea" to="." method="_on_TankRangeArea_body_exited"]
-[connection signal="timeout" from="debug_label/Timer" to="." method="_on_debugTimer_timeout"]
 [connection signal="timeout" from="HurtRedTimer" to="." method="_on_HurtRedTimer_timeout"]
 [connection signal="mouse_exited" from="FabMenu" to="FabMenu" method="_on_FabMenu_mouse_exited"]
 [connection signal="mouse_entered" from="FabMenu/Ability1" to="FabMenu" method="_on_Ability1_mouse_entered"]
@@ -3666,7 +3653,6 @@ align = 1
 [connection signal="timeout" from="BarrelCD" to="." method="_on_BarrelCD_timeout"]
 [connection signal="timeout" from="StockCD" to="." method="_on_StockCD_timeout"]
 [connection signal="timeout" from="CloseFabTimer" to="FabMenu" method="_on_CloseFabTimer_timeout"]
-[connection signal="timeout" from="DevTimer" to="." method="_on_DevTimer_timeout"]
 [connection signal="body_entered" from="RezArea" to="." method="_on_RezArea_body_entered"]
 [connection signal="body_exited" from="RezArea" to="." method="_on_RezArea_body_exited"]
 [connection signal="timeout" from="RerollRNGTimer" to="FabMenu" method="_on_RerollRNGTimer_timeout"]

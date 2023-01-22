@@ -60,31 +60,17 @@ onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 onready var crosshair_scene = preload("res://scenes/Crosshair.tscn")
 onready var energy_pulse_scene = preload("res://scenes/EnergyPulse.tscn")
 
-## FOR DEBUGGING
-func show_debug_label(text):
-	$debug_label.text = text
-	$debug_label/Timer.start()
-	
-func _on_debugTimer_timeout():
-	$debug_label.text = ""
 	
 func _ready():
 	max_hp = hp
 	dmg_color = g.get_player_color(player_key, 2)
 	states.init(self)
-	if ui_disabled == false:
-		$DevTimer.start()
 
 func arise():
 	ui_disabled = true
 	play_animation('fallRight')
-	$Tween.interpolate_property(self, "position", position, Vector2(position.x, position.y - 600), 15, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property(self, "position", position, Vector2(position.x, position.y - 600), 20, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
-
-# TODO: remove
-func _on_DevTimer_timeout():
-	#return
-	get_scrap(80000)
 
 func _input(event):
 	if is_dead:
@@ -318,8 +304,6 @@ func get_scrap(amount = 10):
 	scrap += amount
 	g.player_ui[player_key].set_scrap(scrap)
 	$FabMenu.refresh()
-	# show_debug_label('scrap: ' + str(scrap))
-	# TODO: when upgrades can be purchased, show temp indicator?
 
 func spend_scrap(amount):
 	scrap -= amount
