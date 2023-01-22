@@ -15,7 +15,7 @@ func _ready():
 	interval = random.randi_range(20, 25)
 	
 	if enemy_name:
-		$Timer.wait_time = 1#interval #1
+		$Timer.wait_time = 5#interval #1
 		enemy_scene = load("res://scenes/enemies/"+ enemy_name[0].to_upper() + enemy_name.substr(1,-1) +".tscn")
 		$Timer.start()
 
