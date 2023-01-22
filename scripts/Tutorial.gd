@@ -6,14 +6,14 @@ var lessons_kb = [
 	'Use A and D to move',
 	'Left click mouse to shoot',
 	'Space to jump',
-	'Use 1-4 to use abilites',
+	'Use 1-4 to use abilites once \n built with scrap',
 	'Hold F to open upgrade menu',
 ]
 var lessons_controller = [
 	'Use analog stick to move',
 	'X to shoot',
 	'A to jump',
-	'Use triggers to use abilities',
+	'Use 1-4 to use abilites once \n built with scrap',
 	'Hold Y to open upgrade menu',
 ]
 var lessons = []

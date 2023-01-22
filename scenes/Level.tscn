@@ -1,4 +1,4 @@
-[gd_scene load_steps=197 format=2]
+[gd_scene load_steps=198 format=2]
 
 [ext_resource path="res://scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HealingConsole.tscn" type="PackedScene" id=2]
@@ -5561,6 +5561,10 @@ tracks/0/keys = {
 "values": [ Vector2( 481, 558 ), Vector2( 481, 113 ) ]
 }
 
+[sub_resource type="DynamicFont" id=196]
+size = 8
+font_data = ExtResource( 34 )
+
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -6569,7 +6573,7 @@ position = Vector2( 597, 865 )
 position = Vector2( 563, 1600 )
 
 [node name="CriticalComponent4" parent="." instance=ExtResource( 35 )]
-position = Vector2( 352, 866 )
+position = Vector2( 288, 867 )
 
 [node name="CriticalComponent3" parent="." instance=ExtResource( 35 )]
 position = Vector2( 1241, -731 )
@@ -6583,6 +6587,21 @@ stage = 2
 anims/Tower1Rise = SubResource( 193 )
 anims/Tower2Rise = SubResource( 194 )
 anims/Tower3Rise = SubResource( 195 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 339.0
+margin_top = 656.0
+margin_right = 627.0
+margin_bottom = 752.0
+custom_fonts/font = SubResource( 196 )
+text = "Kill enemies to collect scrap
+
+Find and collect the critical
+component for each tower console
+
+Use scrap and each component to
+ assemble the tower at their console"
+align = 1
 
 [connection signal="tween_all_completed" from="FadeOutTween" to="." method="_on_FadeOutTween_tween_all_completed"]
 [connection signal="timeout" from="KillstreakTimer" to="." method="_on_KillstreakTimer_timeout"]
