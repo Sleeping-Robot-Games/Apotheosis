@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://assets/bullet/bullet002_3.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Bullet.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/bullet/bullet004_3.png" type="Texture" id=17]
 [ext_resource path="res://assets/bullet/bullet004_2.png" type="Texture" id=18]
 [ext_resource path="res://assets/bullet/bullet004_1.png" type="Texture" id=19]
+[ext_resource path="res://assets/bullet/bulletImpact.png" type="Texture" id=20]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -55,31 +56,50 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 3 )
 
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 20 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 20 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 20 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Bullet" type="Node2D" groups=["bullets"]]
 script = ExtResource( 2 )
 
 [node name="001" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-frame = 2
+frame = 1
 playing = true
 offset = Vector2( 3, 0 )
 
 [node name="002" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 3 )
+frame = 5
 playing = true
 offset = Vector2( 3, 0 )
 
 [node name="003" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [node name="004" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 5 )
-frame = 1
 playing = true
 offset = Vector2( 2, 0 )
 
@@ -99,5 +119,10 @@ enabled = true
 cast_to = Vector2( 19, 0 )
 collision_mask = 4
 
+[node name="Impact" type="AnimatedSprite" parent="."]
+frames = SubResource( 9 )
+speed_scale = 2.0
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="animation_finished" from="Impact" to="." method="_on_Impact_animation_finished"]

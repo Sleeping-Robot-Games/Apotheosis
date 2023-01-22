@@ -75,6 +75,22 @@ func _on_Area2D_body_entered(body):
 		if piercing > 0:
 			piercing -= 1
 		else:
-			queue_free()
+			impact()
 	elif not body.has_method("dmg"): # aka if body is a wall
-		queue_free()
+		impact()
+
+func impact():
+	$Area2D/CollisionShape2D.set_deferred('disabled', true)
+	var direction = 1 if speed < 0 else -1
+	if direction == 1:
+		$Impact.flip_h
+	speed = 0
+	$"001".hide()
+	$"002".hide()
+	$"003".hide()
+	$"004".hide()
+	$Impact.show()
+	$Impact.play()
+
+func _on_Impact_animation_finished():
+	queue_free()
