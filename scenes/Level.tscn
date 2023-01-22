@@ -52,6 +52,7 @@
 [ext_resource path="res://assets/ui/buttonhover.png" type="Texture" id=50]
 [ext_resource path="res://assets/ui/buttonpress.png" type="Texture" id=51]
 [ext_resource path="res://assets/fonts/BarcadeBrawlRegular-plYD.ttf" type="DynamicFontData" id=52]
+[ext_resource path="res://assets/background/painting_005.png" type="Texture" id=52]
 
 [sub_resource type="TileSet" id=3]
 0/name = "skycolor.png 0"
@@ -6122,6 +6123,10 @@ playing = true
 position = Vector2( -68, 1281 )
 frame = 1
 playing = true
+
+[node name="Painting006" type="Sprite" parent="Wall/WallDeco"]
+position = Vector2( 504, -286 )
+texture = ExtResource( 52 )
 
 [node name="WingPlatform" type="TileMap" parent="."]
 modulate = Color( 0.584314, 0.490196, 0.584314, 1 )
