@@ -1,9 +1,9 @@
 extends Control
 # warning-ignore-all:return_value_discarded
 
-## TODO: custom button styleboxs
-onready var focused_stylebox = $StartButton.get_stylebox("focus").duplicate()
-onready var pressed_stylebox = $StartButton.get_stylebox("pressed").duplicate()
+onready var normal_texture = preload("res://assets/ui/button.png")
+onready var focused_texture = preload("res://assets/ui/buttonhover.png")
+onready var pressed_texture = preload("res://assets/ui/buttonpress.png")
 onready var buttons = [$StartButton, $QuitButton]
 var focused_button_index = null
 var pressed_button = null
@@ -67,17 +67,19 @@ func focus_next():
 	focus_button()
 
 func focus_button():
+	$StartButton.texture_normal = normal_texture
+	$QuitButton.texture_normal = normal_texture
 	if focused_button_index == null:
 		return
-	buttons[focused_button_index].grab_focus()
+	buttons[focused_button_index].texture_normal = focused_texture
 
 func press_focused_button():
 	pressed_button = buttons[focused_button_index]
-	#pressed_button.add_stylebox_override("normal", pressed_stylebox)
+	buttons[focused_button_index].texture_normal = pressed_texture
 	$PressButtonTimer.start()
 
 func _on_PressButtonTimer_timeout():
-	#pressed_button.add_stylebox_override("normal", focused_stylebox)
+	buttons[focused_button_index].texture_normal = focused_texture
 	pressed_button.emit_signal("pressed")
 	pressed_button = null
 
