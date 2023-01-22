@@ -3652,7 +3652,11 @@ texture = ExtResource( 39 )
 visible = false
 position = Vector2( 64, -11 )
 frames = ExtResource( 38 )
+frame = 1
 playing = true
+
+[node name="RerollRNGTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="ShootCD" to="." method="_on_ShootCD_timeout"]
@@ -3678,3 +3682,4 @@ playing = true
 [connection signal="timeout" from="DevTimer" to="." method="_on_DevTimer_timeout"]
 [connection signal="body_entered" from="RezArea" to="." method="_on_RezArea_body_entered"]
 [connection signal="body_exited" from="RezArea" to="." method="_on_RezArea_body_exited"]
+[connection signal="timeout" from="RerollRNGTimer" to="FabMenu" method="_on_RerollRNGTimer_timeout"]

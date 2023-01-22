@@ -37,13 +37,20 @@ var fab_menu_open = false
 var fabricating_progress = 0
 var jump_force_multiplier = 2
 var repair_target = null
-# TODO: other RNG mods (push, piercing, etc)
-var bullet_mods = {
+
+var mods = {
 	"Damage": 1,
 	"Piercing": 0,
-	"PushForce": 0,
-	"PushDistance": 0,
+	"Push": 0,
+	"Jumps": 1,
+	"Dashes": 1,
+	"Healing": 0,
+	"Bullets": 1,
+	"Dodge": 0,
+	"Crit": 0,
+	"Speed": 1
 }
+
 var component_stage = 0
 
 onready var states = $state_manager
@@ -69,7 +76,7 @@ func _ready():
 
 # TODO: remove
 func _on_DevTimer_timeout():
-	return
+	#return
 	get_scrap(3000)
 
 func _input(event):
@@ -166,7 +173,7 @@ func shoot():
 	bullet.shot_by = 'player'
 	bullet.global_position = Vector2(global_position.x + 40 * direction, global_position.y) 
 	bullet.speed = bullet_speed * direction
-	bullet.damage = bullet_mods.Damage
+	bullet.damage = mods.Damage
 	level.call_deferred('add_child', bullet)
 
 func barrel_shoot():

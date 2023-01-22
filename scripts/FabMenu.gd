@@ -1,5 +1,7 @@
 extends Control
 
+var random = RandomNumberGenerator.new()
+
 onready var player = get_parent()
 onready var using_kb = g.player_input_devices[player.player_key] == "keyboard"
 onready var button_mappings = {
@@ -82,9 +84,37 @@ var fab_menu_maxed_options = {
 	"Ability4": {"Title": "Shockwave +4", "Desc": "DMG: 5\nPush Force: 3\n>>Reflect Bullets"},
 }
 
+var rng_mods = [
+	"Damage","Damage","Damage","Damage","Damage","Damage","Damage","Damage","Damage",
+	"Piercing","Piercing","Piercing","Piercing","Piercing","Piercing","Piercing","Piercing","Piercing","Piercing",
+	"Push","Push","Push","Push",
+	"Jumps","Jumps","Jumps","Jumps",
+	"Dashes","Dashes","Dashes","Dashes",
+	"Healing","Healing","Healing","Healing",
+	"Bullets","Bullets","Bullets",
+	"Dodge","Dodge","Dodge","Dodge","Dodge","Dodge","Dodge","Dodge","Dodge","Dodge",
+	"Crit","Crit","Crit","Crit","Crit","Crit","Crit","Crit","Crit","Crit",
+	"Speed","Speed","Speed","Speed","Speed","Speed","Speed","Speed",
+]
+
+var rng_messages = {
+	"Damage": "+1 DMG",
+	"Piercing": "+1 PIERCING",
+	"Push": "+1 KNOCKBACK",
+	"Jumps": "EXTRA JUMP",
+	"Dashes": "EXTRA DASH",
+	"Healing": "+1 HP every 20 secs",
+	"Bullets": "+1 BULLETS",
+	"Dodge": "+5% DODGE CHANCE",
+	"Crit": "+5% CRIT CHANCE",
+	"Speed": "INCREASED MOVE SPEED"
+}
+
 var green = Color(0.04, 0.52, 0.11, 1.0)
 var red = Color(0.52, 0.04, 0.04, 1.0)
 var yellow = Color(0.88, 0.77, 0.23, 1.0)
+
+var reroll_odds = 0
 
 func _ready():
 	refresh()
@@ -259,8 +289,10 @@ func attempt_purchase():
 			# purchase upgrade
 			player.spend_scrap(cost)
 			if current_selection == "Ability5":
-				# TODO random passive buff
-				g.play_sfx(player.level, "slot_machine")
+				unlock_rng(cost / 111)
+				random.randomize()
+				var new_cost = random.randi_range(1,7) * 111
+				fab_menu_options["Ability5"][0].Cost = new_cost
 			else:
 				var title = fab_menu_options[current_selection][0].Title
 				var rank = fab_menu_options[current_selection][0].Rank
@@ -286,3 +318,33 @@ func refresh():
 	deselect_all()
 	update_options()
 	select_current()
+
+func unlock_rng(cost):
+	if rng_mods.size() == 0:
+		return
+	g.play_sfx(player.level, "slot_machine")
+	random.randomize()
+	var mod_index = random.randi_range(0, rng_mods.size() - 1)
+	var mod = rng_mods[mod_index]
+	player.mods[mod] += 1
+	player.get_node("FloatTextSpawner").float_text(rng_messages[mod], yellow)
+	rng_mods.remove(mod_index)
+	
+	# cost of RNG determines odds of multiple unlocks
+	random.randomize()
+	var reroll = random.randi_range(1, 10)
+	if reroll <= cost:
+		roll_again(cost - 1)
+
+func roll_again(cost):
+	if cost < 0:
+		cost = 0
+	reroll_odds = cost
+	random.randomize()
+	var delay = random.randf_range(0.25, 1.5)
+	var timer = player.get_node("RerollRNGTimer")
+	timer.wait_time = delay
+	timer.start()
+
+func _on_RerollRNGTimer_timeout():
+	unlock_rng(reroll_odds)
