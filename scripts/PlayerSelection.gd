@@ -148,4 +148,5 @@ func _on_FadeTween_tween_all_completed():
 			$ReadyCountdown.set("custom_colors/font_color", green)
 		show_ready_text()
 	else:
+		g.stop_menu_music()
 		get_tree().change_scene("res://scenes/Game.tscn")

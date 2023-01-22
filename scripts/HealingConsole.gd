@@ -23,6 +23,7 @@ func _input(event):
 			$Idle.visible = false
 			$Active.visible = true
 			$Active.play()
+			g.play_sfx(self, "healing")
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group('players') and not heal_receiver:

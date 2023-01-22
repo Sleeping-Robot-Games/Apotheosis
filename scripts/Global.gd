@@ -10,6 +10,7 @@ var tower_state = 0
 var component_stage = 0
 var total_kills = 0
 var total_max_kills = 500
+var BGM = null
 
 var player_input_devices = {
 	'p1': 'keyboard',
@@ -109,6 +110,17 @@ func make_shaders_unique(sprite: Sprite):
 	var mat = sprite.get_material().duplicate()
 	sprite.set_material(mat)
 
+func play_menu_music():
+	var music_player = AudioStreamPlayer.new()
+	music_player.volume_db = -10
+	music_player.stream = load("res://assets/sfx/menu_BGM.mp3")
+	call_deferred('add_child', music_player)
+	music_player.play()
+	BGM = music_player
+	
+func stop_menu_music():
+	BGM.queue_free()
+
 func play_sfx(parent, sound, db_overide = 0):
 	var sfx_player = AudioStreamPlayer.new()
 	sfx_player.volume_db = db_overide
@@ -171,6 +183,8 @@ func play_sfx(parent, sound, db_overide = 0):
 		sfx_player.stream = load("res://assets/sfx/jump_pads.mp3")
 	elif sound == "tower_building":
 		sfx_player.stream = load("res://assets/sfx/tower_building.mp3")
+	elif sound == "healing":
+		sfx_player.stream = load("res://assets/sfx/healing.mp3")
 	
 	sfx_player.connect("finished", sfx_player, "queue_free")
 

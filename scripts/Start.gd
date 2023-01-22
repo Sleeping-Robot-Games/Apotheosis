@@ -13,6 +13,7 @@ func _ready():
 	handle_new_input()
 	$Splash/SrgSplash/AnimationPlayer.play("SRG")
 	$BGHolder/Apotheosis/AnimationPlayer.play("glow")
+	g.play_menu_music()
 
 func _input(event):
 	# keyboard
