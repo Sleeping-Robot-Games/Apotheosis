@@ -204,10 +204,21 @@ func use_scope():
 	}
 	
 	can_use_scope = false
-	var count = 0
 	g.play_sfx(level, "multishot")
+	
+	# sort enemies by distance to player
+	var sorted_enemies = []
 	for enemy in scope_range_bodies:
+		if enemy and not enemy.is_dead:
+			sorted_enemies.append(enemy)
+	sorted_enemies.sort_custom(self, "sort_by_distance")
+	
+	# spawn crosshairs
+	var count = 0
+	for enemy in sorted_enemies:
 		if enemy and not enemy.is_dead and count < rank_mods[rank].Targets:
+			var enemy_distance = global_position.distance_to(enemy.global_position)
+			print("distance to enemy: " + str(enemy_distance))
 			var crosshair_instance = crosshair_scene.instance()
 			crosshair_instance.target = enemy
 			crosshair_instance.damage = rank_mods[rank].Damage
@@ -215,6 +226,11 @@ func use_scope():
 			count += 1
 	g.player_ui[player_key].ability_cooldown("Ability2", $ScopeCD.wait_time)
 	$ScopeCD.start()
+
+func sort_by_distance(a, b):
+	var a_distance = global_position.distance_to(a.global_position)
+	var b_distance = global_position.distance_to(b.global_position)
+	return a_distance < b_distance
 
 func use_barrel():
 	can_use_barrel = false
