@@ -28,6 +28,7 @@ func _input(event):
 						$Label.visible = false
 						$InteractLabel.visible = false
 						enable_jump_pad(tower_console_number)
+						clear_old_enemies(tower_console_number)
 			elif scrap_required == 0:
 				if any_player_has_the_component():
 					component_delivered = true
@@ -36,11 +37,12 @@ func _input(event):
 					$Label.visible = false
 					$InteractLabel.visible = false
 					enable_jump_pad(tower_console_number)
+					clear_old_enemies(tower_console_number)
 				else:
 					$Label.text = 'Critical Component required'
 
 func any_player_has_the_component():
-	for player in owner.get_node('Players').get_children():
+	for player in get_tree().get_nodes_in_group('players'):
 		print(player.component_stage)
 		if player.component_stage == tower_console_number:
 			return true
@@ -71,5 +73,10 @@ func _on_Area2D_body_exited(body):
 		player = null
 
 func enable_jump_pad(stage):
-	owner.get_node('JumpPads/TowerJumpPad'+str(stage)).disabled = false
-	owner.get_node('JumpPads/TowerJumpPad'+str(stage)+'/AnimatedSprite').playing = true
+	for jump_pad in get_tree().get_nodes_in_group('towerjump'+str(stage)):
+		jump_pad.disabled = false
+		jump_pad.get_node('AnimatedSprite').playing = true
+
+func clear_old_enemies(stage):
+	for enemy in get_tree().get_nodes_in_group('tower_state_'+str(stage-1)):
+		enemy.queue_free()

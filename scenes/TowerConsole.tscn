@@ -123,7 +123,6 @@ text = "Press   to use"
 visible = false
 position = Vector2( 53, 5 )
 frames = ExtResource( 4 )
-frame = 1
 playing = true
 
 [node name="Key" type="Sprite" parent="InteractLabel"]

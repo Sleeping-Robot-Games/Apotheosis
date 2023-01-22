@@ -104,7 +104,8 @@ func dmg(num):
 		$Sprite.modulate = Color(1.0, 0.0, 0.0, 1.0)
 		$HurtRedTimer.start()
 		if hp <= 0:
-			g.total_kills += 1
+			if g.total_kills <= 1000:
+				g.total_kills += 1
 			is_dead = true
 			if enemy_name == "chickpea":
 				## TODO: Make this a function

@@ -36,6 +36,7 @@ var current_upgrade = 0
 var fab_menu_open = false
 var fabricating_progress = 0
 var jump_force_multiplier = 2
+var repair_target = null
 # TODO: other RNG mods (push, piercing, etc)
 var bullet_mods = {
 	"Damage": 1,
@@ -72,6 +73,11 @@ func _on_DevTimer_timeout():
 	get_scrap(3000)
 
 func _input(event):
+	if repair_target != null and event.is_action_pressed("interact_"+ str(controller_id)):
+		if scrap >= 500:
+			spend_scrap(500)
+			repair_target.repair()
+			repair_target = null
 	if fab_menu_open == false and event.is_action_pressed("fab_" + str(controller_id)):
 		start_fabricator()
 	elif fab_menu_open == false and event.is_action_released("fab_" + str(controller_id)):
@@ -118,6 +124,13 @@ func _process(delta: float) -> void:
 
 func play_animation(anim_name):
 	$AnimationPlayer.play(anim_name)
+
+func repair():
+	is_dead = false
+	hp = max_hp
+	ui_disabled = false
+	$RezArea/Label.visible = false
+	$AnimationPlayer.play("idleRight")
 
 func dmg(num):
 	if not is_dead and states.current_state.name != 'dash':
@@ -385,3 +398,16 @@ func _on_BarrelCD_timeout():
 
 func _on_StockCD_timeout():
 	can_use_stock = true
+
+func _on_RezArea_body_entered(body):
+	if body.is_in_group('players') and body.is_dead:
+		var key = "kb_up.png" if body.controller_id == "kb" else "dpad_up.png"
+		body.get_node('RezArea/Label/Key').texture = load("res://assets/ui/keys/" + key)
+		body.get_node('RezArea/Label').visible = true
+		repair_target = body
+		
+
+func _on_RezArea_body_exited(body):
+	if is_dead and body.is_in_group('players'):
+		$RezArea/Label.visible = false
+		repair_target = null
