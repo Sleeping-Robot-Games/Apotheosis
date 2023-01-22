@@ -304,6 +304,7 @@ func get_scrap(amount = 10):
 	scrap += amount
 	g.player_ui[player_key].set_scrap(scrap)
 	$FabMenu.refresh()
+	g.play_sfx(self, "picking_up_scrap")
 
 func spend_scrap(amount):
 	scrap -= amount

@@ -185,6 +185,8 @@ func play_sfx(parent, sound, db_overide = 0):
 		sfx_player.stream = load("res://assets/sfx/tower_building.mp3")
 	elif sound == "healing":
 		sfx_player.stream = load("res://assets/sfx/healing.mp3")
+	elif sound == "picking_up_scrap":
+		sfx_player.stream = load("res://assets/sfx/picking_up_scrap.mp3")
 	
 	sfx_player.connect("finished", sfx_player, "queue_free")
 
