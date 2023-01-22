@@ -75,7 +75,7 @@ func add_player(p_key):
 		enable_cursor()
 	elif "joy_" in g.player_input_devices[player_key]:
 		focused_button_index = Vector2(0,0)
-		focus_button()
+		focus_button(true)
 		disable_cursor()
 	$Model.visible = true
 	$Color.visible = true
@@ -191,7 +191,7 @@ func focus_next_column():
 		focused_button_index.y = 0
 	focus_button()
 
-func focus_button():
+func focus_button(init = false):
 	# unfocus all buttons
 	for row in range(buttons.size()):
 		for column in range(buttons[row].size()):
@@ -199,10 +199,13 @@ func focus_button():
 	if focused_button_index == null:
 		return
 	# focus active button
+	var sfx = "menu_select" if init else "menu_focus" 
+	g.play_sfx(self, sfx, -10)
 	var focused_node = buttons[focused_button_index.x][focused_button_index.y]
 	focused_node.add_stylebox_override("normal", focused_stylebox)
 
 func press_focused_button():
+	g.play_sfx(self, "menu_select", -10)
 	pressed_button = buttons[focused_button_index.x][focused_button_index.y]
 	pressed_button.add_stylebox_override("normal", pressed_stylebox)
 	$PressButtonTimer.start()
