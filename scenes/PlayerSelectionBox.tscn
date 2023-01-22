@@ -281,7 +281,7 @@ margin_right = 482.0
 margin_bottom = 247.0
 rect_scale = Vector2( 0.75, 0.75 )
 custom_fonts/font = SubResource( 35 )
-text = "UNREADY"
+text = "READY"
 align = 1
 valign = 1
 
