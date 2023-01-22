@@ -31,7 +31,7 @@ func input(_event: InputEvent) -> BaseState:
 			return dash_state
 	if actor.jump_count < actor.mods.Jumps \
 		and Input.is_action_just_pressed("jump_" + actor.controller_id) \
-		and coyote_timer > 0:
+		and (coyote_timer > 0 or actor.jump_count > 0):
 			jump_buffer_timer = jump_buffer_time
 			return jump_state
 	return null
