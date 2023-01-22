@@ -77,3 +77,4 @@ func play_tower_animation(num):
 	get_node("Tower"+str(num)).show()
 	$AnimationPlayer.play("Tower"+str(num)+"Rise")
 	g.emit_signal('shake', 3, 18, 18, 0)
+	g.play_sfx(self, "tower_building")
