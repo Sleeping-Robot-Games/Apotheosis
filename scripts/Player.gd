@@ -99,7 +99,7 @@ func _input(event):
 	elif fab_menu_open == true and event.is_action_pressed("fab_" + str(controller_id)):
 		$FabMenu.close_menu()
 	
-	if can_shoot and Input.is_action_pressed("shoot_" + controller_id) and not ui_disabled:
+	if can_shoot and Input.is_action_pressed("shoot_" + controller_id) and not ui_disabled and not fab_menu_open:
 		shoot()
 	elif can_use_tank and g.ability_ranks[player_key]["Ability1"] > -1 and Input.is_action_pressed("ability_a_" + controller_id):
 		use_tank()
