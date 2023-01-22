@@ -21,7 +21,7 @@ func enter() -> void:
 	.enter()
 	
 	dash_timer = actor.dash_cd
-	actor.can_jump = true
+	actor.jump_count = 0
 	
 func input(_event: InputEvent) -> BaseState:
 	if actor.is_on_floor() and Input.is_action_just_pressed("jump_" + actor.controller_id) \

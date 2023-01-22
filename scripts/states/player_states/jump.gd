@@ -4,11 +4,13 @@ export (NodePath) var fall_node
 export (NodePath) var run_node
 export (NodePath) var idle_node
 export (NodePath) var dash_node
+export (NodePath) var jump_node
 
 onready var fall_state: BaseState = get_node(fall_node)
 onready var run_state: BaseState = get_node(run_node)
 onready var idle_state: BaseState = get_node(idle_node)
 onready var dash_state: BaseState = get_node(dash_node)
+onready var jump_state: BaseState = get_node(jump_node)
 
 export (int) var jump_force = 300
 export (int) var max_speed = 150
@@ -18,6 +20,7 @@ func enter() -> void:
 	# This calls the base class enter function, which is necessary here
 	# to make sure the animation switches
 	.enter()
+	actor.jump_count += 1
 	actor.can_dash = true
 
 	actor.velocity.y = -jump_force if not actor.jump_padding else -jump_force * actor.jump_force_multiplier
@@ -28,6 +31,9 @@ func exit() -> void:
 func input(_event: InputEvent) -> BaseState:
 	if actor.can_dash and Input.is_action_just_pressed("dash_" + actor.controller_id):
 		return dash_state
+	elif actor.jump_count < actor.mods.Jumps and Input.is_action_just_pressed("jump_" + actor.controller_id) \
+		and actor.fab_menu_open == false:
+			return jump_state
 	return null
 
 func physics_process(_delta: float) -> BaseState:
@@ -48,8 +54,6 @@ func physics_process(_delta: float) -> BaseState:
 	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
 	
 	if actor.velocity.y > 0:
-		# This makes it so the player can't double jump from coyote_time
-		actor.can_jump = false
 		return fall_state
 
 	if actor.is_on_floor():

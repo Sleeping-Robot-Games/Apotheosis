@@ -29,7 +29,7 @@ func input(_event: InputEvent) -> BaseState:
 		and Input.is_action_just_pressed("dash_" + actor.controller_id) \
 		and (actor.fab_menu_open == false or actor.controller_id == "kb"):
 			return dash_state
-	if actor.can_jump \
+	if actor.jump_count < actor.mods.Jumps \
 		and Input.is_action_just_pressed("jump_" + actor.controller_id) \
 		and coyote_timer > 0:
 			jump_buffer_timer = jump_buffer_time
