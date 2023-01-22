@@ -5619,6 +5619,7 @@ tracks/0/keys = {
 
 [sub_resource type="DynamicFont" id=196]
 size = 8
+font_data = ExtResource( 52 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -5742,382 +5743,387 @@ texture = ExtResource( 44 )
 
 [node name="Torch" parent="Wall/WallDeco" instance=ExtResource( 29 )]
 position = Vector2( -480, 306 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch3" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -144, 0 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch23" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -224, -136 )
+frame = 1
 playing = true
 
 [node name="Torch24" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -359, -64 )
+frame = 1
 playing = true
 
 [node name="Torch25" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -439, -64 )
-frame = 2
 playing = true
 
 [node name="Torch26" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -743, -64 )
-frame = 2
 playing = true
 
 [node name="Torch27" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -823, -64 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch28" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -903, -64 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch29" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -1120, -64 )
+frame = 1
 playing = true
 
 [node name="Torch30" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -1048, 80 )
+frame = 1
 playing = true
 
 [node name="Torch31" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -936, 295 )
+frame = 1
 playing = true
 
 [node name="Torch32" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -696, 281 )
-frame = 2
 playing = true
 
 [node name="Torch34" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -392, 271 )
-frame = 2
 playing = true
 
 [node name="Torch35" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -211, 271 )
-frame = 2
 playing = true
 
 [node name="Torch36" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -576, 391 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch37" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -810, 391 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch38" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -1046, 391 )
+frame = 1
 playing = true
 
 [node name="Torch39" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -1285, 391 )
+frame = 1
 playing = true
 
 [node name="Torch40" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -545, -297 )
+frame = 1
 playing = true
 
 [node name="Torch41" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -736, -297 )
-frame = 2
 playing = true
 
 [node name="Torch42" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -326, -297 )
-frame = 2
 playing = true
 
 [node name="Torch43" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 362, -693 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch44" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 512, -694 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch45" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 698, -546 )
+frame = 1
 playing = true
 
 [node name="Torch46" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 842, -546 )
+frame = 1
 playing = true
 
 [node name="Torch47" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 986, -546 )
-frame = 2
 playing = true
 
 [node name="Torch48" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1130, -546 )
-frame = 2
 playing = true
 
 [node name="Torch49" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1274, -546 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch50" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1450, -546 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch56" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1616, -1049 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch57" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1514, -1177 )
+frame = 1
 playing = true
 
 [node name="Torch58" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1431, -1177 )
-frame = 2
 playing = true
 
 [node name="Torch59" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1353, -1177 )
-frame = 2
 playing = true
 
 [node name="Torch60" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1149, -1177 )
-frame = 2
 playing = true
 
 [node name="Torch61" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1066, -1177 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch62" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 988, -1177 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch63" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 908, -1177 )
-frame = 2
 playing = true
 
 [node name="Torch64" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 825, -1177 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch65" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 747, -1177 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch66" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 664, -1177 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch67" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 581, -1177 )
+frame = 1
 playing = true
 
 [node name="Torch68" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 503, -1177 )
+frame = 1
 playing = true
 
 [node name="Torch69" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 961, -1018 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch70" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 833, -1026 )
+frame = 1
 playing = true
 
 [node name="Torch71" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 704, -1019 )
+frame = 1
 playing = true
 
 [node name="Torch73" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 729, -872 )
+frame = 1
 playing = true
 
 [node name="Torch74" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 572, -872 )
-frame = 2
 playing = true
 
 [node name="Torch75" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 890, -872 )
-frame = 2
 playing = true
 
 [node name="Torch72" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 278, -1024 )
-frame = 2
 playing = true
 
 [node name="Torch51" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1559, -546 )
+frame = 1
 playing = true
 
 [node name="Torch76" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 698, -707 )
+frame = 1
 playing = true
 
 [node name="Torch77" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 842, -707 )
-frame = 2
 playing = true
 
 [node name="Torch78" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 986, -707 )
-frame = 2
 playing = true
 
 [node name="Torch79" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1130, -707 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch80" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1274, -707 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch81" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1450, -707 )
+frame = 1
 playing = true
 
 [node name="Torch82" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1559, -707 )
+frame = 1
 playing = true
 
 [node name="Torch52" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1712, -364 )
+frame = 1
 playing = true
 
 [node name="Torch53" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1712, -220 )
-frame = 2
 playing = true
 
 [node name="Torch54" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1712, -76 )
-frame = 2
 playing = true
 
 [node name="Torch33" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -1232, 295 )
-frame = 2
 playing = true
 
 [node name="Torch22" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 15, 284 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch2" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 448, 642 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch4" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 642, 720 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch5" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 864, 760 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch55" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1182, 824 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch6" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 609, 896 )
+frame = 1
 playing = true
 
 [node name="Torch7" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 440, 896 )
+frame = 1
 playing = true
 
 [node name="Torch8" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 904, 960 )
-frame = 2
 playing = true
 
 [node name="Torch10" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1064, 960 )
-frame = 2
 playing = true
 
 [node name="Torch9" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 984, 960 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch11" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1304, 960 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch12" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1383, 722 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch13" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1362, 1113 )
+frame = 1
 playing = true
 
 [node name="Torch14" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1230, 1113 )
+frame = 1
 playing = true
 
 [node name="Torch15" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1042, 1113 )
+frame = 1
 playing = true
 
 [node name="Torch16" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 572, 1281 )
+frame = 1
 playing = true
 
 [node name="Torch17" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 444, 1281 )
+frame = 1
 playing = true
 
 [node name="Torch18" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 316, 1281 )
+frame = 1
 playing = true
 
 [node name="Torch19" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 188, 1281 )
+frame = 1
 playing = true
 
 [node name="Torch20" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 60, 1281 )
-frame = 2
 playing = true
 
 [node name="Torch21" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -68, 1281 )
-frame = 2
 playing = true
 
 [node name="Painting006" type="Sprite" parent="Wall/WallDeco"]
@@ -6154,7 +6160,6 @@ tile_data = PoolIntArray( -4063197, 14, 0, -4063196, 15, 0, -3997661, 16, 0, -39
 modulate = Color( 1, 1, 1, 0.458824 )
 position = Vector2( 642, 1530 )
 frames = SubResource( 192 )
-frame = 2
 playing = true
 
 [node name="Sprite" type="Sprite" parent="Platform/EasterEgg"]

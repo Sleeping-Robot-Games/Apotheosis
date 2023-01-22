@@ -19,7 +19,7 @@ var num_of_players = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	spawn_players()
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func spawn_players():
 	var spawn_offset = 0

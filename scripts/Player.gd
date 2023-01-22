@@ -85,16 +85,7 @@ func _input(event):
 	elif fab_menu_open == true and event.is_action_pressed("fab_" + str(controller_id)):
 		$FabMenu.close_menu()
 	
-	if can_shoot and Input.is_action_pressed("shoot_" + controller_id) and not ui_disabled and not fab_menu_open:
-		shoot()
-	elif can_use_tank and g.ability_ranks[player_key]["Ability1"] > -1 and Input.is_action_pressed("ability_a_" + controller_id):
-		use_tank()
-	elif can_use_scope and g.ability_ranks[player_key]["Ability2"] > -1 and Input.is_action_pressed("ability_b_" + controller_id):
-		use_scope()
-	elif can_use_barrel and g.ability_ranks[player_key]["Ability3"] > -1 and Input.is_action_pressed("ability_c_" + controller_id):
-		use_barrel()
-	elif can_use_stock and g.ability_ranks[player_key]["Ability4"] > -1 and Input.is_action_pressed("ability_d_" + controller_id):
-		use_stock()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if ui_disabled:
@@ -110,6 +101,17 @@ func _process(delta: float) -> void:
 	if ui_disabled:
 		return
 	states.process(delta)
+	
+	if can_shoot and Input.is_action_pressed("shoot_" + controller_id) and not ui_disabled and not fab_menu_open:
+		shoot()
+	elif can_use_tank and g.ability_ranks[player_key]["Ability1"] > -1 and Input.is_action_pressed("ability_a_" + controller_id):
+		use_tank()
+	elif can_use_scope and g.ability_ranks[player_key]["Ability2"] > -1 and Input.is_action_pressed("ability_b_" + controller_id):
+		use_scope()
+	elif can_use_barrel and g.ability_ranks[player_key]["Ability3"] > -1 and Input.is_action_pressed("ability_c_" + controller_id):
+		use_barrel()
+	elif can_use_stock and g.ability_ranks[player_key]["Ability4"] > -1 and Input.is_action_pressed("ability_d_" + controller_id):
+		use_stock()
 	
 	if laser_visible:
 		var barrel_offset = 32
@@ -304,7 +306,7 @@ func get_scrap(amount = 10):
 	scrap += amount
 	g.player_ui[player_key].set_scrap(scrap)
 	$FabMenu.refresh()
-	g.play_sfx(self, "picking_up_scrap")
+	# g.play_sfx(self, "picking_up_scrap")
 
 func spend_scrap(amount):
 	scrap -= amount
