@@ -189,11 +189,7 @@ func deselect_all():
 func update_purchase_btn(playing = true):
 	if player.controller_id == "kb":
 		$PurchaseLabel/ControllerButton.visible = false
-		$PurchaseLabel/KeyboardButton.visible = true
-		$PurchaseLabel/KeyboardButton.frame = 0
-		$PurchaseLabel/KeyboardButton.playing = playing
 	else:
-		$PurchaseLabel/KeyboardButton.visible = false
 		$PurchaseLabel/ControllerButton.visible = true
 		$PurchaseLabel/ControllerButton.frame = 0
 		$PurchaseLabel/ControllerButton.playing = playing
