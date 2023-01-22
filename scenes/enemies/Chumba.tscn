@@ -127,7 +127,7 @@ extents = Vector2( 10, 7.37498 )
 scale = Vector2( 1.5, 1.5 )
 chase_speed = 200
 type = "melee"
-hp = 5
+hp = 6
 bullet_speed = 5
 
 [node name="Sprite" parent="." index="0"]

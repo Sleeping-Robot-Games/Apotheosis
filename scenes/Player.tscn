@@ -3623,6 +3623,7 @@ texture = ExtResource( 39 )
 visible = false
 position = Vector2( 64, -11 )
 frames = ExtResource( 38 )
+frame = 1
 playing = true
 
 [node name="RerollRNGTimer" type="Timer" parent="."]
@@ -3633,11 +3634,11 @@ wait_time = 20.0
 autostart = true
 
 [node name="Tutorial" type="Control" parent="."]
-visible = false
 margin_left = -19.0
 margin_top = -51.0
 margin_right = 21.0
 margin_bottom = -11.0
+mouse_filter = 2
 script = ExtResource( 40 )
 
 [node name="Timer" type="Timer" parent="Tutorial"]

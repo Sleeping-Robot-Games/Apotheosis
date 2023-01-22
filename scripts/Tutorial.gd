@@ -6,15 +6,17 @@ var lessons_kb = [
 	'Use A and D to move',
 	'Left click mouse to shoot',
 	'Space to jump',
-	'Use 1-4 to use abilites once \n built with scrap',
-	'Hold F to open upgrade menu',
+	'Shift to dash',
+	'1-4 keys to use abilites once \n built with scrap',
+	'Press F to open fabricate menu',
 ]
 var lessons_controller = [
 	'Use analog stick to move',
 	'X to shoot',
 	'A to jump',
-	'Use 1-4 to use abilites once \n built with scrap',
-	'Hold Y to open upgrade menu',
+	'B to dash',
+	'Triggers to use abilites once \n built with scrap',
+	'Press Y to open fabricate menu',
 ]
 var lessons = []
 var lesson_index = 0
@@ -32,7 +34,7 @@ func show_tutorial():
 	$Label.show()
 
 func _on_Timer_timeout():
-	if lesson_index == 4:
+	if lesson_index == 5:
 		$Label.hide()
 		$Timer.stop()
 		return

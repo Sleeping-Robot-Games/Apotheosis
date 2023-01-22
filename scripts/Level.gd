@@ -87,6 +87,7 @@ func play_tower_animation(num):
 	$AnimationPlayer.play("Tower"+str(num)+"Rise")
 	g.emit_signal('shake', 3, 18, 18, 0)
 	g.play_sfx(self, "tower_building")
+	$TutorialLabels.hide()
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

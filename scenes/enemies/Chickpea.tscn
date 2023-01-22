@@ -134,7 +134,7 @@ tracks/0/keys = {
 extents = Vector2( 125, 11.0833 )
 
 [node name="Chickpea" instance=ExtResource( 1 )]
-hp = 2
+hp = 3
 attack_time = 2.0
 bullet_speed = 2
 
