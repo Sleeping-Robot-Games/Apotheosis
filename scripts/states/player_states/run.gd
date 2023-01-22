@@ -12,8 +12,8 @@ onready var fall_state: BaseState = get_node(fall_node)
 onready var run_state: BaseState = get_node(run_node)
 onready var dash_state: BaseState = get_node(dash_node)
 
-export (int) var max_speed = 150
-export (int) var accel = 40
+var max_speed = 150
+var accel = 40
 
 var dash_timer: float = 0
 
@@ -52,18 +52,20 @@ func physics_process(_delta: float) -> BaseState:
 	var prev_direction = actor.direction
 
 	actor.moving = false
+	var modded_accel = accel + (10 * actor.mods.Speed)
 	if Input.is_action_pressed("right_" + actor.controller_id):
-		actor.velocity.x += accel
+		actor.velocity.x += modded_accel
 		actor.direction = 1
 		actor.moving = true
 	elif Input.is_action_pressed("left_" + actor.controller_id):
 		actor.direction = -1
-		actor.velocity.x -= accel
+		actor.velocity.x -= modded_accel
 		actor.moving = true
 	
 	actor.velocity.y += actor.gravity
 	
-	actor.velocity.x = clamp(actor.velocity.x, -max_speed, max_speed)
+	var modded_max_speed = max_speed + (60 * actor.mods.Speed)
+	actor.velocity.x = clamp(actor.velocity.x, -modded_max_speed, modded_max_speed)
 	
 	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
 	

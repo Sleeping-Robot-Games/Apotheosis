@@ -50,7 +50,7 @@ var mods = {
 	"Bullets": 1,
 	"Dodge": 0,
 	"Crit": 0,
-	"Speed": 1
+	"Speed": 0
 }
 
 var component_stage = 0
@@ -146,8 +146,8 @@ func repair():
 func dmg(num):
 	if not is_dead and states.current_state.name != 'dash':
 		var dodge_chance = mods.Dodge * 5
-		random.randomize()
 		var dodge_roll = random.randi_range(1, 100)
+		random.randomize()
 		if dodge_chance >= dodge_roll:
 			$FloatTextSpawner.float_text("DODGED", g.yellow)
 			return
@@ -172,10 +172,10 @@ func dmg(num):
 				$AnimationPlayer.play('hurt'+direction_string) 
 
 func shoot():
-	can_shoot = false
-	$ShootCD.start()
 	if states.current_state.name == 'dash':
 		return
+	can_shoot = false
+	$ShootCD.start()
 	g.play_sfx(level, "player_shoot", -10)
 	var y_offset = 0
 	for i in range(mods.Bullets):
@@ -183,7 +183,14 @@ func shoot():
 		bullet.shot_by = 'player'
 		bullet.global_position = Vector2(global_position.x + 40 * direction, global_position.y + y_offset) 
 		bullet.speed = bullet_speed * direction
-		bullet.damage = mods.Damage
+		random.randomize()
+		var dmg = mods.Damage
+		var crit_chance = mods.Crit * 5
+		var crit_roll = random.randi_range(1, 100)
+		if crit_chance >= crit_roll:
+			$FloatTextSpawner.float_text("CRIT", g.red)
+			dmg *= 2
+		bullet.damage = dmg
 		bullet.piercing = mods.Piercing
 		level.call_deferred('add_child', bullet)
 		y_offset -= 7
