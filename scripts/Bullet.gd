@@ -5,6 +5,8 @@ var speed = 15
 var shot_by: String = 'player'
 var victims: String
 var piercing = 0
+var spawn_x = 0
+var push = 0
 var damage = 1
 var body_found = false
 var sprite = "001"
@@ -12,6 +14,7 @@ var duration = 0.5
 
 func _ready():
 	get_node(sprite).visible = true
+	spawn_x = global_position.x
 	prep_bullet()
 	scale.x = 1 if speed < 0 else -1
 	$Timer.start()
@@ -55,8 +58,20 @@ func _on_Area2D_body_entered(body):
 	body_found = true
 	if body.is_in_group(victims) and body.has_method('dmg') and body.get("is_dead") == false:
 		if shot_by == "player" and g.current_killstreak >= g.killstreak_threshold:
-			damage = damage * 2
+			damage = damage + 2
 		body.dmg(damage)
+		if push  > 0:
+			push = max(push, 4)
+			var push_mods = {
+				1: {"Distance": 25, "Force": 100},
+				2: {"Distance": 50, "Force": 150},
+				3: {"Distance": 75, "Force": 200},
+				4: {"Distance": 100, "Force": 250},
+			}
+			body.push_distance = push_mods[push].Distance
+			body.push_force_override = push_mods[push].Force
+			body.push_direction = -1 if body.global_position.x < spawn_x else 1
+			body.is_pushed = true
 		if piercing > 0:
 			piercing -= 1
 		else:

@@ -192,6 +192,7 @@ func shoot():
 			dmg *= 2
 		bullet.damage = dmg
 		bullet.piercing = mods.Piercing
+		bullet.push = mods.Push
 		level.call_deferred('add_child', bullet)
 		y_offset -= 7
 
