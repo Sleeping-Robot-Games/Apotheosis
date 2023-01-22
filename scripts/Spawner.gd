@@ -21,7 +21,7 @@ func _ready():
 
 func _on_Timer_timeout():
 	if tower_state == g.tower_state and get_tree().get_nodes_in_group(name).size() <= boi_count:
-		interval = interval - (g.total_kills * (interval - 2) / 1000)
+		interval = interval - (g.total_kills * (interval - 2) / g.total_max_kills)
 		$Timer.wait_time = interval
 		var new_enemy = enemy_scene.instance()
 		new_enemy.global_position = Vector2(global_position.x, global_position.y - 10)

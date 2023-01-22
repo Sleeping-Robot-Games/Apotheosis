@@ -69,8 +69,11 @@ func show_offscreen(player_key):
 func hide_offscreen(player_key):
 	game.get_node("offscreen" + player_key).visible = false
 
-
 func _on_EnemyHeatTimer_timeout():
 	## Polls total_kills to set the progress bar and update spawners
 	$HUD/ProgressBar.value = g.total_kills
 
+func play_tower_animation(num):
+	get_node("Tower"+str(num)).show()
+	$AnimationPlayer.play("Tower"+str(num)+"Rise")
+	g.emit_signal('shake', 3, 18, 18, 0)

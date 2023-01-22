@@ -2,10 +2,13 @@ extends Node
 
 var random = RandomNumberGenerator.new()
 
+signal shake(duration, frequency, amplitude, priority)
+
 var killstreak_threshold = 20
 var current_killstreak = 0
 var tower_state = 0
 var total_kills = 0
+var total_max_kills = 750
 
 var player_input_devices = {
 	'p1': 'keyboard',

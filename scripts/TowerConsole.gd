@@ -24,7 +24,7 @@ func _input(event):
 					if any_player_has_the_component():
 						component_delivered = true
 						g.tower_state = tower_console_number
-						owner.get_node('Tower' + str(tower_console_number)).show()
+						owner.play_tower_animation(tower_console_number)
 						$Label.visible = false
 						$InteractLabel.visible = false
 						enable_jump_pad(tower_console_number)
@@ -33,7 +33,7 @@ func _input(event):
 				if any_player_has_the_component():
 					component_delivered = true
 					g.tower_state = tower_console_number
-					owner.get_node('Tower' + str(tower_console_number)).show()
+					owner.play_tower_animation(tower_console_number)
 					$Label.visible = false
 					$InteractLabel.visible = false
 					enable_jump_pad(tower_console_number)

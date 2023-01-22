@@ -190,7 +190,7 @@ func shoot():
 	for i in range(mods.Bullets):
 		var bullet = bullet_scene.instance()
 		bullet.shot_by = 'player'
-		bullet.global_position = Vector2(global_position.x + 40 * direction, global_position.y + y_offset) 
+		bullet.global_position = Vector2(global_position.x + 20 * direction, global_position.y + y_offset) 
 		bullet.speed = bullet_speed * direction
 		random.randomize()
 		var dmg = mods.Damage

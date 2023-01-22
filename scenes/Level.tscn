@@ -1,4 +1,4 @@
-[gd_scene load_steps=193 format=2]
+[gd_scene load_steps=197 format=2]
 
 [ext_resource path="res://scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HealingConsole.tscn" type="PackedScene" id=2]
@@ -44,6 +44,7 @@
 [ext_resource path="res://assets/background/painting_002.png" type="Texture" id=42]
 [ext_resource path="res://assets/background/painting_001.png" type="Texture" id=43]
 [ext_resource path="res://assets/background/painting_004.png" type="Texture" id=44]
+[ext_resource path="res://scenes/ScreenShake.tscn" type="PackedScene" id=45]
 
 [sub_resource type="TileSet" id=3]
 0/name = "skycolor.png 0"
@@ -5512,6 +5513,54 @@ color_ramp = SubResource( 79 )
 size = 12
 font_data = ExtResource( 34 )
 
+[sub_resource type="Animation" id=193]
+resource_name = "Tower1Rise"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Tower1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 481, 1010 ), Vector2( 481, 753 ) ]
+}
+
+[sub_resource type="Animation" id=194]
+resource_name = "Tower2Rise"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Tower2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 481, 737 ), Vector2( 481, 497 ) ]
+}
+
+[sub_resource type="Animation" id=195]
+resource_name = "Tower3Rise"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Tower3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 481, 558 ), Vector2( 481, 113 ) ]
+}
+
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -5576,23 +5625,26 @@ texture = ExtResource( 10 )
 position = Vector2( 127, 401 )
 texture = ExtResource( 14 )
 
-[node name="Tower1" type="Sprite" parent="."]
-modulate = Color( 0.568627, 0.568627, 0.572549, 1 )
-position = Vector2( 481, 753 )
+[node name="Tower3" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.580392, 0.568627, 0.6, 1 )
+position = Vector2( 481, 558 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 13 )
+texture = ExtResource( 4 )
 
 [node name="Tower2" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0.466667, 0.454902, 0.486275, 1 )
-position = Vector2( 481, 497 )
+position = Vector2( 481, 737 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 19 )
 
-[node name="Tower3" type="Sprite" parent="."]
-modulate = Color( 0.580392, 0.568627, 0.6, 1 )
-position = Vector2( 481, 113 )
+[node name="Tower1" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.568627, 0.568627, 0.572549, 1 )
+position = Vector2( 481, 1010 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
+texture = ExtResource( 13 )
 
 [node name="Wall" type="TileMap" parent="."]
 modulate = Color( 0.784314, 0.698039, 0.839216, 1 )
@@ -6455,6 +6507,8 @@ drag_margin_right = 0.1
 drag_margin_bottom = 0.1
 script = ExtResource( 22 )
 
+[node name="ScreenShake" parent="Camera" instance=ExtResource( 45 )]
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="KillCombo" type="Label" parent="HUD"]
@@ -6520,6 +6574,11 @@ stage = 3
 [node name="CriticalComponent2" parent="." instance=ExtResource( 35 )]
 position = Vector2( -1616, -18 )
 stage = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Tower1Rise = SubResource( 193 )
+anims/Tower2Rise = SubResource( 194 )
+anims/Tower3Rise = SubResource( 195 )
 
 [connection signal="tween_all_completed" from="FadeOutTween" to="." method="_on_FadeOutTween_tween_all_completed"]
 [connection signal="timeout" from="KillstreakTimer" to="." method="_on_KillstreakTimer_timeout"]
