@@ -3608,6 +3608,7 @@ texture = ExtResource( 39 )
 visible = false
 position = Vector2( 64, -11 )
 frames = ExtResource( 38 )
+frame = 1
 playing = true
 
 [node name="RerollRNGTimer" type="Timer" parent="."]

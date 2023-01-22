@@ -146,8 +146,7 @@ func _input(event):
 			attempt_purchase()
 
 func open_menu():
-	# TODO: if any fab reminders showing hide them
-	current_selection = "Ability1"
+	current_selection = null if using_kb else "Ability1"
 	player.fab_menu_open = true
 	g.play_sfx(player.level, "menu_select", -5)
 	refresh()
