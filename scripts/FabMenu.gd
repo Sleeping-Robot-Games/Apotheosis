@@ -10,7 +10,7 @@ onready var button_mappings = {
 	"Ability3": "e.png" if using_kb else "rb.png",
 	"Ability4": "r.png" if using_kb else "rt.png"
 }
-var current_selection = "Ability1"
+onready var current_selection = null if using_kb else "Ability1"
 
 var fab_menu_options = {
 	"Ability1": [
@@ -116,15 +116,22 @@ var rng_messages = {
 var reroll_odds = 0
 
 func _ready():
+	if using_kb:
+		mouse_filter = MOUSE_FILTER_STOP
+		$Ability1.mouse_filter = MOUSE_FILTER_STOP
+		$Ability2.mouse_filter = MOUSE_FILTER_STOP
+		$Ability3.mouse_filter = MOUSE_FILTER_STOP
+		$Ability4.mouse_filter = MOUSE_FILTER_STOP
+		$Ability5.mouse_filter = MOUSE_FILTER_STOP
 	refresh()
 
 func _input(event):
 	if visible == false:
 		return
-	elif using_kb and event.is_action_pressed("ui_up"):
-		focus_up()
-	elif using_kb and event.is_action_pressed("ui_down"):
-		focus_down()
+	#elif using_kb and event.is_action_pressed("ui_up"):
+	#	focus_up()
+	#elif using_kb and event.is_action_pressed("ui_down"):
+	#	focus_down()
 	elif using_kb and event.is_action_pressed("ui_kb_accept"):
 		attempt_purchase()
 	elif not using_kb and event.is_action_pressed("ui_up_" + str(player.controller_id)):
@@ -353,3 +360,49 @@ func roll_again(cost):
 
 func _on_RerollRNGTimer_timeout():
 	unlock_rng(reroll_odds)
+
+
+func _on_FabMenu_mouse_exited():
+	if using_kb:
+		current_selection = null
+		refresh()
+
+
+func _on_Ability1_mouse_entered():
+	if using_kb:
+		if current_selection != "Ability1":
+			g.play_sfx(player.level, "menu_focus", -5)
+		current_selection = "Ability1"
+		refresh()
+
+
+func _on_Ability2_mouse_entered():
+	if using_kb:
+		if current_selection != "Ability2":
+			g.play_sfx(player.level, "menu_focus", -5)
+		current_selection = "Ability2"
+		refresh()
+
+
+func _on_Ability3_mouse_entered():
+	if using_kb:
+		if current_selection != "Ability3":
+			g.play_sfx(player.level, "menu_focus", -5)
+		current_selection = "Ability3"
+		refresh()
+
+
+func _on_Ability4_mouse_entered():
+	if using_kb:
+		if current_selection != "Ability4":
+			g.play_sfx(player.level, "menu_focus", -5)
+		current_selection = "Ability4"
+		refresh()
+
+
+func _on_Ability5_mouse_entered():
+	if using_kb:
+		if current_selection != "Ability5":
+			g.play_sfx(player.level, "menu_focus", -5)
+		current_selection = "Ability5"
+		refresh()
