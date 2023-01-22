@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://assets/healingConsoleActivate.png" type="Texture" id=1]
 [ext_resource path="res://assets/healingConsoleIdle.png" type="Texture" id=2]
 [ext_resource path="res://scripts/HealingConsole.gd" type="Script" id=3]
 [ext_resource path="res://resources/Fkey.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://assets/background/LightSprite.png" type="Texture" id=5]
 [ext_resource path="res://assets/ui/keys/dpad_up.png" type="Texture" id=6]
 [ext_resource path="res://assets/fonts/PublicPixel-z84yD.ttf" type="DynamicFontData" id=7]
 
@@ -95,6 +96,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="Animation" id=25]
+resource_name = "Glow"
+
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 22.5, 13 )
 
@@ -116,6 +120,16 @@ frames = SubResource( 9 )
 visible = false
 frames = SubResource( 20 )
 
+[node name="Light2D" type="Light2D" parent="Active"]
+modulate = Color( 0.317647, 1, 0.219608, 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+color = Color( 0.278431, 0.870588, 0.172549, 1 )
+energy = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Active"]
+anims/Glow = SubResource( 25 )
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -134,7 +148,6 @@ text = "Press   to Heal"
 visible = false
 position = Vector2( 52, 7 )
 frames = ExtResource( 4 )
-frame = 1
 playing = true
 
 [node name="Key" type="Sprite" parent="Label"]
