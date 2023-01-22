@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tower_building.mp3-ed61c4ee0a24af46ead8dbf68e7a520b.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/tower_building.mp3"
+dest_files=[ "res://.import/tower_building.mp3-ed61c4ee0a24af46ead8dbf68e7a520b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,6 +1,5 @@
 extends Node2D
 
-export var healing_power = 5
 var scrap_cost = 10
 
 var is_healing = false
@@ -48,10 +47,11 @@ func _on_Active_animation_finished():
 	$Active.visible = false
 	$Idle.visible = true
 	if heal_receiver:
-		var heal_amount = max(heal_receiver.hp + healing_power, heal_receiver.max_hp)
+		var heal_amount = heal_receiver.max_hp
 		g.player_ui[heal_receiver.player_key].set_health(heal_amount)
 		heal_receiver.hp = heal_amount
 		heal_receiver.ui_disabled = false
 	is_healing = false
 	$Label.visible = false
 	$Cost.visible = false
+	$Active.stop()

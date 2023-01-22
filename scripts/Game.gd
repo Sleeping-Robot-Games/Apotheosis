@@ -35,6 +35,7 @@ func spawn_players():
 			players.add_child(player_instance)
 			# increment spawn coordinates for next potential player
 			spawn_coords.x += spawn_distancing
+			player_instance.get_node("Tutorial").show_tutorial()
 			
 			# initialize an offscreen indicator for this player
 			var offscreen_scene = load("res://scenes/OffscreenIndicator.tscn")
