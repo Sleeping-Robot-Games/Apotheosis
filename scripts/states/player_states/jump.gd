@@ -39,18 +39,20 @@ func input(_event: InputEvent) -> BaseState:
 
 func physics_process(_delta: float) -> BaseState:
 	actor.moving = false
+	var modded_accel = accel + (10 * actor.mods.Speed)
 	if Input.is_action_pressed("right_"  + actor.controller_id):
-		actor.velocity.x += accel
+		actor.velocity.x += modded_accel
 		actor.direction = 1
 		actor.moving = true
 	elif Input.is_action_pressed("left_" + actor.controller_id):
 		actor.direction = -1
-		actor.velocity.x -= accel
+		actor.velocity.x -= modded_accel
 		actor.moving = true
 	
 	actor.velocity.y += actor.gravity
 	
-	actor.velocity.x = clamp(actor.velocity.x, -max_speed, max_speed)
+	var modded_max_speed = max_speed + (60 * actor.mods.Speed)
+	actor.velocity.x = clamp(actor.velocity.x, -modded_max_speed, modded_max_speed)
 	
 	actor.velocity = actor.move_and_slide(actor.velocity, Vector2.UP)
 	
