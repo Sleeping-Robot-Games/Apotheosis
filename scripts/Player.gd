@@ -410,7 +410,7 @@ func _on_StockCD_timeout():
 
 func _on_RezArea_body_entered(body):
 	if body.is_in_group('players') and body.is_dead:
-		var key = "kb_up.png" if body.controller_id == "kb" else "dpad_up.png"
+		var key = "e.png" if body.controller_id == "kb" else "dpad_up.png"
 		body.get_node('RezArea/Label/Key').texture = load("res://assets/ui/keys/" + key)
 		body.get_node('RezArea/Label').visible = true
 		repair_target = body

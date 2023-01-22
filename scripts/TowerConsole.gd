@@ -61,7 +61,7 @@ func _on_Area2D_body_entered(body):
 		else:
 			$Label.text = 'Critical Component required'
 		
-		var key = "kb_up.png" if body.controller_id == "kb" else "dpad_up.png"
+		var key = "e.png" if body.controller_id == "kb" else "dpad_up.png"
 		$InteractLabel/Key.texture = load("res://assets/ui/keys/" + key)
 		$InteractLabel.visible = true
 		player = body

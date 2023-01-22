@@ -5,10 +5,10 @@ var random = RandomNumberGenerator.new()
 onready var player = get_parent()
 onready var using_kb = g.player_input_devices[player.player_key] == "keyboard"
 onready var button_mappings = {
-	"Ability1": "q.png" if using_kb else "lb.png",
-	"Ability2": "w.png" if using_kb else "lt.png",
-	"Ability3": "e.png" if using_kb else "rb.png",
-	"Ability4": "r.png" if using_kb else "rt.png"
+	"Ability1": "1.png" if using_kb else "lb.png",
+	"Ability2": "2.png" if using_kb else "lt.png",
+	"Ability3": "3.png" if using_kb else "rb.png",
+	"Ability4": "4.png" if using_kb else "rt.png"
 }
 onready var current_selection = null if using_kb else "Ability1"
 

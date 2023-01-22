@@ -29,7 +29,7 @@ func _on_Area2D_body_entered(body):
 		var total_scrap_cost = scrap_cost * (body.max_hp - body.hp)
 		if body.max_hp != body.hp and body.scrap >= total_scrap_cost:
 			heal_receiver = body
-			var key = "kb_up.png" if heal_receiver.controller_id == "kb" else "dpad_up.png"
+			var key = "e.png" if heal_receiver.controller_id == "kb" else "dpad_up.png"
 			$Label/Key.texture = load("res://assets/ui/keys/" + key)
 			$Label.visible = true
 			$Cost.visible = true
