@@ -55,6 +55,8 @@ func remove_player():
 	$Ready.visible = false
 	$Leave.visible = false
 	$Checkmark.visible = false
+	$ReadyLabel.visible = false
+	$LeaveLabel.visible = false
 	
 	$Join.rect_position.y = join_mid_pos
 	$Join.visible = true
@@ -82,6 +84,8 @@ func add_player(p_key):
 	$Name.visible = true
 	$Ready.visible = true
 	$Leave.visible = true
+	$ReadyLabel.visible = true
+	$LeaveLabel.visible = true
 	$Checkmark.visible = false
 	
 	create_random_character()
