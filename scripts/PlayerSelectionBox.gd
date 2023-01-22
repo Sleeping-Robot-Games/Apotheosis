@@ -238,6 +238,8 @@ func _on_Box_mouse_entered():
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_ModelPrev_pressed():
+	if g.player_input_devices[player_key] == "keyboard":
+		g.play_sfx(self, "menu_select", -10)
 	var folder_path = sprite_folder_path + "Head"
 	var files = g.files_in_dir(folder_path)
 	var file = sprite_state["Head"].split("/")[-1]
@@ -251,6 +253,8 @@ func _on_ModelPrev_pressed():
 	set_sprite_texture("Head", new_sprite_path)
 
 func _on_ModelNext_pressed():
+	if g.player_input_devices[player_key] == "keyboard":
+		g.play_sfx(self, "menu_select", -10)
 	var folder_path = sprite_folder_path + "Head"
 	var files = g.files_in_dir(folder_path)
 	var file = sprite_state["Head"].split("/")[-1]
@@ -264,6 +268,8 @@ func _on_ModelNext_pressed():
 	set_sprite_texture("Head", new_sprite_path)
 
 func _on_ColorPrev_pressed():
+	if g.player_input_devices[player_key] == "keyboard":
+		g.play_sfx(self, "menu_select", -10)
 	var available_colors = []
 	var all_colors = g.files_in_dir(palette_folder_path)
 	for color in all_colors:
@@ -281,6 +287,8 @@ func _on_ColorPrev_pressed():
 		set_sprite_color(sprite, new_color)
 
 func _on_ColorNext_pressed():
+	if g.player_input_devices[player_key] == "keyboard":
+		g.play_sfx(self, "menu_select", -10)
 	var available_colors = []
 	var all_colors = g.files_in_dir(palette_folder_path)
 	for color in all_colors:
@@ -298,17 +306,38 @@ func _on_ColorNext_pressed():
 		set_sprite_color(sprite, new_color)
 
 func _on_Leave_pressed():
+	if g.player_input_devices[player_key] == "keyboard":
+		g.play_sfx(self, "menu_select", -10)
 	remove_player()
 
 func _on_Ready_pressed():
+	if g.player_input_devices[player_key] == "keyboard":
+		g.play_sfx(self, "menu_select", -10)
 	is_ready = !is_ready
 	$Checkmark.visible = is_ready
 	$ReadyLabel.text = "UNREADY" if is_ready else "READY"
 	$ReadyLabel.rect_size.x = 127
 	emit_signal("player_ready_changed", player_key, is_ready)
-	if is_ready:
-		# TODO: change button to red
-		return
-	else:
-		# TODO: change button to green
-		return
+
+func _on_ModelPrev_mouse_entered():
+	g.play_sfx(self, "menu_focus", -10)
+
+
+func _on_ModelNext_mouse_entered():
+	g.play_sfx(self, "menu_focus", -10)
+
+
+func _on_ColorPrev_mouse_entered():
+	g.play_sfx(self, "menu_focus", -10)
+
+
+func _on_ColorNext_mouse_entered():
+	g.play_sfx(self, "menu_focus", -10)
+
+
+func _on_Leave_mouse_entered():
+	g.play_sfx(self, "menu_focus", -10)
+
+
+func _on_Ready_mouse_entered():
+	g.play_sfx(self, "menu_focus", -10)
