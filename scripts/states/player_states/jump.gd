@@ -21,7 +21,6 @@ func enter() -> void:
 	# to make sure the animation switches
 	.enter()
 	actor.jump_count += 1
-	actor.can_dash = true
 
 	actor.velocity.y = -jump_force if not actor.jump_padding else -jump_force * actor.jump_force_multiplier
 
@@ -29,7 +28,7 @@ func exit() -> void:
 	actor.jump_padding = false
 
 func input(_event: InputEvent) -> BaseState:
-	if actor.can_dash and Input.is_action_just_pressed("dash_" + actor.controller_id):
+	if actor.dash_count < actor.mods.Dashes and Input.is_action_just_pressed("dash_" + actor.controller_id):
 		return dash_state
 	elif actor.jump_count < actor.mods.Jumps and Input.is_action_just_pressed("jump_" + actor.controller_id) \
 		and actor.fab_menu_open == false:

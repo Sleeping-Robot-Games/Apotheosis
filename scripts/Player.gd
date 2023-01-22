@@ -15,7 +15,6 @@ var direction = 1
 var direction_string = "Right"
 var dmg_color = Color(1.0, 1.0, 1.0, 1.0)
 var moving = false
-var can_dash = true
 var can_shoot = true
 var can_use_scope = true
 var can_use_tank = true
@@ -53,6 +52,7 @@ var mods = {
 	"HP": 0,
 }
 var jump_count = 0
+var dash_count = 0
 
 var component_stage = 0
 

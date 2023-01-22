@@ -25,7 +25,7 @@ func enter() -> void:
 	coyote_timer = coyote_time
 
 func input(_event: InputEvent) -> BaseState:
-	if actor.can_dash \
+	if actor.dash_count < actor.mods.Dashes \
 		and Input.is_action_just_pressed("dash_" + actor.controller_id) \
 		and (actor.fab_menu_open == false or actor.controller_id == "kb"):
 			return dash_state

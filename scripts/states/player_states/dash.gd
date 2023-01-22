@@ -26,6 +26,7 @@ var prev_player_pos
 func enter() -> void:
 	.enter()
 	
+	actor.dash_count += 1
 	current_dash_time = dash_time
 	current_dash_ghost_interval = dash_ghost_interval
 	g.play_sfx(actor.level, "player_dash")
@@ -54,9 +55,6 @@ func process(delta: float) -> BaseState:
 	
 	if prev_player_pos != actor.position and current_dash_time > 0:
 		return null
-
-	# This makes it so the player can't repeatedly dash
-	actor.can_dash = false
 	
 	if actor.is_on_floor():
 		if Input.is_action_pressed("left_" + actor.controller_id) \

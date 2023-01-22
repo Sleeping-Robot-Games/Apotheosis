@@ -25,7 +25,7 @@ func input(_event: InputEvent) -> BaseState:
 	elif actor.is_on_floor() and Input.is_action_just_pressed("jump_" + actor.controller_id) \
 		and actor.fab_menu_open == false:
 			return jump_state
-	elif actor.can_dash and Input.is_action_just_pressed("dash_" + actor.controller_id) \
+	elif actor.dash_count < actor.mods.Dashes and Input.is_action_just_pressed("dash_" + actor.controller_id) \
 		and (actor.fab_menu_open == false or actor.controller_id == "kb"):
 			return dash_state
 	return null
@@ -33,8 +33,8 @@ func input(_event: InputEvent) -> BaseState:
 func process(_delta: float) -> BaseState:
 	dash_timer -= _delta
 	
-	if not actor.can_dash and dash_timer < 0:
-		actor.can_dash = true
+	if actor.dash_count > 0 and dash_timer < 0:
+		actor.dash_count = 0
 	
 	if actor.jump_padding:
 		return jump_state
