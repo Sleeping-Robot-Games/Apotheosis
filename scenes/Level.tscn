@@ -6728,11 +6728,11 @@ Use scrap and each component to
 align = 1
 
 [node name="Sprite" type="Sprite" parent="TutorialLabels/Main"]
-position = Vector2( 272, 4 )
+position = Vector2( 285, 4 )
 texture = ExtResource( 46 )
 
 [node name="Sprite2" type="Sprite" parent="TutorialLabels/Main"]
-position = Vector2( 285, 32 )
+position = Vector2( 302, 34 )
 texture = ExtResource( 47 )
 
 [node name="TowerConsole" type="Label" parent="TutorialLabels"]
