@@ -1070,6 +1070,7 @@ __meta__ = {
 }
 
 [node name="InputDevice" type="Sprite" parent="."]
+visible = false
 position = Vector2( 764, 491 )
 
 [node name="PressButtonTimer" type="Timer" parent="."]
@@ -1079,7 +1080,6 @@ one_shot = true
 [node name="Splash" type="Node2D" parent="."]
 
 [node name="GwjSplash" type="ColorRect" parent="Splash"]
-visible = false
 margin_left = -17.0
 margin_top = -23.0
 margin_right = 983.0
@@ -1108,7 +1108,6 @@ texture = ExtResource( 12 )
 one_shot = true
 
 [node name="SrgSplash" type="ColorRect" parent="Splash"]
-visible = false
 margin_left = -13.0
 margin_top = -21.0
 margin_right = 976.0
