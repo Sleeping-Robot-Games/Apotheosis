@@ -3127,7 +3127,7 @@ shape = SubResource( 46 )
 
 [node name="TankRangeArea" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 6
 
 [node name="Particles2D" type="Particles2D" parent="TankRangeArea"]
 modulate = Color( 1.5, 1.5, 1.5, 1 )
@@ -3608,7 +3608,6 @@ texture = ExtResource( 39 )
 visible = false
 position = Vector2( 64, -11 )
 frames = ExtResource( 38 )
-frame = 1
 playing = true
 
 [node name="RerollRNGTimer" type="Timer" parent="."]
@@ -3645,6 +3644,7 @@ align = 1
 [connection signal="timeout" from="ShootCD" to="." method="_on_ShootCD_timeout"]
 [connection signal="body_entered" from="ScopeRangeArea" to="." method="_on_ScopeRangeArea_body_entered"]
 [connection signal="body_exited" from="ScopeRangeArea" to="." method="_on_ScopeRangeArea_body_exited"]
+[connection signal="area_entered" from="TankRangeArea" to="." method="_on_TankRangeArea_area_entered"]
 [connection signal="body_entered" from="TankRangeArea" to="." method="_on_TankRangeArea_body_entered"]
 [connection signal="body_exited" from="TankRangeArea" to="." method="_on_TankRangeArea_body_exited"]
 [connection signal="timeout" from="debug_label/Timer" to="." method="_on_debugTimer_timeout"]

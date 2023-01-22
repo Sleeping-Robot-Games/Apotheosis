@@ -379,6 +379,12 @@ func _on_TankRangeArea_body_exited(body):
 	if body.is_in_group('enemies'): 
 		tank_range_bodies.erase(body)
 
+func _on_TankRangeArea_area_entered(area):
+	if $TankDuration.time_left > 0:
+		var parent = area.get_parent()
+		if parent.is_in_group('bullets') and parent.victims == 'players':
+			parent.queue_free()
+
 func _on_ScopeCD_timeout():
 	can_use_scope = true
 
