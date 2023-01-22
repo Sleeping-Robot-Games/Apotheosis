@@ -6567,6 +6567,9 @@ position = Vector2( 597, 865 )
 [node name="CriticalComponent" parent="." instance=ExtResource( 35 )]
 position = Vector2( 563, 1600 )
 
+[node name="CriticalComponent4" parent="." instance=ExtResource( 35 )]
+position = Vector2( 352, 866 )
+
 [node name="CriticalComponent3" parent="." instance=ExtResource( 35 )]
 position = Vector2( 1241, -731 )
 stage = 3

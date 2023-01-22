@@ -7,6 +7,7 @@ signal shake(duration, frequency, amplitude, priority)
 var killstreak_threshold = 20
 var current_killstreak = 0
 var tower_state = 0
+var component_stage = 0
 var total_kills = 0
 var total_max_kills = 750
 

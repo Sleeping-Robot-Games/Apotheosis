@@ -54,8 +54,6 @@ var mods = {
 var jump_count = 0
 var dash_count = 0
 
-var component_stage = 0
-
 onready var states = $state_manager
 onready var level = null if ui_disabled else get_node('../../../Level')
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
@@ -316,9 +314,6 @@ func get_scrap(amount = 10):
 	$FabMenu.refresh()
 	# show_debug_label('scrap: ' + str(scrap))
 	# TODO: when upgrades can be purchased, show temp indicator?
-
-func get_component(stage):
-	component_stage = stage
 
 func spend_scrap(amount):
 	scrap -= amount

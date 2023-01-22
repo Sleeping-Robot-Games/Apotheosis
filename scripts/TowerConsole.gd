@@ -19,9 +19,9 @@ func _input(event):
 					player.spend_scrap(base_required)
 					scrap_required = max(scrap_required - base_required, 0)
 					$Label.text = 'Critical Component and \n X Scrap required to \n reassemble Sat. Tower'.replace('X', str(scrap_required))
-				if scrap_required == 0:
+				if scrap_required <= 0:
 					$Label.text = 'Critical Component required'
-					if any_player_has_the_component():
+					if tower_console_number == g.component_stage:
 						component_delivered = true
 						g.tower_state = tower_console_number
 						owner.play_tower_animation(tower_console_number)
@@ -30,7 +30,7 @@ func _input(event):
 						enable_jump_pad(tower_console_number)
 						clear_old_enemies(tower_console_number)
 			elif scrap_required == 0:
-				if any_player_has_the_component():
+				if tower_console_number == g.component_stage:
 					component_delivered = true
 					g.tower_state = tower_console_number
 					owner.play_tower_animation(tower_console_number)
