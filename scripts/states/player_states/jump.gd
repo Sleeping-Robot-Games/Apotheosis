@@ -21,6 +21,8 @@ func enter() -> void:
 	# to make sure the animation switches
 	.enter()
 	actor.jump_count += 1
+	if actor.jump_count == 1:
+		actor.dash_count = 0
 
 	actor.velocity.y = -jump_force if not actor.jump_padding else -jump_force * actor.jump_force_multiplier
 
