@@ -3,9 +3,9 @@ extends Control
 var player_key
 var screen_positions = {
 	"p1": Vector2(0,0),
-	"p2": Vector2(834,0),
-	"p3": Vector2(0,456),
-	"p4": Vector2(834,456)
+	"p2": Vector2(825,0),
+	"p3": Vector2(0,450),
+	"p4": Vector2(825,450)
 }
 # null if not unlocked, false if available, true if in cooldown
 var ability_cd = {

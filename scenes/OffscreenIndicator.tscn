@@ -27,7 +27,6 @@ render_target_update_mode = 3
 
 [node name="OffscreenCamera" type="Camera2D" parent="ViewportContainer/MiniViewport"]
 current = true
-zoom = Vector2( 2, 2 )
 
 [node name="Border" type="Sprite" parent="."]
 position = Vector2( 128, 64 )

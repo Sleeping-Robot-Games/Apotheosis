@@ -5,9 +5,6 @@
 
 [node name="Game" type="Control"]
 script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 margin_right = 960.0
