@@ -73,6 +73,8 @@ func _on_DevTimer_timeout():
 	get_scrap(3000)
 
 func _input(event):
+	if is_dead:
+		return
 	if repair_target != null and event.is_action_pressed("interact_"+ str(controller_id)):
 		if scrap >= 500:
 			spend_scrap(500)
@@ -145,6 +147,8 @@ func dmg(num):
 			is_dead = true
 			ui_disabled = true
 			g.play_sfx(level, "player_death")
+			if fab_menu_open:
+				$FabMenu.close_menu()
 		else:
 			g.play_sfx(level, "player_hit")
 			if states.current_state.name == 'run':
