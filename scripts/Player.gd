@@ -50,7 +50,8 @@ var mods = {
 	"Bullets": 1,
 	"Dodge": 0,
 	"Crit": 0,
-	"Speed": 0
+	"Speed": 0,
+	"HP": 0,
 }
 
 var component_stage = 0
@@ -142,6 +143,14 @@ func repair():
 	ui_disabled = false
 	$RezArea/Label.visible = false
 	$AnimationPlayer.play("idleRight")
+
+func increment_max_hp():
+	if is_dead:
+		return
+	max_hp += 1
+	hp += 1
+	g.player_ui[player_key].set_max_health(max_hp)
+	g.player_ui[player_key].set_health(hp)
 
 func dmg(num):
 	if not is_dead and states.current_state.name != 'dash':

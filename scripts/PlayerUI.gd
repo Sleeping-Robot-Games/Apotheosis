@@ -55,6 +55,9 @@ func set_health(hp):
 		$Sprite.frame = 70
 		$Sprite.offset = Vector2(2, 0)
 
+func set_max_health(max_hp):
+	$HealthBar.max_value = max_hp
+
 func set_scrap(scrap):
 	if scrap < 0:
 		scrap = 0

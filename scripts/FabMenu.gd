@@ -95,6 +95,7 @@ var rng_mods = [
 	"Dodge","Dodge","Dodge","Dodge","Dodge","Dodge","Dodge","Dodge","Dodge","Dodge",
 	"Crit","Crit","Crit","Crit","Crit","Crit","Crit","Crit","Crit","Crit",
 	"Speed","Speed","Speed","Speed","Speed","Speed","Speed","Speed",
+	"HP","HP","HP","HP","HP","HP","HP","HP","HP","HP",
 ]
 
 var rng_messages = {
@@ -107,7 +108,9 @@ var rng_messages = {
 	"Bullets": "+1 BULLETS",
 	"Dodge": "+5% DODGE CHANCE",
 	"Crit": "+5% CRIT CHANCE",
-	"Speed": "INCREASED MOVE SPEED"
+	"Speed": "INCREASED MOVE SPEED",
+	"HP": "+1 MAX HP"
+	
 }
 
 var reroll_odds = 0
@@ -324,6 +327,8 @@ func unlock_rng(cost):
 	var mod = rng_mods[mod_index]
 	player.mods[mod] += 1
 	player.get_node("FloatTextSpawner").float_text(rng_messages[mod], g.yellow)
+	if mod == "HP":
+		player.increment_max_hp()
 	rng_mods.remove(mod_index)
 	
 	# cost of RNG determines odds of multiple unlocks
