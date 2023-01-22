@@ -189,6 +189,7 @@ func new_timestamp():
 
 func get_player_color(player_key: String, palette_x: int = 1) -> Color:
 	var player_color = player_colors[player_key]
+	player_color = "color_001.png" if player_color == null else player_color	
 	var palette = load("res://assets/character/palettes/" + player_color)
 	var data = palette.get_data()
 	data.lock()

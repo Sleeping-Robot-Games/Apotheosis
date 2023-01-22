@@ -1161,7 +1161,9 @@ align = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Splash/SrgSplash"]
 anims/SRG = SubResource( 12 )
 
+[connection signal="mouse_entered" from="StartButton" to="." method="_on_StartButton_mouse_entered"]
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="mouse_entered" from="QuitButton" to="." method="_on_QuitButton_mouse_entered"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="timeout" from="PressButtonTimer" to="." method="_on_PressButtonTimer_timeout"]
 [connection signal="timeout" from="Splash/GwjSplash/GWJTimer" to="." method="_on_GWJTimer_timeout"]

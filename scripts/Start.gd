@@ -84,11 +84,12 @@ func _on_PressButtonTimer_timeout():
 	pressed_button = null
 
 func _on_StartButton_pressed():
+	g.play_sfx(self, "menu_select", -10)
 	get_tree().change_scene("res://scenes/PlayerSelection.tscn")
 
 func _on_QuitButton_pressed():
+	g.play_sfx(self, "menu_select", -10)
 	get_tree().quit()
-
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	$Splash/SrgSplash.hide()
@@ -96,3 +97,9 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_GWJTimer_timeout():
 	$Splash/GwjSplash.hide()
+
+func _on_StartButton_mouse_entered():
+	g.play_sfx(self, "menu_focus", -10)
+
+func _on_QuitButton_mouse_entered():
+	g.play_sfx(self, "menu_focus", -10)
