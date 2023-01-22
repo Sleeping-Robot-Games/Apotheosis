@@ -15,6 +15,12 @@ func _ready():
 	$Camera2D.current = true
 	$Boxes/Box1.add_player("p1")
 	$ReadyCountdown.set("custom_colors/font_color", yellow)
+	g.killstreak_threshold = 20
+	g.current_killstreak = 0
+	g.tower_state = 0
+	g.component_stage = 0
+	g.total_kills = 0
+	g.total_max_kills = 500
 	g.ability_ranks = {
 	"p1": {
 		"Ability1": -1,
