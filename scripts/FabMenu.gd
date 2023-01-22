@@ -158,6 +158,7 @@ func focus_up():
 	if ability_num < 1:
 		ability_num = 5
 	current_selection = "Ability"+str(ability_num)
+	g.play_sfx(player.level, "menu_focus", -5)
 	refresh()
 
 func focus_down():
@@ -165,6 +166,7 @@ func focus_down():
 	if ability_num > 5:
 		ability_num = 1
 	current_selection = "Ability"+str(ability_num)
+	g.play_sfx(player.level, "menu_focus", -5)
 	refresh()
 
 func deselect_all():
@@ -286,6 +288,7 @@ func attempt_purchase():
 			if cost > player.scrap:
 				return
 			# purchase upgrade
+			g.play_sfx(player.level, "menu_select", -5)
 			player.spend_scrap(cost)
 			if current_selection == "Ability5":
 				unlock_rng(cost / 111)
