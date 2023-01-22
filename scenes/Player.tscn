@@ -2994,7 +2994,7 @@ font_data = ExtResource( 28 )
 
 [sub_resource type="DynamicFont" id=56]
 size = 8
-font_data = ExtResource( 28 )
+font_data = ExtResource( 13 )
 
 [node name="Player" type="KinematicBody2D" groups=["players"]]
 collision_mask = 56
@@ -3152,6 +3152,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="FabMenu" type="Control" parent="."]
+visible = false
 margin_left = -56.0
 margin_top = -135.0
 margin_right = 8.0
