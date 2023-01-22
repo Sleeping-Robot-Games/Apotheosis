@@ -163,6 +163,8 @@ func play_sfx(parent, sound, db_overide = 0):
 		sfx_player.stream = load("res://assets/sfx/1.mp3")
 	elif sound == "menu_go":
 		sfx_player.stream = load("res://assets/sfx/go.mp3")
+	elif sound == "jump_pad":
+		sfx_player.stream = load("res://assets/sfx/jump_pads.mp3")
 	
 	sfx_player.connect("finished", sfx_player, "queue_free")
 
