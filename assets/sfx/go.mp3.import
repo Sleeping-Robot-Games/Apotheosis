@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/go.mp3-b45f34413308bdbfaaa5eff99c8ff072.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/go.mp3"
+dest_files=[ "res://.import/go.mp3-b45f34413308bdbfaaa5eff99c8ff072.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

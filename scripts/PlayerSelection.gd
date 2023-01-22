@@ -8,9 +8,8 @@ var green = Color(0.04, 0.52, 0.11, 1.0)
 var player_ready_status: Dictionary = {}
 var aye_aye_captain = false
 var ready_text = ["3", "2", "1", "GO!"]
+var ready_sfx = ["menu_3", "menu_2", "menu_1", "menu_go"]
 var ready_index = null
-
-
 
 func _ready():
 	$Camera2D.current = true
@@ -90,6 +89,7 @@ func show_ready_text():
 		cancel_ready_countdown()
 		return
 	$ReadyCountdown.text = ready_text[ready_index]
+	g.play_sfx(self, ready_sfx[ready_index])
 	$ReadyCountdown.modulate.a = 1.0
 	$ReadyCountdown/GrowTween.interpolate_property($ReadyCountdown, "rect_scale", Vector2(4, 4), Vector2(5, 5), 0.75, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$ReadyCountdown/GrowTween.start()
