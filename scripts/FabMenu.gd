@@ -99,7 +99,7 @@ var rng_mods = [
 ]
 
 var rng_messages = {
-	"Damage": "+1 DMG",
+	"Damage": "+0.5 DMG",
 	"Piercing": "+1 PIERCING",
 	"Push": "+1 KNOCKBACK",
 	"Jumps": "EXTRA JUMP",
@@ -336,7 +336,10 @@ func unlock_rng(cost):
 	random.randomize()
 	var mod_index = random.randi_range(0, rng_mods.size() - 1)
 	var mod = rng_mods[mod_index]
-	player.mods[mod] += 1
+	if mod == "Damage":
+		player.mods[mod] += 0.5
+	else:
+		player.mods[mod] += 1
 	player.get_node("FloatTextSpawner").float_text(rng_messages[mod], g.yellow)
 	if mod == "HP":
 		player.increment_max_hp()
