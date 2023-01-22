@@ -75,10 +75,16 @@ func _ready():
 	if ui_disabled == false:
 		$DevTimer.start()
 
+func arise():
+	ui_disabled = true
+	play_animation('fallRight')
+	$Tween.interpolate_property(self, "position", position, Vector2(position.x, position.y - 600), 15, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.start()
+
 # TODO: remove
 func _on_DevTimer_timeout():
 	#return
-	get_scrap(3000)
+	get_scrap(8000)
 
 func _input(event):
 	if is_dead:
@@ -139,6 +145,7 @@ func repair():
 	ui_disabled = false
 	$RezArea/Label.visible = false
 	$AnimationPlayer.play("idleRight")
+	level.player_repaired()
 
 func increment_max_hp():
 	if is_dead:
@@ -167,6 +174,7 @@ func dmg(num):
 			is_dead = true
 			ui_disabled = true
 			g.play_sfx(level, "player_death")
+			level.player_died()
 			if fab_menu_open:
 				$FabMenu.close_menu()
 		else:

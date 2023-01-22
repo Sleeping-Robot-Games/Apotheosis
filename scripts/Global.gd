@@ -9,7 +9,7 @@ var current_killstreak = 0
 var tower_state = 0
 var component_stage = 0
 var total_kills = 0
-var total_max_kills = 750
+var total_max_kills = 500
 
 var player_input_devices = {
 	'p1': 'keyboard',
@@ -169,6 +169,8 @@ func play_sfx(parent, sound, db_overide = 0):
 		sfx_player.stream = load("res://assets/sfx/menu_select_sfx.mp3")
 	elif sound == "jump_pad":
 		sfx_player.stream = load("res://assets/sfx/jump_pads.mp3")
+	elif sound == "tower_building":
+		sfx_player.stream = load("res://assets/sfx/tower_building.mp3")
 	
 	sfx_player.connect("finished", sfx_player, "queue_free")
 

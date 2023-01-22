@@ -999,9 +999,6 @@ custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 6 )
 text = "Apotheosis"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BGHolder/Apotheosis"]
 method_call_mode = 1

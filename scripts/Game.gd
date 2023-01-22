@@ -14,6 +14,7 @@ var offscreen_positions = {
 	"p3": Vector2(5,320),
 	"p4": Vector2(830,320)
 }
+var num_of_players = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,6 +37,7 @@ func spawn_players():
 			# increment spawn coordinates for next potential player
 			spawn_coords.x += spawn_distancing
 			player_instance.get_node("Tutorial").show_tutorial()
+			num_of_players += 1
 			
 			# initialize an offscreen indicator for this player
 			var offscreen_scene = load("res://scenes/OffscreenIndicator.tscn")

@@ -3633,6 +3633,7 @@ wait_time = 20.0
 autostart = true
 
 [node name="Tutorial" type="Control" parent="."]
+visible = false
 margin_left = -19.0
 margin_top = -51.0
 margin_right = 21.0
@@ -3651,6 +3652,8 @@ margin_bottom = 27.0
 custom_fonts/font = SubResource( 56 )
 text = "Collect scrap to assemble the tower and complete the mission!"
 align = 1
+
+[node name="Tween" type="Tween" parent="."]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="ShootCD" to="." method="_on_ShootCD_timeout"]

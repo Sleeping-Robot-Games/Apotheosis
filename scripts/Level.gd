@@ -8,11 +8,20 @@ onready var kill_combo = $HUD/KillCombo
 onready var killstreak_fx = $HUD/Killstreak
 
 var killstreak_active = false
+var dead_players = 0
 
 func _ready():
 	get_node("Tower1").hide()
 	get_node("Tower2").hide()
 	get_node("Tower3").hide()
+	
+func player_died():
+	dead_players += 1
+	if dead_players >= game.num_of_players:
+		$AnimationPlayer.play('GameOver')
+
+func player_repaired():
+	dead_players -= 1
 
 func increment_killstreak():
 	#print(g.new_timestamp() + " enemy killed incrementing combo")
@@ -78,3 +87,16 @@ func play_tower_animation(num):
 	$AnimationPlayer.play("Tower"+str(num)+"Rise")
 	g.emit_signal('shake', 3, 18, 18, 0)
 	g.play_sfx(self, "tower_building")
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == 'Tower3Rise':
+		$AnimationPlayer.play('EndGame')
+		$HUD/MissionAccomplished.text += 'Total Kills ' + str(g.total_kills)
+		$Camera.stop_tracking = true
+		for player in get_tree().get_nodes_in_group('players'):
+			player.arise()
+
+
+func _on_TextureButton_button_up():
+	get_tree().change_scene("res://scenes/PlayerSelection.tscn")

@@ -37,7 +37,7 @@ func enter() -> void:
 
 func process(delta):
 	if actor.is_dead:
-		return null
+		return patrol_state
 	
 	if actor.is_pushed:
 		return push_state

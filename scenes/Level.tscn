@@ -1,4 +1,4 @@
-[gd_scene load_steps=200 format=2]
+[gd_scene load_steps=210 format=2]
 
 [ext_resource path="res://scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HealingConsole.tscn" type="PackedScene" id=2]
@@ -47,6 +47,10 @@
 [ext_resource path="res://scenes/ScreenShake.tscn" type="PackedScene" id=45]
 [ext_resource path="res://assets/loot/scrap.png" type="Texture" id=46]
 [ext_resource path="res://assets/loot/blueprint.png" type="Texture" id=47]
+[ext_resource path="res://assets/fonts/AstroSpace-0Wl3o.otf" type="DynamicFontData" id=48]
+[ext_resource path="res://assets/ui/button.png" type="Texture" id=49]
+[ext_resource path="res://assets/ui/buttonhover.png" type="Texture" id=50]
+[ext_resource path="res://assets/ui/buttonpress.png" type="Texture" id=51]
 
 [sub_resource type="TileSet" id=3]
 0/name = "skycolor.png 0"
@@ -5479,6 +5483,10 @@ animations = [ {
 [sub_resource type="Environment" id=42]
 glow_enabled = true
 
+[sub_resource type="DynamicFont" id=197]
+size = 12
+font_data = ExtResource( 34 )
+
 [sub_resource type="ShaderMaterial" id=77]
 
 [sub_resource type="Gradient" id=78]
@@ -5514,6 +5522,50 @@ color_ramp = SubResource( 79 )
 [sub_resource type="DynamicFont" id=159]
 size = 12
 font_data = ExtResource( 34 )
+
+[sub_resource type="DynamicFont" id=198]
+size = 24
+font_data = ExtResource( 48 )
+
+[sub_resource type="DynamicFont" id=200]
+size = 28
+font_data = ExtResource( 48 )
+
+[sub_resource type="DynamicFont" id=202]
+size = 10
+font_data = ExtResource( 34 )
+
+[sub_resource type="Animation" id=199]
+resource_name = "EndGame"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD/MissionAccomplished:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 273, -137 ), Vector2( 273, 80 ) ]
+}
+
+[sub_resource type="Animation" id=201]
+resource_name = "GameOver"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD/GameOver:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 273, -92 ), Vector2( 273, 200 ) ]
+}
 
 [sub_resource type="Animation" id=193]
 resource_name = "Tower1Rise"
@@ -5689,385 +5741,387 @@ texture = ExtResource( 44 )
 
 [node name="Torch" parent="Wall/WallDeco" instance=ExtResource( 29 )]
 position = Vector2( -480, 306 )
+frame = 2
 playing = true
 
 [node name="Torch3" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -144, 0 )
+frame = 2
 playing = true
 
 [node name="Torch23" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -224, -136 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch24" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -359, -64 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch25" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -439, -64 )
-frame = 1
 playing = true
 
 [node name="Torch26" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -743, -64 )
-frame = 1
 playing = true
 
 [node name="Torch27" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -823, -64 )
+frame = 2
 playing = true
 
 [node name="Torch28" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -903, -64 )
+frame = 2
 playing = true
 
 [node name="Torch29" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -1120, -64 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch30" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -1048, 80 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch31" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -936, 295 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch32" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -696, 281 )
-frame = 1
 playing = true
 
 [node name="Torch34" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -392, 271 )
-frame = 1
 playing = true
 
 [node name="Torch35" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -211, 271 )
-frame = 1
 playing = true
 
 [node name="Torch36" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -576, 391 )
+frame = 2
 playing = true
 
 [node name="Torch37" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -810, 391 )
+frame = 2
 playing = true
 
 [node name="Torch38" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -1046, 391 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch39" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -1285, 391 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch40" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -545, -297 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch41" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -736, -297 )
-frame = 1
 playing = true
 
 [node name="Torch42" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -326, -297 )
-frame = 1
 playing = true
 
 [node name="Torch43" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 362, -693 )
+frame = 2
 playing = true
 
 [node name="Torch44" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 512, -694 )
+frame = 2
 playing = true
 
 [node name="Torch45" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 698, -546 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch46" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 842, -546 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch47" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 986, -546 )
-frame = 1
 playing = true
 
 [node name="Torch48" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1130, -546 )
-frame = 1
 playing = true
 
 [node name="Torch49" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1274, -546 )
+frame = 2
 playing = true
 
 [node name="Torch50" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1450, -546 )
+frame = 2
 playing = true
 
 [node name="Torch56" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1616, -1049 )
+frame = 2
 playing = true
 
 [node name="Torch57" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1514, -1177 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch58" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1431, -1177 )
-frame = 1
 playing = true
 
 [node name="Torch59" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1353, -1177 )
-frame = 1
 playing = true
 
 [node name="Torch60" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1149, -1177 )
-frame = 1
 playing = true
 
 [node name="Torch61" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1066, -1177 )
+frame = 2
 playing = true
 
 [node name="Torch62" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 988, -1177 )
+frame = 2
 playing = true
 
 [node name="Torch63" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 908, -1177 )
-frame = 1
 playing = true
 
 [node name="Torch64" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 825, -1177 )
+frame = 2
 playing = true
 
 [node name="Torch65" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 747, -1177 )
+frame = 2
 playing = true
 
 [node name="Torch66" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 664, -1177 )
+frame = 2
 playing = true
 
 [node name="Torch67" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 581, -1177 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch68" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 503, -1177 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch69" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 961, -1018 )
+frame = 2
 playing = true
 
 [node name="Torch70" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 833, -1026 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch71" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 704, -1019 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch73" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 729, -872 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch74" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 572, -872 )
-frame = 1
 playing = true
 
 [node name="Torch75" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 890, -872 )
-frame = 1
 playing = true
 
 [node name="Torch72" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 278, -1024 )
-frame = 1
 playing = true
 
 [node name="Torch51" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1559, -546 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch76" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 698, -707 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch77" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 842, -707 )
-frame = 1
 playing = true
 
 [node name="Torch78" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 986, -707 )
-frame = 1
 playing = true
 
 [node name="Torch79" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1130, -707 )
+frame = 2
 playing = true
 
 [node name="Torch80" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1274, -707 )
+frame = 2
 playing = true
 
 [node name="Torch81" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1450, -707 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch82" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1559, -707 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch52" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1712, -364 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch53" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1712, -220 )
-frame = 1
 playing = true
 
 [node name="Torch54" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1712, -76 )
-frame = 1
 playing = true
 
 [node name="Torch33" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -1232, 295 )
-frame = 1
 playing = true
 
 [node name="Torch22" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 15, 284 )
+frame = 2
 playing = true
 
 [node name="Torch2" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 448, 642 )
+frame = 2
 playing = true
 
 [node name="Torch4" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 642, 720 )
+frame = 2
 playing = true
 
 [node name="Torch5" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 864, 760 )
+frame = 2
 playing = true
 
 [node name="Torch55" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1182, 824 )
+frame = 2
 playing = true
 
 [node name="Torch6" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 609, 896 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch7" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 440, 896 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch8" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 904, 960 )
-frame = 1
 playing = true
 
 [node name="Torch10" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1064, 960 )
-frame = 1
 playing = true
 
 [node name="Torch9" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 984, 960 )
+frame = 2
 playing = true
 
 [node name="Torch11" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1304, 960 )
+frame = 2
 playing = true
 
 [node name="Torch12" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1383, 722 )
+frame = 2
 playing = true
 
 [node name="Torch13" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1362, 1113 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch14" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1230, 1113 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch15" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 1042, 1113 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch16" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 572, 1281 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch17" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 444, 1281 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch18" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 316, 1281 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch19" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 188, 1281 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Torch20" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( 60, 1281 )
-frame = 1
 playing = true
 
 [node name="Torch21" parent="Wall/WallDeco/Torch" instance=ExtResource( 29 )]
 position = Vector2( -68, 1281 )
-frame = 1
 playing = true
 
 [node name="WingPlatform" type="TileMap" parent="."]
@@ -6100,7 +6154,6 @@ tile_data = PoolIntArray( -4063197, 14, 0, -4063196, 15, 0, -3997661, 16, 0, -39
 modulate = Color( 1, 1, 1, 0.458824 )
 position = Vector2( 642, 1530 )
 frames = SubResource( 192 )
-frame = 1
 playing = true
 
 [node name="Sprite" type="Sprite" parent="Platform/EasterEgg"]
@@ -6518,12 +6571,14 @@ script = ExtResource( 22 )
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="KillCombo" type="Label" parent="HUD"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 467.0
-margin_top = 63.0
-margin_right = -468.0
-margin_bottom = -459.0
+margin_left = 469.0
+margin_top = 52.0
+margin_right = -466.0
+margin_bottom = -470.0
+custom_fonts/font = SubResource( 197 )
 text = "0"
 align = 1
 
@@ -6567,8 +6622,53 @@ autostart = true
 position = Vector2( -8, 8 )
 texture = ExtResource( 36 )
 
+[node name="MissionAccomplished" type="Label" parent="HUD"]
+margin_left = 273.0
+margin_top = -137.0
+margin_right = 687.0
+margin_bottom = 84.0
+custom_colors/font_color = Color( 0.65098, 0.862745, 0.87451, 1 )
+custom_fonts/font = SubResource( 198 )
+text = "Mission Accomplished
+
+Tower Assembled
+
+Apotheosis Initiated...
+
+
+"
+align = 1
+
+[node name="GameOver" type="Label" parent="HUD"]
+margin_left = 273.0
+margin_top = -92.0
+margin_right = 687.0
+margin_bottom = -49.0
+custom_colors/font_color = Color( 0.65098, 0.862745, 0.87451, 1 )
+custom_fonts/font = SubResource( 200 )
+text = "Game Over"
+align = 1
+
+[node name="TextureButton" type="TextureButton" parent="HUD/GameOver"]
+margin_left = 165.0
+margin_top = 47.0
+margin_right = 197.0
+margin_bottom = 63.0
+rect_scale = Vector2( 2.5, 1.5 )
+texture_normal = ExtResource( 49 )
+texture_pressed = ExtResource( 51 )
+texture_focused = ExtResource( 50 )
+
+[node name="Label" type="Label" parent="HUD/GameOver"]
+margin_left = 170.0
+margin_top = 53.0
+margin_right = 240.0
+margin_bottom = 63.0
+custom_fonts/font = SubResource( 202 )
+text = "RESTART"
+
 [node name="SpawnPoint" type="Position2D" parent="."]
-position = Vector2( 393, 866 )
+position = Vector2( 405, 861 )
 
 [node name="CriticalComponent" parent="." instance=ExtResource( 35 )]
 position = Vector2( 563, 1600 )
@@ -6582,6 +6682,8 @@ position = Vector2( -1616, -18 )
 stage = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/EndGame = SubResource( 199 )
+anims/GameOver = SubResource( 201 )
 anims/Tower1Rise = SubResource( 193 )
 anims/Tower2Rise = SubResource( 194 )
 anims/Tower3Rise = SubResource( 195 )
@@ -6627,3 +6729,5 @@ align = 1
 [connection signal="tween_all_completed" from="FadeOutTween" to="." method="_on_FadeOutTween_tween_all_completed"]
 [connection signal="timeout" from="KillstreakTimer" to="." method="_on_KillstreakTimer_timeout"]
 [connection signal="timeout" from="HUD/ProgressBar/EnemyHeatTimer" to="." method="_on_EnemyHeatTimer_timeout"]
+[connection signal="button_up" from="HUD/GameOver/TextureButton" to="." method="_on_TextureButton_button_up"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
