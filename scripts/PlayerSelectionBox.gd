@@ -11,9 +11,9 @@ var keyboard = preload("res://assets/keyboard.png")
 var controller = preload("res://assets/controller.png")
 
 onready var player_selection = get_parent().get_parent()
-## TODO: custom button styleboxs
-onready var focused_stylebox = $Model/Prev.get_stylebox("focus").duplicate()
-onready var pressed_stylebox = $Model/Prev.get_stylebox("pressed").duplicate()
+onready var normal_texture = preload("res://assets/ui/button.png")
+onready var focused_texture = preload("res://assets/ui/buttonhover.png")
+onready var pressed_texture = preload("res://assets/ui/buttonpress.png")
 onready var buttons = [[$Model/Prev, $Model/Next], [$Color/Prev, $Color/Next], [$Leave, $Ready]]
 
 onready var player_sprites = {
@@ -195,23 +195,23 @@ func focus_button(init = false):
 	# unfocus all buttons
 	for row in range(buttons.size()):
 		for column in range(buttons[row].size()):
-			buttons[row][column].add_stylebox_override("normal", null)
+			buttons[row][column].texture_normal = normal_texture
 	if focused_button_index == null:
 		return
 	# focus active button
 	var sfx = "menu_select" if init else "menu_focus" 
 	g.play_sfx(self, sfx, -10)
 	var focused_node = buttons[focused_button_index.x][focused_button_index.y]
-	focused_node.add_stylebox_override("normal", focused_stylebox)
+	focused_node.texture_normal = focused_texture
 
 func press_focused_button():
 	g.play_sfx(self, "menu_select", -10)
 	pressed_button = buttons[focused_button_index.x][focused_button_index.y]
-	pressed_button.add_stylebox_override("normal", pressed_stylebox)
+	pressed_button.texture_normal = normal_texture
 	$PressButtonTimer.start()
 
 func _on_PressButtonTimer_timeout():
-	pressed_button.add_stylebox_override("normal", focused_stylebox)
+	pressed_button.texture_normal = focused_texture
 	pressed_button.emit_signal("pressed")
 	pressed_button = null
 
@@ -275,7 +275,6 @@ func _on_ColorPrev_pressed():
 	g.player_colors[player_key] = new_color
 	for sprite in player_sprites.values():
 		set_sprite_color(sprite, new_color)
-	
 
 func _on_ColorNext_pressed():
 	var available_colors = []
@@ -300,8 +299,8 @@ func _on_Leave_pressed():
 func _on_Ready_pressed():
 	is_ready = !is_ready
 	$Checkmark.visible = is_ready
-	$Ready.text = "UNREADY" if is_ready else "READY"
-	$Ready.rect_size.x = 136
+	$ReadyLabel.text = "UNREADY" if is_ready else "READY"
+	$ReadyLabel.rect_size.x = 127
 	emit_signal("player_ready_changed", player_key, is_ready)
 	if is_ready:
 		# TODO: change button to red
