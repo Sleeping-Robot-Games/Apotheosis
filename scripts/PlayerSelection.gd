@@ -155,4 +155,5 @@ func _on_FadeTween_tween_all_completed():
 		show_ready_text()
 	else:
 		g.stop_menu_music()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().change_scene("res://scenes/Game.tscn")
