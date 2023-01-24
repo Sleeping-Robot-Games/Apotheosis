@@ -6,18 +6,30 @@ onready var players = $Players
 onready var bgm = $BGM
 onready var kill_combo = $HUD/KillCombo
 onready var killstreak_fx = $HUD/Killstreak
+onready var focused_texture = preload("res://assets/ui/buttonhover.png")
 
 var killstreak_active = false
 var dead_players = 0
+var game_over = false
 
 func _ready():
 	get_node("Tower1").hide()
 	get_node("Tower2").hide()
 	get_node("Tower3").hide()
-	
+
+func _input(event):
+	if game_over \
+		and g.player_input_devices["p1"] == "joy_" + str(event.device) \
+		and event.is_action_pressed("ui_pad_accept"):
+			restart_game()
+
 func player_died():
 	dead_players += 1
 	if dead_players >= game.num_of_players:
+		game_over = true
+		if g.player_input_devices["p1"] != "keyboard":
+			$HUD/GameOver/Button.mouse_filter = $HUD/GameOver/Button.MOUSE_FILTER_IGNORE
+			$HUD/GameOver/Button.texture_normal = focused_texture
 		$AnimationPlayer.play('GameOver')
 
 func player_repaired():
@@ -89,15 +101,24 @@ func play_tower_animation(num):
 	g.play_sfx(self, "tower_building")
 	$TutorialLabels.hide()
 
-
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == 'Tower3Rise':
 		$AnimationPlayer.play('EndGame')
 		$HUD/MissionAccomplished.text += 'Total Kills ' + str(g.total_kills)
+		game_over = true
+		if g.player_input_devices["p1"] != "keyboard":
+			$HUD/MissionAccomplished/Button.mouse_filter = $HUD/GameOver/Button.MOUSE_FILTER_IGNORE
+			$HUD/MissionAccomplished/Button.texture_normal = focused_texture
 		$Camera.stop_tracking = true
 		for player in get_tree().get_nodes_in_group('players'):
 			player.arise()
 
-
-func _on_TextureButton_button_up():
+func restart_game():
+	g.reset_game_env()
 	get_tree().change_scene("res://scenes/Start.tscn")
+
+func _on_MissionAccomplishedButton_pressed():
+	restart_game()
+
+func _on_GameOverButton_pressed():
+	restart_game()

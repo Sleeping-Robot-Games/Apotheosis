@@ -76,6 +76,19 @@ var green = Color(0.04, 0.52, 0.11, 1.0)
 var red = Color(0.52, 0.04, 0.04, 1.0)
 var yellow = Color(0.88, 0.77, 0.23, 1.0)
 
+func reset_game_env():
+	g.player_input_devices = {'p1':'keyboard','p2':null,'p3':null,'p4':null}
+	g.player_colors = {'p1':'color_001.png','p2':null,'p3':null,'p4': null}
+	g.player_models = {'p1':'head_001.png','p2': null,'p3': null,'p4': null}
+	g.player_ui = {'p1':null,'p2': null,'p3': null,'p4': null}
+	g.ability_ranks = {
+		"p1": {"Ability1":-1,"Ability2":-1,"Ability3":-1,"Ability4":-1},
+		"p2": {"Ability1":-1,"Ability2":-1,"Ability3":-1,"Ability4":-1},
+		"p3": {"Ability1":-1,"Ability2":-1,"Ability3":-1,"Ability4":-1},
+		"p4": {"Ability1":-1,"Ability2":-1,"Ability3":-1,"Ability4":-1},
+	}
+	g.offscreen_players = []
+
 func folders_in_dir(path: String) -> Array:
 	var folders = []
 	var dir = Directory.new()
