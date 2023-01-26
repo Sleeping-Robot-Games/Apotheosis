@@ -75,8 +75,10 @@ func arise():
 func _input(event):
 	if is_dead:
 		return
-	if repair_target != null and event.is_action_pressed("interact_"+ str(controller_id)):
-		if scrap >= 500:
+	if repair_target != null \
+		and event.is_action_pressed("interact_"+ str(controller_id)) \
+		and fab_menu_open == false \
+		and scrap >= 500:
 			spend_scrap(500)
 			repair_target.repair()
 			repair_target = null
@@ -130,6 +132,7 @@ func play_animation(anim_name):
 func repair():
 	is_dead = false
 	hp = max_hp
+	g.player_ui[player_key].set_health(hp)
 	ui_disabled = false
 	$RezArea/Label.visible = false
 	$AnimationPlayer.play("idleRight")
@@ -409,8 +412,8 @@ func _on_RezArea_body_entered(body):
 		repair_target = body
 
 func _on_RezArea_body_exited(body):
-	if is_dead and body.is_in_group('players'):
-		$RezArea/Label.visible = false
+	if repair_target and repair_target == body:
+		body.get_node('RezArea/Label').visible = false
 		repair_target = null
 
 func _on_HealTimer_timeout():
