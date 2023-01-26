@@ -131,7 +131,7 @@ func ledge_detected():
 func drop_scrap():
 	random.randomize()
 	var num = random.randi_range(3, 10)
-	for n in range(num):
+	for _n in range(num):
 		var new_scrap = scrap_scene.instance()
 		new_scrap.global_position = global_position
 		level.add_child(new_scrap)

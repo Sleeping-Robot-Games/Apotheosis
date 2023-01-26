@@ -92,7 +92,7 @@ func _on_QuitButton_pressed():
 	g.play_sfx(self, "menu_select", -10)
 	get_tree().quit()
 
-func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(_anim_name):
 	$Splash/SrgSplash.hide()
 	$Splash/GwjSplash/GWJTimer.start()
 

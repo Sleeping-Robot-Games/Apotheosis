@@ -10,7 +10,7 @@ onready var button_mappings = {
 	"Ability3": "3.png" if using_kb else "rb.png",
 	"Ability4": "4.png" if using_kb else "rt.png"
 }
-onready var current_selection = null if using_kb else "Ability1"
+onready var current_selection = "" if using_kb else "Ability1"
 
 var fab_menu_options = {
 	"Ability1": [
@@ -146,7 +146,7 @@ func _input(event):
 			attempt_purchase()
 
 func open_menu():
-	current_selection = null if using_kb else "Ability1"
+	current_selection = "" if using_kb else "Ability1"
 	player.fab_menu_open = true
 	g.play_sfx(player.level, "menu_select", -5)
 	refresh()
@@ -308,9 +308,7 @@ func attempt_purchase():
 				var new_cost = random.randi_range(1,7) * 111
 				fab_menu_options["Ability5"][0].Cost = new_cost
 			else:
-				var title = fab_menu_options[current_selection][0].Title
 				var rank = fab_menu_options[current_selection][0].Rank
-				# player.show_debug_label(title)
 				g.ability_ranks[player.player_key][current_selection] = rank
 				g.player_ui[player.player_key].set_ability_rank(current_selection, rank)
 				if rank == 0:

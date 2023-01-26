@@ -4,7 +4,7 @@ onready var players = get_parent().get_node("Players")
 
 var stop_tracking = false
 
-func _process(delta):
+func _process(_delta):
 	if not stop_tracking:
 		var middle_point = Vector2(0,0)
 		var summed_positions = Vector2(0,0)

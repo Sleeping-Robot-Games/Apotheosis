@@ -83,7 +83,7 @@ func impact():
 	$Area2D/CollisionShape2D.set_deferred('disabled', true)
 	var direction = 1 if speed < 0 else -1
 	if direction == 1:
-		$Impact.flip_h
+		$Impact.flip_h = true
 	speed = 0
 	$"001".hide()
 	$"002".hide()

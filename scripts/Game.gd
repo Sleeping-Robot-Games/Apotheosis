@@ -22,7 +22,6 @@ func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func spawn_players():
-	var spawn_offset = 0
 	for debug_player in players.get_children():
 		debug_player.queue_free()
 	for player in g.player_input_devices:

@@ -12,7 +12,7 @@ func _ready():
 	$Label.hide()
 	$InteractLabel.hide()
 	
-func _input(event):
+func _input(_event):
 	if player != null and Input.is_action_just_pressed("interact_"+ player.controller_id):
 			if scrap_required > 0:
 				if player.scrap >= base_required:
@@ -41,14 +41,6 @@ func _input(event):
 				else:
 					$Label.text = 'Critical Component required'
 
-func any_player_has_the_component():
-	for player in get_tree().get_nodes_in_group('players'):
-		print(player.component_stage)
-		if player.component_stage == tower_console_number:
-			return true
-		return false
-
-## TODO: SHOW THE RIGHT MESSAGE IF THE PLAYERS DON'T HAVE THE COMPONENT
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("players"):
 		if scrap_required == 0 and component_delivered:

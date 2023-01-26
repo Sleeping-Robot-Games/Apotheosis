@@ -179,7 +179,7 @@ func shoot():
 	$ShootCD.start()
 	g.play_sfx(level, "player_shoot", -10)
 	var y_offset = 0
-	for i in range(mods.Bullets):
+	for _i in range(mods.Bullets):
 		var bullet = bullet_scene.instance()
 		bullet.shot_by = 'player'
 		bullet.global_position = Vector2(global_position.x + 20 * direction, global_position.y + y_offset) 

@@ -9,7 +9,6 @@ onready var chase_state: BaseState = get_node(chase_node)
 onready var fall_state: BaseState = get_node(fall_node)
 
 var pushed_start = 0
-var pushed_distance = 0
 var baseline_push_force = 200
 var push_force = 200
 

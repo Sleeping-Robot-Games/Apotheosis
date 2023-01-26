@@ -11,7 +11,7 @@ func _ready():
 	$Cost.visible = false
 	$Cost.text = "Scrap: " + str(scrap_cost)
 
-func _input(event):
+func _input(_event):
 	if heal_receiver:
 		var total_scrap_cost = scrap_cost * (heal_receiver.max_hp - heal_receiver.hp)
 		if Input.is_action_just_pressed("interact_"+ heal_receiver.controller_id) \

@@ -1,4 +1,5 @@
 extends Node
+# warning-ignore-all:unused_signal
 
 var random = RandomNumberGenerator.new()
 
