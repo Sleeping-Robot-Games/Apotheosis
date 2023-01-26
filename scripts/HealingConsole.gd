@@ -15,15 +15,16 @@ func _input(_event):
 	if heal_receiver:
 		var total_scrap_cost = scrap_cost * (heal_receiver.max_hp - heal_receiver.hp)
 		if Input.is_action_just_pressed("interact_"+ heal_receiver.controller_id) \
-		and heal_receiver.scrap >= total_scrap_cost:
-			heal_receiver.spend_scrap(total_scrap_cost)
-			is_healing = true
-			heal_receiver.ui_disabled = true
-			heal_receiver.global_position = global_position
-			$Idle.visible = false
-			$Active.visible = true
-			$Active.play()
-			g.play_sfx(self, "healing")
+			and heal_receiver.scrap >= total_scrap_cost \
+			and heal_receiver.fab_menu_open == false:
+				heal_receiver.spend_scrap(total_scrap_cost)
+				is_healing = true
+				heal_receiver.ui_disabled = true
+				heal_receiver.global_position = global_position
+				$Idle.visible = false
+				$Active.visible = true
+				$Active.play()
+				g.play_sfx(self, "healing")
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group('players') and not heal_receiver:

@@ -13,7 +13,9 @@ func _ready():
 	$InteractLabel.hide()
 	
 func _input(_event):
-	if player != null and Input.is_action_just_pressed("interact_"+ player.controller_id):
+	if player != null \
+		and Input.is_action_just_pressed("interact_"+ player.controller_id) \
+		and player.fab_menu_open == false:
 			if scrap_required > 0:
 				if player.scrap >= base_required:
 					player.spend_scrap(base_required)
