@@ -202,6 +202,11 @@ one_shot = true
 
 [node name="FloatTextSpawner" parent="." instance=ExtResource( 4 )]
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+rect = Rect2( -15, -20, 30, 40 )
+process_parent = true
+physics_process_parent = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_AttackArea_body_exited"]
